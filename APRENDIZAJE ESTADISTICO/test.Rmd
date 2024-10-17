@@ -1,4 +1,4 @@
-library(boot)
+# TEST DE RMARKDOWN
 
 ```{r}
 x <- 1
