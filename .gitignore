@@ -1,7 +1,6 @@
 # Personalizados
 bdge/
 tcdm-public/
-databases/
 .vscode/
 env-*/
 *.csv
