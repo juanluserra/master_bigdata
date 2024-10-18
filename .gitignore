@@ -3,6 +3,9 @@ bdge/
 tcdm-public/
 .vscode/
 env-*/
+rss/
+elmundo/
+umu/
 *.csv
 
 # Byte-compiled / optimized / DLL files
