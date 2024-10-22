@@ -1,0 +1,14 @@
+---
+title: "Práctica 6"
+output: pdf_document
+editor_options: 
+chunk_output_type: console
+---
+
+```{R setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+
+```

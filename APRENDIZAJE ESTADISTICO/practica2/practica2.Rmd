@@ -3,19 +3,153 @@ title: "Práctica 2"
 output: pdf_document
 date: "2024-10-16"
 editor_options: 
-  chunk_output_type: console
+chunk_output_type: console
 ---
 
-```{r setup, include=FALSE}
+```{R setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
-# Vector para Baloncesto
-baloncesto <- c(1, 2, 4, 4, 7, 3, 3, 2, 4, 5, 2, 4, 3, 5, 3, 4, 4, 3, 6, 5, 5, 6, 4, 6, 5)
-futbol <- c(1, 7, 7, 6, 1, 2, 6, 1, 7, 2, 1, 3, 2, 7, 5, 6, 1, 7, 4, 1, 5, 7, 6, 3, 2)
+# Ejercicio 1
+```{R}
+# Guaradmos los datos en un dataframe
+baloncesto <- c(
+  1, 2, 4, 4, 7, 3, 3, 2, 4, 5, 2, 4, 3, 5,
+  3, 4, 4, 3, 6, 5, 5, 6, 4, 6, 5
+)
+futbol <- c(
+  1, 7, 7, 6, 1, 2, 6, 1, 7, 2, 1, 3,
+  2, 7, 5, 6, 1, 7, 4, 1, 5, 7, 6, 3, 2
+)
 
 datos <- data.frame(baloncesto, futbol)
+attach(datos)
+```
+
+## Apartado a)
+```{R}
+# Realizamos las tablas de frecuencia
+addmargins(table(baloncesto))
+addmargins(table(futbol))
+
+# Realizamos los diagramas de dispersión unidimensionales de las variables.
+# Usamos el método stack para
+stripchart(baloncesto, method = "stack")
+stripchart(futbol, method = "stack")
+```
+
+## Apartado b)
+```{R}
+# Creamos un vector con los puntos de separación del histograma
+breaks <- seq(0.5, 7.5, 0.5)
+
+# Creamos los hisrogramas
+par(mfrow = c(1, 2))
+hist(baloncesto, breaks = breaks)
+hist(futbol, breaks = breaks)
+par(mfrow = c(1, 1))
+```
+
+## Apartado c)
+```{R}
+# Media de los datos
+mean(baloncesto)
+mean(futbol)
+
+# Mediana de los datos
+median(baloncesto)
+median(futbol)
+
+# Cuartiles de los datos
+quantile(baloncesto)
+quantile(futbol)
+
+# El rango muestral es la resta entre el máximo y el mínimo.
+rango_muestral_baloncesto <- max(baloncesto) - min(baloncesto)
+rango_muestral_futbol <- max(futbol) - min(futbol)
+rango_muestral_baloncesto
+rango_muestral_futbol
+
+# Calculamos el rango intercuartilico
+IQR(baloncesto)
+IQR(futbol)
+```
+
+## Apartado d)
+```{r}
+# Calculamos la varianza
+var(baloncesto)
+var(futbol)
+
+# Calculamos la distribucion estandar
+sd(baloncesto)
+sd(futbol)
+```
+
+## Apartado e)
+```{r}
+boxplot(datos)
 ```
 
 
+# Ejercicio 2
+
+# Apartado a)
+```{r}
+# Vectores de edad y frecuencia
+edad <- c("16-19", "20-24", "25-54", "55-65")
+frecuencia <- c(242, 618, 3348, 365)
+
+edad_num <- rep(seq(4), frecuencia)
+hist(edad_num, breaks = seq(5) - 1)
+```
+
+
+# Ejercicio 3
+```{r}
+# Crear una tabla con los datos
+datos <- matrix(c(1768, 807, 186, 47,
+                  946, 1387, 746, 53,
+                  115, 438, 288, 16), 
+                nrow = 3, 
+                byrow = TRUE)
+
+# Asignar nombres a las filas y columnas
+rownames(datos) <- c("azul", "verde", "marrón")
+colnames(datos) <- c("rubio", "moreno", "pelirrojo", "canoso")
+
+# Convertir la matriz a un data frame para una mejor visualización
+# tabla <- as.data.frame(datos)
+
+# Mostrar la tabla
+print(datos)
+```
+
+# Apartado a)
+```{r}
+# Hacemos una tabla de proporciones en el eje 2
+tablaprop <- prop.table(datos, margin = 2) * 100
+addmargins(tablaprop)
+```
+
+Se puede ver como de todas las personas con el pelo rubio, el 62.50% tiene los ojos azules.
+
+
+# Apartado b)
+```{r}
+# Hacemos una tabla de proporciones en el eje 1
+tablaprop <- prop.table(datos, margin = 1) * 100
+addmargins(tablaprop)
+```
+
+Se puede ver como de todas las personas con los ojos azules, el 62.96% tiene el pelo rubio.
+
+
+# Apartado c)
+```{r}
+# Hacemos una tabla de proporciones
+tablaprop <- prop.table(datos) * 100
+addmargins(tablaprop)
+```
+
+Se puede ver como un 0.24% del total de personas tiene el pelo canoso y los ojos marrones.
