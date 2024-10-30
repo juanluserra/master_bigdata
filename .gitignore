@@ -3,6 +3,7 @@ bdge/
 tcdm-public/
 .vscode/
 env-*/
+.venv*
 rss/
 elmundo/
 umu/
