@@ -1,0 +1,406 @@
+---
+title: "Práctica 7"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+ 
+#  Principal Components Regression
+
+Extensión de Ch6-varselect-lab.R, DEL LIBRO
+
+Continuación de la práctica anterior de Lasso y Ridge.
+
+ RECUERDA: 
+ 
+ Algunas de las ventajas más destacables de realizar PCR son las siguientes:
+  
+  -- Reducción de dimensionalidad
+  
+  -- Evitar multicolinealidad entre predictores.
+  
+
+```{r}
+library(ISLR2)
+library(MASS)
+library(pls)
+library(corrplot)
+library(caret)
+```
+
+```{r}
+names(Hitters)
+dim(Hitters)
+```
+
+Hay que eliminar las muestras con NA en Salary, y definir x, y, como en la práctica anterior.
+
+```{r}
+attach(Hitters)
+sum(is.na(Hitters$Salary))
+Hitters <- na.omit(Hitters)
+```
+Sólo por curiosidad, para aquellas personas que no conozcan la función findCorrelation:
+
+```{r} 
+corrplot(cor(Hitters[, c(-14, -15, -20)]), type = "upper", tl.cex = 0.5)
+findCorrelation(cor(Hitters[, c(-14, -15, -20)]), names = TRUE)
+# B2=subset(Hitters,select=-findCorrelation(cor(Hitters[,c(-14,-15,-20)])))
+```
+
+La función pcr realica regresión con componentes principales. 
+
+```{r}
+?pcr
+```
+
+
+```{r}
+set.seed(2)
+pcr.fit <- pcr(Salary ~ ., data = Hitters, scale = TRUE, validation = "CV")
+```
+
+La sintaxis de la función pcr() es similar a la de lm(), con algunas opciones adicionales.
+  
+Escala = VERDADERO: se estandarizan los predictores (vease 6.6), antes de generar los componentes principales, de modo que la escala en la que cada variable se mide no tendrá ningún efecto.
+
+Validación = "CV" hace que pcr() calcule con 10-fold CV validation el error para cada valor posible de M, número de componentes principales utilizadas.
+ 
+```{r}
+summary(pcr.fit)
+```
+
+El CV score se da desde M = 0. IMPORTANTE:  pcr() proporciona la raíz cuadrada del MSE
+Para obtener el MSE habitual, debemos elevar al cuadrado esta cantidad.
+
+La función summary() proporciona el porcentaje de varianza explicado en los predictores y en la respuesta utilizando diferentes componentes.
+ 
+Brevemente, podemos pensar en esto como la cantidad de información sobre los predictores.
+o la respuesta que se captura utilizando M componentes principales.
+
+Por ejemplo,   M = 1 solo captura el 38,31 % de toda la varianza o información en los predictores.
+En cambio, usar M = 5 aumenta el valor a 84,29 %.
+
+Si usáramos todos, M = p = 19, componentes, esto aumentaría al 100 %.
+
+
+También se pueden trazar las puntuaciones de la validación cruzada utilizando validationplot() función. 
+Podemos visualizar los MSE con val.type = "MSEP": 
+
+
+```{r}
+MSEP(pcr.fit)
+```
+
+
+```{r}
+validationplot(pcr.fit, val.type = "MSEP")
+```
+
+ Vemos que el menor error de validación cruzada más pequeño es con M = 18 componentes, lo que equivale simplemente a realizar mínimos cuadrados,
+ 
+
+ 
+```{r}
+which.min(MSEP(pcr.fit)$val[1, 1, ]) - 1
+```
+ 
+
+Sin embargo, en el gráfico también vemos que el error de validación cruzada es aproximadamente el mismo cuando sólo se incluye pocas componentes en el modelo. Esto sugiere que un modelo que utiliza sólo una pequeña cantidad de componentes podría ser suficiente.
+  
+Más información que me da la función pcr (la he puesto en # para que el pdf generado no fuera muy extenso). 
+
+```{r}
+# pcr.fit$coefficients #coeficientes de la regresión en las variables originales
+# pcr.fit$loadings #los pesos que proporcionand las componenetes en c.l. de las originales
+# pcr.fit$scores #los componentes principales como variables
+# pcr.fit$fitted.values #la predicción por cada observación, dependiendo del número de componentes
+```
+
+  
+Ahora realizamos PCR en los datos de entrenamiento y evaluamos el rendimiento del conjunto de pruebas.
+
+```{r}
+x <- model.matrix(Salary ~ ., Hitters)[, -1]
+y <- Hitters$Salary
+```
+  
+
+```{r}
+set.seed(1)
+train <- sample(1:nrow(x), nrow(x) / 2)
+test <- (-train)
+y.test <- y[test]
+pcr.fit2 <- pcr(Salary ~ ., data = Hitters, subset = train, scale = TRUE, validation = "CV")
+summary(pcr.fit2)
+validationplot(pcr.fit2, val.type = "MSEP")
+```
+
+Encontramos que el error de validación cruzada más bajo ocurre cuando M = 3 ó 5 (este número puede variar dependiendo del conjunto de entrenamiento) que se utilicen los componentes. Calculamos el MSE con el conjunto de validación de la siguiente manera:
+  
+
+```{r}
+pcr.pred2 <- predict(pcr.fit2, x[test, ], ncomp = 5)
+mean((pcr.pred2 - y.test)^2)
+```
+ 
+Este conjunto de pruebas MSE es competitivo con los resultados obtenidos mediante la regresión de Ridge y Lasso. Sin embargo, como resultado de la forma en que se implementa el PCR, el modelo final es más difícil interpretar porque no realiza ningún tipo de selección de variables.
+ 
+Finalmente, ajustamos la PCR al conjunto de datos completo, usando M = 5, el número de componentes identificados mediante validación cruzada.
+
+
+```{r}
+pcr.fit3 <- pcr(y ~ x, scale = TRUE, ncomp = 5)
+summary(pcr.fit3)
+```
+```{r}
+head(predict(pcr.fit3)) # esto me da lo mismo que pcr.fit3$fitted.values
+# pcr.fit3$fitted.values
+```
+
+
+```{r}
+coef(pcr.fit3)
+```
+
+##############################################################
+### LO SIGUIENTE CORRESPONDE A Ch12-unsup-lab.R DEL LIBRO, CON APUNTES TEÓRICOS ADICIONALES
+
+
+#  Principal Components Analysis 
+Consideremos otra nueva base de datos.
+
+```{r}
+states <- row.names(USArrests)
+states
+# View(USArrests)
+names(USArrests)
+```
+
+Vemos que las medias de cada columna de la base de datos son muy diferente.
+
+```{r}
+apply(USArrests, 2, mean)
+```
+También podemos ver sus varianzas.
+
+```{r}
+apply(USArrests, 2, var)
+```
+ Observamos que son muy diferentes, entre otras cosas porque 
+ hay diferentes escalas; urbanpop es un tanto por ciento.
+ por ello, hay que poner en el PCA, scale=TRUE, y así, además de 
+ restar la media, hacemos que todas las variables tengan varianza igual a 1.
+ Se consigue dividiendo por la desviación típica.
+
+```{r}
+pr.out <- prcomp(USArrests, scale = TRUE)
+```
+ Veamos las direcciones principales (autovectores ortonormales). 
+ ¿Los podríais interpretar?
+
+```{r}
+pr.out
+```
+Más información:
+
+```{r}
+summary(pr.out)
+```
+ 
+ Veamos qué es todo esto:
+ Empecemos por la información que da el pr.out directamente. 
+ La desviación típica es de las componentes principales Z_i (i.e. las nuevas variables).
+ Lo verifiquemos:
+
+```{r}
+attach(USArrests)
+sd(0.5358995 * (Murder - mean(Murder)) / sd(Murder) + 0.5831836 * (Assault - mean(Assault)) / sd(Assault) + 0.2781909 * (UrbanPop - mean(UrbanPop)) / sd(UrbanPop) + 0.5434321 * (Rape - mean(Rape)) / sd(Rape))
+## o lo que es lo mismo
+sd(pr.out$x[, 1])
+```
+
+ x te proporciona las componentes principales como nuevas variables (scores)
+
+```{r}
+dim(pr.out$x)
+pr.out$x
+```
+
+ Además: 
+
+```{r}
+pr.out$sdev # sdev se corresponden a valores singulares
+lasvar <- pr.out$sdev^2 # esto a los autovalores, es decir, las varianzas.
+lasvar
+screeplot(pr.out) # gráficamente
+```
+
+ Proportion of Variance: 
+ PC1 expl elica 62.0% de la varianza en los datos, PC2 el 24.7 % , etc.
+
+```{r}
+lasvar / sum(lasvar)
+```
+ Gráficamente:
+ PVE = proportion of variance explained
+
+```{r}
+pve <- lasvar / sum(lasvar)
+pve
+par(mfrow = c(1, 2))
+plot(pve,
+     xlab = "Principal Component",
+     ylab = "Proportion of Variance Explained", ylim = c(0, 1),
+     type = "b"
+)
+plot(cumsum(pve),
+     xlab = "Principal Component",
+     ylab = "Cumulative Proportion of Variance Explained",
+     ylim = c(0, 1), type = "b"
+)
+```
+
+Sigamos: Center y Scale corresponden a media y desviación típica de las variables de partida
+
+```{r}
+pr.out$center
+apply(USArrests, 2, mean)
+pr.out$scale
+apply(USArrests, 2, sd)
+```
+
+ Rotation: proporciona los autovectores (loadings); igual que si ejecutamos sólo pr.out
+
+```{r}
+pr.out$rotation
+```
+
+Cambiemos de signo los autovalores:
+
+
+
+```{r}
+pr.out$rotation <- -pr.out$rotation
+```
+ gráficamente: 
+
+```{r}
+barplot(pr.out$rotation, beside = TRUE)
+pr.out$x <- -pr.out$x
+```
+
+ Biplot:
+ El biplot plotea por un lado las dos primeras componentes principales
+ scale=0 : las flechas representa los dos primeros pesos de las componentes;
+ es decir,  Rape está en la coordenada (0.5434321 , 0.1673186).
+ 
+ Por otro lado, en otra escala, se hace un plot de las dos primeros
+  datos de las ciudades en las componentes principales.
+ Permite interpretar el significado de las componentes
+ (la primera en el eje horizontal y la segunda en el eje vertical) 
+ 
+ Matemáticamente, las componentes principales, Z_i, son combinaciones lineales de las 
+ variables predictores iniciales X_i, y viceversa, cada  predictor X_i puede ser escrita 
+ como combinación lineal de los predictores. 
+ 
+ Esto se deduce de:
+ X.V=Z donde X:: base de datos, en filas las observaciones; V::matriz cuyas columnas son 
+ los loadings, es decir, direcciones de componentes principales; 
+ Z:: componentes principales, es decir, las nuevas variables que están correlacionadas.
+
+
+```{r}
+biplot(pr.out, scale = 0)
+pr.out
+head(pr.out$x)
+```
+ 
+ La conclusión es que los datos podrían ser sustituidos por PC1 y PC2. 
+ O sea, la matriz de datos quedaría reducida a la mitad.
+
+### Análisis de componentes principales a través de la diagonalización de la matriz de correlación:
+
+```{r}
+n <- nrow(USArrests)
+n
+```
+Hacer PCA con varianza igual a 1, equivale a hacer PCA con la matriz de correlación.
+
+Podemos hacer la matriz de correlación "a mano" y así recordar qué significa:
+```{r}
+a <- scale(USArrests$Murder) # escalamos las variables
+b <- scale(USArrests$Assault)
+c <- scale(USArrests$UrbanPop)
+d <- scale(USArrests$Rape)
+aver <- data.frame(a, b, c, d)
+K <- as.matrix(aver)
+Kt <- t(K) # matriz transpuesta de K
+(Kt %*% K) / 49 # matriz de correlación
+```
+
+
+Una vez que lo hemos recordado, podemos seguir utilizando la orden cor:
+
+```{r}
+S <- cor(USArrests)
+S
+auto <- eigen(S)
+```
+Sus autovalores son las varianzas obtenidas por el otro método:
+
+```{r}
+auto$values
+lasvar
+``` 
+Los autovectores son las direcciones de las componentes principales
+
+```{r}
+auto$vectors
+pr.out
+```
+En general, estos datos se hallan con la SVD de la matriz de correlación.
+
+#   PCR - Regresión con componentes principales con la función prcomp
+
+```{r}
+plot(USArrests)
+# USArrests[,-1]
+```
+Primero prcomp, y a continuación lm con la dos primeras componentes principales:
+
+```{r}
+pr.out2 <- prcomp(USArrests[, -1], scale = TRUE)
+pr.out2$x[1:10, ]
+summary(pr.out2)
+regPC <- lm(USArrests$Murder ~ pr.out2$x[, -3])
+regPC
+summary(regPC)
+7.7880 - 2.008 * pr.out2$x[, 1] + 2.356 * pr.out2$x[, 2] #  que corresponde a fitted(regPC)
+fitted(regPC)
+regPCt <- lm(USArrests$Murder ~ pr.out2$x) ## regresión con las 3
+regPCt
+summary(regPCt)
+```
+
+Regresión con modelo lineal dependiendo de las variables originales no tendría que ser diferente a regresión con las 3 componentes principales.
+
+```{r}
+LR <- lm(USArrests$Murder ~ USArrests$Assault + USArrests$Rape + USArrests$UrbanPop)
+summary(LR)
+```
+
+
+Con la librería pls, utilizando pcr, como al principio de la práctica:
+
+```{r}
+library(pls)
+regPCRt <- pcr(USArrests$Murder ~ ., data = USArrests, scale = TRUE)
+summary(regPCRt)
+fitted(regPCRt)
+fitted(regPCt)
+```
+Observamos que regPCt y regPCRt lógicamente es similar. En cambio, pcr no te da mucha información.
+

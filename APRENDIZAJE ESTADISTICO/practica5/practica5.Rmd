@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-datos <- read.csv("~/1º BIG DATA/master_bigdata/APRENDIZAJE ESTADISTICO/datos.csv", stringsAsFactors=TRUE)
+datos <- read.csv("~/1º BIG DATA/master_bigdata/APRENDIZAJE ESTADISTICO/data/datos.csv", stringsAsFactors=TRUE)
 attach(datos)
 
 # Analizamos los datos
