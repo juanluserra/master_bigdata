@@ -1,17 +1,29 @@
-# Personalizados
-patentes-mini/
+#------------------------------------------------
+# Personalizados:
+#------------------------------------------------
+
+# Extensiones de archivos
+*.7z
+*.csv
+*.codeium.json
 *.zip
-bdge/
-tcdm-public/
-practica-AE/
-.vscode/
-env-*/
-.venv*
+
+# Carpetas
+patentes-mini/
 rss/
 elmundo/
 umu/
-*.csv
-*.codeium.json
+.vscode/
+
+# Repositorios
+bdge/
+tcdm-public/
+practica-AE/
+
+# Entornos virtuales
+env-*/
+.venv*
+#------------------------------------------------
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
