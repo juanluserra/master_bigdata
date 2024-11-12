@@ -1,7 +1,8 @@
 from mrjob.job import MRJob
 from mrjob.protocol import TextProtocol, TextValueProtocol
 from typing import Generator, Any
-import pdbp
+from pathlib import Path
+FILE_PATH = Path(__file__).parent
 
 class MRCitingPatents(MRJob):
 
@@ -11,8 +12,12 @@ class MRCitingPatents(MRJob):
     # El protocolo de salida por defecto separa clave y valor por tabulador
     OUTPUT_PROTOCOL = TextProtocol
 
-    def mapper(self, key, value: str) -> Generator[tuple, Any, None]:
+    def mapper(self, key, value) -> Generator[tuple, Any, None]:
         citting, citted = value.split(',')
+        
+        with open(FILE_PATH / 'log_citingpatents.txt', 'w') as f:
+            f.write('test \n')
+        
         if '"' not in value:
             yield citting, citted
 

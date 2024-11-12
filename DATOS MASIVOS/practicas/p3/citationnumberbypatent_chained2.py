@@ -2,8 +2,11 @@ from mrjob.job import MRJob
 from mrjob.step import MRStep
 from mrjob.protocol import TextProtocol, TextValueProtocol
 from typing import Generator, Any
+from pathlib import Path
 
 from citingpatents1 import MRCitingPatents
+
+file_path = Path(__file__).parent
 
 # Esta clase define un protocolo de salida que separa clave y valor por comas
 class CSVOutputProtocol(TextProtocol):
@@ -35,8 +38,11 @@ class MRCitationNumberByPatentChained(MRJob):
 
     def mapper(self, key: str, value: str) -> Generator[tuple, Any, None]:
         # Line format: cited \t citing1,citing2,citing3,...
-        # yield key, ...
+        # yield key, len(citingList)
+        with open(file_path / 'log_citingpatents.txt', 'w') as f:
+            f.write('test \n')
         ...
+
 
 if __name__ == '__main__':
     MRCitationNumberByPatentChained.run()
