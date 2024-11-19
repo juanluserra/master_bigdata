@@ -159,6 +159,7 @@ En conjunto, estas acciones buscan no solo alcanzar los KPIs definidos, sino tam
 En este apartado se mostrará y explicará el diseño de los diferentes cubos que se han considerado necesarios 
 para la consecución de los objetivos comentados anteriormente.
 
+\
 == Definición de los cubos: granularidad y medidas
 Como se ha podido observar en el apartado dedicado a los objetivos del negocio, los KPIs definidos para Game Pass y Xbox abarcan diversas áreas y procesos de negocio. Sin embargo, esto no implica que se deba crear un cubo específico para cada indicador, ya que algunos están estrechamente relacionados y pueden agruparse en un mismo cubo. Además, hay KPIs en los que la dimensión temporal tiene un papel clave, lo que requiere combinar tablas transaccionales para registrar eventos detallados con tablas snapshot que permitan analizar la evolución del negocio a lo largo del tiempo.
 
