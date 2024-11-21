@@ -293,3 +293,4 @@ A continuación, se describen los cubos diseñados, especificando la granularida
   - *Observaciones:* Es una dimensión estática, ya que los datos geográficos no cambian con frecuencia.
 
 
+
