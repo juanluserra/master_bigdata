@@ -56,10 +56,22 @@ El objetivo es maximizar los ingresos mediante el aumento de suscripciones a Gam
   - *KPI 9:* Disminuir en un 15% el número de tickets de soporte relacionados con problemas de acceso o rendimiento.
 
 == Resumen de los indicadores
+
+// Configuraciones de la tabla
 #show table.cell: set par(justify: false)
 #show table.cell: set text(size: 10pt)
 #show table.cell.where(y: 0): strong
-#show table.cell.where(y: 0): set text(size: 11pt)
+#show table.cell.where(y: 0): set text(white, size: 11pt)
+#set table(
+  stroke: none,
+  gutter: 0.2em,
+  fill: (x,y) => if (y == 0){
+    rgb("#40729a")
+  }
+  else{
+    rgb("#f2f2f2")
+  }
+)
 
 #align(
   center,
@@ -169,16 +181,18 @@ A continuación, se describen los cubos diseñados, especificando la granularida
 
 - *Cubo de suscripciones a Game Pass:*
   - *Descripción:* Este proceso captura todas las actividades relacionadas con las suscripciones al servicio Game Pass, como altas, bajas y renovaciones. Se enfoca en medir el crecimiento y la retención de suscriptores, aspectos críticos para asegurar el flujo de ingresos recurrentes.
-  - *Granularidad:* Cada fila representará una suscripción individual o una cancelación. La granularidad será una suscripción activa individual.
+  - *Granularidad:* La granularidad a nivel de eventos individuales (como suscripciones, renovaciones y cancelaciones) es típica de las tablas transaccionales, ya que cada fila representa una única acción realizada por un usuario en un momento específico.
   - *Tasa de refresco:* Diaria, ya que se realizan suscripciones y cancelaciones constantemente.
-  - *Tipo de tabla de hecho:* Acumulativa (almacena un registro de cada suscripción y su estado actual).
+  - *Tipo de tabla de hecho:* Tabla transaccional, ya que se registran transacciones individuales.
   - *Medidas:* 
-    - *Importe de la suscripción:* Valor total pagado por el suscriptor en un período específico. *Tipo*: Aditiva. *Obtención:* Valor mensual o anual pagado por el usuario según su plan.
+    - *Fecha de transacción:* Fecha en la que se registra la transacción (sea alta, renovación o cierre). *Tipo:* No aditiva. *Obtención:* Se registra la fecha en la que el usuario se suscribió al servicio.
+    - *Tipo de transacción:* Variable categórica que indica el tipo de transacción (`alta`, `cancelación`, `renovación`). *Tipo:* No aditiva. *Obtención:* Se registra el tipo de acción realizada por el usuario.
+    - *Duración de suscripción:* Variable categórica que clasifica el tiempo de suscripción (`mensual`, `anual`). *Tipo:* No aditiva. *Obtención:* Se registra el tipo de plan al que se suscribe el usuario.
+    - *Tipo de suscripción:* Variable categórica que clasifica el tipo de suscripción (`PC Game Pass`, `Game Pass Ultimate`). *Tipo:* No aditiva. *Obtención:* Se registra el tipo de plan al que se suscribe el usuario.
+    - *Importe de la suscripción:* Valor total pagado por el suscriptor en la transacción sin descuentos. *Tipo*: Aditiva. *Obtención:* Valor mensual o anual pagado por el usuario según su plan.
     - *Importe mensual:* Valor pagado por mes para la suscripción. *Tipo*: Semi-aditiva. *Obtención:* Divide el importe total de la suscripción entre el número de meses del plan.
-    - *Días restantes restantes de la suscripción:* Número de días que quedan hasta la fecha de vencimiento. *Tipo:* Semi-aditiva. *Obtención:* Resta la fecha de vencimiento de la fecha actual.
-    - *Antigüedad:* Antigüedad de la suscripción en días. *Tipo:* Semi-aditiva. *Obtención:* Resta la fecha de alta de la fecha actual.
-    - *Descuento aplicado:* Valor del descuento aplicado a la suscripción. *Tipo:* Semi-aditiva. *Obtención:* Multiplica el precio base del plan por el porcentaje de descuento.
-    - *Cantidad de horas jugadas:* Cantidad de horas jugadas que lleva acumuladas el suscriptor. *Tipo:* Aditiva. *Obtención:* Suma las horas jugadas por el usuario en este último día a las que lleva jugadas hasta ahora.
+    - *Descuento aplicado:* Valor del descuento aplicado a la suscripción. *Tipo:* No aditiva. *Obtención:* Multiplica el precio base del plan por el porcentaje de descuento.
+    - *Método de pago:* Variable categórica que registra el método utilizado para realizar el pago de la suscripción (`tarjeta crédito`, `tarjeta débito`, `paypal`). *Tipo:* No aditiva. *Obtención:* Se registra el método de pago utilizado por el usuario.
 
 \
 - *Cubo de Ventas de Juegos y Consolas*
@@ -187,10 +201,10 @@ A continuación, se describen los cubos diseñados, especificando la granularida
   - *Tasa de refresco:* Diaria.
   - *Tipo de tabla de hecho:* Transaccional (registra cada venta individual).
   - *Medidas:*
-    - *Precio del producto:* Precio de venta por unidad del producto vendido en la transacción. *Tipo:* Semi-aditiva. *Obtención:* Precio registrado del producto vendido.
-    - *Coste del producto:* Precio de adquisición o producción por unidad del producto vendido. *Tipo:* Semi-aditiva. *Obtención:* Costo registrado del producto vendido.
+    - *Precio del producto:* Precio de venta por unidad del producto vendido en la transacción. *Tipo:* Aditiva. *Obtención:* Precio registrado del producto vendido.
+    - *Coste del producto:* Precio de adquisición o producción por unidad del producto vendido. *Tipo:* Aditiva. *Obtención:* Costo registrado del producto vendido.
     - *Beneficio del producto:* Beneficio obtenido por la venta del producto. *Tipo:* Semi-aditiva. *Obtención:* Resta el costo del precio de venta.
-    - *Descuento del producto:* Valor del descuento aplicado a la venta. *Tipo:* Semi-aditiva. *Obtención:* Multiplica el precio base del producto por el porcentaje de descuento.
+    - *Descuento del producto:* Valor del descuento aplicado a la venta. *Tipo:* No aditiva. *Obtención:* Multiplica el precio base del producto por el porcentaje de descuento.
     - *Impuesto de venta:* Cantidad de impuesto aplicado a la venta. *Tipo:* Semi-aditiva. *Obtención:* Multiplica el precio base del producto por el impuesto correspondiente.
 
 \
@@ -203,16 +217,15 @@ A continuación, se describen los cubos diseñados, especificando la granularida
   - *Descripción:* Esta dimensión almacena información sobre los suscriptores del servicio Game Pass. Es clave para identificar y analizar características demográficas y comportamientos que influyen en la retención y adquisición de clientes.
   - *Atributos:*
     - *ID Suscriptor:* Identificador único para cada suscriptor.
-    - *Nombre:* Nombre completo del suscriptor (si aplica).
+    - *Nombre:* Nombre completo del suscriptor.
     - *Edad:* Rango de edad del suscriptor para análisis demográficos.
     - *Ubicación:* Región geográfica donde reside el suscriptor.
     - *Estado de la suscripción:* Si la suscripción está activa o cancelada.
     - *Fecha de alta:* Fecha en la que el suscriptor se registró en el servicio.
     - *Fecha de baja:* Fecha en la que el suscriptor canceló su suscripción.
+    - *Antigüedad:* Tiempo en días transcurrido desde la fecha de alta (fecha de alta menos fecha actual).
+    - *Número de bajas:* Cantidad de veces que el suscriptor ha cancelado la suscripción.
     - *Idioma preferido:* Idioma principal seleccionado por el suscriptor para la interfaz y el contenido.
-    - *Tipo de suscripción:* Tipo de plan que el suscriptor utiliza (mensual o anual).
-    - *Método de pago:* Método utilizado para realizar el pago de la suscripción (tarjeta de crédito, PayPal, otros).
-    - *Renovada:* Indica si la suscripción es renovada (Sí, No).
     - *Dispositivos registrados:* Lista de dispositivos registrados por el suscriptor para acceder al servicio.
     - *Número de amigos o contactos:* Número de amigos o contactos en la red de Game Pass del suscriptor.
   - *Uso compartido:* Esta dimensión puede ser compartida con procesos relacionados con soporte técnico y campañas de fidelización.
@@ -253,17 +266,34 @@ A continuación, se describen los cubos diseñados, especificando la granularida
 - *Dimensión Plataforma de Juego*
   - *Descripción:* Esta dimensión describe las plataformas desde las cuales los suscriptores acceden al servicio Game Pass. Es útil para analizar las preferencias de los usuarios y optimizar el contenido según las plataformas más utilizadas.
   - *Atributos:*
-    - *ID Plataforma:* Identificador único de la plataforma.
+    - *ID plataforma:* Identificador único de la plataforma.
     - *Nombre:* Nombre de la plataforma (Xbox, PC, móvil).
-    - *Tipo de Plataforma:* Clasificación por categoría (consola, escritorio, móvil).
-    - *Región de Disponibilidad:* Regiones donde la plataforma está disponible.
-    - *Versión del Sistema Operativo:* Versión específica del sistema operativo utilizado en la plataforma.
+    - *Tipo de plataforma:* Clasificación por categoría (consola, escritorio, móvil).
+    - *Región de disponibilidad:* Regiones donde la plataforma está disponible.
+    - *Versión del sistema operativo:* Versión específica del sistema operativo utilizado en la plataforma.
     - *Capacidad gráfica:* Nivel de capacidad gráfica del dispositivo (bajo, medio, alto).
     - *Resolución de pantalla:* Resolución máxima admitida por la plataforma.
     - *Modelo del dispositivo:* Nombre o versión específica del dispositivo (por ejemplo, Xbox Series X).
     - *Tipo de conexión:* Tecnología de conexión utilizada (cable, Wi-Fi, datos móviles).
-  - *Uso compartido:* Esta dimensión puede ser compartida con análisis de ventas de hardware.
+  - *Uso compartido:* Esta dimensión puede ser compartida con análisis de ventas de suscripciones.
   - *Observaciones:* Es una dimensión estática, ya que los datos no cambian frecuentemente.
+
+- *Dimensión Región*
+  - *Descripción:* Representa la ubicación geográfica donde el usuario realizó la transacción, permitiendo análisis de tendencias de consumo por región.
+  - *Atributos:*
+    - *Id Región:* Identificador único de la región.
+    - *Nombre de región:* Nombre de la región o país.
+    - *Zona horaria:* Zona horaria de la región.
+    - *Población objetivo:* Tamaño de la población en esa región.
+    - *Población activa:* Porcentaje de la población económicamente activa en la región.
+    - *Tasa de penetración de internet:* Porcentaje de hogares con acceso a internet.
+    - *Densidad de población:* Densidad de población de la región.
+    - *Índice de competencia:* Nivel de presencia de competidores en la región (como Sony).
+    - *Moneda local:* Moneda utilizada en la región.
+    - *Idiomas principales:* Idiomas hablados en la región.
+  - *Uso compartido:* También puede emplearse en análisis de suscriptor.
+  - *Observaciones:* Es una dimensión estática, ya que los datos geográficos no cambian con frecuencia.
+
 
 ==== Esquema del cubo
 #align(center)[
@@ -367,6 +397,17 @@ A continuación, se describen los cubos diseñados, especificando la granularida
 ]
 
 #pagebreak()
+=== Jerarquías de las dimensiones
+A continuación, se mostrarán las jerarquías enter los atributos de las dimensiones de los cubos anteriores, siempre que exista una. En este caso, solo existe una jerarquía en la dimensión Tiempo:
+#align(center)[
+  #figure(
+    image("images/jerarquia_tiempo.png", width: 100%),
+    caption: [Jerarquía de la dimensión Tiempo.]
+  )
+]
+
+\
+== Cálculo de los indicadores
 #align(
   center,
   table(
@@ -428,10 +469,3 @@ A continuación, se describen los cubos diseñados, especificando la granularida
   ),
 
 )
-
-
-
-
-
-
-
