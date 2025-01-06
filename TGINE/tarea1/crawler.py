@@ -14,7 +14,7 @@ class BulbaSpyder(scrapy.Spider):
     name = 'bulbapedia'
 
     # Decimos que el dominio válido es el de la Bulbapedia
-    allowed_domains = ['https://bulbapedia.bulbagarden.net']
+    allowed_domains = ['bulbapedia.bulbagarden.net']
 
     # podemos definir las páginas de inicio
     start_urls = ['https://bulbapedia.bulbagarden.net/wiki/Abomasnow_(Pokémon)']
@@ -57,7 +57,8 @@ class BulbaSpyder(scrapy.Spider):
             
             # Seleccionamos el contenido
             content = section.xpath('//h2/following-sibling::*[preceding-sibling::h2 and self::p and not(preceding-sibling::h3)]').getall()
-            content = [BeautifulSoup(c, 'html.parser').get_text().strip().encode('utf-8').decode('utf-8') for c in content]
+            content = [BeautifulSoup(c, 'html.parser').get_text().strip() for c in content]
+            content = " ".join(content)
             
             # Mostramos el contenido
             data = {
@@ -74,16 +75,20 @@ class BulbaSpyder(scrapy.Spider):
             print(json_data)
             
             # Guardamos el JSON en un archivo
-            with open(json_folder / f"{number}.json", "w") as file:
+            with open(json_folder / f"{number}.json", "w", encoding="utf-8") as file:
                 file.write(json_data)
             
 
-        # # Obtenemos todas las otros links de la página representados por la etiqueta <a>
-        # url_in_current_document = response.css ('a')
-        # for next_page in url_in_current_document:
-        #     # Para limitar que solamente se parseen las noticias dentro de 'https://bulbapedia.bulbagarden.net/wiki/'
-        #     # que contengan la palabra _(Pokémon) en su URL obtenemos el atributo href de la etiqueta <a> y 
-        #     # parseamos la página
-        #     url = str(next_page.css("a::attr(href)").get())
-        #     if "_(Pok%C3%A9mon)" in url:
-        #         yield response.follow (next_page, self.parse)
+        # Obtenemos todas las otros links de la página representados por la etiqueta <a>
+        url_in_current_document = response.css("a")
+        for next_page in url_in_current_document:
+            # Para limitar que solamente se parseen las noticias dentro de 'https://bulbapedia.bulbagarden.net/wiki/'
+            # que contengan la palabra _(Pokémon) en su URL obtenemos el atributo href de la etiqueta <a> y 
+            # parseamos la página
+            url = str(next_page.css("a::attr(href)").get())
+            if "_(Pok%C3%A9mon)" in url and not any(substring in url for substring in ["_(Pok%C3%A9mon)/", ":", "#"]):
+                # Comprobamos si la URL es relativa y la convertimos en absoluta
+                if url.startswith("/wiki/"):
+                    url = self.allowed_domains[0] + url
+                if url.startswith(self.allowed_domains[0]):
+                    yield response.follow(next_page, self.parse)  # Ahora seguimos la URL correctamente
