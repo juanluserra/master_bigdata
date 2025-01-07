@@ -1,7 +1,0 @@
-# TEST DE RMARKDOWN
-
-```{r}
-x <- 1
-plot(x)
-```
-
