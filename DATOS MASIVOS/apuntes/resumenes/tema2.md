@@ -105,6 +105,67 @@
 - Ejemplo de MapReduce en Python usando Hadoop Streaming, con programas separados para mapper y reducer.
 - Uso de la librería MrJob para simplificar la programación MapReduce en Python.
 
+
+## Implementación básica en Java
+
+El ejemplo de WordCount en Java se estructura en tres clases principales:
+
+- **Mapper (WordCountMapper)**: Esta clase se encarga de la fase de map. Su función es procesar cada línea de entrada, dividirla en palabras y emitir pares clave-valor, donde la clave es la palabra y el valor es 1.
+    - La clase extiende `Mapper<LongWritable, Text, Text, IntWritable>`, donde `LongWritable` es la clave de entrada (la posición de la línea en el fichero), `Text` es el valor de entrada (la línea de texto), `Text` es la clave de salida (la palabra) e `IntWritable` es el valor de salida (el número 1).
+    - El método `map()` recibe una clave y un valor de entrada, convierte la línea a minúsculas y la divide en palabras utilizando una expresión regular. Por cada palabra encontrada, escribe un par clave-valor (palabra, 1) al contexto (`ctxt`).
+
+- **Reducer (WordCountReducer)**: Esta clase se encarga de la fase de reduce. Su función es recibir los pares clave-valor emitidos por el mapper, agrupar los valores por clave (palabra) y sumar los valores para obtener la frecuencia total de cada palabra.
+    - La clase extiende `Reducer<Text, IntWritable, Text, IntWritable>`, donde `Text` es la clave de entrada (la palabra), `IntWritable` es el valor de entrada (la cuenta 1 de cada palabra) y `Text` es la clave de salida (la palabra) e `IntWritable` es el valor de salida (la suma de las cuentas de cada palabra).
+    - El método `reduce()` recibe una clave y una lista de valores (las cuentas de cada palabra), suma estos valores y escribe un nuevo par clave-valor (palabra, suma) al contexto (`ctxt`).
+
+- **Driver (WordCountDriver)**: Esta clase es la encargada de configurar y lanzar el trabajo MapReduce.
+    - Extiende `Configured` e implementa `Tool`. El método `run()` configura el `Job` con las clases mapper y reducer, define las rutas de entrada y salida, y lanza el trabajo.
+    - El método `main()` ejecuta la clase usando `ToolRunner.run()`, que se encarga de parsear los argumentos de línea de comandos.
+
+## Alternativas a Java
+
+Hadoop ofrece alternativas para programar MapReduce en otros lenguajes:
+
+- **Hadoop Streaming**: Permite crear código map-reduce en cualquier lenguaje que pueda leer de la entrada estándar y escribir en la salida estándar, como Python, Ruby, etc. Utiliza streams de Unix como interfaz entre Hadoop y el código.
+    - **Mapper en Python (Hadoop Streaming)**: El mapper lee cada línea de la entrada estándar, la divide en palabras y emite cada palabra con un valor de 1 a la salida estándar, separadas por un tabulador.
+    - **Reducer en Python (Hadoop Streaming)**: El reducer lee las salidas del mapper de la entrada estándar, agrupa las cuentas por palabra, y calcula la suma total para cada palabra. La salida se produce a la salida estándar con el mismo formato de clave-valor separados por tabuladores.
+    - Para ejecutar el código, se utiliza el comando `mapred streaming` especificando los ficheros del mapper y reducer, la entrada y la salida en HDFS.
+
+- **Hadoop Pipes**: Es una interfaz C++ a Hadoop MapReduce. Utiliza sockets para la comunicación entre el NodeManager y el proceso C++ que ejecuta el map o el reduce.
+
+- **MrJob**: Es una librería de Python que simplifica la escritura de programas MapReduce. Permite ejecutar los programas en Hadoop, EMR, etc.
+    - En el caso de WordCount con MrJob, se crea una clase que hereda de `MRJob`, con métodos `mapper()` y `reducer()` que generan pares clave-valor usando la construcción `yield`.
+    - La infraestructura de MrJob se encarga de leer los datos de entrada y de imprimir los resultados. Para ejecutar en Hadoop, se utiliza la opción `-r hadoop` con la ruta del fichero en HDFS.
+
+## Ejemplo de MapReduce en Python usando Hadoop Streaming
+
+El ejemplo de MapReduce en Python con Hadoop Streaming consiste en dos programas separados:
+
+- **Mapper (wordcount-mapper.py)**:
+    - Este script lee las líneas de la entrada estándar, elimina los espacios en blanco al principio y al final, divide la línea en palabras, y para cada palabra, escribe a la salida estándar un par clave-valor con la palabra y el número 1, separados por un tabulador.
+
+- **Reducer (wordcount-reducer.py)**:
+    - Este script lee los pares clave-valor (palabra, 1) de la entrada estándar, realiza la suma de los valores para cada palabra y escribe el resultado a la salida estándar, en formato clave-valor (palabra, suma), separados por tabulador.
+
+### Ejecución
+
+Para ejecutar este ejemplo se usa el comando `mapred streaming`:
+
+```sh
+mapred streaming \
+-file wordcount-mapper.py \
+-mapper wordcount-mapper.py \
+-file wordcount-reducer.py \
+-reducer wordcount-reducer.py \
+-input <FICHERO EN HDFS> \
+-output <DIRECTORIO EN HDFS>
+```
+
+Los parámetros `-file` especifican los ficheros que se enviarán a los contenedores de computación. Los parámetros `-mapper` y `-reducer` definen los scripts que se usarán para estas funciones. Finalmente, se especifica el fichero de entrada en HDFS y el directorio de salida en HDFS.
+
+Este ejemplo muestra cómo el paradigma MapReduce puede ser implementado tanto en Java como en otros lenguajes, utilizando las facilidades que ofrece Hadoop. Cada una de estas implementaciones tiene sus particularidades, pero todas cumplen el mismo objetivo: contar la frecuencia de las palabras en un conjunto de datos.
+
+
 # Filesystems en Hadoop
 
 - Hadoop soporta diversos sistemas de ficheros, incluyendo HDFS, local, S3, etc.
