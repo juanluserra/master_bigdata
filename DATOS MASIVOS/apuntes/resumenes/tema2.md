@@ -62,9 +62,9 @@
 
 ## Propiedades configurables en `yarn-site.xml`
 
-- `yarn.resourcemanager.hostname`
-- `yarn.scheduler.maximum-allocation-vcores`
-- `yarn.scheduler.minimum-allocation-mb`
+- `yarn.resourcemanager.hostname`: Especifica el nombre del host donde se está ejecutando el demonio ResourceManager de YARN.
+- `yarn.scheduler.maximum-allocation-vcores`: Define el número máximo de vcores (núcleos virtuales) que un ApplicationMaster puede solicitar al ResourceManager.
+- `yarn.scheduler.minimum-allocation-mb`: Especifica la cantidad mínima de memoria (en megabytes) que un ApplicationMaster puede solicitar al ResourceManager.
 
 # MapReduce
 
