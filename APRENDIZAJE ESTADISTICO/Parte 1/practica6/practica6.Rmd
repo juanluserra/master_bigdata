@@ -1,0 +1,80 @@
+---
+title: "Práctica 6"
+output: pdf_document
+editor_options: 
+chunk_output_type: console
+---
+# Práctica 6
+```{R setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo=FALSE}
+# Inicializamos las librerías
+library(glmnet)
+library(ISLR)
+library(lintr)
+```
+
+```{r}
+# Preparamos la base de datos eliminando los NA
+Hitters <- na.omit(Hitters)
+```
+
+
+## Utilización de ridge regression
+```{r}
+# Creamos una matriz para un modelo lineal en la que la variable
+# dependiente sea Salary y el resto (.) sean independientes.
+x <- model.matrix(Salary ~ ., Hitters)[, -1]
+y <- Hitters$Salary
+```
+
+```{r}
+# Cremaos un vector de valores da lambda de 10^10 a 10^-2.
+grid <- 10^seq(10, -2, length = 100)
+
+# Creamos una ridge regression con los valores de lambda.dddddddddddddddddddddddddddddddddddddddddddd
+ridge.mod <- glmnet(x, y, alpha = 0, lambda = grid)
+
+# La regresión tiene 20 filas y 100 columnas, una
+# fila por predictor y una columna por valor de lambda.
+dim(coef(ridge.mod))
+
+# Para valores altos de lambda, los coeficientes deberían ser pequeños.
+# Vamos a ver los coeficientes para vlaores altos y pequeños de lambda.
+ridge.mod$lambda[50] # Valor lambda = 11498
+coef(ridge.mod)[, 50]
+sqrt(sum(coef(ridge.mod)[-1, 50]^2))
+ridge.mod$lambda[60] # Valor lambda = 705
+coef(ridge.mod)[, 60]
+sqrt(sum(coef(ridge.mod)[-1, 60]^2))
+
+# Podemos usar la función predict() para obtener el valor de
+# los coeficientes para un lambda concreto (por ejemplo 50).
+predict(
+    ridge.mod,
+    s = 50,
+    type = "coefficients"
+)[1:20, ]
+```
+
+```{r}
+# Escogemos los grupos de entrenamiento y test
+set.seed(1)
+
+# Generamos una lista de len(x)/2 elementos con indices aleatorios de x.
+train <- sample(seq_len(nrow(x)), nrow(x) / 2)
+
+# Creamos los indices de test con los indices que no estan en entrenamiento
+# y guardamos los datos correspondientes de y en y.test.
+test <- (-train)
+y.test <- y[test]
+```
+
+```{r}
+ridge.mod <- glmnet(x[train, ], y[train], alpha = 0, lambda = grid, thresh = 1e-12)
+
+ridge.pred <- predict(ridge.mod, s = 4, newx = x[test, ])
+mean((ridge.pred - y.test)^2)
+```

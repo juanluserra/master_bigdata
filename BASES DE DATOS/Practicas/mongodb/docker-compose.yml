@@ -1,0 +1,26 @@
+services:
+
+  notebook:
+    image: "quay.io/jupyter/scipy-notebook"
+    ports:
+      - "8888:8888"
+    volumes:
+      - ..:/home/jovyan/work/bdge
+    user: root
+    environment:
+      - GRANT_SUDO=yes
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+  mongo:
+    image: mongo:7
+    ports:
+      - 27017:27017
+    healthcheck:
+      # test: "echo 'db.runCommand("ping").ok' | mongosh --quiet"
+      test: echo 'db.runCommand("ping").ok' | mongo --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
