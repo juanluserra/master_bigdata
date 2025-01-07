@@ -53,6 +53,102 @@
 - Es altamente escalable, maneja fallos de hardware y reduce los costes de hardware, programación y administración.
 - No es adecuado para todos los problemas, pero es muy apropiado para la ejecución en la nube.
 
-
-# Consejos de estudio de Notebooklm
+# Ejemplos prácticos de MapReduce
 Al estudiar, enfócate en entender cómo se descomponen los problemas en operaciones map y reduce, y cómo el sistema gestiona la distribución del trabajo y la tolerancia a fallos. Los ejemplos prácticos como WordCount, el ordenamiento distribuido y la creación de un índice inverso te ayudarán a comprender mejor el funcionamiento de MapReduce.
+
+## Ejemplo 1: WordCount (Conteo de Palabras)
+
+- **Objetivo**: Contar las ocurrencias de cada palabra en uno o varios ficheros de texto.
+- **Entrada**: El sistema recibe como entrada líneas de texto.
+- **Salida**: Pares (palabra, número de ocurrencias).
+
+### Función Map
+- Toma como entrada una línea de texto (valor) y para cada palabra en esa línea, emite un par clave-valor donde la clave es la palabra y el valor es 1.
+- `map(key, value):`  
+    `//key: nada, value: línea de texto`  
+    `for each word w in value`  
+    `emit(w, 1)`
+
+### Función Reduce
+- Recibe una palabra (clave) y una lista de valores (todos 1s). Suma todos los valores de la lista y emite un nuevo par clave-valor donde la clave es la palabra y el valor es la suma de las ocurrencias.
+- `reduce(key, values):`  
+    `//key: palabra; values: un iterador sobre los 1s`  
+    `emit(key, sum(values))`
+
+### Ejemplo de Proceso
+- **Entrada**:
+    - "En un lugar de la Mancha"
+    - "Más vale la pena"
+    - "en el rostro que"
+    - "la mancha en"
+    - "el corazón"
+    - "El amor es deseo de belleza"
+- **Map**: Cada línea genera pares (palabra, 1)
+    - (en, 1), (un, 1), (lugar, 1), (de, 1), (la, 1), (mancha, 1) ...
+    - (más, 1), (vale, 1), (la, 1), (pena, 1) ...
+- **Shuffle & Sort**: Agrupa y ordena por clave (palabra).
+- **Reduce**: Suma las ocurrencias de cada palabra.
+- **Salida**:
+    - (amor, 1), (corazón, 1), (deseo, 1), (en, 3), (la, 3), (mancha, 2), (pena, 1), (rostro, 1), (vale, 1), (belleza, 1), (de, 2), (el, 3), (es, 1), (lugar, 1), (más, 1), (que, 1), (un, 1)
+
+## Ejemplo 2: Sort Distribuido (Ordenamiento Distribuido)
+
+- **Objetivo**: Ordenar un conjunto de pares (id, valor) por el identificador (id).
+- **Entrada**: Pares (id, valor).
+- **Salida**: Pares (id, valor) ordenados por id.
+
+### Función Map
+- Función identidad. La salida del Map es la misma que la entrada.
+
+### Función Reduce
+- Función identidad. La salida del Reduce es la misma que la entrada.
+
+### Función de Particionado (P)
+- Clave k1 < k2 implica P(k1) < P(k2). Esto asegura que las claves menores que otra vayan a un 'reduce' anterior.
+
+### Ejemplo de Proceso
+- **Entrada**:
+    - (avispa, 1), (hormiga, 1), (cerdo, 1)
+    - (vaca, 1), (abeja, 1), (elefante, 1)
+    - (pato, 1), (ñu, 1)
+- **Map**: No modifica los datos (función identidad).
+- **Shuffle & Sort**: Ordena y distribuye por rangos de clave usando la función de particionado (ej. A-M y N-Z).
+- **Reduce**: No modifica los datos (función identidad).
+- **Salida**:
+    - (abeja, 1), (avispa, 1), (cerdo, 1), (elefante, 1), (hormiga, 1)
+    - (ñu, 1), (oveja, 1), (pato, 1), (vaca, 1)
+
+## Ejemplo 3: Índice Inverso
+
+- **Objetivo**: Crear un índice inverso que mapee cada palabra a los ficheros en los que aparece.
+- **Entrada**: Pares (nombre_fichero, línea_de_texto).
+- **Salida**: Pares (palabra, [ficheros_conteniendo_palabra]).
+
+### Función Map
+- Para cada palabra en la línea de texto, emite un par clave-valor donde la clave es la palabra y el valor es el nombre del fichero.
+- `map(key, value):`  
+    `// key: nombre fichero; value: línea de texto`  
+    `for each word w in value`  
+    `emit(w, key)`
+
+### Función Reduce
+- Recibe una palabra (clave) y una lista de nombres de ficheros (valores). Ordena la lista de nombres de ficheros y emite un par donde la clave es la palabra y el valor es la lista ordenada de nombres de ficheros.
+- `reduce(key, values):`  
+    `// key: palabra; value: nombres de ficheros`  
+    `emit(key, sort(values))`
+
+### Ejemplo de Proceso
+- **Entrada**:
+    - quij.txt: "en un lugar de la mancha, de cuyo"
+    - chej.txt: "en su lugar yo no iría"
+- **Map**:
+    - (en, quij.txt), (un, quij.txt), (lugar, quij.txt), (de, quij.txt), (la, quij.txt), (mancha, quij.txt), (de, quij.txt), (cuyo, quij.txt)
+    - (en, chej.txt), (su, chej.txt), (lugar, chej.txt), (yo, chej.txt), (no, chej.txt), (iría, chej.txt)
+- **Shuffle & Sort**: Agrupa por palabra
+- **Reduce**: Ordena y genera lista de ficheros para cada palabra
+    - (cuyo, [quij.txt]), (de, [quij.txt]), (en, [chej.txt, quij.txt]), (iría, [chej.txt]), (la, [quij.txt]), (lugar, [chej.txt, quij.txt]), (mancha, [quij.txt]), (no, [chej.txt]), (su, [chej.txt]), (un, [quij.txt]), (yo, [chej.txt])
+
+### Mejora
+- Eliminar duplicados en el Map para no emitir el nombre del fichero varias veces en el map.
+
+Estos ejemplos te ayudarán a entender cómo se utiliza el modelo MapReduce para resolver problemas de procesamiento de datos. Recuerda que MapReduce se basa en dividir un problema en tareas Map y Reduce, y el sistema se encarga de la distribución del trabajo y la tolerancia a fallos.
