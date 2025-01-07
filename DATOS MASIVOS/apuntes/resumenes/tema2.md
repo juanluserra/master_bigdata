@@ -73,8 +73,8 @@
 
 ## Propiedades configurables en `mapred-site.xml`
 
-- `yarn.app.mapreduce.am.resource.cpu-vcores`
-- `mapreduce.{map,reduce}.memory.mb`
+- `yarn.app.mapreduce.am.resource.cpu-vcores`: Define el número de vcores (núcleos virtuales) que se asignan al Application Master (AM) de MapReduce.
+- `mapreduce.{map,reduce}.memory.mb`: Especifica la cantidad máxima de memoria (en megabytes) que se asigna a las tareas map y reduce respectivamente.
 
 # Interfaces con HDFS
 
