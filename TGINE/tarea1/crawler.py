@@ -84,7 +84,7 @@ class BulbaSpyder(scrapy.Spider):
             # Seleccionamos el nombre del pokemon
             pokemon = section.css('div .mw-parser-output > p').get().strip()
             pokemon = BeautifulSoup(pokemon, 'html.parser').get_text().strip()
-            pokemon = pokemon.split(" ")[:-1]
+            pokemon = pokemon.split(" (")[0]
             
             # Seleccionamos el número del pokemon
             number = section.css('table .roundy th a span').get()      
