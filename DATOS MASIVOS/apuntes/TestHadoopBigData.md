@@ -208,6 +208,3 @@ d) Ejecutar las tareas en un orden predefinido.
   c - Lanzar copias de tareas que están tardando mucho, para acelerar el proceso.
 </details>
 
----
-
-Espero que este examen te sea útil. Si necesitas más preguntas o tienes alguna otra solicitud, no dudes en preguntar.
