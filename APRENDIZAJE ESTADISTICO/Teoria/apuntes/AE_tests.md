@@ -68,7 +68,7 @@ c) Ninguna de las dos respuestas anteriores.
 a) No hay relación lineal entre las variables consideradas.\
 b) Una relación negativa débil.\
 c) Una relación positiva fuerte.\
-d) Ninguna de las anteriores.\
+d) Ninguna de las anteriores.
 
 <details>
     <summary>Respuesta</summary>
@@ -85,7 +85,7 @@ Si el $R^2$ de un modelo de regresión es 0.75, ¿qué significa esto?
 a) El 75 % de la variabilidad de la variable dependiente se explica por la variable independiente.\
 b) El 75 % de la variable independiente se explica por la variable dependiente.
 c) No hay relación entre las variables.\
-d) El modelo es ineficaz.\
+d) El modelo es ineficaz.
 
 <details>
     <summary>Respuesta</summary>
@@ -485,6 +485,7 @@ d) Porque todos los nodos del árbol se dividen recursivamente en ramas múltipl
 
 ### Pregunta 3
 ¿Qué representa el índice Gini en la construcción de árboles de decisión?
+
 $$
 \text{Gini} = 1 - \sum_{i=1}^{C} p_i^2
 $$
@@ -653,11 +654,11 @@ d) ninguna de las anteriores.
 
 <details>
     <summary>Respuesta</summary>
-    c
+    a
 </details>
 <details>
     <summary>Explicación</summary>
-    El problema de optimización presentado corresponde a una Máquina de Vectores Soporte (SVM) con margen suave. Este modelo maximiza el margen mientras permite violaciones controladas del mismo mediante las variables de holgura ε<sub>i</sub>. Por lo tanto, la opción correcta es máquina de vectores soporte.
+    El problema de optimización presentado corresponde a un clasificador de vectores soporte. Este modelo maximiza el margen mientras permite violaciones controladas del mismo mediante las variables de holgura ε<sub>i</sub>.
 </details>
 
 ### Pregunta 2
