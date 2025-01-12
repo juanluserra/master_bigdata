@@ -1,7 +1,15 @@
 # Tests de Aprendizaje Estadístico
 
 ## Índice
-
+1. [Test 09/10/2024](#test-09102024)
+2. [Test 16/10/2024](#test-16102024)
+3. [Test 23/10/2024](#test-23102024)
+4. [Test 30/10/2024](#test-30102024)
+5. [Test 05/11/2024](#test-05112024)
+6. [Test 19/11/2024](#test-19112024)
+7. [Test 26/11/2024](#test-26112024)
+8. [Test 03/12/2024](#test-03122024)
+9. [Test 17/12/2024](#test-17122024)
 
 ## Test 09/10/2024
 
@@ -182,6 +190,8 @@ d) Predecir valores continuos.
 </details>
 
 ## Test 23/10/2024
+
+## Test 30/10/2024
 
 ### Pregunta 1
 ¿Qué técnica penaliza la suma de los valores absolutos de los coeficientes de regresión, a excepción del independiente?
