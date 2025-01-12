@@ -527,6 +527,7 @@ d) Su proceso de construcción se puede representar gráficamente.
 
 ### Pregunta 5
 ¿Cuál es el objetivo principal del algoritmo de costo-complejidad aplicado a árboles de decisión?
+
 $$
 C_\alpha(T) = R(T) + \alpha|T|
 $$
