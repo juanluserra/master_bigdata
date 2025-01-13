@@ -17,7 +17,7 @@ sudo apt update -qq
 sudo apt install docker-ce
 
 # Lets check that docker is running
-docker
+docker --version
 
 # Originally, we did the following: (but doesn't work in Colab...)
 # sudo systemctl status docker
