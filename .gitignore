@@ -23,11 +23,6 @@ umu/
 .vscode/
 practica-AE/
 
-# Repositorios
-bdge/
-tcdm-public/
-practica-AE/
-
 # Entornos virtuales
 env-*/
 .venv*
