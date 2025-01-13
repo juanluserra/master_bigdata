@@ -1,3 +1,6 @@
 [submodule "BASES DE DATOS/practica_extra/docker-elk"]
 	path = BASES DE DATOS/practica_extra/docker-elk
 	url = https://github.com/deviantony/docker-elk.git
+[submodule "BASES DE DATOS/bdge"]
+	path = BASES DE DATOS/bdge
+	url = https://github.com/dsevilla/bdge
