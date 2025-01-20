@@ -8,6 +8,10 @@ chunk_output_type: console
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+if (interactive()) {
+  setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+}
 ```
 
 # Ejercicio 1
@@ -15,7 +19,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # Apartado 1
 ```{r}
 # Importamos los datos
-datos <- read.csv("APRENDIZAJE ESTADISTICO/data/Advertising.csv")
+datos <- read.csv("../data/Advertising.csv")
 attach(datos)
 
 # Vemos un resumen de los datos
