@@ -1,0 +1,533 @@
+---
+title: "Preprocesamiento"
+subtitle: "Master de Big Data"
+author: "José Tomás Palma Méndez"
+date: '`r format(Sys.Date(), "%e de %B de %Y")`'
+output:
+   html_document:
+  #   citation_package: natbib
+     number_sections: yes
+     toc: true
+     toc_depth: 3
+     toc_float: true
+lang: es
+#bibliography: cluster.bib
+#biblio-style: alphadin
+---
+ 
+<!-- <div class="alert alert-success"> -->
+<!--   <strong>Success!</strong> Indicates a successful or positive action. -->
+<!-- </div> -->
+
+<!-- <div class="alert alert-info"> -->
+<!--   <strong>Info!</strong> Indicates a neutral informative change or action. -->
+<!-- </div> -->
+
+<!-- <div class="alert alert-warning"> -->
+<!--   <strong>Warning!</strong> Indicates a warning that might need attention. -->
+<!-- </div> -->
+
+<!-- <div class="alert alert-danger"> -->
+<!--   <strong>Danger!</strong> Indicates a dangerous or potentially negative action. -->
+<!-- </div> -->
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.align = "center", results = "hide")
+library(caret)
+library(knitr)
+library(DT)
+```
+
+
+# Introducción 
+En esta sesión vamos a ver los aspectos básicos y herramientas que nos va a permitir desarrollar técnicas de preprocesamiento de datos en R. 
+
+<div class="alert alert-warning">
+  <strong>Paquetes necesarios:</strong> `foreign`, `car`, `Hmisc`, `VIM`, `mice`, `caret`, `smotefamily` y `ROSE`.
+</div>
+
+
+# Valores especiales
+Al igual que en la mayoría de los lenguajes de programación en R también podemos encontrar valores especiales que indican alguna excepción respecto a los valores normales. Estos valores son: `NA`, `NULL`, $\pm$`InF` y `NaN`.
+
+- `NA` (Not available). Esté valor se utiliza para indicar que el dato en cuestión no está disponible. Todas las operaciones básicas en R pueden manipular valores `NA` sin provocar errores y la mayoría devolverán valores `NA` si uno de los argumentos es `NA`. Para detectar valores NA se puede utilizar la función `is.na()`.
+
+- `NULL`. Se puede considerar como el conjunto vacío. `NULL` no tiene asociada ninguna clases y tiene longitud 0 y, por lo tanto, no ocupa espacio en el vector. Para detectar valores NULL se puede utilizar la función `is.null()`.
+
+- `Inf`. Este valor se utiliza para representar el `infinito` y solo esta asociado a variables de tipo numérico. Técnicamente, `Inf` es un valor numérico válido que es el resultado de operaciones como una división por cero. Por lo tanto, operaciones y comparaciones entre `Inf` y otros valores numéricos son perfectamente válidas. Las funciones `is.infinite()` y `is.finite()` nos pueden ayudar a detectar este tipo de valores.  
+
+- `NaN`. Se utiliza para representar valores desconocidos como resultado de alguna operación (`0/0`, `Inf-Inf` y `Inf/Inf`), pero de los que se tiene la seguridad de que no son números. La operaciones que implican un `NaN` dan como resultado un `NaN`. La función `is.NaN()` se puede usar para detectar `NaN`. 
+
+
+<div class="alert alert-info">
+  <strong>Ejercicio 1:</strong> 
+
+Teniendo en cuenta las anteriores definiciones, intenta descubrir el resultado de las siguientes operaciones y porqué se produce dicho resultado. 
+
+
+| Operación                              | Resultado | Explicación |
+|:---------------------------------------|-----------|-------------|
+| `NA + 1`                               |           |             |
+| `sum(c(NA,1,2))`                       |           |             |
+| `median(c(NA,1,2,3), na.rm = TRUE)`    |           |             |
+| `length(c(NA,2,3,4))`                  |           |             |
+| `3 == NA`                              |           |             |
+| `sum(c(2,3,NULL,4))`                   |           |             |
+| `x <- NULL`                            |           |             |
+| `NaN == NULL`                          |           |             |
+| `NULL == NULL`                         |           |             |
+| `c <- 2`                               |           |             |
+| `pi/0`                                 |           |             |
+| `2*Inf`                                |           |             |
+| `Inf - 10e+10`                         |           |             |
+| `Inf+Inf`                              |           |             |
+| `exp(-Inf)`                            |           |             |
+| `3 < -Inf`                             |           |             |
+| `exp(NaN)`                             |           |             |
+
+
+</div>
+
+<div class="alert alert-warning">
+Ademas de las funciones `is.` que hemos visto, `R` nos ofrece otras muchas funciones para identificar el tipo de una variable: `is.numeric()`, `is.character()`, `is.complex()`, `is.data.frame()`, etc. Consulta la ayuda de `R` y examina todas las funciones de este tipo.
+</div>
+
+
+
+# Lectura de datos
+`R` es capaz de leer y procesar datos en multitud de formatos. Aquí nos vamos a centrar en datos en forma de tabla y en formato texto (la mayoría de las aplicaciones pueden exportar a este formato). A groso modo podemos decir que un dataset es técnicamente correcto cuando:
+
+- está almacenado en un `data.frame` con los nombres adecuados para las columnas (atributos), y 
+- cada columna es del tipo de dato acorde con el domino de la variable que representa. Por ejemplo, los datos categóricos deben estar definidos como `factor` y los números como `numeric` o `intenger`.
+
+
+<div class="alert alert-danger">
+En tareas de clasificación, hay que asegurarse de que la variable que indica la clase esté definida como `factor`. Esto se debe a que hay casos en que las clases se etiquetan con números $(0, 1, ..)$. Al importar esta información, \textsf{R} entiende que la variable es numérica, y cuando intentemos crear modelos de clasificación, puede que `R` genere modelos de regresión. 
+</div>
+
+
+<div class="alert alert-info">
+  <strong>Ejercicio 2:</strong> 
+  
+Abre con algún editor el fichero `hepatitis.csv` que podrás encontrar en la carpeta **recursos** del aula virtual. 
+
+1. ¿Cuáles crees que deben ser los tipos asociados a cada columna?
+2. ¿Existen valores desconocidos? ¿Cómo están representados?
+3. ¿Qué información crees que falta?
+</div>
+
+Las función más básicas que ofrece `R` para leer datos son:
+
+
+|Función          |Descripción                                                                  |
+|:----------------|-----------------------------------------------------------------------------|
+| `read.csv()`    |para valores separados por comas con el punto para separar decimales         |
+| `read.csv2()`   |para valores separados por puntos y comas  con la coma para separar decimales|
+| `read.delim()`  |para valores separados por tabuladores con el punto para separar decimales   |
+| `read.delim2()` |para valores separados por tabuladores con la coma para separar decimales    |       
+| `read.fwf()`    |para columnas con un tamaño predeterminado                                   |
+
+
+Todas estas funciones aceptan entre otros los siguientes parámetros:
+
+
+|Parámetro         |Descripción                                                                |
+|:-----------------|---------------------------------------------------------------------------|
+|`header`          |¿La primera fila contiene los nombres de las columnas?                     |
+|`col.names`       |Array de strings con los nombres de las columnas                           | 
+|`na.string`       |Array para indicar cómo se representan los valores ausentes                |
+|`colClasess`      |Array que indica el tipo de cada columna                                   |   
+|`stringsAsFactors`|Si es `TRUE` indica que las columnas con strings se convierten a `factors` |      
+|`sep`             |Separador de columnas (sólo para `read.fwf()`)                             |
+
+Todos estos parámetros también pueden ser modificados a través de la interfaz que ofrece `RStudio`.
+
+
+![Interfaz para importación de datos en `RStudio`](LecturaDatos.png)
+
+<div class="alert alert-warning">
+  <strong>Otros paquetes para la importación de datos:</strong> `foreign`, `readr`, `vroom`, `rio`, entre otros. Estos paquetes te ofrecen funciones más eficientes para grandes conjuntos de datos y que abarcan una gran variedad de formatos deferentes. 
+</div>
+
+<div class="alert alert-warning">
+Cuando importes unos datos con algunas de estas funciones, examínalos primero con funciones como 
+`head()`, `str()` y `summary()`.
+</div>
+
+
+<div class="alert alert-info">
+  <strong>Ejercicio 3:</strong> 
+
+Importa el fichero `hepatitis.csv` desde `RStudio`, sin modificar los parámetros.
+
+
+1. Ejecuta el comando `str(hepatitis)` y copia el resultado ¿Qué anomalías encuentras? Enuméralas. 
+2.La función `complete.cases()` nos indica el número de filas completas que hay en el `data.frame`. Ejecútala sobre el conjunto de datos importados ¿Es el resultado esperado?
+3. ¿Cómo podríamos con una sólo línea de código sustituir todos los valores que indican un dato no presente por un `NA`? 
+4. Prueba a volver a cargar los datos desde RStudio utilizando correctamente le parámetro `na.strings`. Una vez importados los datos ejecuta el comando `str()` y compara los resultados con el caso anterior ¿Ves alguna anomalía?.
+5. ¿Cómo podríamos calcular en una sólo línea de código el número de filas que tiene algún valor desconocido?
+</div>
+
+```{r, include=FALSE}
+library(readr)
+hepatitis <- read_csv("hepatitis.csv",
+  col_names = FALSE,
+  na = "*"
+)
+hepatitis <- data.frame(hepatitis)
+```
+
+En el Ejercicio 3 hemos aprendido a identificar de forma correcta los valores ausentes al importar datos en `R`. El siguiente paso consiste en nombrar de forma correcta las columnas. Este paso nos lo podemos saltar en el caso que el conjunto de datos incluya dichos nombres en la primera línea y colocando el parámetro `header=TRUE` al llamar a la función \textsf{read.csv}. En nuestro caso, el nombre de cada una de las columnas aparece como información adicional y deberían nombrarse como: EDAD, SEXO, ESTEROIDES, ANTIVIRALES, FATIGA, MALAISE, ANOREXIA, HIGgrande, HIGfirme, BAZOpalpa, ARANIASvac., ASCITIS, VARICES, BILIRRUBINA, FOSFATOalc, SGOT, ALBUMINA, PROTIME, HISTIOLOGIA y PRONOSTICO. Para que las columnas de nuestro conjunto de datos adopten estos nombres debemos hacer:
+```{r, results="show"}
+atributos <- c(
+  "EDAD", "SEXO", "ESTEROIDES", "ANTIVIRALES", "FATIGA", "MALAISE",
+  "ANOREXIA", "HIGgrande", "HIGfirme", "BAZOpalpa", "ARANIASvac",
+  "ASCITIS", "VARICES", "BILIRRUBINA", "FOSFATOalc", "SGOT",
+  "ALBUMINA", "PROTIME", "HISTIOLOGIA", "PRONOSTICO"
+)
+colnames(hepatitis) <- atributos
+```
+
+# Conversión de tipos
+
+Una vez interpretados de forma correcta los valores ausentes y haberle dado nombre a las columnas. El siguiente paso en el procesamiento de datos consiste en definir los tipos de datos adecuados para cada columna. Esto lo podemos hacer mediante las funciones con el prefijo `as.` de `R`. Por ejemplo, para convertir una variable cualquiera, `var`, a variable real, sólo deberíamos ejecutar el siguiente comando:
+
+```{r, eval=FALSE}
+var <- as.numeric(var)
+```
+
+En nuestro caso, el atributo `ANTIVIRALES` es una variable booleana y la conversión la podríamos hacer con la siguiente instrucción:  
+
+```{r}
+hepatitis$ANTIVIRALES <- as.logical(hepatitis$ANTIVIRALES)
+```
+
+Puedes comprobar con la función `str()` el efecto que ha producido la instrucción anterior. 
+```{r, results="show"}
+str(hepatitis)
+```
+
+
+
+<div class="alert alert-info">
+  <strong>Ejercicio 4:</strong>
+  Realiza las conversiones de tipo indicadas en la siguiente tabla. 
+  
+  
+|Tipo      |Variables                                                 |
+|:---------|----------------------------------------------------------|
+|`numeric` | BILIRRUBINA y ALBUMINA                                   |
+|`integer` | EDAD, SGOT, FOSFATOalc y PROTIME                         | 
+|`logical` | HISTIOLOGÍA y **desde** ESTEROIDES **hasta** VARICES     |
+
+Comprueba con el comando `str(hepatitis)`que los tipos na sido asignados correctamente. 
+
+</div>
+
+```{r, include=FALSE }
+hepatitis$ANTIVIRALES <- as.logical(hepatitis$ANTIVIRALES)
+hepatitis$PROTIME <- as.integer(as.character(hepatitis$PROTIME))
+hepatitis$BILIRRUBINA <- as.numeric(as.character(hepatitis$BILIRRUBINA))
+hepatitis$EDAD <- as.integer(as.character(hepatitis$EDAD))
+hepatitis$SGOT <- as.integer(as.character(hepatitis$SGOT))
+hepatitis$FOSFATOalc <- as.integer(hepatitis$FOSFATOalc)
+hepatitis$ALBUMINA <- as.numeric(as.character(hepatitis$ALBUMINA))
+
+hepatitis$ESTEROIDES <- as.logical(as.integer(as.character(hepatitis$ESTEROIDES)))
+hepatitis$FATIGA <- as.logical(as.integer(as.character(hepatitis$FATIGA)))
+hepatitis$MALAISE <- as.logical(as.integer(as.character(hepatitis$MALAISE)))
+hepatitis$ANOREXIA <- as.logical(as.integer(as.character(hepatitis$ANOREXIA)))
+
+hepatitis$HIGgrande <- as.logical(as.integer(as.character(hepatitis$HIGgrande)))
+hepatitis$HIGfirme <- as.logical(as.integer(as.character(hepatitis$HIGfirme)))
+hepatitis$BAZOpalpa <- as.logical(as.integer(as.character(hepatitis$BAZOpalpa)))
+hepatitis$ARANIASvac <- as.logical(as.integer(as.character(hepatitis$ARANIASvac)))
+hepatitis$ASCITIS <- as.logical(as.integer(as.character(hepatitis$ASCITIS)))
+hepatitis$VARICES <- as.logical(as.integer(as.character(hepatitis$VARICES)))
+hepatitis$HISTIOLOGIA <- as.logical(as.integer(as.character(hepatitis$HISTIOLOGIA)))
+```
+
+Llegados a este punto, nos queda por tratar de forma correcta los atributos originales. En este caso obsérvese que el atributo PRONOSTICO está definido como entero y, por lo tanto, si se intenta aplicar técnicas de clasificación, o bien no se podrán realizar o se construirá un modelo de regresión al estar definido dicho atributo como entero. En este caso bastaría con utilizar la función `as.factor()` sobre dicha columna. 
+
+Sin embargo, en estos casos sería más interesante que los elementos de la enumeración fuesen más informativos. En nuestro caso, sería deseable cambiar el 0 y el 1 por FALLECE Y VIVE, respectivamente. Esta recodificación de etiquetas se puede hacer utilizando la función `Recode()` del paquete `car`, de la siguiente forma:
+
+```{r, message=FALSE}
+library(car)
+hepatitis$PRONOSTICO <- as.factor(Recode(
+  hepatitis$PRONOSTICO,
+  "0 = 'FALLECE'; 1 = 'VIVE'"
+))
+```
+
+La función `recode()` también permite asignar una misma etiqueta a varios valores. Por ejemplo, la siguiente instrucción
+
+```{r, eval=FALSE}
+recode(outcome, "c(1:3) = 'NORMAL ; 0 = 'ANORMAL'")
+```
+
+recodificaría los valores del 1 al 3 con la etiqueta NORMAL y el valor 0 con la de ANORMAL. 
+
+<div class="alert alert-info">
+  <strong>Ejercicio 5:</strong>
+  
+Transforma el atributo SEXO en un factor y asigna al 1 la etiqueta MASCULINO y al 0 la etiqueta FEMENINO.
+
+</div>
+
+```{r, include=FALSE}
+hepatitis$SEXO <- as.factor(Recode(
+  hepatitis$SEXO,
+  "0 = 'FEMENINO'; 1 = 'MASCULINO'"
+))
+```
+
+
+Una vez hechas las transformaciones, nuestro conjunto de datos quedaría estructurado de la siguiente forma:
+```{r, results="show"}
+str(hepatitis)
+```
+
+```{r, results="show"}
+datatable(hepatitis, options = list(
+  deferRender = F,
+  columnDefs = list(list(className = "dt-center", targets = 5)),
+  scrollY = TRUE, scroller = TRUE, scrollX = FALSE,
+  pageLength = 10
+))
+```
+
+# Análisis de valores ausentes
+
+
+Antes de empezar a imputar los valores ausentes habría que estudiar la distribución de los mismo. Una forma de verlo fácilmente utilizando la función `aggr()` del paquete `VIM`.
+
+```{r, results="show",message=FALSE}
+library(VIM)
+aggr(hepatitis, numbers = TRUE, prop = FALSE, cex.axis = 0.7)
+```
+
+En la gráfica de la derecha muestra un histograma con el número de valores ausentes en cada variable, mientras que la gráfica de la izquierda presenta como se combinan los valores ausentes. En cada fila se indican el número de instancias a que tienen como valores ausentes las variables marcadas en rojo. 
+
+Otra función útil para analizar la distribución de valores junto con la información sobre el número de valores ausentes junto con la distribución de los mismos es la función `describe()` del paquete `Hmisc`.
+
+
+```{r, message=FALSE}
+library(Hmisc)
+hepatitis.describe <- describe(hepatitis)
+plot(hepatitis.describe)
+```
+
+También se puede mostrar la misma información en formato `html`:
+```{r, results="show"}
+html(hepatitis.describe, size = 80, scroll = TRUE, rmarkdown = TRUE, rows = 50)
+```
+
+# Imputación de valores ausente
+
+Como ya se ha visto en teoría el proceso de imputación consiste en la estimación de posibles valores para aquello campos con valores ausentes. Existen muchos métodos de imputación y ninguno destaca sobre los demás. El método elegido dependerá de muchos factores como el tipo de datos (no todos los métodos de imputación admiten valores booleanos o factores), el tipo de problema, rango de la variable, etc. 
+
+En `R` existen multitud de paquetes que ofrecen funciones para implementar distintas técnicas de imputación, aquí vamos a analizar dos de ellos los paquetes `VIM`, `Hmisc` y `mice`.
+
+## El paquete `VIM`
+
+El paquete [VIM](https://www.jstatsoft.org/index.php/jss/article/view/v074i07/v74i07.pdf) nos ofrece, aparte de algunos métodos de imputación, funciones para visualizar y analizar la incidencia de los valores ausentes en un conjunto de datos. Para poder realizar una imputación utilizando el método KNN podemos utilizar la función `kNN()`. Este método intentan inferir un nuevo valor utilizando la información de los $k$ elementos más cercanos (por defecto, $k$ = 5). Para variables numéricas se utiliza la mediana de los vecinos más próximos, mientras que para variables categóricas se utiliza el valor más frecuente. Para imputar con esté método las variables `FOSFATOalc` y `ALBUMINA`,  sólo debemos hacer:
+
+```{r}
+hepatitis.knn <- kNN(hepatitis, variable = c("FOSFATOalc", "ALBUMINA"))
+aggr(hepatitis.knn, delimiter = "_imp", numbers = TRUE, prop = FALSE, cex.axis = 0.7)
+```
+
+Por defecto, si no se dice qué variables se van a imputar, se imputan todas las variables con valores ausentes. El paquete `VIM` también incluye otros métodos de imputación, además de muchas funciones para analizar gráficamente la distribución de los valores ausentes:
+
+  
+|Función          |Métodod                                  |
+|:----------------|:----------------------------------------|
+|`hotdeck()`      | Hot-deck Imputation                     |
+|`irmi()`         | Iterative Robust Model-based Imputation | 
+|`regressionImp()`| Individual Regression Imputation        |
+|`rangerImpute()` | Random Forest Imputation                |
+
+
+<div class="alert alert-info">
+  <strong>Ejercicio 6:</strong>
+  
+  ¿Cómo podemos saber qué valores han sido imputados?
+  
+</div>
+
+## El paquete `Hmisc`
+
+El paquete `Hmisc` nos ofrece la función `impute(x,fun)` donde:
+
+  
+|Parámetro |Descripción                                      |
+|:---------|-------------------------------------------------|
+|`x`       | Array con valores ausentes a imputar            |
+|`fun`     | Función de imputación: `random`, `median`,`mean`| 
+
+
+Por defecto se utiliza la mediana, pero también existe la posibilidad de pasar un valor o un vector al parámetro `fun` para suministrar valores concretos con los que imputar. En el caso de vectores de tipo `factor` se utiliza el valor más frecuente. Una ventaja de esta función es que marca los valores imputados, de tal forma que, con la función  `is.impute()`, podemos saber si el valor ha sido imputado o no. Por ejemplo, para imputar los valores ausentes en el atributo `FOSFATOalc` con el valor medio hay que realizar las siguientes operaciones:
+
+```{r, results="show"}
+library(Hmisc)
+hepatitis.mean <- hepatitis
+hepatitis.mean$FOSFATOalc <- impute(hepatitis.mean$FOSFATOalc, fun = mean)
+hepatitis.mean$ALBUMINA <- impute(hepatitis.mean$ALBUMINA, fun = mean)
+print(hepatitis.mean$FOSFATOalc)
+```
+
+<!-- Para visualizar el resultado de esta imputación con al función `aggr()`debemos generar una columna con valores booleanos indicando  -->
+
+
+<div class="alert alert-info">
+  <strong>Ejercicio 7:</strong>
+  
+  1. Imputa la variable `ALBUMINA` utilizando la media. 
+  2. ¿Cómo podríamos visualizar dichos imputaciones utilzando la función `aggr()`? 
+  
+</div>
+
+
+```{r, include=FALSE}
+hepatitis.mean$FOSFATOalc_imp <- is.imputed(hepatitis.mean$FOSFATOalc)
+hepatitis.mean$ALBUMINA_imp <- is.imputed(hepatitis.mean$ALBUMINA)
+aggr(hepatitis.mean, delimiter = "_imp", numbers = TRUE, prop = FALSE, cex.axis = 0.7)
+```
+
+## El paquete `mice`
+
+La librería `misc` nos ofrece la función `mice()`, que nos permite imputar los valores
+ausentes de todo el conjunto de datos al mismo tiempo, considerando, además de los
+valores de la propia columna, tiene en cuenta los valores del resto de columnas. Esta función crea un modelo distinto para cada variable. Esta
+función, nos ofrece multitud de métodos los cuales dependen del tipo de variables
+en el conjunto de datos (para ver la lista de métodos disponibles se puede ejecutar
+`methods(mice)`. Como ejemplo, para aplicar el método **Predictive Mean Matching**
+ejecutaríamos las siguientes instrucciones:
+
+```{r, results="hide"}
+library(mice)
+tempImp.mice <- mice(hepatitis, m = 5, method = "pmm", seed = 500)
+```
+
+El parámetro `m` indica el número de conjunto de datos imputados que se generan. Para ello se utilizan el *muestreo de Gibbs*. Para analizar el resultado de la imputación en la variable `ALBUMINA` hay que utilizar la siguiente instrucción:
+
+```{r, results="show"}
+tempImp.mice$imp$ALBUMINA
+```
+Para ver los métodos de imputación utilizados en cada columna se puede analizar el atributo `method` del objeto devuelto por la función `mice()`. En nuestro caso, nos indicará que siempre se ha aplicado el método `pmm`. Si no hubiéramos indicado el método de imputación, por defecto se aplican los siguientes métodos:
+
+|Método   |Tipo de dato          |Descripción                                            |
+|:--------|----------------------|-------------------------------------------------------|
+|`pmm`    |Cualquiera            |Predictive mean matching (método preferido por defecto)|
+|`logreg` |Binario               |Logistic regresion                                     |
+|`polyreg`|Ordinales             |Polytomous logistic regresion                          |
+|`plor`   |Nominales             |Proportional odds model                                |
+
+
+<!-- Paralelización de mice
+https://stackoverflow.com/questions/24040280/parallel-computation-of-multiple-imputation-by-using-mice-r-package -->
+
+Esto nos muestra que valor ha sido imputado en cada fila, para cada una de los
+5 conjuntos de datos generados (parámetro `m`$=5$). Para hacer efectiva la imputación
+en el conjunto de datos original hay que utilizar la función `complete()`:
+```{r}
+hepatitis.imp2 <- complete(tempImp.mice, 1)
+```
+Esta función crea un dataset con los datos imputados utilizando el primero de los conjuntos que han sido generados por la función `mice()`. Si queremos utilizar otro conjunto sólo hay que indicarlo cambiando el 1 por el conjunto que queramos. 
+
+<div class="alert alert-info">
+  <strong>Ejercicio 8:</strong>
+  
+1. ¿Cómo imprimirías por pantalla el porcentaje de `NA` de cada columna?
+Una vez realizada esta operación, genera algunas gráficas con las
+funciones del paquete `VIM` que permitan visualizar la distribución de los
+valores ausentes.
+2. Utiliza la función `impute()` para imputar los valores ausentes en los atributos
+SGOT y FOSFATOalc. Utiliza los métodos `median` y `mean` y analiza
+los resultados ¿Qué cambios aprecias en el conjunto de datos?
+3. Compara los resultados con los que se obtendrían con la función `mice()`
+y el método `pmm` y la imputación con la función `kNN`.
+4. Genera cuatro ficheros con los resultados obtenidos con los siguientes
+nombres `hepatitis.medianImpute.csv`, `hepatitis.meanImpute.csv`, `hepatitis.
+pmmImpute.csv` y `hepatitis.kNNImpute.csv`. Dichos ficheros sólo deben
+contener la información relevante para iniciar las tareas de minería de
+datos.
+  
+</div>
+
+# Clases desbalanceadas 
+En este apartado vamos a analizar cómo aplicar técnicas de muestreo para equilibrar el número de instancias entre las distintas clases en un problema con clases desbalanceadas. Vamos aplicar las técnicas analizadas en clase: submuestreo (down-sampling), sobremuestreo (up-sumpling), SMOTE y ROSE. 
+
+Primero vamos a analizar las técnicas ofrecias por el paquete `caret` a través de las funciones `downSample()` y `upSample()`. Estás funciones son muy fáciles de utilizar y sólo requieren dos parámetros:
+
+- **`x`** la matriz con las variables predictoras.
+- **`y`** un vector de tipo factor con la información sobre la pertenencia de clases. 
+- ** list ** por defecto `FALSE` indicando que se devolverá un dataframe con los predictores y la clase. 
+- **`yname`** nombre que debe tener la columna con la información de la clase (por defecto tendrá "Class")
+
+
+Por ejemplo, en caso de un sobre muestro deberíamos realizar la operación:
+```{r}
+library(caret)
+set.seed(123)
+hepatitis.upSample <- upSample(
+  x = hepatitis[, -ncol(hepatitis)],
+  y = hepatitis$PRONOSTICO,
+  yname = "PRONOSTICO"
+)
+```
+
+Comparando los resultados podemos comprobar el efecto.
+
+```{r, results="show"}
+table(hepatitis$PRONOSTICO)
+table(hepatitis.upSample$PRONOSTICO)
+```
+
+Las funciones `SMOTE()` y `ROSE()`, en su forma más básica, se utilizan de la misma forma: primero hay que indicar una fórmula que describa el problema de clasificación y como segundo parámetro el data set utilizado. Ambas funciones poseen parámetros que permiten ajustar la aplicación de cada una de las técnicas. Para aplicar SMOTE primero debemos convertir todos los campos en numéricos:
+
+
+```{r, message=FALSE}
+library(dplyr)
+
+
+hepatitis_factor <- hepatitis.imp2 %>%
+  mutate_if(is.factor, as.integer) %>%
+  mutate_if(is.logical, as.integer)
+```
+
+Un vez convertidos a numéricos ya podemos aplicar la función `SMOTE()` del paquete `smotefalimily`, en la que el parámetro `dup_size` nos indica el número de veces que se ejecuta el alogirtmo por cada instancia de la clase minoritaria. Con `dup_size = 0` el algoritmo genera el número óptimo de instancias de la clase minoritaria. 
+```{r, message=FALSE, results="show"}
+library(smotefamily)
+set.seed(123)
+hepatitis_smote <- SMOTE(hepatitis_factor[, !names(hepatitis_factor) %in% c("PRONOSTICO")], hepatitis$PRONOSTICO, dup_size = 0)
+
+hepatitis_bal <- hepatitis_smote$data %>% rename(PRONOSTICO = class)
+
+table(hepatitis_bal$PRONOSTICO)
+```
+La función  `ROSE()` del paquete tiene dos parámetros que nos permiten controlar el tamaño y distribución de clases del dataset balanceado:
+
+- **N:** que indica el tamaño del dataset que se va a generar
+- **p:** la proproción aproximada de instancias de en la clase minoritaria.
+
+
+```{r, message=FALSE, results="show"}
+library(ROSE)
+
+hepatitis_rose <- ROSE(PRONOSTICO ~ ., data = hepatitis_factor, p = .5, seed = 123)
+
+
+table(hepatitis_rose$data$PRONOSTICO)
+```
+
+
+
+<div class="alert alert-info">
+  <strong>Ejercicio 9:</strong>
+  
+1. Genera nuevos conjunto de datos con cada una de las técnicas de muestreo para resolver el problema de desbalanceo de clases.
+2. Compara las distribuciones de clases obtenidos con cada una de las técnicas. 
+  
+</div>
