@@ -17,6 +17,8 @@
 
 % Paquetes de contenido
 \usepackage{lipsum}
+\usepackage{titlesec}
+\usepackage{etoolbox}
 
 % Paquetes de enlaces
 \usepackage{hyperref}
@@ -54,6 +56,14 @@
 
 % Eliminar sangría
 \setlength{\parindent}{0pt}
+
+% Espaciado entre párrafos
+\titlespacing*{\section}{0pt}{0.5em}{0.5em}
+\titlespacing*{\subsection}{0pt}{0.5em}{0.5em}
+\titlespacing*{\subsubsection}{0pt}{0.5em}{0.5em}
+\pretocmd{\section}{\setlength{\parskip}{.5em}}{}{}
+\pretocmd{\subsection}{\setlength{\parskip}{.5em}}{}{}
+\pretocmd{\subsubsection}{\setlength{\parskip}{.5em}}{}{}
 
 
 %-----------
@@ -134,5 +144,38 @@ A pesar de que soluciones como la imputación sean técnicas muy útiles y frecu
 
 \subsubsection{Datos ruidosos}
 Entendemos el ruido como un error o varianza aleatoria en una medición de una variable.
+
+\newpage
+\section{Datos desbalanceados}
+
+Se dice que en un dataset los datos están desbalancedaos cuando una o más clases presentan proporciones muy bajas respecto a las otras clases en el conjunto de entrenamiento. Un ejemplo sería el tener una clase $A$ con un 94\% y una clase $B$ co un 6\%.
+
+En el caso de los datos desbalanceados, se espera que un modelo prediga la clase mayoritaria mejor que lo haría un clasificador que elija siempre la clase mayoritaria. Por ejemplo, en el ejemplo anterior un clasificador que prediga la clase $A$ con un 93\% sería un mal clasificador, pero si predice con un 95\% de precisión sería un buen clasificador.
+
+Soluciones:
+\begin{itemize}
+    \item Utilizar técnicas de muestreo para mitigar el desbalanceo de clases.
+    \item Utilizar otras medidas de rendimiento a la hora de evaluar modelos.
+    \item Utilizar modelo que permitan mitigar esta problemática.
+\end{itemize}
+
+\subsection{Técnicas de muestreo}
+Vamos a explicar las técnicas de muestreo que sirven para mitigar el desbalanceo de clases.
+\begin{itemize}
+    \item \textbf{Técnicas básicas:}
+    \begin{itemize}
+        \item \textbf{Downsampling:} Seleccionar aleatoriamente un subconjunto de todas las clases para que sus frecuencias se ajusten a la de la clase minoritaria.
+        \item \textbf{Upsampling:} Realizar un muestreo aleatorio con reemplazo para que sus frecuencias se adapten a las de la clase mayoritaria.
+    \end{itemize}
+
+    \item \textbf{Otras ténicas:}
+    \begin{itemize}
+        \item \textbf{SMOTE:} Utiliza la información de los vecinos más cercanos para generar nuevas muestras de la clase minoritaria, haciendo así que las fronteras de la clase no se distorsionen. 
+        \item \textbf{ROSE:} Esta técnica genera nuevas muestras en la vecindad de las ya existentes para equilibrar la frecuencia de clases. Es útil para problemas de clasificación binaria y se puede combinar con técnicas de sampling para evaluar modelos de aprendizaje. A la hora de generar las muestras se utiliza una distribución de probabilidad centrada en la muestra y con una matriz de covarianza concreta.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Medidas de rendimiento}
+El error de clasificación y la precisión (accuracy) no son métricas apropiadas cuando tenemos métricas desbalanceadas. 
 
 \end{document}
