@@ -1,0 +1,138 @@
+% Clase de documento
+\documentclass[12pt, letterpaper]{article}
+
+%----------
+% Paquetes
+%----------
+
+% Paquetes de codificación y lenguaje
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+
+% Paquetes de bibliografía
+\usepackage{biblatex}
+
+% Paquetes de fecha y hora
+\usepackage{datetime}
+
+% Paquetes de contenido
+\usepackage{lipsum}
+
+% Paquetes de enlaces
+\usepackage{hyperref}
+
+% Paquetes de formato y estilo
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+
+
+
+%------------ 
+% Decoración
+%------------
+\pagestyle{fancy}
+\fancyhf{}
+
+% Header
+\setlength{\headheight}{15.71667pt}
+\fancyhead[L]{\textsc{\doctitle}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\fancyhead[R]{\textit{\nouppercase{\rightmark}}}
+
+% Footer
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[C]{Página \thepage}
+
+% Título
+\newcommand{\doctitle}{Apuntes de Minería de Datos}
+\title{\doctitle}
+\author{Juan Luis Serradilla Tormos}
+\date{\monthname[\month] de \the\year}
+
+% Bibliografía
+\addbibresource{test.bib}
+
+% Eliminar sangría
+\setlength{\parindent}{0pt}
+
+
+%-----------
+% Documento
+%-----------
+\begin{document}
+
+% Mostrar el título
+\maketitle
+
+% Índice
+\newpage
+\tableofcontents
+
+% Contenido
+\newpage
+\section{Preprocesamiento de datos}
+
+\subsection{Introducción}
+\begin{itemize}
+    \item El resultado de la minería de datos depende en gran medida de la calidad de los datos.
+    \item El conjunto de datos estará formado por objetos
+    \item Los objetos se describen por medio de atributos
+    \item Un atributo tiene asociado un tipo que define de los valores que puede tomar
+\end{itemize}
+
+\subsection{Limpieza de datos}
+Los errores en los datos pueden deberse a diferentes causas:
+\begin{itemize}
+    \item \textbf{Datos incompletos}: Pueden faltar atributos de interés, valores de los propios\ldots
+    \item \textbf{Datos ruidosos}: Datos con ruido o errores, valores duplicados\ldots
+    \item \textbf{Datos inconsistentes}: Datos que discrepan en códigos y nombres, en valores duplicados, etc. Por ejemplo.
+    \begin{itemize}
+        \item Edad = ''42'', Fecha de nacimiento = ''12/07/2015''
+        \item Objetos con escala ``1,2,3'' y otros con escala ``A,B,C''
+    \end{itemize}
+    \item \textbf{Errores intencionados:} Datos que se introducen para encubrir falta de datos. Por ejemplo, encontrar la misma fecha de nacimiento para un gran grupo de personas ya que no tenían fecha 
+\end{itemize}
+
+\subsubsection{Datos ausentes}
+Los datos ausentes pueden producir varios errores:
+\begin{itemize}
+    \item \textbf{Pérdida de eficacia:} Se extraen menos patronas y las conclusiones son menos concluyentes.
+    \item \textbf{Complicaciones al analizar:} Surgen complicaciones debido a que hay técnicas que no están preparadas para gestionarlos.
+    \item \textbf{Sesgo:} Puede haber sesgo en los datos que se extraen.
+\end{itemize}
+
+Por todo esto, al limpiar un dataset es necesario tener en cuenta los datos ausentes. Hay varias formas de detectarlos:
+\begin{itemize}
+    \item Generalmente se representan como valores nulos.
+    \item Puede haber nulos camuflados, es decir, valores que no son nulos pero los representan. Esto se debe a que la integridad del sistema no permite introducir nulos en campos con ciertos formatos (direcciones, teléfonos, códigos postales\ldots)
+\end{itemize}
+
+\vspace{1em}
+\underline{\textbf{Soluciones}}
+\vspace{1em}
+
+Vamos a ver soluciones al tratamiento de los datos ausentes:
+\begin{itemize}
+    \item \textbf{No hacer nada:} Hay métodos (como los árboles de decisión) que son robustos a los datos ausentes.
+    \item \textbf{Eliminar los atributos:} Esta es una solución extrema que es necesaria en el alto porcentaje de nulos. En otros casos podemos encontrar un atributo dependiente de mayor calidad.
+    \item \textbf{Eliminar el objeto:} Suele hacerse cuando en un problema de clasificación al clase está ausente, pero no es efectivo si el porcentaje de ausentes varía mucho entre atributos. Además, puede introducir sesgo.
+    \item \textbf{Reemplazar:} Se puede reemplazar el hueco por un valor. Hay varias formas de hacerlo:
+        \begin{itemize}
+            \item Manualmente si no hay muchos valores ausentes.
+            \item Por un valor que preserve la media o la varianza en datos numéricos, o la moda en datos nominales.
+            \item Imputación: consiste en reemplazar estos valores faltantes con estimaciones o valores plausibles, permitiendo que el dataset esté completo y sea útil para el análisis. Hay varias formas de usarla:
+                \begin{itemize}
+                    \item Usar el valor medio (de todos los valores de los atributos o de solo los que pertenecen a la misma clase).
+                    \item Usar el valor más probable.
+                    \item Predecir el valor mediante alguna técnica (regresión, KNN, etc).
+                \end{itemize}
+            \item Mediante técnicas específicas. Por ejemplo, la detección del sexo a través del nombre.
+        \end{itemize}
+\end{itemize}
+
+A pesar de que soluciones como la imputación sean técnicas muy útiles y frecuentes, hay que tener en cuenta que se sigue perdiendo información, e incluso que el dato que introducimos sea erróneo.
+
+\subsubsection{Datos ruidosos}
+Entendemos el ruido como un error o varianza aleatoria en una medición de una variable.
+
+\end{document}
