@@ -37,6 +37,10 @@ knitr::opts_chunk$set(fig.align = "center", results = "hide")
 library(caret)
 library(knitr)
 library(DT)
+
+if (interactive()) {
+  setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+}
 ```
 
 
@@ -66,25 +70,25 @@ Al igual que en la mayoría de los lenguajes de programación en R también pode
 Teniendo en cuenta las anteriores definiciones, intenta descubrir el resultado de las siguientes operaciones y porqué se produce dicho resultado. 
 
 
-| Operación                              | Resultado | Explicación |
-|:---------------------------------------|-----------|-------------|
-| `NA + 1`                               |           |             |
-| `sum(c(NA,1,2))`                       |           |             |
-| `median(c(NA,1,2,3), na.rm = TRUE)`    |           |             |
-| `length(c(NA,2,3,4))`                  |           |             |
-| `3 == NA`                              |           |             |
-| `sum(c(2,3,NULL,4))`                   |           |             |
-| `x <- NULL`                            |           |             |
-| `NaN == NULL`                          |           |             |
-| `NULL == NULL`                         |           |             |
-| `c <- 2`                               |           |             |
-| `pi/0`                                 |           |             |
-| `2*Inf`                                |           |             |
-| `Inf - 10e+10`                         |           |             |
-| `Inf+Inf`                              |           |             |
-| `exp(-Inf)`                            |           |             |
-| `3 < -Inf`                             |           |             |
-| `exp(NaN)`                             |           |             |
+| Operación                              | Resultado  | Explicación                                                        |
+|:---------------------------------------|------------|--------------------------------------------------------------------|
+| `NA + 1`                               |    `NA`    | No se puede operar algo que no existe.                             |
+| `sum(c(NA,1,2))`                       |    `NA`    | La presencia de `NA` en la suma hace que el resultado sea `NA`.    |
+| `median(c(NA,1,2,3), na.rm = TRUE)`    |    `2`     | Porque se elimina el `NA` con `na.rm = TRUE`.                      |
+| `length(c(NA,2,3,4))`                  |    `4`     | La función `length` cuenta el número de elementos, incluyendo `NA`.|
+| `3 == NA`                              |    `NA`    | `NA` no es comparable con ningún valor                             |
+| `sum(c(2,3,NULL,4))`                   |    `9`     | `NULL` no afecta la suma, se ignora.                               |
+| `x <- NULL`                            |   `NULL`   | Asigna `NULL` a `x`.                                               |
+| `NaN == NULL`                          |`logical(0)`| `NaN` y `NULL` no son iguales.                                     |
+| `NULL == NULL`                         |`logical(0)`| `NULL` es igual a `NULL`.                                          |
+| `c <- 2`                               |    `2`     | Asigna `2` a `c`.                                                  |
+| `pi/0`                                 |   `Inf`    | Dividir por cero da como resultado `Inf`.                          |
+| `2*Inf`                                |   `Inf`    | Cualquier número multiplicado por `Inf` es `Inf`.                  |
+| `Inf - 10e+10`                         |   `Inf`    | `Inf` menos cualquier número sigue siendo `Inf`.                   |
+| `Inf+Inf`                              |   `Inf`    | La suma de `Inf` con `Inf` es `Inf`.                               |
+| `exp(-Inf)`                            |    `0`     | La exponencial de `-Inf` es `0`.                                   |
+| `3 < -Inf`                             |  `FALSE`   | Ningún número es menor que `-Inf`.                                 |
+| `exp(NaN)`                             |   `NaN`    | La exponencial de `NaN` es `NaN`.                                  |
 
 
 </div>
@@ -171,11 +175,10 @@ Importa el fichero `hepatitis.csv` desde `RStudio`, sin modificar los parámetro
 
 ```{r, include=FALSE}
 library(readr)
-hepatitis <- read_csv("hepatitis.csv",
-  col_names = FALSE,
-  na = "*"
-)
+hepatitis <- read.csv("hepatitis.csv", header = FALSE, na.strings = "*", fileEncoding = "UTF-8")
 hepatitis <- data.frame(hepatitis)
+
+complete.cases(hepatitis)
 ```
 
 En el Ejercicio 3 hemos aprendido a identificar de forma correcta los valores ausentes al importar datos en `R`. El siguiente paso consiste en nombrar de forma correcta las columnas. Este paso nos lo podemos saltar en el caso que el conjunto de datos incluya dichos nombres en la primera línea y colocando el parámetro `header=TRUE` al llamar a la función \textsf{read.csv}. En nuestro caso, el nombre de cada una de las columnas aparece como información adicional y deberían nombrarse como: EDAD, SEXO, ESTEROIDES, ANTIVIRALES, FATIGA, MALAISE, ANOREXIA, HIGgrande, HIGfirme, BAZOpalpa, ARANIASvac., ASCITIS, VARICES, BILIRRUBINA, FOSFATOalc, SGOT, ALBUMINA, PROTIME, HISTIOLOGIA y PRONOSTICO. Para que las columnas de nuestro conjunto de datos adopten estos nombres debemos hacer:
@@ -224,6 +227,7 @@ str(hepatitis)
 Comprueba con el comando `str(hepatitis)`que los tipos na sido asignados correctamente. 
 
 </div>
+
 
 ```{r, include=FALSE }
 hepatitis$ANTIVIRALES <- as.logical(hepatitis$ANTIVIRALES)
@@ -286,6 +290,10 @@ hepatitis$SEXO <- as.factor(Recode(
 Una vez hechas las transformaciones, nuestro conjunto de datos quedaría estructurado de la siguiente forma:
 ```{r, results="show"}
 str(hepatitis)
+
+plot(
+  1:10
+)
 ```
 
 ```{r, results="show"}
