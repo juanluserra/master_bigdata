@@ -290,10 +290,6 @@ hepatitis$SEXO <- as.factor(Recode(
 Una vez hechas las transformaciones, nuestro conjunto de datos quedaría estructurado de la siguiente forma:
 ```{r, results="show"}
 str(hepatitis)
-
-plot(
-  1:10
-)
 ```
 
 ```{r, results="show"}
