@@ -13,7 +13,7 @@ TCDM - Practicas.pdf
 *.csv
 *.codeium.json
 *.zip
-*.lintr
+# *.lintr
 
 # Carpetas
 patentes-mini/
