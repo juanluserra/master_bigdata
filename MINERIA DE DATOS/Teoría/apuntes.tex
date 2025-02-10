@@ -1,42 +1,26 @@
 % Clase de documento
 \documentclass[12pt, letterpaper]{article}
 
-%----------
 % Paquetes
-%----------
-
-% Paquetes de codificación y lenguaje
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
-
-% Paquetes de bibliografía
 \usepackage{biblatex}
-
-% Paquetes de fecha y hora
-\usepackage{datetime}
-
-% Paquetes de contenido
-\usepackage{lipsum}
-\usepackage{titlesec}
-\usepackage{etoolbox}
-
-% Paquetes de enlaces
-\usepackage{hyperref}
-
-% Paquetes de formato y estilo
-\usepackage{fancyhdr}
 \usepackage{csquotes}
-
-
+\usepackage{datetime}
+\usepackage{lipsum}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{parskip}
 
 %------------ 
 % Decoración
 %------------
-\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{15.71667pt}
+\addtolength{\topmargin}{-3.71667pt}
 \fancyhf{}
 
 % Header
-\setlength{\headheight}{15.71667pt}
 \fancyhead[L]{\textsc{\doctitle}}
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \fancyhead[R]{\textit{\nouppercase{\rightmark}}}
@@ -46,9 +30,9 @@
 \fancyfoot[C]{Página \thepage}
 
 % Título
-\newcommand{\doctitle}{Apuntes de Minería de Datos}
+\newcommand{\doctitle}{Título del documento}
 \title{\doctitle}
-\author{Juan Luis Serradilla Tormos}
+\author{Autor}
 \date{\monthname[\month] de \the\year}
 
 % Bibliografía
@@ -57,19 +41,16 @@
 % Eliminar sangría
 \setlength{\parindent}{0pt}
 
-% Espaciado entre párrafos
-\titlespacing*{\section}{0pt}{0.5em}{0.5em}
-\titlespacing*{\subsection}{0pt}{0.5em}{0.5em}
-\titlespacing*{\subsubsection}{0pt}{0.5em}{0.5em}
-\pretocmd{\section}{\setlength{\parskip}{.5em}}{}{}
-\pretocmd{\subsection}{\setlength{\parskip}{.5em}}{}{}
-\pretocmd{\subsubsection}{\setlength{\parskip}{.5em}}{}{}
-
+% Aumentar la separación entre párrafos
+\setlength{\parskip}{1em plus 0.5em minus 0.2em}
 
 %-----------
 % Documento
 %-----------
 \begin{document}
+
+% Mostrar header y footer
+\pagestyle{fancy}
 
 % Mostrar el título
 \maketitle
