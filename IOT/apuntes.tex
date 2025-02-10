@@ -1,0 +1,70 @@
+
+% Clase de documento
+\documentclass[12pt, letterpaper]{article}
+
+% Paquetes
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{biblatex}
+\usepackage{csquotes}
+\usepackage{datetime}
+\usepackage{lipsum}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+
+%------------ 
+% Decoración
+%------------
+\setlength{\headheight}{15.71667pt}
+\addtolength{\topmargin}{-3.71667pt}
+\fancyhf{}
+
+% Header
+\fancyhead[L]{\textsc{\doctitle}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\fancyhead[R]{\textit{\nouppercase{\rightmark}}}
+
+% Footer
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[C]{Página \thepage}
+
+% Título
+\newcommand{\doctitle}{Apuntes de IoT}
+\title{\doctitle}
+\author{Juan Luis Serradilla Tormos}
+\date{\monthname[\month] de \the\year}
+
+% Bibliografía
+\addbibresource{test.bib}
+
+% Eliminar sangría
+\setlength{\parindent}{0pt}
+
+% Aumentar la separación entre párrafos
+\setlength{\parskip}{1em plus 0.5em minus 0.2em}
+
+%-----------
+% Documento
+%-----------
+\begin{document}
+
+% Activamos el estilo de página
+\pagestyle{fancy}
+
+% Mostrar el título
+\maketitle
+
+% Índice
+\newpage
+\tableofcontents
+
+% Contenido
+\newpage
+\section{El borde de Internet y más allá}
+
+
+
+
+\end{document}
+
