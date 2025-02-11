@@ -108,5 +108,7 @@ featurePlot(
 # Selección de variables
 
 ```{r}
-
+# Eliminamos las variables lógicas y las pasamos a numéricas
+dummy <- dummyVars(~., data = hepatitis.KnnImp[, names(hepatitis.KnnImp) != "PRONOSTICO"], fullRank = TRUE)
+dummy.matrix <- predict(dummy, hepatitis.KnnImp[, names(hepatitis.KnnImp) != "PRONOSTICO"])
 ```
