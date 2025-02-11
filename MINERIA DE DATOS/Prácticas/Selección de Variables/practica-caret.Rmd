@@ -1,0 +1,112 @@
+---
+title: "Preprocesamiento"
+subtitle: "Master de Big Data"
+author: "José Tomás Palma Méndez"
+date: '`r format(Sys.Date(), "%e de %B de %Y")`'
+output:
+   html_document:
+     number_sections: yes
+     toc: true
+     toc_depth: 3
+     toc_float: true
+lang: es
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.align = "center", results = "hide")
+
+# Establecer el directorio de trabajo
+if (interactive()) {
+  setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+}
+
+# Cargamos las librerías necesarias
+library(caret)
+```
+
+# Introducción
+
+```{r}
+# Leemos los datos
+hepatitis.KnnImp <- read.csv(
+  "Datos/hepatitisKnnImp.csv",
+  header = TRUE,
+  stringsAsFactors = TRUE
+)
+
+# Vemos los datos
+str(hepatitis.KnnImp)
+```
+
+
+# Visualización 
+
+```{r}
+# Realizamos un gráfico de parejas (pairplor)
+plot.columns <- c("BILIRRUBINA", "FOSFATOalc", "SGOT", "ALBUMINA")
+featurePlot(
+  x = hepatitis.KnnImp[, (names(hepatitis.KnnImp) %in% plot.columns)],
+  y = hepatitis.KnnImp$PRONOSTICO,
+  plot = "pairs",
+  auto.key = list(columns = 2)
+)
+```
+
+
+# Preprocesamiento
+
+```{r}
+# Dividimos los conjuntos en train y test
+set.seed(342)
+
+trainIndex <- createDataPartition(
+  hepatitis.KnnImp$PRONOSTICO,
+  p = 0.66,
+  list = FALSE,
+  times = 1
+)
+
+hepatitis.KnnImp.train <- hepatitis.KnnImp[trainIndex, ]
+hepatitis.KnnImp.test <- hepatitis.KnnImp[-trainIndex, ]
+```
+
+```{r}
+# Hacemos un análisis por PCA
+hepatitis.KnnImp.pca <- preProcess(
+  hepatitis.KnnImp[1:ncol(hepatitis.KnnImp) - 1],
+  method = "pca",
+  thresh = 0.95
+)
+
+print(hepatitis.KnnImp.pca)
+
+# Seleccionamos en los conjuntos de train y test las variables del PCA
+hepatitis.KnnImp.train.pca <- predict(hepatitis.KnnImp.pca, hepatitis.KnnImp.train)
+hepatitis.KnnImp.test.pca <- predict(hepatitis.KnnImp.pca, hepatitis.KnnImp.test)
+
+# Añadimos la columna de pronóstico
+hepatitis.KnnImp.train.pca$PRONOSTICO <- hepatitis.KnnImp.train$PRONOSTICO
+hepatitis.KnnImp.test.pca$PRONOSTICO <- hepatitis.KnnImp.test$PRONOSTICO
+```
+
+```{r}
+# Generamos un gráfico de las cuatro primeras componentes principales del conjunto train
+
+# Calculamos la posición de las 4 primeras componentes principales en las columnas
+pc1 <- ncol(hepatitis.KnnImp.train.pca) - 5
+pc2 <- ncol(hepatitis.KnnImp.train.pca) - 5 + 3
+
+# Realizamos el gráfico
+featurePlot(
+  x = hepatitis.KnnImp.train.pca[, pc1:pc2],
+  y = hepatitis.KnnImp.train.pca$PRONOSTICO,
+  plot = "pairs",
+  auto.key = list(columns = 2)
+)
+```
+
+# Selección de variables
+
+```{r}
+
+```
