@@ -112,3 +112,21 @@ featurePlot(
 dummy <- dummyVars(~., data = hepatitis.KnnImp[, names(hepatitis.KnnImp) != "PRONOSTICO"], fullRank = TRUE)
 dummy.matrix <- predict(dummy, hepatitis.KnnImp[, names(hepatitis.KnnImp) != "PRONOSTICO"])
 ```
+
+```{r}
+set.seed(123)
+folds <- 5
+seeds <- sample.int(1000, folds + 1)
+
+ctrl.ranker <- sbfControl(
+  functions = ldaSBF,
+  method = "cv", number = folds,
+  seeds = seeds
+)
+set.seed(234)
+lda.ranker <- sbf(PRONOSTICO ~ .,
+  data = hepatitis.KnnImp,
+  sbfControl = ctrl.ranker
+)
+lda.ranker
+```
