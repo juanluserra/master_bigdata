@@ -106,6 +106,10 @@ featurePlot(
 ```
 
 # Selección de variables
+```{r}
+hepatitisTrain <- hepatitis.KnnImp.train
+hepatitisTest <- hepatitis.KnnImp.test
+```
 
 ```{r}
 # Eliminamos las variables lógicas y las pasamos a numéricas
@@ -129,4 +133,226 @@ lda.ranker <- sbf(PRONOSTICO ~ .,
   sbfControl = ctrl.ranker
 )
 lda.ranker
+```
+
+# Recodificación de variables
+
+```{r}
+set.seed(123)
+folds <- 5
+seeds <- sample.int(1000, folds + 1)
+
+ctrl.ranker <- sbfControl(
+  functions = ldaSBF,
+  method = "cv", number = folds,
+  seeds = seeds
+)
+set.seed(234)
+lda.ranker <- sbf(PRONOSTICO ~ .,
+  data = hepatitis.KnnImp,
+  sbfControl = ctrl.ranker
+)
+
+lda.ranker
+```
+
+# Entrenamiento de clasificadores y ajuste de parámetros
+
+```{r}
+set.seed(123)
+seeds <- sample.int(1000, 11)
+fit.control.cv.10 <- trainControl(
+  method = "cv", number = 10,
+  seeds = seeds,
+  returnResamp = "all",
+  verboseIter = TRUE,
+  allowParallel = TRUE
+)
+
+set.seed(342)
+rpart.cv.10 <- train(PRONOSTICO ~ .,
+  data = hepatitisTrain,
+  method = "rpart",
+  tuneLength = 10,
+  trControl = fit.control.cv.10
+)
+
+rpart.cv.10
+plot(rpart.cv.10)
+plot(varImp(rpart.cv.10))
+```
+
+```{r}
+library(partykit)
+plot(as.party(rpart.cv.10$finalModel))
+```
+
+## Preprocesamiento a treavés de la función `train()`
+```{r}
+set.seed(123)
+seeds <- vector(mode = "list", length = 11)
+for (i in 1:10) seeds[[i]] <- sample.int(1000, 4)
+seeds[[11]] <- sample.int(1000, 1)
+
+
+fit.control.cv.10.C50 <- trainControl(
+  method = "cv", number = 10,
+  seeds = seeds,
+  returnResamp = "all",
+  verboseIter = TRUE,
+  allowParallel = TRUE
+)
+
+set.seed(342)
+C50.cv.10.range <- train(PRONOSTICO ~ .,
+  data = hepatitisTrain,
+  method = "C5.0",
+  preProc = "range",
+  trControl = fit.control.cv.10.C50
+)
+
+C50.cv.10.range
+```
+
+```{r}
+# Prueba pero en vez de "range" usar "center" y "scale"
+set.seed(342)
+C50.cv.10.center_2 <- train(PRONOSTICO ~ .,
+  data = hepatitisTrain,
+  method = "C5.0",
+  preProc = c("center", "scale"),
+  trControl = fit.control.cv.10.C50
+)
+
+C50.cv.10.center_2
+```
+
+## Ajuste de hiperparámetros
+
+```{r}
+# Vemos la lista de hiperparámetros del modelo
+modelLookup("nnet")
+
+# Creamos un grid de hiperparámetros
+nnetGrid <- expand.grid(
+  size = c(5, 10, 15, 20),
+  decay = c(0.5, 0.1, 0.001)
+)
+
+# Entrenamos el modelo con train()
+set.seed(123)
+seeds <- vector(mode = "list", length = 11)
+for (i in 1:10) seeds[[i]] <- sample.int(1000, 12)
+seeds[[11]] <- sample.int(1000, 1)
+
+
+fit.control.cv.10.nnet <- trainControl(
+  method = "cv", number = 10,
+  seeds = seeds,
+  returnResamp = "all",
+  verboseIter = FALSE,
+  allowParallel = TRUE
+)
+set.seed(342)
+nnet.cv.10 <- train(PRONOSTICO ~ .,
+  data = hepatitisTrain,
+  method = "nnet",
+  tuneGrid = nnetGrid,
+  trControl = fit.control.cv.10.nnet,
+  preProc = c("center", "scale")
+)
+
+# Vemos el resultado
+nnet.cv.10
+```
+
+```{r}
+# Como vemos que la red funciona bien con decay = 0.1, probamos más valores de "size"
+nnetGrid <- expand.grid(
+  size = c(15, 16, 17, 18, 19),
+  decay = c(0.05, 0.1, 0.2)
+)
+
+set.seed(123)
+fit.control.cv.10.nnet <- trainControl(
+  method = "cv", number = 10,
+  seeds = NULL,
+  returnResamp = "all",
+  verboseIter = FALSE,
+  allowParallel = TRUE
+)
+
+set.seed(342)
+nnet.cv.10.size <- train(PRONOSTICO ~ .,
+  data = hepatitisTrain,
+  method = "nnet",
+  tuneGrid = nnetGrid,
+  trControl = fit.control.cv.10.nnet,
+  preProc = c("center", "scale")
+)
+
+# Vemos el resultado
+nnet.cv.10.size
+```
+
+```{r}
+# Probamos con el grid predefinido de "tuneLength = 10"
+set.seed(123)
+fit.control.cv.10.nnet <- trainControl(
+  method = "cv", number = 10,
+  seeds = NULL,
+  returnResamp = "all",
+  verboseIter = FALSE,
+  allowParallel = TRUE
+)
+
+set.seed(342)
+nnet.cv.10 <- train(PRONOSTICO ~ .,
+  data = hepatitisTrain,
+  method = "nnet",
+  tuneLength = 10,
+  trControl = fit.control.cv.10.nnet,
+  preProc = c("center", "scale")
+)
+
+# Vemos el resultado
+nnet.cv.10
+```
+
+```{r}
+# Probamos con una máquina de vectores soporte lineal
+
+# Creamos el grid variando el parámetro C entre los valores 0.25, 0.5, 1, 2, 4, 8, 16, 32 y 64
+svmGrid <- expand.grid(
+  .C = c(0.25, 0.5, 1, 2, 4, 8, 16, 32, 64)
+)
+
+set.seed(123)
+fit.control.cv.10.svm <- trainControl(
+  method = "cv", number = 10,
+  seeds = NULL,
+  returnResamp = "all",
+  verboseIter = FALSE,
+  allowParallel = TRUE
+)
+
+set.seed(342)
+svm.cv.10 <- train(PRONOSTICO ~ .,
+  data = hepatitisTrain,
+  method = "svmLinear",
+  tuneGrid = svmGrid,
+  trControl = fit.control.cv.10.svm,
+  preProc = c("center", "scale")
+)
+
+# Vemos el resultado
+svm.cv.10
+plot(svm.cv.10)
+```
+
+## Predicción
+
+```{r}
+hepatitis.predict <- predict(rpart.cv.10, newdata = hepatitisTest)
+hepatitis.predict
 ```
