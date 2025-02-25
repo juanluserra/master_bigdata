@@ -31,9 +31,9 @@
 \fancyfoot[C]{Página \thepage}
 
 % Título
-\newcommand{\doctitle}{Título del documento}
+\newcommand{\doctitle}{Apuntes de Minería de Datos}
 \title{\doctitle}
-\author{Autor}
+\author{Juan Luis Serradilla Tormos}
 \date{\monthname[\month] de \the\year}
 
 % Bibliografía
@@ -101,7 +101,6 @@ Por todo esto, al limpiar un dataset es necesario tener en cuenta los datos ause
 
 \vspace{1em}
 \underline{\textbf{Soluciones}}
-\vspace{1em}
 
 Vamos a ver soluciones al tratamiento de los datos ausentes:
 \begin{itemize}
@@ -237,7 +236,8 @@ Las ténicas más comunes en la discretización son las siguientes:
 \end{itemize}
 
 \vspace{1 em}
-\textbf{Binning}
+\underline{\textbf{Binning}}
+
 Vamos a ver las diferentes técnicas de \textit{Binning} que hay.
 
 \begin{itemize}
@@ -255,7 +255,7 @@ Vamos a ver las diferentes técnicas de \textit{Binning} que hay.
 \end{itemize}
 
 \vspace{1 em}
-\textbf{Discretización basada en histograma}
+\underline{\textbf{Discretización basada en histograma}}
 
 Un \textbf{histograma} nos muestra la frecuencia de cada uno de los posibles valores del atributo, agrupando en un mismo \textit{balde} pares valor-frecuencia. Podemos discretizar el rango de valores de un atributo agrupando baldes:
 \begin{itemize}
@@ -310,7 +310,8 @@ Hay varios criterios a la hora de elegir el número de intervalos que podemos de
 \end{itemize}
 
 \vspace{1 em}
-\textbf{Discretización basada en la entropía}
+\underline{\textbf{Discretización basada en la entropía}}
+
 Es una técnica descendente y supervisada que utiliza el concepto que gannacia de información, utilizando la entropía como variable objetivo para determinar los puntos de corte, muy parecido a lo que hacen los árboles de decisión.
 
 El proceso es el siguiente:
@@ -335,7 +336,8 @@ El proceso es el siguiente:
 \end{itemize}
 
 \vspace{1 em}
-\textbf{Fusión de intervalos mediante análisis $\chi^2$}
+\underline{\textbf{Fusión de intervalos mediante análisis $\chi^2$}}
+
 Es una técnica ascendente y supervisada que fusiona intervalos adyacentes que presenten una distribución de clases parecida. Preserva la relación entre la característica y la variable objetivo.
 
 El proceso es el siguiente:
@@ -349,7 +351,8 @@ El proceso es el siguiente:
 \end{itemize}
 
 \vspace{1 em}
-\textbf{Análisis de clusters}
+\underline{\textbf{Análisis de clusters}}
+
 Se pueden usar algoritmos de clustering para discretizar atributos numéricos. Para ello hay que asociar una categoría a cada gurpo o cluster. Pueden generar discretizaciones de alta calidad, ya que tienen en cuentra la distrivución del atributo a discretizar además de la distnacia de los datos. Además, las técnicas de clustering jerárquico nos permiten obtener una jerarquía conceptual.
 
 \subsubsection{De variables categóricas a numéricas}
