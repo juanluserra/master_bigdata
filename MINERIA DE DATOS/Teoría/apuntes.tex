@@ -220,6 +220,146 @@ Tipos de discretización:
 \begin{itemize}
     \item \textbf{Supervisada y no supervisada:} Si la técnica utiliza información sobre la clase será \textbf{supervisada}. En caso contrario diremos que es \textbf{no supervisada}.
     \item \textbf{Local o global:} Los métodos \textbf{gloales} aplican los mismos puntos de corte a todas las instancias. Por otro lado, los \textbf{locales} utilizan diferentes puntos de corte a diferentes ocnjuntos de instancias.
+    \item \textbf{Ascendente (bottom-up) o descendente (top-down):}
+    \begin{itemize}
+        \item \textbf{Top-sown (splitting):} Se comienza seleccionando uno o más puntos para dividir el rango del atributo. Se repite el proceso con cada nuevo intervalo hasta que no se pueda dividir más.
+        \item \textbf{Bottom-up (merging):} Se van fusionando puntos cercanos entre sí para formar intervalores y repetir el proceso con nuevos intervalos.
+    \end{itemize}
+\end{itemize}
+
+Las ténicas más comunes en la discretización son las siguientes:
+\begin{itemize}
+    \item \textbf{Binning:} Es una técnica descente y no supervisada. 
+    \item \textbf{Análisis del histograma:} Es una técnica descendente y no supervisada.
+    \item \textbf{Discretización basada en la entropía:} Es una técnica descendente y supervisada.
+    \item \textbf{Fusión de intervalos mediante análisis $\chi^2$:} Es una técnica ascendente y supervisada.
+    \item \textbf{Análisis de cluster:} Es una técnica ascendente y no supervisada.
+\end{itemize}
+
+\vspace{1 em}
+\textbf{Binning}
+Vamos a ver las diferentes técnicas de \textit{Binning} que hay.
+
+\begin{itemize}
+    \item \textbf{Binning con intervalos de la misma longitud (equal-width):} Se divide el rango de valores en intervalos de misma longitud. Para determinal la longitud de los intervalos se usa:
+    \[
+        w = \frac{\max(x) - \min(x)}{N}
+    \]
+    donde $N$ es el número de intervalos y $x$ es el atributo a discretizar. Los límites de los intervalos son $[\min(x) + iw, \min(x) + (i+1)w]$ con $i = 0,1,\ldots,N-1$. 
+
+    Esta técnica puede verse alterada por la presencia de outliers y datos sesgados.
+
+    \item \textbf{Binning por intervalos de la misma amplitud (equal-depth, frequency):} Se divide el rango de valores en intervalos que contengan aproximadamente el mismo número de elementos. 
+    
+    Para saver cuántos elementos debee tener cada intervalo se divide el número total de instancias por el número de intervalos. Para determinal cuáles son los valores en los que realizar la partición se suele utulizar el punto medio entre los dos extremos de los intervalos. En el caso de que valores repetidos caigan en intervalos diferentes, habrá que tomar la decisión de a qué intervalo se asignan dichos valores, permitiendo que existan invervalos con un número de valores alejados de la media.
+\end{itemize}
+
+\vspace{1 em}
+\textbf{Discretización basada en histograma}
+
+Un \textbf{histograma} nos muestra la frecuencia de cada uno de los posibles valores del atributo, agrupando en un mismo \textit{balde} pares valor-frecuencia. Podemos discretizar el rango de valores de un atributo agrupando baldes:
+\begin{itemize}
+    \item \textbf{Intervalos de la misma longitud}
+    \item \textbf{Intervalos de la misma frecuencia}
+    \item \textbf{Varianza óptima.} Se consideran todas las posibilidades de agrupación de baldes y se selecciona la de menor varianza.
+    \item \textbf{Máxima diferencia.} Los límites de los baldes se establecen entre los valores consecutivos con $\beta - 1$ mayores distancias, siendo $\beta$ el número de baldes deseado.
+\end{itemize}
+
+Los histogramas son muy efectivos tanto en datos densos como en dispersos, al igual que tanto para datos uniformes como para altamente sesgados. Además, las particiones basadas en varianza y la diferencia suelen ser más precisas y prácticas.
+
+Hay varios criterios a la hora de elegir el número de intervalos que podemos destacar:
+\begin{itemize}
+    \item \textbf{Raíz cuadrada:}
+    \[
+        n_{intervalos} = \sqrt{n_{muestras}}
+    \]
+    \[
+        ancho = \frac{\max(x) - \min(x)}{\sqrt{n_{muestras}}}
+    \]
+
+    \item \textbf{Sturges:}
+    \[
+        n_{intervalos} = 1 + \log_2(n_{muestras})
+    \]
+    \[
+        ancho = \frac{\max(x) - \min(x)}{1 + \log_2(n_{muestras})}
+    \]
+
+    \item \textbf{Rice:}
+    \[
+        n_{intervalos} = \lceil 2n^{1/3} \rceil   \]
+    \[
+        ancho = \frac{\max(x) - \min(x)}{\lceil 2\sqrt[3]{n} \rceil}
+    \]
+
+    \item \textbf{Scott:}
+    \[
+        n_{intervalos} = \frac{\max(x) - \min(x)}{\frac{3.5\sigma}{n^{1/3}}}
+    \]
+    \[
+        ancho = \frac{3.5\sigma}{n^{1/3}}
+    \]
+
+    \item \textbf{Freedman-Diaconis:}
+    \[
+        n_{intervalos} = \frac{\max(x) - \min(x)}{\frac{2 \cdot IQR(x)}{n^{1/3}}}
+    \]
+    \[
+        ancho = \frac{2 \cdot IQR(x)}{n^{1/3}}
+    \]
+\end{itemize}
+
+\vspace{1 em}
+\textbf{Discretización basada en la entropía}
+Es una técnica descendente y supervisada que utiliza el concepto que gannacia de información, utilizando la entropía como variable objetivo para determinar los puntos de corte, muy parecido a lo que hacen los árboles de decisión.
+
+El proceso es el siguiente:
+\begin{itemize}
+    \item \textbf{Cálculo de la entropía:} Se calcula la entropía inicial con la fórmula.
+    \[
+        H(S) = -\sum_{i=1}^{c} p_i \log_2 p_i
+    \]
+    donde $p_i$ es la probabilidad de que un objeto pertenezca a la clase $i$.
+    \item \textbf{Selección de puntos de corte:} Se prueban diferente puntos de corte dentro del atributo continuo, quedando en conjunto izquierdo y derecho.
+    \item \textbf{Cálculo de la ganancia de información:} Se calcula la ganancia de información.
+    \[
+        IG(T) = H(S) - \bigg( \frac{|S_{izq}|}{|S|}H(S_{izq}) + \frac{|S_{der}|}{|S|}H(S_{der}) \bigg)
+    \]
+
+    \item Se elige el punto que maximiza la ganancia de información.
+    \item \textbf{División recursiva:} Se repite el proceso hasta cumplir el criterio de parada. Este puede ser:
+    \begin{itemize}
+        \item La ganancia de información es menor que un umbral.
+        \item Se alcanza el número mínimo de insancias por intervalo.
+    \end{itemize}
+\end{itemize}
+
+\vspace{1 em}
+\textbf{Fusión de intervalos mediante análisis $\chi^2$}
+Es una técnica ascendente y supervisada que fusiona intervalos adyacentes que presenten una distribución de clases parecida. Preserva la relación entre la característica y la variable objetivo.
+
+El proceso es el siguiente:
+\begin{itemize}
+    \item \textbf{Inicialización:} Ordenar los valores de la característica continua.
+    \item \textbf{Binning inicial:} Cada valor es un \textit{bin} (intervalo) separado.
+    \item \textbf{Cálculo de $\chi^2$:} Se calcula el estadístico $\chi^2$ para cada par de bins adyacentes.
+    \item \textbf{Fusión de bins:} Se fusionan los bins con menor $\chi^2$.
+    \item \textbf{Condición de parada:} Se repite el proceso hasta que se cumpla una condición de parada (número de bins, $\chi^2$ mínimo\dots).
+    \item \textbf{Bins finales:} Los bins finales son los que mejor preservan la relación con la variable objetibo.
+\end{itemize}
+
+\vspace{1 em}
+\textbf{Análisis de clusters}
+Se pueden usar algoritmos de clustering para discretizar atributos numéricos. Para ello hay que asociar una categoría a cada gurpo o cluster. Pueden generar discretizaciones de alta calidad, ya que tienen en cuentra la distrivución del atributo a discretizar además de la distnacia de los datos. Además, las técnicas de clustering jerárquico nos permiten obtener una jerarquía conceptual.
+
+\subsubsection{De variables categóricas a numéricas}
+Las variables categóricas son variables cuyo dominio lo forman un número finito de etiquetas o categorías. Puedes ser nominales (sin orden) o ordinales (con orden).
+
+Algunas técnicas son:
+\begin{itemize}
+    \item \textbf{Codificación ordinal:} Se aplica a variables categóricas ordinales. La idea es mantener el orden de categorías asignando un número entero a cada categoría (por ejemplo pasar de $\{bajo, medio, alto\}$ a $\{1,2,3\}$).
+    \item \textbf{Codificación one-hot:} Se aplica a categorías nominales. Se crea una nueva variable binaria para cada categoría, asignando un 1 si la categoría está presente y un 0 si no lo está.
+    \item \textbf{Codificación por variables \textit{dummy}:} La codificación One-Hot tiene el problema de introducir información redundante. Por ello, la solución es crear $N-1$ variables para $N$ categorías, donde la categoría $N$ se representa con todas las variables a 0.
 \end{itemize}
 
 
@@ -255,6 +395,35 @@ Vamos a explicar las técnicas de muestreo que sirven para mitigar el desbalance
 \subsubsection{Medidas de rendimiento}
 El error de clasificación y la precisión (accuracy) no son métricas apropiadas cuando tenemos métricas desbalanceadas. 
 
+Algunas medidas de eficacia considerando la clase mayoritaria como la negativa son:
+\begin{itemize}
+    \item \textbf{Matriz de confusión.}
+    \item \textbf{Precisión o valor predictivo positivo.} Es la proporción de verdaderos positivos sobre el total de predicciones positivas. $PPV = \frac{TP}{TP + FP}$.
+    \item \textbf{Recall o sensibilidad.} Es la proporción de verdaderos positivos sobre el total de positivos reales. $Recall = \frac{TP}{TP + FN}$.
+    \item \textbf{F1-score.} Es la media armónica de la precisión y el recall. $F1 = 2 \cdot \frac{PPV \cdot Recall}{PPV + Recall}$.
+    \item \textbf{AUC-ROC.} Es el área bajo la curva ROC.\@ Cuanto más cerca de 1, mejor.
+\end{itemize}
+
+Depende de la combinación entre \textit{recall} y \textit{precisión} habrá difernetes interpretaciones del modelo:
+\begin{itemize}
+    \item \textbf{Recall alto y precisión alta:} La clase es detectada perfectamente por el modelo.
+    \item \textbf{Recall bajo y precisión alta:} El modelo no puede detectar bien la clase pero cuando lo hace es muy fiable.
+    \item \textbf{Recall alto y precisión baja:} La clase es detectada aceptablemente por el modelo pero también incluye muestas de otras clases.
+    \item \textbf{Recall bajo y precisión baja:} El modelo no detecta bien la clase y cuando lo hace no es fiable.
+\end{itemize}
+
+\subsubsection{Modelos para datos desbalanceados}
+Existen algoritmos optimizados para clases desbalanceadas, de forma que tienen en cuenta la distrivución de clases en la construcción del modelo. Algunos ejemplos son:
+\begin{itemize}
+    \item \textbf{SVM:} Dan buenos resultados para problemas desbalanceados y existen varias adaptaciones (z-SVM y GSVM-RU).
+    \item \textbf{kNN:} kENN y CCNND.\@
+    \item \textbf{Aprendizaje sensitivo al costo:} Consiste en cambiar el coste de los errores, dando mayor importancia a los falsos positivos de la clase mayoritaria o a los verdaderos positivos de la clase minoritaria. 
+    
+    Tiene varios problemas: la matriz de costes no se conoce y puede ser complicado definicarla, puede causar sobreajuste y algunos estudios apuntan a que es igual de eficiente que técnicas de muestreo.
+
+    \item \textbf{Métodos de ensamble:} Reducen la varianza de la clasificación y existen métodos adaptados a las clases desbalanceadas (SMOTEBoost, RUSBott, DataBoostIM, cost-sensitive boosting y SMOTEBagging).
+    \item \textbf{One-Class learning:} Son conocidos como métodos basados en reconocimiento. El modelo es entrenado para representar adecuadamente la clase minoritaria. Muchas ténicas no están preparads para ser entradas con una sola clase, aunque hay algunas adaptaciones (One Classs SVM, Isolation Forest, Minimum Covariance Determinant\dots).
+\end{itemize}
 
 
 \end{document}
