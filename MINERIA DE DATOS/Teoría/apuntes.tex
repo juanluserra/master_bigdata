@@ -7,6 +7,7 @@
 \usepackage{biblatex}
 \usepackage{csquotes}
 \usepackage{datetime}
+\usepackage{amsmath}
 \usepackage{lipsum}
 \usepackage{hyperref}
 \usepackage{fancyhdr}
@@ -126,6 +127,102 @@ A pesar de que soluciones como la imputación sean técnicas muy útiles y frecu
 \subsubsection{Datos ruidosos}
 Entendemos el ruido como un error o varianza aleatoria en una medición de una variable.
 
+Existen varios métodos para eliminar el ruido:
+\begin{itemize}
+    \item \textbf{Discretización:} Este método suaviza un conjunto de valores consultando los vecinos. 
+    \begin{itemize}
+        \item Los valores ordenados se distribuyen en categorías con el mismo número de elementos (igual frecuencia, igual anchura\dots).
+        \item Se sustotuyen los valores de cada categoría por otros: media, mediana, extremo más cercano\dots. 
+    \end{itemize}
+    \item \textbf{Regresión:} Se ajustan los valores a una función.
+    \item \textbf{Clustering:} Se agrupan los valores para identificar los outliers (valores atípicos).
+\end{itemize}
+
+\subsubsection{Datos inconsistentes y discrepancias}
+Antes de empezar a solucionar los datos ausentes y ruidosos hayq ue detectar las discrepancias en los datos. Las inconsistencias se deben a:
+\begin{itemize}
+    \item Formularios de entrada mal diseñados.
+    \item Errores en los dispositivos de entrada.
+    \item Error humano al introducir datos.
+    \item Obsolescencia de los datos.
+    \item Datos recogidos para otros usos.
+    \item Formato inconsistente.
+\end{itemize}
+
+Hay dos tipos de herramientas para solucionar estos problemas:
+\begin{itemize}
+    \item \textbf{Depuración de datos:} Estas herramientas utilizan conocimiento en el dominio para detectar y corregir errores.
+    \item \textbf{Auditoría de datos:} Encuentran discrepancias mediante un análisis que permite descubrir reglas y relaciones en los datos, detectando violaciones de estas mismas reglas.
+\end{itemize} 
+
+\subsubsection{Variables con varianza cercana a cero}
+En muchos casos tendremos variables con varianza cero, es decir, de un solo valor. En otros casos, existirán variables que presentan muy poca variedad en sus resultados, es decir, con varianza cercana a cero o muy desbalanceadas. 
+
+Para detectar estas variables se utilizan dos métricas:
+\begin{itemize}
+    \item \textbf{Ratio entre frecuencia y valor más frecuencte:} Este valor es 1 para variables balanceadas y crece con variables desbalanceadas.
+    \item \textbf{Porcentaje de valores únicos:} Este valor es 0 para variables con un solo valor y 1 para variables con todos los valores únicos.
+\end{itemize}
+
+Con estas técnicas, si el ratio de frecuencia supera un límite establecido y el porcentaje de valores únicos cae por debajo de este, podemos considerar que la variable posee varianza cercana a cero y eliminarla.
+
+
+\subsection{Transformaciones de datos}
+Las técnicas de transformación nos permiten preparar los datos de forma apropiada para aplicar las técnicas de minería. La mayoría de las técnicas son \textbf{sobreyectivas} es decir, a cada valor original le corresponde un valor transformado.
+
+Entre las técnicas de transformación tenemos:
+\begin{itemize}
+    \item \textbf{Suavizado:} Elimina el ruido.
+    \item \textbf{Agregación:} Resume o agrega datos, usual en cubos de datos. Por ejemplo, acumular las ventanas mensuales en anuales.
+    \item \textbf{Generalización:} Convierte datos de bajo a alto nivel.
+    \item \textbf{Creación de atributos:} Se crean nuevos atributos a partir de los ya existentes.
+    \item \textbf{Normalización:} Escala los datos a un determinado rango, usualmente $\{0,1\}$ o $\{-1,1\}$.
+\end{itemize}
+
+\subsubsection{Normalización}
+Consiste en escalar los valores a un determinado rango. Es necesario ya que algunas técnicas de minería requieren que los datos estén normalizados, sobre todo en las basadas en concepto de distancia.
+
+Destacan varios métodos de normalización:
+\begin{itemize}
+    \item \textbf{Normalización min-max:} Se realiza una transformación lineal sobre los datos originales.
+    \[
+        x' = \frac{x - \min(x)}{\max(x) - \min(x)}(\max(x') - \min(x')) + \min(x')
+    \]
+    \item \textbf{Normalización por transformada $z$ (z-score):} Los valores de una variable $A$ son normalizados en función de su media $\bar{A}$ y su desviación típica $\sigma_A$.
+    \[
+        x' = \frac{x - \bar{A}}{\sigma_A}
+    \]
+
+    Este método es útil cuando los rangos de las variables son desconocidos o existen valores anormales que dominan en la normalización.
+
+    La desviación y la media resultantes de la nueva variable serán $1$ y $0$ respectivamente.
+
+    \item \textbf{Normalización por escala decimal:} Este tipo de normalización se basa en el desplazamiento del punto decimal en los valores dle atributo. El número de posiciones que se desplaza el punto decimal depende del valor aboluto máximo de la variable $A$.
+    \[
+        x' = \frac{x}{10^j}
+    \]
+    donde $j$ es el entero más pequeño que hace que $\lvert x \rvert < 1$.
+
+\end{itemize}
+
+\subsubsection{Discretización}
+La discretización es la conversión de un valor numérico a un valor nominal ordenado, que representa un intervalo o ``bin''. Un ejemplo sería al conversión de la nota en escala $\{1,10\}$ a una escala $\{A,B,C,D,E,F\}$.
+
+Razones para discretizar:
+\begin{itemize}
+    \item Algunas técnicas de minería solo aceptan atributos discretos.
+    \item Cuando existen ciertos umbrales significativos.
+    \item Para integrar escalas diferentes.
+    \item Cuando la interpretación de la escala no es lineal.
+\end{itemize}
+
+Tipos de discretización:
+\begin{itemize}
+    \item \textbf{Supervisada y no supervisada:} Si la técnica utiliza información sobre la clase será \textbf{supervisada}. En caso contrario diremos que es \textbf{no supervisada}.
+    \item \textbf{Local o global:} Los métodos \textbf{gloales} aplican los mismos puntos de corte a todas las instancias. Por otro lado, los \textbf{locales} utilizan diferentes puntos de corte a diferentes ocnjuntos de instancias.
+\end{itemize}
+
+
 \subsection{Datos desbalanceados}
 
 Se dice que en un dataset los datos están desbalancedaos cuando una o más clases presentan proporciones muy bajas respecto a las otras clases en el conjunto de entrenamiento. Un ejemplo sería el tener una clase $A$ con un 94\% y una clase $B$ co un 6\%.
@@ -157,5 +254,7 @@ Vamos a explicar las técnicas de muestreo que sirven para mitigar el desbalance
 
 \subsubsection{Medidas de rendimiento}
 El error de clasificación y la precisión (accuracy) no son métricas apropiadas cuando tenemos métricas desbalanceadas. 
+
+
 
 \end{document}
