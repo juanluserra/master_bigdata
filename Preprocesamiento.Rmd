@@ -192,7 +192,7 @@ atributos <- c(
 colnames(hepatitis) <- atributos
 ```
 
-# Conversión de tipos
+#  Conversión de tipos
 
 Una vez interpretados de forma correcta los valores ausentes y haberle dado nombre a las columnas. El siguiente paso en el procesamiento de datos consiste en definir los tipos de datos adecuados para cada columna. Esto lo podemos hacer mediante las funciones con el prefijo `as.` de `R`. Por ejemplo, para convertir una variable cualquiera, `var`, a variable real, sólo deberíamos ejecutar el siguiente comando:
 
