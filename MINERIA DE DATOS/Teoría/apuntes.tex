@@ -431,5 +431,97 @@ Existen algoritmos optimizados para clases desbalanceadas, de forma que tienen e
 \newpage
 \section{Reducción de dimensionalidad}
 
+\subsection{Métodos}
+Existen dos tipos de métodos para la reducción de la dimensionalidad:
+\begin{itemize}
+    \item \textbf{Extracción de características:} El objetivo es encontrar $k$ dimensiones que sean combinación de las $d (d > k)$ dimensiones originales. Si son extracciones supervisadas maximizan la discriminación entre clases, si son no supervisadas minimizan la pérdida de información.
+    
+    Algunas técnicas son:
+    \begin{itemize}
+        \item Análisis lineal discriminante (LDA).
+        \item Análisis discriminante generalizado (GDA).
+        \item Análsiis de componentes principales (PCA).
+        \item Modelos d evariables latentes basados en procesos gaussianos constreñidos.
+        \item ``t-distributed stochastic neighbor embedding'' (t-SNE).
+        \item ``Uniform Manifold Approximation and Projection'' (UMAP).
+        \item Técnicas basadas en Deep Learning (convolucuón, embeddings, transformers\ldots)
+    \end{itemize}
+
+    \item \textbf{Selección de características:} EL objetivo es encontrar $k$ dimensiones entre las $d$ dimensiones originales que aporten la mayor cantidad de información, descartando las $(d-k)$ restantes.
+\end{itemize}
+
+\subsection{Selección de características}
+La selección de características trata de encontrar un subconjunto de características óptimo dado un determinado criterio de selección.
+
+El \textbf{subconjunto óptimo} de características es el subconjunto mínmimo que permite construir una hipótesis consistente con los datos de entrenamiento. Una definición más formal sería:
+
+\textbf{Subconjunto óptimo (definición):} \\
+Sea $F$ el conjunto de todas las características y $CR$ el conjunto de clases, el \textit{subconjunto óptimo} es el conjunto mínimo de características $G$ tal que $P(C|G)$ es igual, o lo más cercano posible, a $P(C|F)$.
+
+\subsubsection{Fases de selección de características}
+El proceso de selección de características se desarrolla en dos fases:
+\begin{itemize}
+    \item \textbf{Generación:} Se van generando los distintos subconjuntos de características candidatos a ser el subconjunto óptimo.
+    \item \textbf{Evaluación:} Se evalúan todos los subconjutnos candidatos hasta que se cumpla algún criterio de parada.
+\end{itemize}
+
+Dependiendo de si se hacen o no las dos fases podemos tener:
+\begin{itemize}
+    \item \textbf{Métodos basados en la selección de conjuntos de características:} Son aquellos que incluyen alguna estrategia para la generación y evaluación de características.
+    \item \textbf{Métodos de evaluación de características:} Son aquellos que solo generan ningún subconjunto, solo evalúan las variables estableciendo un ``ranking'' de acuerdo a la medida.
+\end{itemize}
+
+\vspace{1 em}
+\textbf{\underline{Generación de subconjuntos}}
+
+Una búsqueda exhaustiva de todas los posibles subconjuntos no es computacionalmente posible, ya que por ejemplo con $n = 100$ características, \linebreak tendríamos $10^{100}$ subconjuntos posibles.
+
+Se pueden realizar diferentes estrategias de búsqueda:
+\begin{itemize}
+    \item \textbf{Exhaustiva:} Se barre todo el espacio de posibles subconjuntos, por lo que solo es posible para pocas características. Es la única forma de \textbf{garantizar} el \textbf{subconjunto óptimo}.
+    \item \textbf{Heurística:} Se dispone de alguna información de qué subconjunto es el más prometedor. No garantiza el subconjunto óptimo pero encuentra una buena solución en un tiempo razonable.
+    \item \textbf{Aleatoria:} Se parte de una configuración inicial formada por un conjunto finito de posibles subconjuntos. Se va modificando poco a poco la configuración inicial para ir convergiendo a una solución. Tampoco garantiza una solución óptima.
+\end{itemize}
+
+\vspace{1 em}
+\textbf{\underline{Dirección de búsqueda}}
+
+Para definir la estrategia de búsqueda hay que definir la \textbf{dirección de búsqueda}:
+\begin{itemize}
+    \item \textbf{Hacia delante (forward):} Se empieza con el conjunto vacío y se van añadiendo una características cada vez.
+    \item \textbf{Hacia atrás (backward):} Se empieza con el conjunto completo y se va elimiando una característica cada vez.
+    \item \textbf{Bidireccional:} Se comienza por los dos extremos del espacio de búsqueda y se realiza de forma paralela hacia delante y hacia atrás.
+\end{itemize}
+
+\vspace{1 em}
+\textbf{\underline{Evaluación}}
+
+Hay diferentes tipos de evaluación:
+\begin{itemize}
+    \item \textbf{Métodos basados en filtros:} Evalúan la relevancia de características sin tener en cuenta la tarea que se va a realizar con los datos.
+    \item \textbf{Métodos basados en envoltura (wrappers):} Cada subconjunto candidato es evaluado a través de la eficacia de un predictor, teniendo así en cuenta la tarea que se va a realizar.
+    \item \textbf{Métodos empotrados (embedded):} En los que el proceso de seleción de variables está integrado en la técnica de construcción del predictor.
+\end{itemize}
+
+\subsection{Evaluadores de características}
+Estos métodos eliminan la fase de búsqueda de subconjuntos, por lo que hacen es evaluar cada variables con una determinada medida y establecer un ``ranking'' de las mismas.
+
+Son técnicas muy rápidas y fácilmente escalables, auqnue tienen el inconveniente de que a veces es difícil establecer el umbral de corte.
+
+Las medidas utilizadas para evaluar las características son:
+\begin{itemize}
+    \item \textbf{Medidas de evaluación por pares:} Son aquellas que evalúan la dependencia de las variables con la variable objetivo. Estas se pueden agrupar en:
+    \begin{itemize}
+        \item \textbf{Basadas en correlación:} Miden la correlación entre la variable y la variable objetivo.
+        \item \textbf{Basadas en incertidumbre:} Se apoyan en medidas típicas de la teoría de la información como la entropía.
+        \item \textbf{Basadas en test de hipótesis:} Se obtienen \textit{p-values} que pueden ser usados para clasificar las variables.
+        \item \textbf{Basadas en el poder discriminativo:} Utilizan un modelo de una sola variable y estiman su error.
+    \end{itemize}
+    \item \textbf{Medidas de evaluación simultáneas:} Son aquellas que realizan la evaluación de forma simultánea en todas las variables. El ejemplo más característico es la familia \textbf{Relief}, que utiliza medidas de distancia para calcular la relevancia.
+\end{itemize}
+
+\subsubsection{Filtros}
+
+
 
 \end{document}
