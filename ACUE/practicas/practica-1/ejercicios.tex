@@ -1,0 +1,157 @@
+% Clast de documento
+\documentclass[12pt, letterpaper]{article}
+
+% Paquetes
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{biblatex}
+\usepackage{csquotes}
+\usepackage{datetime}
+\usepackage{lipsum}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{parskip}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcolor} 
+\usepackage{booktabs}
+
+%------------ 
+% Decoración
+%------------
+
+% Configuración de colores de python
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true
+}
+
+\lstset{
+    literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'\i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+             {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+             {ñ}{{\~n}}1 {Ñ}{{\~N}}1
+             {¡}{{!`}}1 {¿}{{?`}}1 % Añade caracteres especiales en español
+}
+
+% Configuración de header y footer
+\fancyhf{}
+\setlength{\headheight}{15.71667pt}
+\addtolength{\topmargin}{-3.71667pt}
+\fancyhf{}
+
+% Header
+\fancyhead[L]{\textsc{\doctitle}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\fancyhead[R]{\textit{\nouppercase{\rightmark}}}
+
+% Footer
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[C]{Página \thepage}
+
+% Título
+\newcommand{\doctitle}{Ejercicios práctica 1}
+\title{\doctitle}
+\author{Juan Luis Serradilla Tormos}
+\date{\monthname[\month] de \the\year}
+
+% Bibliografía
+\addbibresource{test.bib}
+
+% Eliminar sangría
+\setlength{\parindent}{0pt}
+
+% Aumentar la separación entre párrafos
+\setlength{\parskip}{1em plus 0.5em minus 0.2em}
+
+
+%-----------
+% Documento
+%-----------
+\begin{document}
+
+% Mostrar header y footer
+\pagestyle{fancy}
+
+% Mostrar el título
+\maketitle
+
+% Índice
+\newpage
+\tableofcontents
+
+% Contenido
+\newpage
+\section{Ejercicio 1}
+\textbf{Una tienda de abarrotes recibe su suministro semanal de
+huevos cada jueves por la mañana. Este envío debe durar hasta el jueves
+siguiente, cuando llega un nuevo pedido. Cualquier huevo no vendido antes
+del jueves se descarta. Los huevos se venden a \$10 por cada cien y cuestan
+\$8 por cada cien. La demanda semanal de huevos en esta tienda variaba de una
+semana a otra. Basándose en la experiencia pasada, se asigna la siguiente
+distribución de probabilidad a la demanda semanal:}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{cccccc}
+        \toprule
+        \textbf{Demanda (x100 huevos)} & 10 & 11 & 12 & 13 & 14 \\
+        \midrule
+        \textbf{Probabilidad de demanda} & 0.1 & 0.2 & 0.4 & 0.2 & 0.1 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+\textbf{Este patrón de demanda se mantiene estable durante todo el año; la
+demanda de huevos no es estacional y la tendencia es plana. El problema
+es: ¿Cuántos huevos deben ordenarse para la entrega cada jueves?}
+
+Para poder ver cuántos huevos se deben ordenar lo primero que hay que hacer es determinar una función beneficio.
+\begin{align*}
+    & n \equiv \text{Número de huevos ordenados} \\ 
+    & d \equiv \text{Demanda semanal} \\
+    & p \equiv \text{probabilidad de demanda} \\
+    & c \equiv \text{Costo de los huevos} \\
+    & v \equiv \text{Valor de los huevos} 
+\end{align*}
+
+La variable $d_i$ representa la demanda semanal de la semana $i$, $p_i$ la probabilidad de que ocurra dicha demanda y $n_j$  la cantidad de huevos que se encargan, tal que $i,j \in \{1,2,3,4,5\}$. La cantidad de huevos que se encargan oscilan entre los valores de $d$ ya que si se piden menos del $\min{d}$ se perderán ventas y si se piden más del $\max{d}$ se dejarán huevos sin vender. Por tanto, la función beneficio se puede expresar como:
+\[
+    B(n_j,d_i) = \begin{cases}
+        n_j \cdot (v - c) & \text{si } j \leq i \\
+        d_i \cdot v - n_j \cdot c & \text{si } j > i
+    \end{cases}
+\]
+
+\newpage
+Ahora que tenemos la función beneficio, tenemos que calcular el beneficio medio para una cantidad $n_j$. Para ello, se calcula el beneficio medio ponderado por la probabilidad de que ocurra una demanda $d_i$:
+\[
+    \bar{B}(n_j) = \sum_{i=1}^{5} p_i \cdot B(n_j,d_i) = 
+    \sum_{i<j}p_i(d_i \cdot v - n_j \cdot c) + \sum_{i \geq j}p_i(n_j \cdot (v - c))
+\]
+
+Reordenando y juntando términos, se obtiene:
+\[
+    \bar{B}(n_j) = 
+        v\sum_{i<j}p_i d_i + 
+        v n_j \sum_{i \geq j} p_i -
+        c n_j
+\]
+
+Ahora, vamos a aplicar la función beneficio a cada posible valor de $j$.
+\begin{align*}
+    & j = 1 \Rightarrow B(10) = 20 \\
+    & j = 2 \Rightarrow B(11) = 21 \\
+    & j = 3 \Rightarrow B(12) = 20 \\
+    & j = 4 \Rightarrow B(13) = 15 \\
+    & j = 5 \Rightarrow B(14) = 8
+\end{align*}
+
+Finalmente, vemos que el valor óptimo de $n$ es $n = 11$, que da un beneficio medio de 21\$.
+
+\end{document}
