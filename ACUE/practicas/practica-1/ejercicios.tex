@@ -154,4 +154,35 @@ Ahora, vamos a aplicar la función beneficio a cada posible valor de $j$.
 
 Finalmente, vemos que el valor óptimo de $n$ es $n = 11$, que da un beneficio medio de 21\$.
 
+\newpage
+\section{Ejercicio 2}
+\textbf{La función de utilidad de Ana es $U = \sqrt{w}$, donde $w$ es el
+dinero. Ella es dueña de una panadería, la cual el año que viene puede valer
+o bien 0 o bien 100 euros con las mismas posibilidades.}
+\begin{enumerate}
+    \item \textbf{Supongamos que su empresa es el único activo que posee. ¿Cuál es el precio P más bajo al que aceptaría vender su panadería?}
+
+    La función de utilidad es $U = \sqrt{w}$, por lo que la utilidad media es $\bar{U} = \sum_i p_i\sqrt{w_i}$. Sustituyendo tenemos $\bar{U} = \frac{1}{2}(\sqrt{0} + \sqrt{100}) = \frac{1}{2}(0 + 10) = 5$. 
+
+    Ahora que tenemos la utilidad media, si despejamos el precio medio como $\bar{w} = \bar{U}^2$ obtenemos que $\bar{w} = 5^2 = 25$. Por tanto, el precio más bajo al que aceptaría vender su panadería es 25 euros.
+
+    \item \textbf{Supongamos que tiene tiene 100 euros guardados ¿Cómo afectaría en este caso al caso anterior?}
+    
+    En este caso tenemos que $\bar{U} = \sum_i p_i\sqrt{100 + w_i}$, por lo que sustotuyendo tenemos $\bar{U} = \frac{1}{2}(\sqrt{100 + 0} + \sqrt{100 + 100}) = \frac{1}{2}(10 + 14.14) = 12.07$. 
+
+    Si despejamos la utilidad media como $\bar{w} = \bar{U}^2 - 100$ obtenemos que $\bar{w} = 12.07^2 - 100 = 45.7$. Por tanto, el precio más bajo al que aceptaría vender su panadería es 45.7 euros.
+
+    \item\textbf{Compara tus resultados de las partes anteriores. ¿Cuál es la relación entre los ingresos de Ana y su aversión al riesgo?}
+    
+    La aversión al riesgo se calcula como $A(w) = -\frac{d^2U}{dw^2} {\big(\frac{dU}{dw}\big)}^{-1}$. Calculando las derivadas tenemos:
+    \begin{align*}
+        &   \frac{dU}{dw} = \frac{1}{2\sqrt{w}},\
+        \frac{d^2U}{dw^2} = -\frac{1}{4w\sqrt{w}} \Rightarrow
+        A(w) = \frac{1}{2\sqrt{w}}
+    \end{align*}
+
+    Podemos ver que la aversión al riesgo disminuye cuando aumenta el dinero.
+
+\end{enumerate}
+
 \end{document}
