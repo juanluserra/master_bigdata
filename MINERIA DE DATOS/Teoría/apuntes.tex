@@ -520,8 +520,59 @@ Las medidas utilizadas para evaluar las características son:
     \item \textbf{Medidas de evaluación simultáneas:} Son aquellas que realizan la evaluación de forma simultánea en todas las variables. El ejemplo más característico es la familia \textbf{Relief}, que utiliza medidas de distancia para calcular la relevancia.
 \end{itemize}
 
-\subsubsection{Filtros}
+\subsection{Filtros}
+Los métodos basados filtros evalúan la relevancia de las caraceterísticas teniendo en cuenta solo las propiedades intrínsecas de las mismas, por lo que no tienen en cuenta la tarea que se va a realizar. Estos métodos son independientes de la técnica de clasificación o regresión que se va a utilizar y no se ven sesgados influencia.
 
+\subsubsection{Medidas de relevancia}
+\begin{itemize}
+    \item \textbf{Ratio de inconsistencias:} Una inconsistencia aparece cuando dos instancias iguales, de acuerdo con el subconjunto de características evaluado, pertenecen a clases diferentes.
+    \item \textbf{Medidas basadas en distancias:} Se centra en encontrar el subconjunto de caracterśticas que mejor separe las diferentes clases. 
+\end{itemize}
 
+Algunos algoritmos representativos son:
+\begin{itemize}
+    \item \textbf{FOCUS:} Búsqueda exhaustiva con medida de consistencia.
+    \item \textbf{Cluster-based Feature Selection Approach:} k-medias basado en medidas de correlación en el espacio de características, utilizando el criterio del índice silueta como criterio para elegir el número óptimo de clusters.
+    \item \textbf{CFS:} Búsqueda heurística (ramificación y poda) con una medida basada en la correlación.
+\end{itemize}
+
+\subsubsection{Métodos basados en envoltura (``wrappers'')}
+En este tipo de métodos, la evaluación de cada uno de los subconjuntos candidates se realiza mediante la construcción de un clasificador (o regesor). Por lo tanto, como medida de evaluación utilizan la capacidad predictiva de clasificador, seleccioando así el subconjunto de caracterísitcas que produce el mejor clasificador. 
+
+\begin{itemize}
+    \item \textbf{Ventajas:} Producen mejores resultados al estar orientados al problema de clasificación.
+    \item \textbf{Desventajas:} Tienen un mayor riesgo de sobreajuste que los filtros y son más costosos computacionalmente.
+\end{itemize}
+
+Vamos a ver ahora un algoritmo de ``wrapper'' con un esquema de eliminación recursiva:
+\begin{enumerate}
+    \item Construir un modelo con todas las características
+    \item Evaluar el modelo
+    \item Calcular la relevancia de las caraceterísticas
+    \item Crear una lita con las características ordenadas de mayot a menor relevancia
+    \item Para $size = {n,\dots,1}$ hacer:
+    \begin{enumerate}
+        \item Crear un subconjunto $S_{size}$ con las $size$ características más relevantes
+        \item Construir un modelo con las características $S_{size}$
+        \item Evaluar el modelo
+        \item \textit{[Opcional]} Recalcular la relevancia de las características
+    \end{enumerate}
+    \item Crear una lista con todos los $S_i$ y el resultado de la evaluación
+    \item Determinar el subconjunto óptimo $S_{opt}$
+\end{enumerate}
+
+Se puede adaptar el esquema anterior para realizar una búsqueda hacia delante de subconjuntos: se empieza por un conjunto de tamaño 1 y se van agreganto las características más relevantes.
+
+Para evitar el sobreajuste y el alto coste computacional hay esquemas que incluyen un bucle externo para llevar a cabo un remuestreo. Vamos a ver un algoritmo con este bucle:
+\begin{enumerate}
+    \item para cada iteración de remuestreo hacer:
+    \begin{enumerate}
+        \item Crear los conjuntos de entrenamienot $E$ y prueba $T$
+        \item Construir un modelo sobre E con todas las características
+        \item Evaluar el modelo $T$
+        \item Calcular la relevancia de las caraceterísticas
+        \item Crear una lista con las características ordenadas de mayor a menor relevancia
+    \end{enumerate}
+\end{enumerate}
 
 \end{document}
