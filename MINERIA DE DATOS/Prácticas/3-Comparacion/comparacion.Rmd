@@ -1,0 +1,76 @@
+# Práctica de comparación de modelos
+
+## Dos predictores en múltiples dominios
+
+```{r, include=FALSE}
+# Establecer el directorio de trabajo
+if (interactive()) {
+    setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+}
+
+# Cargamos las librerías necesarias
+library(DT)
+```
+
+```{r}
+ejemplo3 <- read.csv("datasets/Ejemplo3.dat")
+datatable(ejemplo3)
+```
+
+## Múltiples predictores en múltiples dominios
+
+### Caso paramétrico
+
+```{r}
+ejemplo4 <- read.csv("datasets/Ejemplo4.csv", row.names = 1)
+datatable(ejemplo4)
+```
+
+```{r}
+df4.stack <- stack(ejemplo4)
+df4.stack$DataSet <- as.factor(rep(row.names(ejemplo4), times = 3))
+names(df4.stack) <- c("Accuracy", "Method", "DataSet")
+datatable(df4.stack)
+```
+
+```{r}
+test.shapiro <- tapply(df4.stack$Accuracy, df4.stack$Method, shapiro.test)
+test.shapiro
+
+library(superb)
+Mauchly.pvalue <- MauchlySphericityTest(ejemplo4)
+sprintf("Mauchly test pvalue = %g", Mauchly.pvalue)
+```
+
+```{r}
+# Lectura de los datos
+ejercicio2 <- read.csv("datasets/ejercicio2.dat", header = TRUE)
+
+# Reorganizar los datos: cada fila corresponde a un conjunto de datos y cada columna a un regresor
+df2 <- stack(ejercicio2)
+df2$DataSet <- factor(rep(1:nrow(ejercicio2), times = ncol(ejercicio2)))
+names(df2)[1:2] <- c("MSE", "Regresor")
+datatable(df2)
+
+# Comprobar la normalidad de los errores para cada regresor
+shapiro_results <- tapply(df2$MSE, df2$Regresor, shapiro.test)
+shapiro_results
+
+# Si se cumple normalidad, realizar ANOVA de medidas repetidas
+anova_result <- aov(MSE ~ Regresor + Error(DataSet / Regresor), data = df2)
+summary(anova_result)
+
+# Si no se cumple la asunción de normalidad, usar la prueba no paramétrica de Friedman
+friedman_result <- friedman.test(MSE ~ Regresor | DataSet, data = df2)
+friedman_result
+```
+
+```{r}
+# Caso paraḿetrico
+library(ez)
+
+library(PMCMRplus)
+ejercicio2 <- read.csv("datasets/ejercicio2.dat", header = TRUE)
+nemenyi.test <- frdAllPairsNemenyiTest(Kappa ~ Method | DataSet, data = ejercicio2)
+summary(nemenyi.test)
+```

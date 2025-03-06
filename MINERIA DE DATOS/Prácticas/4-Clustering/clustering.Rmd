@@ -1,0 +1,249 @@
+# Práctica de Clustering
+
+## El conjunto de datos
+
+```{r}
+# Establecer el directorio de trabajo
+if (interactive()) {
+    setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+}
+
+# Cargamos las librerías necesarias
+```
+
+```{r}
+proteindata <- read.delim("proteindata.txt", row.names = 1)
+
+# Visualizamos los datos
+head(proteindata)
+str(proteindata)
+summary(proteindata)
+```
+
+## Clustering jerárquico
+
+```{r}
+# Escalamos los datos
+protein.scaled <- as.data.frame(scale(proteindata))
+
+# Realizamos una agrupación de cluster
+protein.dist <- dist(protein.scaled, method = "euclidean")
+protein.hclust.average <- hclust(protein.dist, method = "average")
+
+# Visualizamos el cluster
+plot(protein.hclust.average, hang = -1, cex = .6)
+```
+
+```{r}
+# Realizamos un clustering jerárquico con la correlación de Pearson en vez de usar la distancia euclidiana
+cor.pe <- cor(t(as.matrix(protein.scaled)), method = c("pearson"))
+dist.pe <- as.dist(1 - cor.pe)
+protein.pearson <- hclust(dist.pe, method = "average")
+plot(protein.pearson, main = "Clustering jerárquico Pearson", hang = -1, cex = .6)
+```
+
+Ahora vamos a utilizar diferentes valores en `method` dentro de `hclust`. También vamos a cambiar las distancias.
+
+```{r}
+# Cambiamos la distancia por la distancia máxima
+protein.dist.manhattan <- dist(protein.scaled, method = "maximum")
+protein.hclust.manhattan <- hclust(protein.dist.manhattan, method = "average")
+plot(protein.hclust.manhattan, main = "Clustering jerárquico Manhattan", hang = -1, cex = .6)
+
+# Cambiamos el method de hclust por median
+protein.hclust.median <- hclust(protein.dist, method = "median")
+plot(protein.hclust.median, main = "Clustering jerárquico Median", hang = -1, cex = .6)
+```
+
+Vamos a hacer un bucle para encontrar cuál es el mejor valor de $k$, donde $k$ es el número de clusters. Para ello usaremos `cutree` y `silhouette`.
+```{r}
+# Importamos la librería cluster
+library(cluster)
+
+# Creamos un árbol con diana
+protein.diana <- diana(protein.scaled, metric = "euclidean")
+
+# Cremaos una silueta
+diana.sil <- silhouette(cutree(protein.diana, 2), protein.dist)
+
+# Realizamos la media de la silueta
+mean(diana.sil[, 3])
+
+# Ahora que sabemos cómo hacerlo, vamos a realizar un bucle con cutree de 2 a 10 ya que la silueta no está definida para 1 cluster
+sil <- c()
+for (i in 2:12) {
+    diana.sil <- silhouette(cutree(protein.diana, i), protein.dist)
+    sil[i] <- mean(diana.sil[, 3])
+    print(paste("Silueta para", i, "clusters:", sil[i]))
+}
+
+# plot(2:(length(sil) + 1), sil)
+```
+
+## Clustering Particional
+
+El codigo del html sobre esta sección.
+```{r}
+set.seed(123)
+protein.kmeans <- kmeans(protein.scaled, centers = 4, iter.max = 10, nstart = 10)
+
+cl <- protein.kmeans$cluster
+plot(protein.scaled$RedMeat, protein.scaled$Fish,
+    col = cl,
+    main = paste("Clusters creados respecto a los atributos ",
+        names(protein.scaled[1]),
+        " y",
+        names(protein.scaled[2]),
+        sep = ""
+    ),
+    xlab = names(protein.scaled[1]),
+    ylab = names(protein.scaled[2])
+)
+points(protein.kmeans$centers, col = 1:5, pch = 8)
+text(protein.scaled$RedMeat, protein.scaled$Fish,
+    labels = rownames(protein.scaled),
+    cex = 0.7, pos = 4, col = cl
+)
+
+cl <- protein.kmeans$cluster
+plot(protein.scaled[, 1:5],
+    col = cl,
+    main = "Distribución de los cluster respecto los 5 primeros atributos"
+)
+points(protein.kmeans$centers, col = 1:5, pch = 8)
+
+par(mfrow = c(2, 2))
+for (i in 1:4) {
+    matplot(t(protein.scaled[protein.kmeans$cluster == i, ]),
+        type = "l",
+        main = paste("cluster:", i), ylab = "valores", xlab = "atributos"
+    )
+}
+```
+
+Realizamos el ejercicio de calcular el k optimo viendo tanto el índice silueta como tot.withinss.
+```{r}
+# Evaluación del criterio del "codo" y del índice de silueta
+
+set.seed(123)
+library(cluster)
+
+ks <- 2:11
+wss <- numeric(length(ks))
+sil_avg <- numeric(length(ks))
+d <- dist(protein.scaled) # Se calcula la matriz de distancias una sola vez
+
+for (i in seq_along(ks)) {
+    k <- ks[i]
+    km <- kmeans(protein.scaled, centers = k, iter.max = 10, nstart = 10)
+    wss[i] <- km$tot.withinss
+
+    sil <- silhouette(km$cluster, d)
+    sil_avg[i] <- mean(sil[, 3])
+
+    cat("Para k =", k, "tot.withinss =", wss[i], "y silhouette promedio =", sil_avg[i], "\n")
+}
+
+# Gráfico del método del "codo"
+plot(ks, wss,
+    type = "b", pch = 19, frame = FALSE,
+    xlab = "Número de clusters k",
+    ylab = "Total within-cluster sum of squares",
+    main = "Método del codo"
+)
+
+# Gráfico del índice de silueta
+plot(ks, sil_avg,
+    type = "b", pch = 19, frame = FALSE,
+    xlab = "Número de clusters k",
+    ylab = "Silhouette promedio",
+    main = "Índice de Silueta"
+)
+
+# Determinar el k óptimo según el índice silueta
+k_opt <- ks[which.max(sil_avg)]
+cat("El valor óptimo de k según el índice de silueta es:", k_opt, "\n")
+
+# Volvemos a poner los plots de c(1,1)
+par(mfrow = c(1, 1))
+```
+
+### El paquete cluster
+
+El código del html sobre esta sección.
+```{r}
+# K-medoides
+protein.kmedoid <- pam(protein.scaled, k = 3)
+clusplot(protein.kmedoid)
+
+# DBSCAN
+library(dbscan)
+k <- 3
+kNNdistplot(protein.scaled, k)
+abline(h = 3.1, col = "red")
+protein.dbscan <- dbscan(protein.scaled, eps = 3.1, minPts = 3)
+protein.dbscan
+protein.dbscan <- dbscan(protein.scaled, eps = 2.2, minPts = 3)
+protein.dbscan
+cluster <- protein.dbscan$cluster
+names(cluster) <- rownames(protein.scaled)
+cluster
+```
+
+```{r}
+library(dbscan)
+library(cluster)
+
+# Definir un rango de valores para eps
+eps_values <- seq(1, 4, by = 0.2)
+sil_avg <- numeric(length(eps_values))
+
+# Evaluar el índice silueta para cada eps en DBSCAN (excluyendo outliers etiquetados como 0)
+for (i in seq_along(eps_values)) {
+    eps_val <- eps_values[i]
+    db_res <- dbscan(protein.scaled, eps = eps_val, minPts = 3)
+    cl <- db_res$cluster
+    # Calcular la silueta solo si existen al menos 2 clusters (excluyendo ruido)
+    if (length(unique(cl[cl != 0])) > 1) {
+        idx <- which(cl != 0)
+        sil <- silhouette(cl[idx], dist(protein.scaled[idx, ]))
+        sil_avg[i] <- mean(sil[, 3])
+    } else {
+        sil_avg[i] <- NA
+    }
+    cat("Eps:", eps_val, "- Silhouette promedio:", sil_avg[i], "\n")
+}
+
+# Graficar el índice silueta vs eps
+plot(eps_values, sil_avg,
+    type = "b", pch = 19,
+    xlab = "Valor de eps", ylab = "Silhouette promedio",
+    main = "Índice de Silueta vs eps en DBSCAN"
+)
+
+# Seleccionar el eps óptimo según el índice silueta
+opt_eps <- eps_values[which.max(sil_avg)]
+cat("El eps óptimo es:", opt_eps, "\n")
+
+# Aplicar DBSCAN con el eps óptimo
+final_dbscan <- dbscan(protein.scaled, eps = opt_eps, minPts = 3)
+
+# Graficar el clusplot del clustering final
+clusplot(protein.scaled, final_dbscan$cluster,
+    main = paste("Clusplot DBSCAN (eps =", opt_eps, ")")
+)
+
+# Graficar el diagrama de silueta (excluyendo outliers)
+non_noise <- which(final_dbscan$cluster != 0)
+if (length(unique(final_dbscan$cluster[non_noise])) > 1) {
+    final_sil <- silhouette(final_dbscan$cluster[non_noise], dist(protein.scaled[non_noise, ]))
+    plot(final_sil, main = paste("Silhouette plot DBSCAN (eps =", opt_eps, ")"))
+}
+
+# Gráfico adicional: diagrama de dispersión coloreando por clusters
+plot(protein.scaled,
+    col = final_dbscan$cluster + 1, pch = 19,
+    main = paste("DBSCAN clustering con eps =", opt_eps),
+    xlab = "Variable 1", ylab = "Variable 2"
+)
+```
