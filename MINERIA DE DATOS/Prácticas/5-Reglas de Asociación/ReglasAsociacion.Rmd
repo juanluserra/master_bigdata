@@ -1,0 +1,172 @@
+# Reglas de Asociación
+
+```{r}
+# Establecer el directorio de trabajo
+if (interactive()) {
+    setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+}
+```
+
+## Introducción
+
+```{r}
+# Cargamos las liberías necearias para trabajar con reglas de asociación
+library(arules)
+library(arulesViz)
+```
+
+```{r}
+# Read the transactions
+transacciones <- read.transactions("Datos/titanic.csv", format = "basket", sep = ";", rm.duplicates = TRUE, header = TRUE)
+```
+
+## Manipulación de conjuntos de datos
+
+### Ejercicio 1: Examina el contenido de los ficheros titanic1 y tinatic2
+
+Tras leer los dos archivos nos damos cuenta de que `titanic1` está en formate `basket` y `titanic2` en formato `single`.
+
+Vamos a leer los dos archivos y a guardarlos en dos variables.
+```{r}
+titanic.basket <- read.transactions("Datos/titanic1", format = "basket", sep = ";", rm.duplicates = TRUE)
+titanic.single <- read.transactions("Datos/titanic2", format = "single", sep = " ", rm.duplicates = TRUE, cols = c(1, 2))
+```
+
+
+### Ejercicio 2: Lee el fichero titanic.csv y examina los atriburos que tiene el tipo de cada uno de ellos.
+
+```{r}
+# Leemos el fichero titanic.csv
+titanic <- read.csv("Datos/titanic.csv", sep = ";")
+
+# Eliminamos la columan "tarifa"
+titanic <- titanic[, names(titanic) != "tarifa"]
+
+# Convertimos la variable edad a numérica
+titanic$edad <- suppressWarnings(as.numeric(as.character(titanic$edad)))
+
+# Discretizamos el atributo edad en tres categorías:
+# - Child: *-17
+# - Adult: 18-65
+# - Old: 66-*
+titanic$edad <- cut(titanic$edad, breaks = c(-Inf, 17, 65, Inf), labels = c("Child", "Adult", "Old"))
+
+# Recodificamos el atriburo superviviente a "Si" para el valor 1 y "No" para el valor 0
+titanic$superviviente <- ifelse(titanic$superviviente == 1, "Si", "No")
+
+# Volvemos todas las variables factores
+titanic <- as.data.frame(lapply(titanic, as.factor))
+
+# Pasamos a transacciones la variable titanic
+titanic.trans <- as(titanic, "transactions")
+
+# Mostramos las primeras transacciones
+item.list <- itemFrequency(titanic.trans)
+item.list
+
+# Realizamos un plot
+itemFrequencyPlot(titanic.trans, topN = length(item.list), col = "lightcyan2", xlab = "Items", main = "Frecuencia relativca de los items")
+
+# Finalmente escribimos los resultaods de titanic.trans en dos ficheros, uno con formato basket y otro con formato single
+write(titanic.trans, file = "titanic.single", format = "single")
+write(titanic.trans, file = "titanic.basket", format = "basket")
+```
+
+## Descubrimiento de reglas de asociación
+
+```{r}
+# Generamos el conjunto de itemsets frecuentes y de reglas de asociaciones con un soporte superior a 0.2
+titanic.itemsets <- apriori(titanic.trans, parameter = list(target = "frequent itemset"))
+titanic.rules <- apriori(titanic.trans, parameter = list(support = 0.2))
+
+# Generamos el conjunto de reglas que solo contengan la información relativa a la supervivencia
+reglas.sup <- apriori(titanic.trans,
+    appearance = list(
+        rhs = c(
+            "superviviente=Si",
+            "superviviente=No"
+        ),
+        default = "lhs"
+    )
+)
+```
+
+### Ejercicio 4: Partiendo de la base de transacciones `tianic.trans` obtenida en el ejercicio 2:
+- Aplica las funciones `apriori` y `elact` y genera los objetos `titanic.rules` y `titanic.elact` respectivametne.
+- Indica cuáles son los vlaores de los parámetros por defecto.
+- Genera una talbla en R en la que cada fila indique un valor real entre 0 y 1 (empezando por 0.1 y con incremento de 0.1), el número de reglas generadas para un soporte igual a dicho número en la segunda columan y lo mismo para la confianza en la tercera columna. Para poder realizar esta cuestión hay que utilizar la función `length` sobre el conjutno de reglas.
+- Reresentar gráficamente la tabla anterior.
+- Genera un conjunto de reglas de asociación para determinar qué items están relacionados con sexo.
+
+```{r}
+# Creamos tianic.rules y titanic.elact
+titanic.rules <- apriori(titanic.trans)
+titanic.elact <- eclat(titanic.trans)
+```
+
+**Parámetros por decto**
+
+**Función apriori**
+Los parámetros por defecto de la función apriori son:
+
+- **support**: 0.1 (10%)
+- **confidence**: 0.8 (80%)
+- **minlen**: 1 (longitud mínima de regla)
+- **maxlen**: 10 (longitud máxima de regla)
+- **target**: "rules" (objetivo de minería)
+- **maxtime**: 5 (segundos máximos de ejecución)
+
+**Función eclat**
+Los parámetros por defecto de la función eclat son:
+
+- **support**: 0.1 (10%)
+- **minlen**: 1 (longitud mínima del itemset)
+- **maxlen**: 10 (longitud máxima del itemset)
+- **tidLists**: FALSE (no almacenar listas de IDs de transacciones)
+- **target**: "frequent itemsets" (objetivo de minería)
+
+```{r}
+# Creamos una secuencia de valores desde 0.1 hasta 1.0 con incrementos de 0.1
+valores <- seq(0.1, 1.0, by = 0.1)
+
+# Inicializamos vectores para almacenar el número de reglas
+reglas_soporte <- numeric(length(valores))
+reglas_confianza <- numeric(length(valores))
+
+# Para cada valor, contamos las reglas con soporte variable (confianza fija por defecto 0.8)
+for (i in 1:length(valores)) {
+    reglas <- apriori(titanic.trans, parameter = list(support = valores[i], confidence = 0.8))
+    reglas_soporte[i] <- length(reglas)
+}
+
+# Para cada valor, contamos las reglas con confianza variable (soporte fijo por defecto 0.1)
+for (i in 1:length(valores)) {
+    reglas <- apriori(titanic.trans, parameter = list(support = 0.1, confidence = valores[i]))
+    reglas_confianza[i] <- length(reglas)
+}
+
+# Creamos la tabla
+tabla_reglas <- data.frame(
+    Valor = valores,
+    NumReglasSoporte = reglas_soporte,
+    NumReglasConfianza = reglas_confianza
+)
+
+# Mostramos la tabla
+print(tabla_reglas)
+
+# Ploteamos la tabla
+plot(tabla_reglas$Valor, tabla_reglas$NumReglasSoporte, type = "l", col = "blue", xlab = "Soporte", ylab = "Número de reglas", main = "Número de reglas en función del soporte")
+
+# Identificamos los items relacionados con el sexo
+items_sexo <- grep("sexo=", names(itemFrequency(titanic.trans)), value = TRUE)
+print(items_sexo)
+
+# Generamos reglas con el sexo en el consecuente (predicen el sexo)
+reglas_sexo <- apriori(titanic.trans,
+    appearance = list(
+        rhs = items_sexo,
+        default = "lhs"
+    )
+)
+```

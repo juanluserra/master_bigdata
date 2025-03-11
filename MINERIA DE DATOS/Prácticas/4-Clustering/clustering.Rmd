@@ -247,3 +247,14 @@ plot(protein.scaled,
     xlab = "Variable 1", ylab = "Variable 2"
 )
 ```
+
+## Clustering con técnicas de reducción de dimensionalidad
+
+### t-SNE: t-Distributed Stochastic Neighbor Embedding
+
+```{r}
+# Importamos las librerías necesarias para el clustering
+library(ggplot2)
+library(ggrepel)
+library(Rtsne)
+```    
