@@ -1,0 +1,93 @@
+# Deep Learning
+
+```{r}
+# Establecer el directorio de trabajo
+if (interactive()) {
+    setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+}
+```
+
+## Keras para uso de receptores multi-capa
+
+### El problema de MNIST
+
+Cargamos el dataset MNIST que contiene imágenes de dígitos escritos a mano.
+```{r}
+library(keras)
+mnist <- dataset_mnist()
+str(mnist)
+summary(mnist)
+
+par(mfrow = c(2, 3))
+for (i in 1:6) {
+    image(t(mnist$train$x[i, , ])[, 28:1], col = gray.colors(256), axes = FALSE)
+    cat("El dígito para la imagen es", mnist$train$y[i], "\n")
+}
+
+par(mfrow = c(1, 1))
+```
+
+### Necesitamos reformar los datos de entrada antes de introducirlos al MLP
+
+```{r}
+x_train <- mnist$train$x
+dim(x_train)
+
+y_train <- mnist$train$y
+x_test <- mnist$test$x
+dim(x_test)
+
+y_test <- mnist$test$y
+x_train <- array_reshape(x_train, c(nrow(x_train), 784))
+dim(x_train)
+
+x_test <- array_reshape(x_test, c(nrow(x_test), 784))
+dim(x_test)
+```
+
+```{r}
+# Realizamos un análisis de PCA
+n <- 5000
+mask <- sample(1:nrow(x_train), n)
+pca <- prcomp(x_train[mask, ])
+cols <- rainbow(10)
+colors <- cols[1 + y_train[mask]]
+plot(pca$x[, 1], pca$x[, 2],
+    col = colors, pch = 19, cex = 0.3,
+    xlab = "1st PCA", ylab = "2nd PCA", main = paste0("PCA plot, ", n, " images MNIST")
+)
+legend("topright",
+    fill = cols,
+    title = "Digits",
+    col = cols,
+    legend = 0:9, cex = 0.6
+)
+```
+
+```{r}
+# Hacemos un reescalado de los datos
+x_train <- x_train / max(x_train)
+x_test <- x_test / max(x_test)
+
+# Convertir los valores de y a formato one-hot sin usar to_categorical de keras
+to_one_hot <- function(y, num_classes) {
+    y <- as.integer(y)
+    n <- length(y)
+    one_hot <- matrix(0, n, num_classes)
+    one_hot[cbind(1:n, y + 1)] <- 1
+    return(one_hot)
+}
+y_train <- to_one_hot(y_train, 10)
+y_test <- to_one_hot(y_test, 10)
+str(y_train)
+
+# Hacemos un reescalado de los datos
+x_train <- x_train / max(x_train)
+x_test <- x_test / max(x_test)
+```
+
+```{r}
+model <- keras_model_sequential() %>%
+    layer_dense(units = 32, activation = "relu", input_shape = c(784)) %>%
+    layer_dense(units = 10, activation = "softmax")
+```

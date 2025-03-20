@@ -4,6 +4,3 @@
 [submodule "BASES DE DATOS/bdge"]
 	path = BASES DE DATOS/bdge
 	url = https://github.com/dsevilla/bdge
-[submodule "ACUE/ACUE/Clases"]
-	path = ACUE/Clases
-	url = https://github.com/Enrique-Marmol/Clases

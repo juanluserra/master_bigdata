@@ -21,3 +21,14 @@ Generan modelos 3D de los organos de la zona abodiminal para realizar operacione
 
    Es una empresa mixta.
 
+
+# AUNNA
+
+## Índice
+1. Grupo Zambudio
+2. AUNNA IT.
+3. Casos prácticos
+4. Data warehouse
+5. Agente virtual municipal
+6. Agente virtual ecommerce
+
