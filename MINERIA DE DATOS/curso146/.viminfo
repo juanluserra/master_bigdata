@@ -1,0 +1,86 @@
+# Vim 8.2 generó este archivo "viminfo".
+# Puede editarlo, ¡sólo si tiene cuidado!
+
+# Viminfo version
+|1,4
+
+# Valor de 'encoding' cuando se escribió este archivo
+*encoding=utf-8
+
+
+# hlsearch on (H) or off (h):
+~H
+# Historia de Línea de órdenes (de lo más nuevo a lo más antiguo):
+:q
+|2,0,1742917648,,"q"
+:wq
+|2,0,1742917528,,"wq"
+:w
+|2,0,1742917438,,"w"
+
+# Historia de Cadena de búsqueda (de lo más nuevo a lo más antiguo):
+
+# Historia de Expresión (de lo más nuevo a lo más antiguo):
+
+# Historia de Línea de entrada (de lo más nuevo a lo más antiguo):
+
+# Historia de Debug Line (de lo más nuevo a lo más antiguo):
+
+# Registros:
+
+# Marcas en el archivo:
+'0  1  0  ~/slurm.c211-14.11349499.err
+|4,48,1,0,1742917648,"~/slurm.c211-14.11349499.err"
+'1  10  45  ~/simplejob.sh
+|4,49,10,45,1742917528,"~/simplejob.sh"
+'2  2  5  ~/simple.sh
+|4,50,2,5,1742917405,"~/simple.sh"
+
+# Lista de saltos (el más reciente va primero):
+-'  1  0  ~/slurm.c211-14.11349499.err
+|4,39,1,0,1742917648,"~/slurm.c211-14.11349499.err"
+-'  10  45  ~/simplejob.sh
+|4,39,10,45,1742917528,"~/simplejob.sh"
+-'  10  45  ~/simplejob.sh
+|4,39,10,45,1742917528,"~/simplejob.sh"
+-'  1  0  ~/simplejob.sh
+|4,39,1,0,1742917433,"~/simplejob.sh"
+-'  1  0  ~/simplejob.sh
+|4,39,1,0,1742917433,"~/simplejob.sh"
+-'  2  5  ~/simple.sh
+|4,39,2,5,1742917405,"~/simple.sh"
+-'  2  5  ~/simple.sh
+|4,39,2,5,1742917405,"~/simple.sh"
+-'  2  5  ~/simple.sh
+|4,39,2,5,1742917405,"~/simple.sh"
+-'  2  5  ~/simple.sh
+|4,39,2,5,1742917405,"~/simple.sh"
+-'  1  0  ~/simple.sh
+|4,39,1,0,1742917399,"~/simple.sh"
+-'  1  0  ~/simple.sh
+|4,39,1,0,1742917399,"~/simple.sh"
+-'  1  0  ~/simple.sh
+|4,39,1,0,1742917399,"~/simple.sh"
+-'  1  0  ~/simple.sh
+|4,39,1,0,1742917399,"~/simple.sh"
+
+# Historia de las marcas en los archivos (de la más reciente a la más antigua):
+
+> ~/slurm.c211-14.11349499.err
+	*	1742917648	0
+	"	1	0
+
+> ~/simplejob.sh
+	*	1742917528	0
+	"	10	45
+	^	10	46
+	.	10	46
+	+	11	10
+	+	10	46
+
+> ~/simple.sh
+	*	1742917404	0
+	"	2	5
+	^	2	6
+	.	2	5
+	+	2	5

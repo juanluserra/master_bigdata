@@ -69,18 +69,9 @@ legend("topright",
 x_train <- x_train / max(x_train)
 x_test <- x_test / max(x_test)
 
-# Convertir los valores de y a formato one-hot sin usar to_categorical de keras
-to_one_hot <- function(y, num_classes) {
-    y <- as.integer(y)
-    n <- length(y)
-    one_hot <- matrix(0, n, num_classes)
-    one_hot[cbind(1:n, y + 1)] <- 1
-    return(one_hot)
-}
-y_train <- to_one_hot(y_train, 10)
-y_test <- to_one_hot(y_test, 10)
-str(y_train)
-
+# Convertir los valores de y a formato one-hot usando to_categorical
+y_train <- to_categorical(y_train, 10)
+y_test <- to_categorical(y_test, 10)
 # Hacemos un reescalado de los datos
 x_train <- x_train / max(x_train)
 x_test <- x_test / max(x_test)

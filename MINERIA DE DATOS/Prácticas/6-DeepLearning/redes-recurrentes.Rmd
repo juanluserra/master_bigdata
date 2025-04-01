@@ -1,0 +1,286 @@
+# Redes neuronales recurrentes
+
+```{r}
+if (interactive()) {
+    current_folder <- rstudioapi::getActiveDocumentContext()$path
+    setwd(dirname(current_folder))
+}
+```
+
+## Preparación de datos
+
+Carga la librería `keras` y busca la manera de cargar el dataset imdb (ya incluido en el mismo), indicando una variable denominada `max_features` que regule el número de palabras que tendrá nuestro diccionario a 10000.
+
+Observa la estructura del conjunto de datos y crea los objetos `x_train`, `x_test`, `y_train` y `y_test`.
+
+¿Qué significa lo que contiene `x_train`? ¿Y `y_train`?
+
+Investiga si siempre las reseñas comienzan por el mismo entero, ¿qué podría querer decir?
+
+**Notas: Los primeros 4 índices (0-3) están reservados para tokens especiales:**
+
+- **Índice 0:** Se utiliza para rellenar secuencias y hacer que todas las entradas tengan la misma longitud.
+- **Índice 1:** Se usa para marcar el inicio de una secuencia, lo que es útil en tareas como la traducción automática o el análisis de texto.
+- **Índice 2:** Representa palabras desconocidas o fuera de vocabulario (por ejemplo, palabras que no están en el diccionario). Se utiliza para representar palabras que no están en el vocabulario o son desconocidas. Si el modelo encuentra una palabra en el texto de entrada que no está en su diccionario (`word_index`), se reemplaza por el token correspondiente.
+- **Índice 3:** Se reserva para un token que no se usa de manera predeterminada, pero que podría ser útil en ciertos modelos. Aunque no se utiliza en la práctica, se deja disponible para posibles usos futuros o extensiones del modelo. En algunos casos, el modelo puede usar este token para manejar tareas como representar un espacio vacío o un marcador especial sin afectar el procesamiento.
+
+```{r}
+# Cargamos el dataset
+library(keras)
+max_features <- 10000
+imdb <- dataset_imdb(num_words = max_features)
+x_train <- imdb$train$x
+y_train <- imdb$train$y
+x_test <- imdb$test$x
+y_test <- imdb$test$y
+
+# Observamos la estructura del dataset
+str(imdb)
+summary(imdb)
+
+# ¿Qué significa lo que contiene x_train? ¿Y y_train?
+# x_train contiene las reseñas de películas, representadas como secuencias de enteros.
+# Cada entero representa una palabra en el vocabulario, y la longitud de cada secuencia puede variar.
+# y_train contiene las etiquetas de las reseñas, donde 0 representa una reseña negativa y 1 representa una reseña positiva.
+
+# ¿Las reseñas comienzan por el mismo entero?
+# En el dataset IMDB, las reseñas no comienzan necesariamente por el mismo entero.
+# Sin embargo, el entero 1 se utiliza como token de inicio para indicar el comienzo de una secuencia.
+# Esto significa que el modelo puede aprender a identificar patrones desde el inicio de la reseña.
+# El token 1 se utiliza para marcar el inicio de la secuencia, lo que es útil en tareas como la traducción automática o el análisis de texto.
+# En el caso de IMDB, el token 1 se utiliza para indicar el inicio de la reseña.
+# El token 2 se utiliza para representar palabras desconocidas o fuera de vocabulario (por ejemplo, palabras que no están en el diccionario).
+# El token 3 se reserva para un token que no se usa de manera predeterminada, pero que podría ser útil en ciertos modelos.
+# Aunque no se utiliza en la práctica, se deja disponible para posibles usos futuros o extensiones del modelo.
+# En algunos casos, el modelo puede usar este token para manejar tareas como representar un espacio vacío o un marcador especial sin afectar el procesamiento.
+
+
+word_index <- dataset_imdb_word_index()
+
+decode_review <- function(text, word_index) {
+    word <- names(word_index) # Extrae los nombres del word_index
+    idx <- unlist(word_index) # Convierte el word_index en un vector
+    word <- c("<PAD>", "<START>", "<UNK>", "<UNUSED>", word)
+    idx <- c(0:3, idx + 3)
+    words <- word[match(text, idx, 2)]
+    paste(words, collapse = " ")
+}
+
+decode_review(x_train[[1]][1:12], word_index)
+```
+
+En el código siguiente, y teniendo en cuenta que usamos una codificación one-hot para los textos (es decir, las columnas de la matriz se ponen a 1 si la palabra correspondiente aparece en el texto de la fila), hacemos uso de una matriz dispersa. De lo contrario, necesitaríamos una matriz de dimensiones 25K×10K.
+
+Aplicamos este enfoque tanto a los ejemplos de entrenamiento (train) como a los de prueba (test).
+
+```{r}
+library(Matrix)
+
+# Función para crear la matriz dispersa
+one_hot <- function(sequences, dimension) {
+    seqlen <- sapply(sequences, length)
+    n <- length(seqlen)
+    rowind <- rep(1:n, seqlen)
+    colind <- unlist(sequences)
+    sparseMatrix(
+        i = rowind, j = colind,
+        dims = c(n, dimension)
+    )
+}
+
+# Creamos la matriz dispersa
+x_train_1h <- one_hot(x_train, 10000)
+x_test_1h <- one_hot(x_test, 10000)
+dim(x_train_1h)
+```
+
+
+## Solución con glmnet
+
+1. Entrena un modelo de regresión logística con glmnet
+2. Encuentra el mejor valor de lambda and cross validation para glmnet (puede ser pesado de ejecutar)
+3. Realiza las predicciones del conjunto de test
+4. Muestra los resultados con una matriz de confusión
+
+```{r}
+set.seed(3)
+library(glmnet)
+
+# Entrenamos el modelo de regresión logística
+model_glmnet <- cv.glmnet(
+    x = x_train_1h,
+    y = y_train,
+    family = "binomial",
+    alpha = 0,
+    nfolds = 5
+)
+
+# Encontramos el mejor valor de lambda
+best_lambda <- model_glmnet$lambda.min
+cat("Best lambda:", best_lambda, "\n")
+
+# Realizamos las predicciones del conjunto de test
+predictions <- predict(model_glmnet, s = best_lambda, newx = x_test_1h, type = "response")
+predictions <- ifelse(predictions > 0.5, 1, 0)
+
+# Mostramos los resultados con una matriz de confusión
+library(caret)
+confusion_matrix <- confusionMatrix(as.factor(predictions), as.factor(y_test))
+print(confusion_matrix)
+```
+
+## Red neuronal MLP
+
+Construye una MLP que, utilizando la representación one-hot codificada, siga la siguiente arquitectura secuencial:
+
+- Una capa densa de 16 neuronas con activación ReLU y una dimensión de entrada de 10,000 (tamaño del vocabulario).
+- Una segunda capa oculta de 16 neuronas con activación ReLU.
+- Una capa de salida de 1 neurona con activación sigmoide para obtener probabilidades de clasificación.
+
+El modelo debe ser compilado utilizando:
+- El optimizador RMSprop,
+- La función de pérdida binary_crossentropy,
+- La métrica de precisión (accuracy).
+
+Entrena tu red MLP. Utiliza un subconjunto de los datos de train de 2000 puntos para la parte de validación.
+
+
+```{r}
+# Definimos el modelo
+model_mlp <- keras_model_sequential() %>%
+    layer_dense(units = 16, activation = "relu", input_shape = c(10000)) %>%
+    layer_dense(units = 16, activation = "relu") %>%
+    layer_dense(units = 1, activation = "sigmoid")
+
+# Compilamos el modelo
+model_mlp %>% compile(
+    optimizer = "rmsprop",
+    loss = "binary_crossentropy",
+    metrics = c("accuracy")
+)
+
+# Resumen del modelo
+summary(model_mlp)
+
+# Entrenamos el modelo
+history <- model_mlp %>% fit(
+    x_train_1h[1:2000, ],
+    y_train[1:2000],
+    epochs = 20,
+    batch_size = 512,
+    validation_split = 0.2
+)
+plot(history)
+
+# Evaluamos el modelo
+scores <- model_mlp %>% evaluate(
+    x_test_1h,
+    y_test,
+    verbose = 0
+)
+cat("Test loss:", scores[[1]], "\n")
+cat("Test accuracy:", scores[[2]], "\n")
+
+# Realizamos las predicciones del conjunto de test
+predictions_mlp <- model_mlp %>% predict(x_test_1h)
+predictions_mlp <- ifelse(predictions_mlp > 0.5, 1, 0)
+
+# Mostramos los resultados con una matriz de confusión
+library(caret)
+confusion_matrix_mlp <- confusionMatrix(as.factor(predictions_mlp), as.factor(y_test))
+print(confusion_matrix_mlp)
+```
+
+## Modelo recurrente
+
+Ahora vamos a generar una red recurrente basada en un modelo LSTM. Como vamos a utilizar un modelo recurrente, no tiene sentido que usemos la codificación one-hot de antes ya que con ella perdemos la información sobre secuencialidad. Es decir, para una palabra dada, no sabemos qué posición o posiciones ocupaba en el texto, y mucho menos de qué otras palabras estaba rodeada. Para poder conservar esa información de alguna forma, Primero preparamos los datos.
+
+### Preparación de los datos
+
+Debemos tener en cuenta que cada review tiene una longitud particular,
+
+```{r}
+wc <- sapply(x_train, length)
+median(wc)
+
+sum(wc <= 500) / length(wc)
+```
+
+El 91% de documentos tiene menos de 500 palabras, concretamente la mediana es de 178. Como requerimos documentos con la misma longitud, recortamos a 500 palabras, más que suficiente. Las reviews más cortas de 500 se rellenarán con caracteres en blanco al principio, para que la cadena de tokens termine con palabras útiles.
+
+```{r}
+maxlen <- 500
+x_trainpad <- pad_sequences(x_train, maxlen = maxlen)
+x_testpad <- pad_sequences(x_test, maxlen = maxlen)
+dim(x_trainpad)
+
+dim(x_testpad)
+
+x_trainpad[1, 490:500]
+```
+
+Obsérvese que pad_sequences() usa el parámetro padding tal que padding=pre, indicando padding al principio de la review para las que son más cortas que 500.
+
+```{r}
+x_train[[1]][1:100]
+
+length(x_train[[1]])
+
+x_trainpad[1, 1:100]
+```
+
+Ahora debemos plantearnos varias cuestiones. La principal es cómo codificamos los tokens de nuestro diccionario para introducirlos en la red. ¿Podemos usar los índices de cada token en el diccionario para la entrada? Cada mensaje tiene 500 tokens, dispuestos en forma secuencial.
+
+Si pensamos en términos de qué aporta cada capa, qué necesita a la entrada y qué genera a la salida tenemos las siguientes.
+
+Capa 1, entrada: nuestras entradas serán 25K ejemplo, de 500 tokens cada uno.
+
+Capa 2, codificación: necesitamos convertir cada una de las 500 palabras en
+
+Crea un modelo secuencial, con una primera capa de embedding de 10K nodos a la entrada y a la salida vectores de 32 componentes. Esos 32 componentes serán la entrada a una LSTM de 32 nodos, uno por cada componente del vector. Finalmente usaremos un nodo de activación sigmoidal a la salida.
+
+```{r}
+# Creamos el modelo
+model_rnn <- keras_model_sequential() %>%
+    layer_embedding(input_dim = max_features, output_dim = 32, input_length = maxlen) %>%
+    layer_lstm(units = 32) %>%
+    layer_dense(units = 1, activation = "sigmoid")
+
+# Compilamos el modelo
+model_rnn %>% compile(
+    optimizer = "rmsprop",
+    loss = "binary_crossentropy",
+    metrics = c("accuracy")
+)
+
+# Resumen del modelo
+summary(model_rnn)
+
+# Entrenamos el modelo
+history_rnn <- model_rnn %>% fit(
+    x_trainpad,
+    y_train,
+    epochs = 10,
+    batch_size = 128,
+    validation_split = 0.2
+)
+plot(history_rnn)
+
+# Evaluamos el modelo
+scores_rnn <- model_rnn %>% evaluate(
+    x_testpad,
+    y_test,
+    verbose = 0
+)
+cat("Test loss:", scores_rnn[[1]], "\n")
+cat("Test accuracy:", scores_rnn[[2]], "\n")
+
+# Realizamos las predicciones del conjunto de test
+predictions_rnn <- model_rnn %>% predict(x_testpad)
+predictions_rnn <- ifelse(predictions_rnn > 0.5, 1, 0)
+
+# Mostramos los resultados con una matriz de confusión
+library(caret)
+confusion_matrix_rnn <- confusionMatrix(as.factor(predictions_rnn), as.factor(y_test))
+print(confusion_matrix_rnn)
+```
