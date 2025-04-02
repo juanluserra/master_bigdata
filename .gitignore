@@ -2,6 +2,11 @@
 # Personalizados:
 #------------------------------------------------
 
+# Permitir archivos .pdf en la carpeta build, incluso si se ignora el resto
+!build/
+build/**
+!build/**/*.pdf
+
 # Archivos locales
 TGINE_Practica1_APB.ipynb
 IN_TAD_APB.pdf
@@ -38,7 +43,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-build/
+#build/
 develop-eggs/
 dist/
 downloads/

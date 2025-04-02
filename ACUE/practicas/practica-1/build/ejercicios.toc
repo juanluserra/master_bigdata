@@ -1,0 +1,6 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Ejercicio 1.5.3}{3}{section.1}%
+\contentsline {section}{\numberline {2}Ejercicio 1.5.4}{5}{section.2}%
+\contentsline {section}{\numberline {3}Ejercicio 1.5.5}{6}{section.3}%
+\contentsline {section}{\numberline {4}Ejercicio 1.5.6}{9}{section.4}%
+\contentsline {section}{\numberline {5}Ejercicio 1.5.7}{12}{section.5}%
