@@ -6,6 +6,7 @@
 \usepackage[spanish]{babel}
 \usepackage{biblatex}
 \usepackage{csquotes}
+\usepackage{graphicx}
 \usepackage{datetime}
 \usepackage{lipsum}
 \usepackage{hyperref}
@@ -13,7 +14,7 @@
 \usepackage{parskip}
 \usepackage{amsmath}
 \usepackage{listings}
-\usepackage{xcolor} 
+\usepackage[table,xcdraw]{xcolor}
 \usepackage{booktabs}
 
 %------------ 
@@ -89,7 +90,7 @@
 
 % Contenido
 \newpage
-\section{Ejercicio 1}
+\section{Ejercicio 1.5.3}
 \textbf{Una tienda de abarrotes recibe su suministro semanal de
 huevos cada jueves por la mañana. Este envío debe durar hasta el jueves
 siguiente, cuando llega un nuevo pedido. Cualquier huevo no vendido antes
@@ -155,7 +156,7 @@ Ahora, vamos a aplicar la función beneficio a cada posible valor de $j$.
 Finalmente, vemos que el valor óptimo de $n$ es $n = 11$, que da un beneficio medio de 21\$.
 
 \newpage
-\section{Ejercicio 2}
+\section{Ejercicio 1.5.4}
 \textbf{La función de utilidad de Ana es $U = \sqrt{w}$, donde $w$ es el
 dinero. Ella es dueña de una panadería, la cual el año que viene puede valer
 o bien 0 o bien 100 euros con las mismas posibilidades.}
@@ -184,5 +185,145 @@ o bien 0 o bien 100 euros con las mismas posibilidades.}
     Podemos ver que la aversión al riesgo disminuye cuando aumenta el dinero.
 
 \end{enumerate}
+
+\newpage
+
+\section{Ejercicio 1.5.5}
+\textbf{Resuelve el siguiente problema de decisión multiobjetivo. Describa el frente de pareto:}
+\begin{align*}
+    & \min f_1(x,y) = 2x^{2} - 5y + y^{2} \\
+    & \max f_2(x,y) = x^{2} + 14x + 5y -74
+\end{align*}
+\textbf{sujeto a:}
+\begin{align*}
+    & x + y \geq 15, \\
+    & x - y \leq 5, \\
+    & 2x + y \geq 20, \\
+    & 0 \leq x \leq 20, \\
+    & 0 \leq y \leq 20
+\end{align*}
+
+Para poder visualizar el frente de Pareto lo primero que vamos a hacer es representar las funciones con Python. Como queremos minimizar la función $f_1$ vamos a representar $-f_1$, de forma que busquemos el máximo en las dos funciones. 
+
+\begin{figure}[h]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/f1.png}
+        \caption{Valor de la función $f_1$ dentro de la superficie\label{fig:f1}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/f2.png}
+        \caption{Valor de la función $f_2$ dentro de la superficie\label{fig:f2}}
+    \end{minipage}
+\end{figure}
+
+\newpage
+Definimos el frente de Pareto los bordes donde si una solución mejora la otra empeora. Por tanto, si nos fijamos en las figuras~\ref{fig:f1} y~\ref{fig:f2} podemos ver que el frente de Pareto es el siguiente:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=10cm]{images/pareto.png}
+    \caption{Frente de Pareto\label{fig:pareto}}
+\end{figure}
+
+Finalmente, para determinar el conjunto de soluciones óptimas vamos a hacer una ``media'' entre las dos funciones, de forma que transformemos el problema multiobjetivo en un problema de optimización único. Para ello, vamos a definir la función objetivo como:
+\begin{align*}
+    & f_3(x,y) = \frac{f_2(x,y)}{2} - \frac{f_1(x,y)}{2}
+\end{align*}
+Restamos la función $f_1$ a la función $f_2$ ya que vamos a encontrar el máximo de $f_3$, por lo que así pasamos de minimizar $f_1$ a maximizarla.
+
+\newpage
+El resultado que obtenemos es el siguiente:
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=10cm]{images/f3.png}
+    \caption{Valor de la función $f_3$ dentro de la superficie\label{fig:f3}}
+\end{figure}
+
+Podemos observar como el el borde inferior-izquierdo es el que contiene los puntos máximos de la función, es decir, el que está entre $(10,5)$ y $(5,10)$. Si además utilizamos un script de Python para calcular el máximo de la función $f_3$, obtenemos que este máximo se encuentra en el punto $(x,y) = (8.49, 6.51)$.
+
+\newpage
+
+\section{Ejercicio 1.5.6}
+\textbf{Eres el Científico de Datos de una importante empresa mayorista del sector turístico. La empresa tiene como negocio la creación de paquetes turísticos que luego vende a minoristas, agencias de viaje tanto online como offline. La empresa te pide lo siguiente:}
+
+\textbf{Se ha realizado un estudio previo sobre toma de decisiones considerando los siguientes atributos y valores:}
+\begin{itemize}
+    \item \textbf{Calidad del paquete:} Número de estrellas del hotel (2, 3, 4 y 5).
+    \item \textbf{Precio:} Valores comprendidos entre 120 y 870 euros.
+    \item \textbf{Días del paquete:} 5 o 7.
+    \item \textbf{Aspecto del producto:} Alta o Baja.
+\end{itemize}
+
+\textbf{Se elaboró un cuestionario que planteó 8 situaciones de elección, en cada una de las cuales se presentaron 3 paquetes turísticos. A los encuestados se les solicitó escoger el paquete más atractivo en cada situación.Tanto los atributos de cada situación de elección como los resultados de las elecciones para un conjunto de individuos se encuentran en un fichero Excel adjunto al boletín. Se pide crear un modelo que, dado un conjunto de 3 paquetes, prediga cuál será el más atractivo.}
+
+Se ha leído el dataset de \texttt{paquetes.xlsx} y se ha transformado a un formato que pueda ser utilizado por el algoritmo de \textit{Random Forest}. Para ello, se ha utilizado la librería \texttt{pandas} de Python. El dataset es el siguiente:
+
+\newpage
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=10cm]{images/dataset.png}
+    \caption{Dataset de paquetes turísticos\label{fig:paquetes}}
+\end{figure}
+
+\newpage
+Se ha hecho un algoritmo de regresión de Random Forest con 100 árboles. La matriz de confusión del modelo es la siguiente:
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=10cm]{images/confusion_matrix.png}
+    \caption{Matriz de confusión del modelo\label{fig:confusion_matrix}}
+\end{figure}
+
+\newpage
+\section{Ejercicio 1.5.7}
+\textbf{Obtener el equilibrio de Nash en estrategias mixtas del juego piedra, papel, tijera.}
+
+Vamos a hacer una tabla con las ganancias de cada jugada en el piedra, papel, tijera. 
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% Beamer presentation requires \usepackage{colortbl} instead of \usepackage[table,xcdraw]{xcolor}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{c|c|c|c|}
+    \cline{2-4}
+     &
+      \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF} \textbf{PIEDRA}} &
+      \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF} \textbf{PAPEL}} &
+      \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF} \textbf{TIJERA}} \\ \hline
+    \multicolumn{1}{|c|}{\cellcolor[HTML]{000000}{\color[HTML]{FFFFFF} \textbf{PIEDRA}}} & 0  & -1 & 1  \\ \hline
+    \multicolumn{1}{|c|}{\cellcolor[HTML]{000000}{\color[HTML]{FFFFFF} \textbf{PAPEL}}}  & 1  & 0  & -1 \\ \hline
+    \multicolumn{1}{|c|}{\cellcolor[HTML]{000000}{\color[HTML]{FFFFFF} \textbf{TIJERA}}} & -1 & 1  & 0  \\ \hline
+    \end{tabular}
+\end{table}
+
+Podemos ver que en ``forma pura'' no hay equilibrio, ya que si una persona elige completamente una estrategia siempre hay otra estrategia que le gana. Por tanto, hay que utilizar estrategias mixtas, es decir, estrategias que otorgan probabilidades a las jugadas. Para ello asignamos las siguientes probabilidades:
+\begin{align*}
+    \text{Prob.\ roca}   \equiv p_{r} \qquad
+    \text{Prob.\ papel}  \equiv p_{p} \qquad
+    \text{Prob.\ tijera} \equiv p_{t}
+\end{align*}
+Hay que tener en cuenta la restricción $p_{r} + p_{p} + p_{t} = 1$. Ahora vemos las ganancias de cada jugada ($G_i$):
+\begin{align*}
+    & G_{r} = 0 \cdot p_{r} - 1 \cdot p_{p} + 1 \cdot p_{t} = p_{t} - p_{p} \\
+    & G_{p} = 1 \cdot p_{r} + 0 \cdot p_{p} - 1 \cdot p_{t} = p_{r} - p_{t} \\
+    & G_{t} = -1 \cdot p_{r} + 1 \cdot p_{p} + 0 \cdot p_{t} = p_{p} - p_{r}
+\end{align*}
+
+Ahora, hay que tener en cuenta que las ganancias deben ser las mismas ($G_{r} = G_{p} = G_{t}$). Por lo tanto, nos queda el siguiente sistema de ecuaciones:
+\begin{align*}
+    & 2*p_{t} = p_{r} + p_{p} \\
+    & 2*p_{r} = p_{p} + p_{t} \\
+    & 2*p_{p} = p_{r} + p_{t}
+\end{align*}
+
+Si resolvemos el sistema de ecuaciones obtenemos las siguientes probabilidades:
+\begin{align*}
+    p_{r} = \frac{1}{3} \qquad
+    p_{p} = \frac{1}{3} \qquad
+    p_{t} = \frac{1}{3}
+\end{align*}
 
 \end{document}
