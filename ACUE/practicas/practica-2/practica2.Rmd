@@ -1,0 +1,165 @@
+
+# Práctica 2
+
+```{r, include=FALSE}
+if (interactive()) {
+    setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+}
+
+library(recommenderlab)
+```
+
+
+## Ejercicio 2.3.2
+
+Recomendación de películas con el dataset Movielense:
+
+- Lee la descripción del dataset MovieLense en la librería "recommenderlab" (Pg. 14).
+- Carga ahora el dataset MovieLense: `data("MovieLense")`.
+- (Sección 5.4) Inprecciona las propiedades del dataset y compáralo con el dataset Jester5k.
+- Realiza un estudio y comparación similar al ejercicio anterior:
+  - Visualiza la matriz de valoraciones (100 primeras filas y columnas) con la función `image()`.
+  - (Sección 5.5) Crea un recomendador con las indicaciones del tutorial. Crea otra versión del recomendador con solo los 100 primeros usuarios y vuelve a predecir los usuarios 101 y 102. ¿Detectas diferencias en las recomendaciones?
+  - (Secciones 5.6 y 5.7) Evalúa las recomendaciones siguiendo el tutorial. ¿Qué diferencia hay entre la evaluación de la sección 5.6 y la 5.7?¿Cuál te parece más apropiada para un sistema de recomendación?
+  - (Sección 5.8) Compara los diferentes métodos de recomendación de esta sección. ¿Cómo quedaría el algoritmo de recomendación ítem-based en comparación con los utilizados en este sección?¿Cambian los resultados si modificamos el particionamiento utilizado en el procedimiento de evaluación?
+
+```{r}
+# Cargamos el dataset
+data("MovieLense")
+
+# Inspeccionamos las propiedades del dataset
+cat("Dimensiones de MovieLense: ", dim(MovieLense), "\n")
+cat("Número total de valoraciones: ", sum(rowCounts(MovieLense)), "\n")
+cat("Rango de calificaciones: ", range(getRatings(MovieLense)), "\n")
+cat("Densidad de la matriz: ", sum(rowCounts(MovieLense)) / (nrow(MovieLense) * ncol(MovieLense)), "\n")
+
+hist(getRatings(MovieLense), breaks = 5, main = "Distribución de calificaciones (MovieLense)", xlab = "Estrellas")
+```
+
+Podemos ver que el dataset MovieLense es un dataset de dimensinoes $934\times 1664$, tiene un total de 99393 valoraciones. Estas valoraciones están en un rando 1-5 (números enteros). Además, la densidad de la matriz es bastante baja. Se puede ver en la figura que las valoraciones se agrupan alrededor de las 3-4 estrellas, disminuyendo al alejarse de este rango.
+
+```{r}
+data("Jester5k")
+
+cat("\nComparación con Jester5k:\n")
+cat("Dimensiones Jester5k: ", dim(Jester5k), "\n")
+cat("Rango de Jester5k: ", range(getRatings(Jester5k)), "\n")
+cat("Densidad Jester5k: ", sum(rowCounts(Jester5k)) / (nrow(Jester5k) * ncol(Jester5k)), "\n")
+
+hist(getRatings(Jester5k), breaks = 5, main = "Distribución de calificaciones (Jester5k)", xlab = "Estrellas")
+```
+
+Podemos ver que el dataset Jester5k tiene dimensiones $5000\times 100$. Los elementos tienen un rango de entre -10 y 10 (aunque no se encuentran estos valores en las respuestas), por lo que el sistema de puntuación es diferente al de MovieLense. Además, la densidad del dataset Jester5k es mucho mayor que la de MovieLense. Podemos ver que la distribución de notas es parecida a la de MovieLense.
+
+```{r}
+# Visualizamos la matriz
+ml_matrix <- as(MovieLense[1:100, 1:100], "matrix")
+image(ml_matrix, main = "MovieLense: Primeras 100 filas y columnas")
+```
+
+Se puede ver como la matriz es muy dispersa, con muchas calificaciones vacías.
+
+```{r}
+# Creamos un recomendador usando el método "POPULAR"
+recommender <- Recommender(MovieLense, method = "POPULAR")
+
+# Predecimos las 5 recomendaciones para los usuarios 1001 y 1002
+pred <- predict(recommender, MovieLense[101:102, ], n = 5)
+as(pred, "list")
+
+# Creamos un recomendador usando el método "POPULAR" y solo los 100 primeros usuarios
+recommender.100 <- Recommender(MovieLense[1:100, ], method = "POPULAR")
+
+# Predecimos las 5 recomendaciones para los usuarios 101 y 102 (en el dataset completo)
+pred.100 <- predict(recommender.100, MovieLense[101:102, ], n = 5)
+as(pred.100, "list")
+
+# Vemos los elementos que coinciden en ambas predicciones
+pred.list <- as(pred, "list")
+pred.100.list <- as(pred.100, "list")
+common.items <- intersect(pred.list[[1]], pred.100.list[[1]])
+print("Elementos comunes en las recomendaciones de ambos modelos:")
+print(common.items)
+
+common.items <- intersect(pred.list[[2]], pred.100.list[[2]])
+print("Elementos comunes en las recomendaciones de ambos modelos:")
+print(common.items)
+```
+
+Vemos como de los 5 elementos predichos, han coincidido 3. Por lo tanto, las predicciones son diferentes pero coinciden en poco más de la mitad.
+
+Vamos a realizar una evaluación usando "predicted ragings"
+```{r}
+# ECreamos un esquema de evaluación
+eval.scheme <- evaluationScheme(MovieLense, method = "split", train = 0.9, given = 15, goodRating = 3.75)
+eval.scheme
+
+# Creamos dos recomendadores, uno con UBCF y otro con IBCF
+recommender.ubcf <- Recommender(getData(eval.scheme, "train"), method = "UBCF")
+recommender.ibcf <- Recommender(getData(eval.scheme, "train"), method = "IBCF")
+
+# Predecimos las recomendaciones de cada uno usando tupo "ratings"
+predict.ubcf <- predict(recommender.ubcf, getData(eval.scheme, "known"), type = "ratings")
+predict.ibcf <- predict(recommender.ibcf, getData(eval.scheme, "known"), type = "ratings")
+
+# Finalmente calculamos los errores
+error <- rbind(
+    ubcf = calcPredictionAccuracy(predict.ubcf, getData(eval.scheme, "unknown")),
+    ibcf = calcPredictionAccuracy(predict.ibcf, getData(eval.scheme, "unknown"))
+)
+error
+```
+
+Vamos a realizar una evaluación usando "top-N"
+```{r}
+# Creamos un esquema de evaluación
+eval.scheme <- evaluationScheme(MovieLense, method = "split", train = 0.9, given = 3, goodRating = 3.75)
+
+# Generamos resultados con el método top-N
+results <- evaluate(eval.scheme, method = "POPULAR", type = "topNList", n = c(1, 3, 5, 10, 15, 20))
+results
+
+getConfusionMatrix(results)[[1]]
+avg(results)
+plot(results, annotate = TRUE)
+plot(results, "prec/rec", annotate = TRUE)
+```
+
+```{r}
+# Establecemos la semilla para la reproducibilidad
+set.seed(2016)
+
+# Creamos un esquema
+eval.scheme <- evaluationScheme(MovieLense, method = "split", train = 0.9, given = 5, goodRating = 3.75)
+eval.scheme
+
+# Creamos una lista con los algoritmos
+algorithms <- list(
+    "random items" = list(name = "RANDOM", param = NULL),
+    "popular items" = list(name = "POPULAR", param = NULL),
+    "user-based CF" = list(name = "UBCF", param = NULL),
+    "item-based CF" = list(name = "IBCF", param = NULL),
+    "SVD aproximation" = list(name = "SVD", param = NULL)
+)
+
+# Evaluamos los algoritmos
+results <- evaluate(eval.scheme, algorithms, type = "topNList", n = c(1, 3, 5, 10, 15, 20))
+results
+
+# Represetnamos los resultados
+plot(results, annotate = c(1, 3), legend = "bottomright")
+plot(results, "prec/rec", annotate = 3, legend = "topleft")
+
+# Ahora vamos a evaluar cómo de bien los algoritmos pueden predecir los rankings
+results <- evaluate(eval.scheme, algorithms, type = "ratings")
+results
+plot(results)
+
+movielense.binary <- binarize(MovieLense, minRating = 3.75)
+movielense.binary <- movielense.binary[rowCounts(movielense.binary) > 20, ]
+movielense.binary
+
+eval.scheme.binary <- evaluationScheme(movielense.binary, method = "split", train = 0.9, k = 1, given = 3)
+results.binary <- evaluate(eval.scheme.binary, algorithms, type = "topNList", n = c(1, 3, 5, 10, 15, 20))
+plot(results.binary, annotate = c(1, 3), legend = "topright")
+```
