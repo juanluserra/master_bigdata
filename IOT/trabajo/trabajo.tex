@@ -1,0 +1,188 @@
+% Clast de documento
+\documentclass[12pt, letterpaper]{article}
+
+% Paquetes
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{biblatex}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{datetime}
+\usepackage{lipsum}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{parskip}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{booktabs}
+
+%------------ 
+% Decoración
+%------------
+
+% Configuración de colores de python
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true
+}
+
+\lstset{
+    literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'\i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+             {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+             {ñ}{{\~n}}1 {Ñ}{{\~N}}1
+             {¡}{{!`}}1 {¿}{{?`}}1 % Añade caracteres especiales en español
+}
+
+% Configuración de header y footer
+\fancyhf{}
+\setlength{\headheight}{15.71667pt}
+\addtolength{\topmargin}{-3.71667pt}
+\fancyhf{}
+
+% Header
+\fancyhead[L]{\textsc{\doctitle}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\fancyhead[R]{\textit{\nouppercase{\rightmark}}}
+
+% Footer
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[C]{Página \thepage}
+
+% Título
+\newcommand{\doctitle}{Modulación de señales}
+\title{\doctitle}
+\author{Juan Luis Serradilla Tormos}
+\date{\monthname[\month] de \the\year}
+
+% Bibliografía
+\addbibresource{test.bib}
+
+% Eliminar sangría
+\setlength{\parindent}{0pt}
+
+% Aumentar la separación entre párrafos
+\setlength{\parskip}{1em plus 0.5em minus 0.2em}
+
+
+%-----------
+% Documento
+%-----------
+\begin{document}
+
+% Mostrar header y footer
+\pagestyle{fancy}
+
+% Mostrar el título
+\maketitle
+
+% Índice
+\newpage
+\tableofcontents
+
+% Contenido
+\newpage
+\section{Introducción}
+El Internet de las Cosas (IoT) consiste en una red de objetos físicos equipados con hardware y software que les permita conectarse e intercambiar datos a través de una red común. Al ser por tanto la comunicación entre dispositivos imprescindible en el IoT, las tecnologías de comunicación son un tema fundamental en este campo.
+
+Este trabajo explorará las tecnologías de comunicación de los dispositivos IoT centrándose en la modulación de señales. Estas técnicas se utilizan para modificar las señales electromagnéticas para que puedan transmitir información. Por lo tanto, se investigarán sus fundamentos y funcionamiento, las tenoclogías y técnicas actuales, su implementación y los desafíos futuros.
+
+
+\vspace{1em}
+\section{Fundamentos de la Modulación de Señales}
+
+La modulación de señales es un proceso fundamental en los sistemas de comunicación, ya que como se ha mencionado anteriormente la transmisión eficiente y onfiable de los datos es especialmente importante.
+
+En esencia, la modulación de señales consiste en modificar las propiedades de una onda portadora para transmitir información. 
+
+\newpage
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=8cm]{images/modulacion_ejemplo.jpg}
+    \caption{Ejemplo de modulación de una onda portadora con una onda moduladora de baja frecuencia para transmitir información.}
+    \label{fig:modulacion_ejemplo}
+\end{figure}
+
+Como se puede ver en la figura \ref{fig:modulacion_ejemplo}, la modulación consta de una onda portadora y una onda moduladora, donde esta onda moduladora portará los datos digitales de los dispoisitvos IoT. Vamos a analizar más en detalle estos dos roles.
+
+\subsection{Frecuencia portadora}
+Una señal portadora es una onda eléctrica que puede ser modificada en alguno de sus parámetros por la señal de información para obtener una señal modulada y que se transporta por el canal de comunicaciones. 
+
+Esta onda portadora también ayuda a solucionar el problema del tamaño de las antenas. El tamaño de una antena ($L$) debe ser proporcional a la longitud de la onda ($\lambda$), para así poder apreciar los cambios de la señal. Por ello, tenemos lo siguiente:
+\begin{align*}
+    L \propto \lambda \propto \frac{1}{\nu}
+\end{align*}
+donde $\nu$ es la frecuencia de la señal portadora. Esta característica hace que se puedan utilizar antenas de tamaño práctico para la transmisión inalámbrica.
+
+Esta onda portadora también ayuda a que la señal enviada sea resistente al ruido.
+
+\subsection{Frecuencia moduladora}
+La onda moduladora es la onda que contiene la información digital que se quiere transmitir. Esta suele ser de una frecuencia más baja, por lo que necesita a la onda portadora para poder ser transmitida. El objetivo de esta onda es modificar algún parámetro de la onda portadora, como la amplitud, la frecuencia o la fase, para que la información pueda ser transmitida a través del canal de comunicación.
+
+Las dos formas básicas de modulación son:
+\begin{itemize}
+    \item \textbf{Modulación de amplitud:} Este tipo de modulación consiste en variar el valor de la amplitud de la onda portadora en función de la onda moduladora. 
+
+    \item \textbf{Modulación angular:} Este tipo de modulación consiste en variar el ángulo de la onda portadora. Para ello, se puede modificar tanto la frecuencia como la fase, pero manteniendo siempre la amplitud constante.
+\end{itemize}
+
+Otra forma de clasificar a la modulación es en función de cómo se realiza este proceso: de forma digital o de forma analógica. 
+
+\begin{itemize}
+    \item \textbf{Modulación analógica:} Este tipo de modulación realiza cambios continuos en la señal portadora, variando los parámetros de amplitud, frecuencia o fase de forma proporcional a la señal original. Podemos distinguir:
+    \begin{itemize}
+        \item Modulación AM
+        \item Modulación FM
+        \item Modulación PM
+    \end{itemize}
+
+    \item \textbf{Modulación digital:} En este tipo de modulación la señal moduladora es discreta (0 o 1). La información se codifica en símbolos (grupos de bits) que modifican la señal portadora de forma discontinua. Podemos distinguir:
+    \begin{itemize}
+        \item Modulación ASK
+        \item Modulación FSK
+        \item Modulación PSK
+        \item Modulación QAM
+    \end{itemize}
+\end{itemize}
+
+\subsection{Modulación digital sobre analógica}
+A pesar de que existan dos tipos de modulación, en el contexto del IoT la modulación digital es la más utilizada. Esto se debe a varias razones:
+\begin{itemize}
+    \item \textbf{Sensibilidad al ruido:} La modulación analógica, especialmente AM, es más susceptible al ruido y las interferencias, lo que puede degradar la calidad de la señal transmitida. En entornos IoT donde los dispositivos pueden operar en condiciones ruidosas o con señales débiles, la robustez de la modulación digital ofrece una ventaja significativa.
+    \item \textbf{Menor eficiencia espectral:} En general, las técnicas de modulación digital pueden ofrecer una mayor eficiencia espectral en comparación con las analógicas, lo que permite transmitir más datos dentro de un ancho de banda limitado. Esto es crucial en el espectro de radiofrecuencia cada vez más congestionado donde operan muchos dispositivos IoT.
+    \item \textbf{Integración con sistemas digitales:} Dado que los dispositivos IoT operan con datos digitales, la modulación digital permite una integración más sencilla y directa con los circuitos y procesadores digitales. La conversión de señales analógicas a digitales y viceversa añade complejidad y puede introducir pérdidas.
+    \item \textbf{Seguridad y cifrado:} Las técnicas de modulación digital se prestan mejor a la implementación de mecanismos de seguridad como el cifrado, que es cada vez más importante para proteger la confidencialidad e integridad de los datos transmitidos por los dispositivos IoT.
+    \item \textbf{Eficiencia energética:} Muchas técnicas de modulación digital están diseñadas para ser energéticamente eficientes, lo cual es un requisito fundamental para los dispositivos IoT que funcionan con baterías y necesitan operar durante períodos prolongados.
+\end{itemize}
+
+\vspace{1em}
+\section{Técnicas de modulación digital}
+A continuación, se van a analizar las diferentes técnicas de modulación digital que se usan en el IoT.
+
+\subsection{Modulación ASK y OOK}
+
+
+\newpage
+\section{Tecnologías de Comunicación}
+
+\newpage
+\section{Técnicas de modulación}
+
+\newpage
+\section{Implementación y aplicación en IoT}
+
+\newpage
+\section{Desafíos y perspectivas futuras}
+
+\newpage
+\section{Conclusiones}
+
+\end{document}

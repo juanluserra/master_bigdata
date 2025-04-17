@@ -32,6 +32,7 @@ bool estadoVentilador = false;
 String method = String(4);
 bool method_readed = false;
 
+
 void setup() {
   Serial.begin(9600);
   dht.begin();
@@ -56,6 +57,7 @@ void setup() {
     humedades[i] = humInicial;
   }
 }
+
 
 void loop() {
   // Actualización de la lectura del sensor cada 1 segundo
