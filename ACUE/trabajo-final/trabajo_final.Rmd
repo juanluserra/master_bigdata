@@ -1,0 +1,159 @@
+```{r}
+if (interactive()) {
+    setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+}
+
+library(summarytools)
+library(randomForest)
+library(caret)
+library(cluster)
+library(factoextra)
+library(dplyr)
+library(gridExtra)
+```
+
+```{r}
+# Cargamos los datos
+data <- read.csv("data.csv", sep = ",", header = TRUE, stringsAsFactors = FALSE)
+head(data)
+str(data)
+
+# Eliminamos la variable de ID
+data$customerID <- NULL
+
+# Eliminamos la variable tenure
+data$tenure <- NULL
+
+# Convertimos las variables character a factor
+data <- data.frame(lapply(data, function(x) {
+    if (is.character(x)) {
+        factor(x)
+    } else {
+        x
+    }
+}))
+
+# Convertimos las variables numéricas que correspondan a factor
+data$SeniorCitizen <- as.factor(data$SeniorCitizen)
+
+# Visualizamos el dataset
+print(dfSummary(data))
+```
+
+```{r}
+# Separamos los datos en train y test
+set.seed(123)
+train.index <- createDataPartition(data$Churn, p = .8, list = FALSE, times = 1)
+data.train <- data[train.index, ]
+data.test <- data[-train.index, ]
+```
+
+```{r}
+# Vamos a crear un modelo de bagging (RandomForest) para predecir los posibles desertores (data$Churn = 1)
+modelo_rf <- randomForest(Churn ~ ., data = data.train, ntree = 1000, mtry = 3, importance = TRUE, na.action = na.exclude)
+
+# Resumen del modelo
+print(modelo_rf)
+
+# Predicciones
+predictions_rf <- predict(modelo_rf, newdata = data.test, type = "prob")[, 2]
+
+# Calculamos la frecuencia de Churn  = "Yes"
+prob.churn.1 <- sum(data.train$Churn == "Yes") / nrow(data)
+
+# Matriz de confusión
+predicted.classes_rf <- ifelse(predictions_rf > prob.churn.1, 1, 0)
+confusion_matrix_rf <- table(data.test$Churn, predicted.classes_rf)
+
+# Matriz de confusión
+round(prop.table(confusion_matrix_rf * 100), 2)
+# Matriz de confusión con margen en columnas
+round(addmargins(prop.table(confusion_matrix_rf * 100, 2), 1), 2)
+# Matriz de confusión con margen en filas
+round(addmargins(prop.table(confusion_matrix_rf * 100, 1), 2), 2)
+
+# Vemos los predictores ordenados por importancia en función de la variable "Yyes"
+importance(modelo_rf)[order(importance(modelo_rf)[, 2], decreasing = TRUE), ]
+
+# Gráfico de importancia
+varImpPlot(modelo_rf, main = "Importancia de los predictores")
+```
+
+```{r}
+# Filtrar los atributos relevantes y la variable de clase
+significant.predictors <- importance(modelo_rf)[order(importance(modelo_rf)[, 2], decreasing = TRUE), ][1:3, 2]
+
+if (length(significant.predictors) == 0) {
+    # If no significant predictors, use all numeric columns (excluding customerID already removed)
+    predictors <- names(data)[sapply(data, is.numeric)]
+} else {
+    predictors <- intersect(names(data), names(significant.predictors))
+}
+
+# Convertir a dataframe únicamente las columnas de interés y escalamos los datos
+data.scaled <- data[, predictors, drop = FALSE]
+data.scaled$Churn <- data$Churn
+data.scaled <- data.frame(lapply(data.scaled, function(x) {
+    if (is.numeric(x)) {
+        scale(x)
+    } else {
+        x
+    }
+}))
+
+# Creamos otro dataset con los datos no escalados
+data.noscaled <- data[, predictors, drop = FALSE]
+data.noscaled$Churn <- data$Churn
+
+# Eliminamos los valores NA
+data.scaled <- na.omit(data.scaled)
+data.noscaled <- na.omit(data.noscaled)
+
+# Separamos en desertores y no desertores
+data.churn <- data.scaled[data.scaled$Churn == "Yes", ]
+data.nochurn <- data.scaled[data.scaled$Churn == "No", ]
+data.nochurn.noscaled <- data.noscaled[data.noscaled$Churn == "No", ]
+data.churn.noscaled <- data.noscaled[data.noscaled$Churn == "Yes", ]
+
+# Creamos el modelo de clustering aplicando PAM directamente sobre los datos escalados
+pam.churn <- pam(data.churn[, -ncol(data.churn)], k = 2)
+pam.nochurn <- pam(data.nochurn[, -ncol(data.nochurn)], k = 3)
+
+# Visualizamos los clusters
+fviz_cluster(pam.churn, data = data.churn[, -ncol(data.churn)], geom = "point", ellipse.type = "convex", main = "Clusters de desertores")
+fviz_cluster(pam.nochurn, data = data.nochurn[, -ncol(data.nochurn)], geom = "point", ellipse.type = "convex", main = "Clusters de no desertores")
+
+# Agregar la información de clustering a los datasets para posteriores gráficas
+data.churn.noscaled$cluster <- pam.churn$clustering
+data.nochurn.noscaled$cluster <- pam.nochurn$clustering
+
+# Visualizamos las variables de los clusters
+plot1 <- ggplot(data.churn.noscaled, aes(x = factor(cluster), y = TotalCharges)) +
+    geom_boxplot() +
+    labs(title = "Distribución de TotalCharges por Cluster", x = "Cluster ID", y = "TotalCharges")
+plot2 <- ggplot(data.nochurn.noscaled, aes(x = factor(cluster), y = TotalCharges)) +
+    geom_boxplot() +
+    labs(title = "Distribución de TotalCharges por Cluster", x = "Cluster ID", y = "TotalCharges")
+grid.arrange(plot1, plot2, nrow = 1)
+
+plot1 <- ggplot(data.churn, aes(x = factor(pam.churn$clustering), fill = Contract)) +
+    geom_bar(position = "dodge") +
+    labs(title = "Distribución del Contract
+    en desertores por Cluster", x = "Cluster ID", y = "Frecuencia")
+plot2 <- ggplot(data.nochurn, aes(x = factor(pam.nochurn$clustering), fill = Contract)) +
+    geom_bar(position = "dodge") +
+    labs(title = "Distribución del Contract
+    en no desertores por Cluster", x = "Cluster ID", y = "Frecuencia")
+grid.arrange(plot1, plot2, nrow = 1)
+
+plot1 <- ggplot(data.churn, aes(x = factor(pam.churn$clustering), fill = TechSupport)) +
+    geom_bar(position = "dodge") +
+    labs(title = "Distribución del Contract
+    en desertores por Cluster", x = "Cluster ID", y = "Frecuencia")
+plot2 <- ggplot(data.nochurn, aes(x = factor(pam.nochurn$clustering), fill = TechSupport)) +
+    geom_bar(position = "dodge") +
+    labs(title = "Distribución del Contract
+    en no desertores por Cluster", x = "Cluster ID", y = "Frecuencia")
+grid.arrange(plot1, plot2, nrow = 1)
+```
+
