@@ -106,7 +106,7 @@ En esencia, la modulación de señales consiste en modificar las propiedades de 
 \newpage
 \begin{figure}[h]
     \centering
-    \includegraphics[width=8cm]{images/modulacion_ejemplo.jpg}
+    \includegraphics[width=6cm]{images/modulacion_ejemplo.jpg}
     \caption{Ejemplo de modulación de una onda portadora con una onda moduladora de baja frecuencia para transmitir información.}
     \label{fig:modulacion_ejemplo}
 \end{figure}
@@ -117,9 +117,9 @@ Como se puede ver en la figura \ref{fig:modulacion_ejemplo}, la modulación cons
 Una señal portadora es una onda eléctrica que puede ser modificada en alguno de sus parámetros por la señal de información para obtener una señal modulada y que se transporta por el canal de comunicaciones. 
 
 Esta onda portadora también ayuda a solucionar el problema del tamaño de las antenas. El tamaño de una antena ($L$) debe ser proporcional a la longitud de la onda ($\lambda$), para así poder apreciar los cambios de la señal. Por ello, tenemos lo siguiente:
-\begin{align*}
+\begin{align}
     L \propto \lambda \propto \frac{1}{\nu}
-\end{align*}
+\end{align}
 donde $\nu$ es la frecuencia de la señal portadora. Esta característica hace que se puedan utilizar antenas de tamaño práctico para la transmisión inalámbrica.
 
 Esta onda portadora también ayuda a que la señal enviada sea resistente al ruido.
@@ -168,7 +168,40 @@ A pesar de que existan dos tipos de modulación, en el contexto del IoT la modul
 A continuación, se van a analizar las diferentes técnicas de modulación digital que se usan en el IoT.
 
 \subsection{Modulación ASK y OOK}
+La modulación ASK es un tipo de modulación de amplitud, por lo que los datos se representan variando la amplitud de la onda portadora. OOK por su parte es una forma de ASK donde la señal portadora se apaga y enciende para representar los bits 0 y 1. 
 
+En ASK, la presencia de una onda portadora a una amplitud específica representa un bit 1, mientras que una amplitud diferente o la ausencia de la onda representa un bit 0. La fórmula para representar esta onda es la siguiente:
+\begin{align}
+    U_{ASK}(t) = A \Big[1 \pm \frac{V(t)}{A} \Big] \cos(2\pi \nu_p t) = 
+    A [1 \pm m(t)] \cos(2\pi \nu_p t) \label{eq:ask}
+\end{align}
+
+donde $V(t)$ es la señal moduladora, $A$ es la amplitud de la portadora, $\nu_p$ es la frecuencia de la portadora y $m(t)$ es la señal moduladora normalizada.
+
+Se puede ver en la ecuación~\ref{eq:ask} que la amplitud de la señal portadora se modula en función de la seál portadora $V(t)$, pudiendo aumentar o disminuir dependiendo de cómo se haga la modulación.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=9cm]{images/ASK.png}
+    \caption{Ejemplo de modulación ASK.}
+    \label{fig:ask}
+\end{figure}
+
+\newpage
+Este tipo de modulación tiene sus ventajas y desventajas.
+\begin{itemize}
+    \item \textbf{Ventajas:}
+    \begin{itemize}
+        \item Es un método simple y fácil de implementar. Esto se debe a que, al solo tener que variar la amplitud moduladora para representar bits, solo hacen falta componentes simples como osciladores e interruptores. 
+        \item Este método, en especial OOK, es muy eficiente  energéticamente. Esto se debe a que solo se transmite información cuando hay un "1", a diferencia de otros métodos que requieren la energía constante para mantener activa la portadora.
+    \end{itemize}
+
+    \item \textbf{Desventajas:}
+    \begin{itemize}
+        \item Es susceptible a las variaciones de amplitud y al ruido, debido a que es una transformación lineal. Es decir, si la amplitud de la señal portadora se ve afectada por el ruido, la señal modulada también se verá afectada de igual forma. Debido a esta distorsión los rangos de amplitud son limitados.
+        \item Tiene menor eficiencia espectral que otros tipos de modulación. Esto se debe a varias razones; una de ellas es que transmite solo 1 bit por símbolo, en comparación con otros métodos como QAM que transmite 4 bits por símbolo. Esto a su vez hace que se necesiten más símbolos para enviar la misma cantidad de información, lo que amplia el ancho de banda necesario.
+    \end{itemize}
+\end{itemize}
 
 \newpage
 \section{Tecnologías de Comunicación}
