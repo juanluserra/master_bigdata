@@ -16,6 +16,7 @@
 \usepackage{listings}
 \usepackage[table,xcdraw]{xcolor}
 \usepackage{booktabs}
+\usepackage{setspace}
 
 %------------ 
 % Decoración
@@ -72,6 +73,9 @@
 % Aumentar la separación entre párrafos
 \setlength{\parskip}{1em plus 0.5em minus 0.2em}
 
+% Doble espacio
+\onehalfspacing{}
+
 
 %-----------
 % Documento
@@ -107,11 +111,10 @@ En esencia, la modulación de señales consiste en modificar las propiedades de 
 \begin{figure}[h]
     \centering
     \includegraphics[width=6cm]{images/modulacion_ejemplo.jpg}
-    \caption{Ejemplo de modulación de una onda portadora con una onda moduladora de baja frecuencia para transmitir información.}
-    \label{fig:modulacion_ejemplo}
+    \caption{Ejemplo de modulación de una onda portadora con una onda moduladora de baja frecuencia para transmitir información.}\label{fig:modulacion_ejemplo}
 \end{figure}
 
-Como se puede ver en la figura \ref{fig:modulacion_ejemplo}, la modulación consta de una onda portadora y una onda moduladora, donde esta onda moduladora portará los datos digitales de los dispoisitvos IoT. Vamos a analizar más en detalle estos dos roles.
+Como se puede ver en la figura~\ref{fig:modulacion_ejemplo}, la modulación consta de una onda portadora y una onda moduladora, donde esta onda moduladora portará los datos digitales de los dispoisitvos IoT. Vamos a analizar más en detalle estos dos roles.
 
 \subsection{Frecuencia portadora}
 Una señal portadora es una onda eléctrica que puede ser modificada en alguno de sus parámetros por la señal de información para obtener una señal modulada y que se transporta por el canal de comunicaciones. 
@@ -183,8 +186,7 @@ Se puede ver en la ecuación~\ref{eq:ask} que la amplitud de la señal portadora
 \begin{figure}[h]
     \centering
     \includegraphics[width=9cm]{images/ASK.png}
-    \caption{Ejemplo de modulación ASK.}
-    \label{fig:ask}
+    \caption{Ejemplo de modulación ASK.}\label{fig:ask}
 \end{figure}
 
 \newpage
@@ -193,7 +195,7 @@ Este tipo de modulación tiene sus ventajas y desventajas.
     \item \textbf{Ventajas:}
     \begin{itemize}
         \item Es un método simple y fácil de implementar. Esto se debe a que, al solo tener que variar la amplitud moduladora para representar bits, solo hacen falta componentes simples como osciladores e interruptores. 
-        \item Este método, en especial OOK, es muy eficiente  energéticamente. Esto se debe a que solo se transmite información cuando hay un "1", a diferencia de otros métodos que requieren la energía constante para mantener activa la portadora.
+        \item Este método, en especial OOK, es muy eficiente  energéticamente. Esto se debe a que solo se transmite información cuando hay un ``1'', a diferencia de otros métodos que requieren la energía constante para mantener activa la portadora.
     \end{itemize}
 
     \item \textbf{Desventajas:}
@@ -203,7 +205,138 @@ Este tipo de modulación tiene sus ventajas y desventajas.
     \end{itemize}
 \end{itemize}
 
+\subsection{Modulación FSK}
+La modulación FSK (Frequency Shift Keying) es un tipo de modulación digital que utiliza dos o más frecuencias diferentes para representar los bits 0 y 1. En este caso, la frecuencia de la señal portadora se cambia en función de la señal moduladora.
+
+Podemos definir la señal FSK con la siguiente expresión:
+\begin{align}
+    U_{FSK}(t) =
+    \left\{
+    \begin{array}{l}
+        A \cos(2\pi\nu_1 t + \theta_p) \quad 
+        \text{si } \nu_1 = \nu_p + \Delta\nu_p \Leftrightarrow \text{``1''} \\
+        A \cos(2\pi\nu_2 t + \theta_p) \quad
+        \text{si } \nu_2 = \nu_p - \Delta\nu_p \Leftrightarrow \text{``0''}
+    \end{array}
+    \right. \label{eq:fsk}
+\end{align}
+
+Podemos ver en la ecuación~\ref{eq:fsk} cómo esta vez la amplitud $A$ permanece constante, y simplemente tenemos dos ecuaciones de ondas diferentes dependiendo de la frecuencia que se esté utilizando. Cuando la frecuencia moduladora es $\nu_1 > \nu_p$, se representa un bit 1, y cuando es $\nu_2 < \nu_p$ se representa un bit 0. Podemos ver un ejemplo de modulación FSK en la figura~\ref{fig:fsk}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=9cm]{images/FSK.png}
+\caption{Ejemplo de modulación FSK.\label{fig:fsk}}
+\end{figure}
+
+Este tipo de modulación tiene sus ventajas y sus desventajas.
+\begin{itemize}
+    \item \textbf{Ventajas:}
+    \begin{itemize}
+        \item Tiene una buena resistencia al ruido y a la interferencia. Esto se debe a que la información se transmite a través de cambios en la frecuencia, lo que hace que sea menos susceptible a las variaciones de amplitud y a las interferencias externas.
+        \item Las modulaciones FSK tienen una envolvente de amplitud constante, lo que reduce la necesidad de amplificadores lineales en el transmisor y permite una amplificación de potencia más eficiente.
+        \item Los transmisores y receptores FSK son fáciles de implementar para aplicaciones de baja velocidad de datos.
+    \end{itemize}
+
+    \item \textbf{Desventajas:}
+    \begin{itemize}
+        \item Las ténicas FSK, al igual que ASK, necesitan más ancho de banda que las técnicas PSK y QAM para la misma velocidad de datos. 
+        \item La velocidad de datos alcanzada suele ser menor que la que se consigue con técnicas más modernas y complejas.
+        \item La técnica FSK es sensible al desplazamiento de frecuencia en los osciladores transmisor y el receptor, lo que puede degradar el rendimiento.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Modulación PSK, QPSK y Modulación de Orden Superior}
+La modulación PSK (Phase Shift Keying) es un tipo de modulación digital en la cuál se modifica la fase de la señal portadora para representar la información. En su forma más sencilla, BPSK (Binary Phase Shift Keying), se utilizan dos fases diferentes (0ºy 180º) para representar los bits 0 y 1:
+\begin{align}
+    U_{PSK}(t) =
+    \left\{
+    \begin{array}{l}
+        A \cos(2\pi\nu_p t) \Leftrightarrow \text{``1''} \\
+        A \cos(2\pi\nu_p t + \pi) \Leftrightarrow \text{``0''}
+    \end{array}
+    \right.
+\end{align}
+
+Se puede ver un ejemplo de modulación PSK en la figura~\ref{fig:psk}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=9cm]{images/PSK.png}
+    \caption{Ejemplo de modulación PSK.\label{fig:psk}}
+\end{figure}
+
+Otro tipo de modulación PSK es la modulación por desplazamiento de fase en cuadratura (QPSK), que utiliza cuatro fases diferentes (0º, 90º, 180º y 270º) para representar dos bits de información a la vez. Esto permite una mayor eficiencia espectral en comparación con BPSK.\@
+
+La modulación PSK tiene sus ventajas y desventajas.
+\begin{itemize}
+    \item \textbf{Ventajas:}
+    \begin{itemize}
+        \item La modulación PSK ofrece una mayor eficiencia espectral en comparación con ASK y FSK, transmitiendo más datos en un menor ancho de banda. Esto se nota sobretodo en QPSK y modulaciones de mayor orden, como 8PSK o 16PSK.\@
+        \item Tiene una buena resistencia al ruido en comparación con ASK, ya que la información se codifica en la fase, que es menos susceptible que la amplitud.
+        \item Al igual que FSK, tiene una envolvente de amplitud constante, lo que permite el uso de amplificadores de potencia no lineales más eficientes.
+    \end{itemize}
+
+    \item \textbf{Desventajas:}
+    \begin{itemize}
+        \item Los moduladores y demoduladores PSK son más complejos que los ASK y FSK a la hora de implementarlos, especialmente los de orden superior.
+        \item La modulación PSK suele necesitar una demodulación coherente para un rendimiento óptimo, lo que requiere circuitos de recuperación de portadora más complejos en el receptor.
+        \item Cuanto mayor es el orden de la modulación, a pesar de que se transmite más información la resistencia al ruido en la fase disminuye, provocando errores si la fase de referencia no es estable.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Modulación OFDM}
+La técnica OFDM no es una modulación como tal, sino una forma de combinar varias modulaciones para transmitir más información. Esta técnica de modulación digital divide el ancho de banda disponible en múltiples subportadoras ortogonales, transmitiendo datos en paralelo en estas subportadoras. Las ondas ortogonales son señales cuyos valles y picos no se suporponen, cumpliendo así la siguiente condición:
+\begin{align}
+    \int_{0}^{T} \Phi_1(t) \Phi_2(t) dt = 0
+\end{align}
+
+donde $\Phi_1(t)$ y $\Phi_2(t)$ son las ondas ortogonales y $T$ es el periodo de la señal. Cada subportadora se modula mediante un esquema de modulación de baja velocidad de datos, como QAM o PSK.\@ Las subportadoras están espaciadas de manera precisa para garantizar la ortogonalidad, lo que evita la interferencia entre ellas.
+
+Vamos a desglosar el funcionamiento de OFDM.\@ Como se ha mencionado, lo primero que se hace es generar $N$ subportadoras. Luego, la suma de las $N$ subportadoras crea un símbolo OFDM ($U_{OFDM}$). También se añade un prefijo cíclico ($CP$) y un espacio temporal entre los símbolos para evitar la interferencia entre símbolos (ISI). 
+
+El proceso de envío es el siguinete:
+\begin{enumerate}
+    \item Se agrupan los bits en símbolos.
+    \item Cada símbolo se asigna a una subportadora.
+    \item Se convierten las subportadoras en al dominio del tiempo desde el dominio de la frecuencia mediante la Transformada Inversa de Fourier (IFFT).
+    \item Se añade el CP al símbolo OFDM.\@
+    \item Se envía la señal.
+\end{enumerate}
+
+En el caso de querer recibir la señal, el proceso es el siguiente:
+\begin{enumerate}
+    \item Se elimina el prefijo cíclico (CP).
+    \item Se transforma la señal del dominio del tiempo al dominio de la frecuencia mediante la Transformada de Fourier (FFT).
+    \item Se demodulan las subportadoras para obtener los símbolos.
+    \item Se convierten los símbolos en bits.
+\end{enumerate}
+
 \newpage
+Podemos ver un esquema de la modulación OFDM en la figura~\ref{fig:ofdm}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=9cm]{images/OFDM.png}
+    \caption{Esquema de la modulación OFDM.\label{fig:ofdm}}
+\end{figure}
+
+Esta técnica de modulación tiene varias ventajas y desventajas.
+\begin{itemize}
+    \item \textbf{Ventajas:}
+    \begin{itemize}
+        \item La modualción OFDM ofrece una muy alta eficiencia espectral al transmitir múltiples subportadoras juntas dentro de un ancho de banda dado.
+        \item Esta modulación es altamente resistente desvanecimiento selectivo en frecuencia y a la interferencia multitrayecto, ya que cada subportadora experimenta un desvanecimiento plano.
+        \item La ecualización en el receptor es más sencilla, ya que cada subportadora puede ser tratada de forma independiente.
+    \end{itemize}
+
+    \item \textbf{Desventajas:}
+    \begin{itemize}
+        \item Las señales OFDM pueden tener una alta relación potencia pico a promedio, lo que requiere amplificadores lineales de alta calidad para evitar la distorsión.
+        \item La señal OFDM es sensible a los desplazamientos en frecuencia y a la deriva.
+        \item Los sistemas OFDM requieren el uso de la Transformada Rápida de Fourier (FFT) y la Transformada Rápida de Fourier Inversa (IFFT), lo que aumenta la complejidad de la implementación.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Modulación de Espectro Ensanchado}
+
 \section{Tecnologías de Comunicación}
 
 \newpage
