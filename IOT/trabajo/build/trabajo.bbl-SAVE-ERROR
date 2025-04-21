@@ -1,0 +1,112 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{IoT-Oracle}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=30162ed78b6c10f731411f2fc440c24f}{%
+           family={Oracle},
+           familyi={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{fullhash}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{bibnamehash}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{authorbibnamehash}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{authornamehash}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{authorfullhash}{30162ed78b6c10f731411f2fc440c24f}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://tex.stackexchange.com/questions/3587/how-can-i-use-bibtex-to-cite-a-web-page}}
+      \field{note}{Accessed: 2025-04}
+      \field{title}{What is IoT?}
+    \endentry
+    \entry{modulacion-avsystem}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=54bc5c23518f916222404e6288a27339}{%
+           family={Avsystem},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{54bc5c23518f916222404e6288a27339}
+      \strng{fullhash}{54bc5c23518f916222404e6288a27339}
+      \strng{bibnamehash}{54bc5c23518f916222404e6288a27339}
+      \strng{authorbibnamehash}{54bc5c23518f916222404e6288a27339}
+      \strng{authornamehash}{54bc5c23518f916222404e6288a27339}
+      \strng{authorfullhash}{54bc5c23518f916222404e6288a27339}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://avsystem.com/blog/role-of-modulation-wifi-radio-transmission}}
+      \field{note}{Accesed: 2025-04}
+      \field{title}{Understanding the Role of Modulation in WiFi Radio Transmission}
+    \endentry
+    \entry{modulacion-radioacademy}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=f6eec78514ab4476f901713173ce20a5}{%
+           family={Academy},
+           familyi={A\bibinitperiod},
+           given={Tait\bibnamedelima Radio},
+           giveni={T\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \strng{namehash}{f6eec78514ab4476f901713173ce20a5}
+      \strng{fullhash}{f6eec78514ab4476f901713173ce20a5}
+      \strng{bibnamehash}{f6eec78514ab4476f901713173ce20a5}
+      \strng{authorbibnamehash}{f6eec78514ab4476f901713173ce20a5}
+      \strng{authornamehash}{f6eec78514ab4476f901713173ce20a5}
+      \strng{authorfullhash}{f6eec78514ab4476f901713173ce20a5}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.taitradioacademy.com/topic/how-does-modulation-work-1-1/}}
+      \field{note}{Accesed: 2025-04}
+      \field{title}{Basic Radio Awareness}
+    \endentry
+    \entry{ask-unidad3}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=2129b5a528a14a45b43e7b72ea56610b}{%
+           family={Tecnológico\bibnamedelimb Nacional\bibnamedelimb de\bibnamedelima México},
+           familyi={T\bibinitperiod\bibinitdelim N\bibinitperiod\bibinitdelim d\bibinitperiod\bibinitdelim M\bibinitperiod},
+           given={Campus\bibnamedelima Zacatecas},
+           giveni={C\bibinitperiod\bibinitdelim Z\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Tecnológico Nacional de México, Campus Zacatecas}%
+      }
+      \strng{namehash}{2129b5a528a14a45b43e7b72ea56610b}
+      \strng{fullhash}{2129b5a528a14a45b43e7b72ea56610b}
+      \strng{bibnamehash}{2129b5a528a14a45b43e7b72ea56610b}
+      \strng{authorbibnamehash}{2129b5a528a14a45b43e7b72ea56610b}
+      \strng{authornamehash}{2129b5a528a14a45b43e7b72ea56610b}
+      \strng{authorfullhash}{2129b5a528a14a45b43e7b72ea56610b}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://enlinea.zacatecas.tecnm.mx/pluginfile.php/24436/mod_resource/content/1/Unidad%20III.pdf}}
+      \field{note}{Accesed: 2025-04}
+      \field{title}{Unidad III: Modulación}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

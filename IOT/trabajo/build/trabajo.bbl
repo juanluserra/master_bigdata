@@ -1,0 +1,287 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{IoT-Oracle}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=30162ed78b6c10f731411f2fc440c24f}{%
+           family={Oracle},
+           familyi={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{fullhash}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{bibnamehash}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{authorbibnamehash}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{authornamehash}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{authorfullhash}{30162ed78b6c10f731411f2fc440c24f}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://tex.stackexchange.com/questions/3587/how-can-i-use-bibtex-to-cite-a-web-page}}
+      \field{note}{Accessed: 2025-04}
+      \field{title}{What is IoT?}
+    \endentry
+    \entry{modulacion-avsystem}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=54bc5c23518f916222404e6288a27339}{%
+           family={Avsystem},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{54bc5c23518f916222404e6288a27339}
+      \strng{fullhash}{54bc5c23518f916222404e6288a27339}
+      \strng{bibnamehash}{54bc5c23518f916222404e6288a27339}
+      \strng{authorbibnamehash}{54bc5c23518f916222404e6288a27339}
+      \strng{authornamehash}{54bc5c23518f916222404e6288a27339}
+      \strng{authorfullhash}{54bc5c23518f916222404e6288a27339}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://avsystem.com/blog/role-of-modulation-wifi-radio-transmission}}
+      \field{note}{Accesed: 2025-04}
+      \field{title}{Understanding the Role of Modulation in WiFi Radio Transmission}
+    \endentry
+    \entry{modulacion-radioacademy}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=f6eec78514ab4476f901713173ce20a5}{%
+           family={Academy},
+           familyi={A\bibinitperiod},
+           given={Tait\bibnamedelima Radio},
+           giveni={T\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \strng{namehash}{f6eec78514ab4476f901713173ce20a5}
+      \strng{fullhash}{f6eec78514ab4476f901713173ce20a5}
+      \strng{bibnamehash}{f6eec78514ab4476f901713173ce20a5}
+      \strng{authorbibnamehash}{f6eec78514ab4476f901713173ce20a5}
+      \strng{authornamehash}{f6eec78514ab4476f901713173ce20a5}
+      \strng{authorfullhash}{f6eec78514ab4476f901713173ce20a5}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.taitradioacademy.com/topic/how-does-modulation-work-1-1/}}
+      \field{note}{Accesed: 2025-04}
+      \field{title}{Basic Radio Awareness}
+    \endentry
+    \entry{ask-unidad3}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=4f7acc5fe7a3a63be3600a5654816892}{%
+           family={México},
+           familyi={M\bibinitperiod},
+           given={Tecnológico\bibnamedelima Nacional},
+           giveni={T\bibinitperiod\bibinitdelim N\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+      }
+      \strng{namehash}{4f7acc5fe7a3a63be3600a5654816892}
+      \strng{fullhash}{4f7acc5fe7a3a63be3600a5654816892}
+      \strng{bibnamehash}{4f7acc5fe7a3a63be3600a5654816892}
+      \strng{authorbibnamehash}{4f7acc5fe7a3a63be3600a5654816892}
+      \strng{authornamehash}{4f7acc5fe7a3a63be3600a5654816892}
+      \strng{authorfullhash}{4f7acc5fe7a3a63be3600a5654816892}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://enlinea.zacatecas.tecnm.mx/pluginfile.php/24436/mod\_resource/content/ask-unidad3}}
+      \field{note}{Accesed: 2025-04}
+      \field{title}{Unidad III: Modulación}
+    \endentry
+    \entry{modulacion-uv}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=49052b2cb84cf55751ac2d9e87695a49}{%
+           family={Valencia},
+           familyi={V\bibinitperiod},
+           given={Juan\bibnamedelimb Manuel\bibnamedelimb Orduña\bibnamedelimb Huertas\bibnamedelimb |\bibnamedelima Universidad},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim O\bibinitperiod\bibinitdelim H\bibinitperiod\bibinitdelim |\bibinitperiod\bibinitdelim U\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+      }
+      \strng{namehash}{49052b2cb84cf55751ac2d9e87695a49}
+      \strng{fullhash}{49052b2cb84cf55751ac2d9e87695a49}
+      \strng{bibnamehash}{49052b2cb84cf55751ac2d9e87695a49}
+      \strng{authorbibnamehash}{49052b2cb84cf55751ac2d9e87695a49}
+      \strng{authornamehash}{49052b2cb84cf55751ac2d9e87695a49}
+      \strng{authorfullhash}{49052b2cb84cf55751ac2d9e87695a49}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://informatica.uv.es/iiguia/TSTD/presentatema2.pdf}}
+      \field{note}{Accesed: 2025-04}
+      \field{title}{Fundamentos de Modulación}
+    \endentry
+    \entry{ventajas-desventajas-ask}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=4fb200aa28d15582ee676f2034af0af4}{%
+           family={AgileVision},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{4fb200aa28d15582ee676f2034af0af4}
+      \strng{fullhash}{4fb200aa28d15582ee676f2034af0af4}
+      \strng{bibnamehash}{4fb200aa28d15582ee676f2034af0af4}
+      \strng{authorbibnamehash}{4fb200aa28d15582ee676f2034af0af4}
+      \strng{authornamehash}{4fb200aa28d15582ee676f2034af0af4}
+      \strng{authorfullhash}{4fb200aa28d15582ee676f2034af0af4}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://agilevision.io/blog/overview-of-iot-device-communication/}}
+      \field{note}{Accesed: 2025-04}
+      \field{title}{Overview of IoT Device Communication}
+    \endentry
+    \entry{inproceedings}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=22edbcfc7c8631df6d3c38cf69608999}{%
+           family={Rehman},
+           familyi={R\bibinitperiod},
+           given={Aqeel-ur},
+           giveni={A\bibinithyphendelim u\bibinitperiod}}}%
+        {{hash=162dfdda2135a314a7f60a233e9128ca}{%
+           family={Mehmood},
+           familyi={M\bibinitperiod},
+           given={Kashif},
+           giveni={K\bibinitperiod}}}%
+        {{hash=27c63a4e1307ac9c2b239393d950dff2}{%
+           family={Baksh},
+           familyi={B\bibinitperiod},
+           given={Ahmed},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{5731efab60b04a1cb4fed7406759146e}
+      \strng{fullhash}{5731efab60b04a1cb4fed7406759146e}
+      \strng{bibnamehash}{5731efab60b04a1cb4fed7406759146e}
+      \strng{authorbibnamehash}{5731efab60b04a1cb4fed7406759146e}
+      \strng{authornamehash}{5731efab60b04a1cb4fed7406759146e}
+      \strng{authorfullhash}{5731efab60b04a1cb4fed7406759146e}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-3-642-41053-6}
+      \field{month}{04}
+      \field{title}{Communication Technology That Suits IoT - A Critical Review}
+      \field{year}{2013}
+      \verb{doi}
+      \verb 10.1007/978-3-642-41054-3_2
+      \endverb
+    \endentry
+    \entry{yin2025low}{article}{}
+      \name{author}{7}{}{%
+        {{hash=eab931765c0d12e28e14f768cc782bca}{%
+           family={Yin},
+           familyi={Y\bibinitperiod},
+           given={Mingxi},
+           giveni={M\bibinitperiod}}}%
+        {{hash=b8a7ffebac6dff6599daa964837267dc}{%
+           family={Wei},
+           familyi={W\bibinitperiod},
+           given={Chao},
+           giveni={C\bibinitperiod}}}%
+        {{hash=2a39bc4d3129a104fd3e393a7c1c1104}{%
+           family={Takeda},
+           familyi={T\bibinitperiod},
+           given={Kazuki},
+           giveni={K\bibinitperiod}}}%
+        {{hash=6408c4334b4769ad520635b0f115e80c}{%
+           family={Jia},
+           familyi={J\bibinitperiod},
+           given={Yinhua},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=61e9e6c43aa8a8d593449895e03909fb}{%
+           family={Xu},
+           familyi={X\bibinitperiod},
+           given={Changlong},
+           giveni={C\bibinitperiod}}}%
+        {{hash=9b334bc9e747408828dd8bae2d1c84a9}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Chengjin},
+           giveni={C\bibinitperiod}}}%
+        {{hash=ebe87161fff38c40d0bf84a35cba7349}{%
+           family={Xu},
+           familyi={X\bibinitperiod},
+           given={Hao},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{1deeeafe0b1e5f879821606339696a57}
+      \strng{fullhash}{f3d7a8b23d33397dd276352ddbc8160a}
+      \strng{bibnamehash}{1deeeafe0b1e5f879821606339696a57}
+      \strng{authorbibnamehash}{1deeeafe0b1e5f879821606339696a57}
+      \strng{authornamehash}{1deeeafe0b1e5f879821606339696a57}
+      \strng{authorfullhash}{f3d7a8b23d33397dd276352ddbc8160a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:2501.08555}
+      \field{title}{Low-Complex Waveform, Modulation and Coding Designs for 3GPP Ambient IoT}
+      \field{year}{2025}
+    \endentry
+    \entry{cardarilli2021design}{inproceedings}{}
+      \name{author}{5}{}{%
+        {{hash=38d35bd3858486c4ed1e58f9ab8d07c6}{%
+           family={Cardarilli},
+           familyi={C\bibinitperiod},
+           given={Gian\bibnamedelima Carlo},
+           giveni={G\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=8a94f6be09a7243131fb661f3b9ca83f}{%
+           family={Di\bibnamedelima Nunzio},
+           familyi={D\bibinitperiod\bibinitdelim N\bibinitperiod},
+           given={Luca},
+           giveni={L\bibinitperiod}}}%
+        {{hash=95606a870779f6783427c94bf660365a}{%
+           family={Fazzolari},
+           familyi={F\bibinitperiod},
+           given={Rocco},
+           giveni={R\bibinitperiod}}}%
+        {{hash=e8fccb1f80d6e4939fcec92107290550}{%
+           family={La\bibnamedelima Cesa},
+           familyi={L\bibinitperiod\bibinitdelim C\bibinitperiod},
+           given={Riccardo},
+           giveni={R\bibinitperiod}}}%
+        {{hash=51a48be033404de5c2027a90f13ada68}{%
+           family={Re},
+           familyi={R\bibinitperiod},
+           given={Marco},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{32b0b00003ca25e2932df0dfcae7f489}
+      \strng{fullhash}{e4ae6ea03dab3cf54bd158679eb8b7e6}
+      \strng{bibnamehash}{32b0b00003ca25e2932df0dfcae7f489}
+      \strng{authorbibnamehash}{32b0b00003ca25e2932df0dfcae7f489}
+      \strng{authornamehash}{32b0b00003ca25e2932df0dfcae7f489}
+      \strng{authorfullhash}{e4ae6ea03dab3cf54bd158679eb8b7e6}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{SYSTEM}
+      \field{title}{Design and FPGA Implementation of a Low Power OFDM Transmitter for Narrow-Band IoT.}
+      \field{year}{2021}
+      \field{pages}{60\bibrangedash 65}
+      \range{pages}{6}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

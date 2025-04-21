@@ -44,15 +44,18 @@
 }
 
 % Configuración de header y footer
+\pagestyle{fancy}
 \fancyhf{}
 \setlength{\headheight}{15.71667pt}
 \addtolength{\topmargin}{-3.71667pt}
-\fancyhf{}
 
 % Header
 \fancyhead[L]{\textsc{\doctitle}}
-\renewcommand{\sectionmark}[1]{\markright{#1}}
 \fancyhead[R]{\textit{\nouppercase{\rightmark}}}
+\renewcommand{\sectionmark}[1]{%
+  \markright{#1}%
+}
+\renewcommand{\subsectionmark}[1]{}
 
 % Footer
 \renewcommand{\footrulewidth}{0.4pt}
@@ -65,7 +68,9 @@
 \date{\monthname[\month] de \the\year}
 
 % Bibliografía
-\addbibresource{test.bib}
+\addbibresource{references.bib}
+\ExecuteBibliographyOptions{sorting=none}
+
 
 % Eliminar sangría
 \setlength{\parindent}{0pt}
@@ -95,7 +100,7 @@
 % Contenido
 \newpage
 \section{Introducción}
-El Internet de las Cosas (IoT) consiste en una red de objetos físicos equipados con hardware y software que les permita conectarse e intercambiar datos a través de una red común. Al ser por tanto la comunicación entre dispositivos imprescindible en el IoT, las tecnologías de comunicación son un tema fundamental en este campo.
+El Internet de las Cosas (IoT) consiste en una red de objetos físicos equipados con hardware y software que les permita conectarse e intercambiar datos a través de una red común~\cite{IoT-Oracle}. Al ser por tanto la comunicación entre dispositivos imprescindible en el IoT, las tecnologías de comunicación son un tema fundamental en este campo.
 
 Este trabajo explorará las tecnologías de comunicación de los dispositivos IoT centrándose en la modulación de señales. Estas técnicas se utilizan para modificar las señales electromagnéticas para que puedan transmitir información. Por lo tanto, se investigarán sus fundamentos y funcionamiento, las tenoclogías y técnicas actuales, su implementación y los desafíos futuros.
 
@@ -103,7 +108,7 @@ Este trabajo explorará las tecnologías de comunicación de los dispositivos Io
 \vspace{1em}
 \section{Fundamentos de la Modulación de Señales}
 
-La modulación de señales es un proceso fundamental en los sistemas de comunicación, ya que como se ha mencionado anteriormente la transmisión eficiente y onfiable de los datos es especialmente importante.
+La modulación de señales es un proceso fundamental en los sistemas de comunicación, ya que como se ha mencionado anteriormente la transmisión eficiente y onfiable de los datos es especialmente importante~\cite{modulacion-avsystem}.
 
 En esencia, la modulación de señales consiste en modificar las propiedades de una onda portadora para transmitir información. 
 
@@ -114,10 +119,10 @@ En esencia, la modulación de señales consiste en modificar las propiedades de 
     \caption{Ejemplo de modulación de una onda portadora con una onda moduladora de baja frecuencia para transmitir información.}\label{fig:modulacion_ejemplo}
 \end{figure}
 
-Como se puede ver en la figura~\ref{fig:modulacion_ejemplo}, la modulación consta de una onda portadora y una onda moduladora, donde esta onda moduladora portará los datos digitales de los dispoisitvos IoT. Vamos a analizar más en detalle estos dos roles.
+Como se puede ver en la figura~\ref{fig:modulacion_ejemplo}, la modulación consta de una onda portadora y una onda moduladora, donde esta onda moduladora portará los datos digitales de los dispoisitvos IoT. Vamos a analizar más en detalle   estos dos roles.
 
 \subsection{Frecuencia portadora}
-Una señal portadora es una onda eléctrica que puede ser modificada en alguno de sus parámetros por la señal de información para obtener una señal modulada y que se transporta por el canal de comunicaciones. 
+Una señal portadora es una onda eléctrica que puede ser modificada en alguno de sus parámetros por la señal de información para obtener una señal modulada y que se transporta por el canal de comunicaciones~\cite{modulacion-radioacademy}.
 
 Esta onda portadora también ayuda a solucionar el problema del tamaño de las antenas. El tamaño de una antena ($L$) debe ser proporcional a la longitud de la onda ($\lambda$), para así poder apreciar los cambios de la señal. Por ello, tenemos lo siguiente:
 \begin{align}
@@ -171,9 +176,9 @@ A pesar de que existan dos tipos de modulación, en el contexto del IoT la modul
 A continuación, se van a analizar las diferentes técnicas de modulación digital que se usan en el IoT.
 
 \subsection{Modulación ASK y OOK}
-La modulación ASK es un tipo de modulación de amplitud, por lo que los datos se representan variando la amplitud de la onda portadora. OOK por su parte es una forma de ASK donde la señal portadora se apaga y enciende para representar los bits 0 y 1. 
+La modulación ASK es un tipo de modulación de amplitud, por lo que los datos se representan variando la amplitud de la onda portadora. OOK por su parte es una forma de ASK donde la señal portadora se apaga y enciende para representar los bits 0 y 1~\cite{ask-unidad3}.
 
-En ASK, la presencia de una onda portadora a una amplitud específica representa un bit 1, mientras que una amplitud diferente o la ausencia de la onda representa un bit 0. La fórmula para representar esta onda es la siguiente:
+En ASK, la presencia de una onda portadora a una amplitud específica representa un bit 1, mientras que una amplitud diferente o la ausencia de la onda representa un bit 0. La fórmula para representar esta onda es la siguiente~\cite{modulacion-uv}:
 \begin{align}
     U_{ASK}(t) = A \Big[1 \pm \frac{V(t)}{A} \Big] \cos(2\pi \nu_p t) = 
     A [1 \pm m(t)] \cos(2\pi \nu_p t) \label{eq:ask}
@@ -190,7 +195,7 @@ Se puede ver en la ecuación~\ref{eq:ask} que la amplitud de la señal portadora
 \end{figure}
 
 \newpage
-Este tipo de modulación tiene sus ventajas y desventajas.
+Este tipo de modulación tiene sus ventajas y desventajas~\cite{ventajas-desventajas-ask}.
 \begin{itemize}
     \item \textbf{Ventajas:}
     \begin{itemize}
@@ -208,7 +213,7 @@ Este tipo de modulación tiene sus ventajas y desventajas.
 \subsection{Modulación FSK}
 La modulación FSK (Frequency Shift Keying) es un tipo de modulación digital que utiliza dos o más frecuencias diferentes para representar los bits 0 y 1. En este caso, la frecuencia de la señal portadora se cambia en función de la señal moduladora.
 
-Podemos definir la señal FSK con la siguiente expresión:
+Podemos definir la señal FSK con la siguiente expresión~\cite{modulacion-uv}:
 \begin{align}
     U_{FSK}(t) =
     \left\{
@@ -228,7 +233,7 @@ Podemos ver en la ecuación~\ref{eq:fsk} cómo esta vez la amplitud $A$ permanec
 \caption{Ejemplo de modulación FSK.\label{fig:fsk}}
 \end{figure}
 
-Este tipo de modulación tiene sus ventajas y sus desventajas.
+Este tipo de modulación tiene sus ventajas y sus desventaja~\cite{ask-unidad3}.
 \begin{itemize}
     \item \textbf{Ventajas:}
     \begin{itemize}
@@ -246,7 +251,7 @@ Este tipo de modulación tiene sus ventajas y sus desventajas.
 \end{itemize}
 
 \subsection{Modulación PSK, QPSK y Modulación de Orden Superior}
-La modulación PSK (Phase Shift Keying) es un tipo de modulación digital en la cuál se modifica la fase de la señal portadora para representar la información. En su forma más sencilla, BPSK (Binary Phase Shift Keying), se utilizan dos fases diferentes (0ºy 180º) para representar los bits 0 y 1:
+La modulación PSK (Phase Shift Keying) es un tipo de modulación digital en la cuál se modifica la fase de la señal portadora para representar la información. En su forma más sencilla, BPSK (Binary Phase Shift Keying), se utilizan dos fases diferentes (0ºy 180º) para representar los bits 0 y 1~\cite{modulacion-uv}:
 \begin{align}
     U_{PSK}(t) =
     \left\{
@@ -266,7 +271,7 @@ Se puede ver un ejemplo de modulación PSK en la figura~\ref{fig:psk}.
 
 Otro tipo de modulación PSK es la modulación por desplazamiento de fase en cuadratura (QPSK), que utiliza cuatro fases diferentes (0º, 90º, 180º y 270º) para representar dos bits de información a la vez. Esto permite una mayor eficiencia espectral en comparación con BPSK.\@
 
-La modulación PSK tiene sus ventajas y desventajas.
+La modulación PSK tiene sus ventajas y desventajas~\cite{inproceedings}.
 \begin{itemize}
     \item \textbf{Ventajas:}
     \begin{itemize}
@@ -335,20 +340,74 @@ Esta técnica de modulación tiene varias ventajas y desventajas.
     \end{itemize}
 \end{itemize}
 
-\subsection{Modulación de Espectro Ensanchado}
+\subsection{Modulación de Espectro Ensanchado CSS}
 
-\section{Tecnologías de Comunicación}
+La Modulación de Espectro Ensanchado (Spread Spectrum Modulation) es una técnica de comunicación inalámbrica en la que la señal transmitida se distribuye intencionalmente sobre un ancho de banda mucho mayor que el mínimo necesario para enviar la información.
+
+Algunos ejemplos de modulación de espectro ensanchado son la modulación por salto de frecuencia (FHSS), la modulación por secuencia directa (DSSS) y la modulación de espectro ensanchado por código de secuencia (CSS).\@ Esta última es utilizada por el protocolo LoRaWAN.\@
+
+Para entender cómo funciona la modulación CSS es necesario comprender primero qué es un chirp. Un chirp es una señal cuya frecuencia cambia de forma continua a lo largo del tiempo. El funcionamiento de la modulación CSS es el siguiente:
+\begin{enumerate}
+    \item Se agrupan los bits en símbolos.
+    \item Se crea un chirp de referencia que barre todo el ancho de bada $B$ en un tiempo $T$. Por ejemplo, si $B = 125 kHz$ y $T = 1 ms$, el chirp barrerá 125 kHz/ms.
+    \item Cada símbolo se representa mediante un desplazamiento crítico en el chirp base. Por ejemplo, si el símbolo es $3$ el chirp transmitido comienza en $f_{\min} + 3\Delta f$. Finalmente el receptor compara el chirp con el chirp base para decodificar el símbolo.
+\end{enumerate}
 
 \newpage
-\section{Técnicas de modulación}
+Podemos ver un ejemplo de modulación CSS en la figura~\ref{fig:css}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=11cm]{images/CSS.png}
+    \caption{Ejemplo de chirps resultantes en una modulación CSS.\label{fig:css}}
+\end{figure}
 
-\newpage
+Esta técnica de modulación tiene varias ventajas y desventajas.
+\begin{itemize}
+    \item \textbf{Ventajas:}
+    \begin{itemize}
+        \item La modulación CSS es altamente resistente al ruido y a la interferencia, lo que la hace ideal para aplicaciones de IoT en entornos ruidosos.
+        \item Esta técnica permite una alta eficiencia energética, lo que es crucial para dispositivos IoT alimentados por batería.
+        \item La modulación CSS permite la coexistencia de múltiples dispositivos en el mismo canal de comunicación sin interferencias significativas.
+    \end{itemize}
+
+    \item \textbf{Desventajas:}
+    \begin{itemize}
+        \item CSS ofrece una excelente sensibilidad del receptor, lo que permite la comunicación a largas distancias con bajos niveles de potencia.
+        \item La dispersión de la señal sobre un ancho de banda amplio hace que CSS sea muy resistente a las interferencias de banda estrecha y al ruido.
+        \item La naturaleza de espectro ensanchado de CSS proporciona resistencia al desvanecimiento multitrayecto y al efecto Doppler.
+    \end{itemize}
+
+    \item \textbf{Desventajas:}
+    \begin{itemize}
+        \item La velocidad de datos alcanzable con CSS suele ser menor en comparación con las técnicas de modulación de banda estrecha debido a la dispersión de la señal en un ancho de banda mayor.
+        \item El procesamiento de señales de chirp puede ser más complejo que el de esquemas de modulación más simples.
+    \end{itemize}
+\end{itemize}
+
+\vspace{1em}
 \section{Implementación y aplicación en IoT}
+La implementación de técnicas de modulación en IoT se adapta a los requisitos específicos de cada aplicación, buscando un equilibrio entre el consumo de energía, el alcance, la velocidad de datos y la resistencia a las interferencias.
 
-\newpage
-\section{Desafíos y perspectivas futuras}
+Vamos a ver algunos ejemplos prácticos de qué modulación usar en cada caso.
+\begin{itemize}
+    \item En hogares inteligentes, Zigbee, con O-QPSK o BPSK, facilita redes de baja potencia para dispositivos como luces y sensores, priorizando el bajo consumo y la capacidad de malla.
+    \item Las cámaras de seguridad inteligentes emplean Wi-Fi con OFDM y QAM (un tipo de modulación AM) para la transmisión de video de alta resolución, requiriendo altas velocidades de datos.
+    \item En la agricultura inteligente, LoRaWAN con modulación CSS permite la comunicación de largo alcance y bajo consumo para sensores que monitorizan las condiciones del suelo y el clima en grandes extensiones.
+    \item Para el seguimiento de activos y la lectura inteligente de contadores, NB-IoT utiliza principalmente $\pi/2$-BPSK y QPSK, ofreciendo buena cobertura y bajo consumo a través de redes celulares.
+    \item En la automatización industrial, donde la fiabilidad y la baja latencia son cruciales, se están explorando tecnologías como 5G con modulación QAM de orden superior y OFDM para soportar la comunicación en tiempo real y el control de maquinaria.
+    \item Los sistemas de identificación por radiofrecuencia (RFID) a menudo utilizan la modulación ASK o PSK para la comunicación de corto alcance y bajo consumo de energía~\cite{yin2025low}. En aplicaciones de telemetría médica, se utiliza ASK debido a su bajo consumo de energía y simplicidad. Los controles remotos para puertas de garaje y sistemas de entrada sin llave también emplean ASK.\@
+    \item La modulación FSK se encuentra en sistemas de buscapersonas para mensajes de texto, redes de sensores inalámbricos de baja potencia, y en Bluetooth y BLE a través de GFSK.En el ámbito del hogar inteligente, los termostatos y sistemas de seguridad inalámbricos pueden utilizar FSK para una comunicación robusta.
+    \item QPSK es ampliamente utilizado en sistemas de comunicación por satélite, redes inalámbricas y comunicaciones por fibra óptica.En el contexto del IoT, se investiga su uso en sistemas de retrodispersión ambiental. También es la modulación empleada en IEEE 802.11b y NB-IoT.
+    \item OFDM es la base de Wi-Fi para dispositivos IoT que requieren altas velocidades de datos.También se está considerando para NB-IoT para mejorar la eficiencia y la capacidad~\cite{cardarilli2021design}.
+\end{itemize}
 
-\newpage
+
+\vspace{1em}
 \section{Conclusiones}
+La modulación de señales es un componente fundamental de las comunicaciones de dispositivos IoT, ya que permite la transmisión eficiente y fiable de datos entre una amplia gama de dispositivos y aplicaciones. La elección de la técnica de modulación adecuada depende de una compleja interacción de factores, incluyendo los requisitos de la aplicación en términos de alcance, velocidad de datos, consumo de energía y robustez frente a las interferencias, así como las limitaciones de costo y complejidad de los dispositivos IoT.
 
+Las técnicas de modulación digital como ASK y OOK son simples y de bajo consumo, ideales para aplicaciones de bajo ancho de banda y corto alcance como RFID y controles remotos. FSK ofrece una mayor robustez al ruido, lo que la hace adecuada para aplicaciones como redes de sensores inalámbricos y Bluetooth. PSK y QPSK proporcionan una mejor eficiencia espectral y robustez, encontrando uso en tecnologías como NB-IoT y algunos protocolos de corto alcance. Las técnicas avanzadas como OFDM son esenciales para aplicaciones de alta velocidad de datos como Wi-Fi, mientras que el espectro ensanchado por chirp (CSS) en LoRaWAN destaca en comunicaciones de bajo consumo y largo alcance.
+
+\printbibliography[title={Bibliografía}]
+\addcontentsline{toc}{section}{Referencias}
 \end{document}
