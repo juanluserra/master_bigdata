@@ -1,2 +1,2 @@
 #!/usr/bin/bash
-python ~/Descargas/accumulator-server.py --url /alerta
+python ./accumulator-server.py --url /alerta
