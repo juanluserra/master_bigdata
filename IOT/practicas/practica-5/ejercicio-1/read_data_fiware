@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+curl -sG 'http://155.54.225.141:1026/v2/entities/Laboratorio13'
