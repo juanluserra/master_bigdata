@@ -46,10 +46,10 @@ cat("Número total de valoraciones: ", sum(rowCounts(MovieLense)), "\n")
 cat("Rango de calificaciones: ", range(getRatings(MovieLense)), "\n")
 cat("Densidad de la matriz: ", sum(rowCounts(MovieLense)) / (nrow(MovieLense) * ncol(MovieLense)), "\n")
 
-hist(getRatings(MovieLense), breaks = 5, main = "Distribución de calificaciones (MovieLense)", xlab = "Estrellas")
+barplot(table(getRatings(MovieLense)), main = "Distribución de calificaciones (MovieLense)", xlab = "Estrellas", ylab = "Frecuencia")
 ```
 
-Podemos ver que el dataset MovieLense es un dataset de dimensinoes $934\times 1664$, tiene un total de 99393 valoraciones. Estas valoraciones están en un rando 1-5 (números enteros). Además, la densidad de la matriz es bastante baja. Se puede ver en la figura que las valoraciones se agrupan alrededor de las 3-4 estrellas, disminuyendo al alejarse de este rango.
+Podemos ver que el dataset MovieLense es un dataset de dimensinoes $934\times 1664$, tiene un total de 99393 valoraciones. Estas valoraciones están en un rando 1-5 (números enteros). Además, la densidad de la matriz es bastante baja. Se puede ver en la figura que las valoraciones se agrupan alrededor de las 4 estrellas, disminuyendo al alejarse de este rango.
 
 ```{r}
 data("Jester5k")
@@ -59,10 +59,10 @@ cat("Dimensiones Jester5k: ", dim(Jester5k), "\n")
 cat("Rango de Jester5k: ", range(getRatings(Jester5k)), "\n")
 cat("Densidad Jester5k: ", sum(rowCounts(Jester5k)) / (nrow(Jester5k) * ncol(Jester5k)), "\n")
 
-hist(getRatings(Jester5k), breaks = 5, main = "Distribución de calificaciones (Jester5k)", xlab = "Estrellas")
+hist(getRatings(Jester5k), breaks = 100, main = "Distribución de calificaciones (Jester5k)", xlab = "Estrellas")
 ```
 
-Podemos ver que el dataset Jester5k tiene dimensiones $5000\times 100$. Los elementos tienen un rango de entre -10 y 10 (aunque no se encuentran estos valores en las respuestas), por lo que el sistema de puntuación es diferente al de MovieLense. Además, la densidad del dataset Jester5k es mucho mayor que la de MovieLense. Podemos ver que la distribución de notas es parecida a la de MovieLense.
+Podemos ver que el dataset Jester5k tiene dimensiones $5000\times 100$. Los elementos tienen un rango de entre -10 y 10 (aunque no se encuentran estos valores en las respuestas), por lo que el sistema de puntuación es diferente al de MovieLense. Además, la densidad del dataset Jester5k es mucho mayor que la de MovieLense. Podemos ver que la distribución de notas es relativamente homogénea, aunque tiene un pico muy grande en torno al $0$ y otra zona elevada (aunque no tanto) en torno al $2.5$.
 
 ```{r}
 # Visualizamos la matriz
