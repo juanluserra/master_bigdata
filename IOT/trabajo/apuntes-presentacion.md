@@ -70,7 +70,7 @@ Las desventajas son:
 - A mayor orden, aunque se transmita más información, también es mayor el riesgo de pérdidas y fallos, ya que es más fácil confundir y mezclar fases debido al ruido.
 
 
-# Diapositiva 9 - Modulación OFDM
+# Diapositiva 10 - Modulación OFDM
 La modulación OFDM consiste en combinar diferentes modulaciones para transmitir más información. Esta modulación divide el ancho de banda disponible en varias subportadoras ortogonales. Las ondas ortogonales son las que su producto escalar integral es 0. 
 
 El funcioamiento de OFDM es el siguiente:
