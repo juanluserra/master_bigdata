@@ -116,3 +116,13 @@ Las ventajas son:
 Las desventajas son:
 - La velocidad de datos suele ser menor que con otras técnicas como OFDM, debido a la dispersión de la seál en un ancho de banda mayor.
 - El procesamiento de señales de chirp puede ser más complejo que esquemas de modulación más simples como ASK y FSK.
+
+
+# Diapoisitiva 13 - Ejemplos prácticos
+
+- Cámaras de seguridad Wifi -- OFDM, QAM. Necesitan transmitir grandes cantidades de datos a gran velocidad, por lo que OFDM y QAM son buenas opciones.
+- Agricultura Inteligente -- CSS. Se necesitan sensores de muy bajo consumo y una cobertura muy extensa. 
+- Seguimiento de activos y activos y lectura de contadores -- PSK. En este tipo de situaciones se necesita un buena cobertura, para lo cual PSK es bueno. Esto se debe a que estos métodos reducen los picos de potencia, lo que se traduce en una mejor cobertura debido a ciertas características de los amplificadores.
+- Telemetría médica -- ASK. Estos dispositivos requieren simplicidad y bajo consumo.
+- Hogar inteligente y termostatos - FSK. En estos casos se busca un coste bajo y fiabilidad. La resistencia al ruido y simplicidad que ofrece FSK es ideal en estos casos.
+
