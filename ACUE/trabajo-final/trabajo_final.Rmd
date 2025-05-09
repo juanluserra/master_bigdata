@@ -1,4 +1,14 @@
-```{r}
+# Proyecto Final: Aplicaciones y Casos de Uso Empresarial
+
+Movistar está preocupada por el aterrizaje de Netflix y por la oferta de Vodafone. Teme que algunos de sus clientes que tienen contratado MovistarPlus se vean atraídos por la nueva oferta de Vodafone. Os plantea la realización del diseño de una campaña de incentivos para mantener el mayor número de clientes en su empresa. En concreto, os piden:
+
+1. Análisis de perfiles de posibles desertores. Se debe determinar un perfil del posible desertor, así como el perfil de aquel que no lo es. La empresa proporciona un dataset con un histórico de clientes que han dejado la empresa y los que no. A partir de él, se deben identificar los perfiles de aquellos que han abandonado la empresa para prever quiénes tienen una alta probabilidad de solicitar portabilidades a Vodafone. Los perfiles deben incluir los atributos relevantes y los valores correspondientes para dichos atributos.
+
+2. Segmentación/creación de grupos entre los desertores y los no desertores. Se requiere agrupar a los usuarios dentro de cada clase en función de sus atributos más relevantes. Esta segmentación será clave para diseñar la campaña de incentivos.
+
+3. Diseño de la campaña de incentivos. Es necesario identificar los incentivos que se ofrecerán a cada grupo. Para ello, habrá que estimar el valor derivado de la campaña en cada uno de los grupos de interés y simular los resultados de dicha campaña.
+
+```{r, include=FALSE}
 if (interactive()) {
     setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 }
@@ -12,6 +22,11 @@ library(dplyr)
 library(gridExtra)
 ```
 
+## Análisis de perfiles de desertores.
+
+Para poder realizar el análsis de perfiles de desertores se va a hacer un análisis de Random Forest. Se va a utilizar este método ya que es un método de clasificación que permite identificar la importancia de las variables predictoras en la predicción de la variable dependiente. En este caso, la variable dependiente es "Churn", que indica si el cliente ha desertado o no.
+
+Lo primero que se va a hacer es cargar el dataset, explorarlo y limpiarlo.
 ```{r}
 # Cargamos los datos
 data <- read.csv("data.csv", sep = ",", header = TRUE, stringsAsFactors = FALSE)
@@ -20,9 +35,6 @@ str(data)
 
 # Eliminamos la variable de ID
 data$customerID <- NULL
-
-# Eliminamos la variable tenure
-data$tenure <- NULL
 
 # Convertimos las variables character a factor
 data <- data.frame(lapply(data, function(x) {
@@ -40,6 +52,9 @@ data$SeniorCitizen <- as.factor(data$SeniorCitizen)
 print(dfSummary(data))
 ```
 
+Podemos ver que el dataset tiene muchas variables "character" que hay que pasar a "factor". También hay una variable "SeniorCitizen" que es numérica pero que en realidad es un factor, ya que tiene valores enteros discretos (0 y 1).
+
+Ahora vamos a dividir el dataset en dos partes: una para entrenamiento y otra para test. Vamos a utilizar el 80% de los datos para entrenamiento y el 20% para test. Esto lo haremos utilizando la función `createDataPartition` del paquete `caret`.
 ```{r}
 # Separamos los datos en train y test
 set.seed(123)
@@ -48,6 +63,7 @@ data.train <- data[train.index, ]
 data.test <- data[-train.index, ]
 ```
 
+Una vez tenemos los datos separados, vamos a crear un modelo de Random Forest para predecir la variable "Churn". Vamos a utilizar 1000 árboles y 3 variables aleatorias en cada árbol. También vamos a calcular la importancia de las variables predictoras. Al calcular esta importancia podemos ver cuatro formas diferentes de calcularla: "No", "Yes", "MeanDecreaseAccuracy" y "MeanDecreaseGini". En este caso vamos a utilizar "Yes", que es la importancia de una variable para que `Churn = Yes`. 
 ```{r}
 # Vamos a crear un modelo de bagging (RandomForest) para predecir los posibles desertores (data$Churn = 1)
 modelo_rf <- randomForest(Churn ~ ., data = data.train, ntree = 1000, mtry = 3, importance = TRUE, na.action = na.exclude)
@@ -58,6 +74,16 @@ print(modelo_rf)
 # Predicciones
 predictions_rf <- predict(modelo_rf, newdata = data.test, type = "prob")[, 2]
 
+# Vemos los predictores ordenados por importancia en función de la variable "Yes"
+importance(modelo_rf)[order(importance(modelo_rf)[, 2], decreasing = TRUE), ]
+
+# Gráfico de importancia
+varImpPlot(modelo_rf, main = "Importancia de los predictores")
+```
+
+Una vez tenemos creado el modelo, vamos a realizar las predicciones de este. Como el dataset tiene un desbalanceo entre las clases, vamos a utilizar la probabilidad de que el cliente sea desertor a la hora de determinar si es desertor o no. Se va a hacer así ya no solo por el desbalanceo de las clases, sino porque queremos que le modelo tienda más a clasificar como desertor que como no desertor, ya que desde el punto de vista comercial es más beneficioso clasificar bien los desertores a pesar de clasificar mal los no desertores. Una vez tengmaos las predicciones echas, vamos a crear unas matrices de confusión para ver el rendimiento del modelo.
+
+```{r}
 # Calculamos la frecuencia de Churn  = "Yes"
 prob.churn.1 <- sum(data.train$Churn == "Yes") / nrow(data)
 
@@ -65,19 +91,79 @@ prob.churn.1 <- sum(data.train$Churn == "Yes") / nrow(data)
 predicted.classes_rf <- ifelse(predictions_rf > prob.churn.1, 1, 0)
 confusion_matrix_rf <- table(data.test$Churn, predicted.classes_rf)
 
+# Tabla de frecuencias de la variable Churn en el dataset de test
+round(prop.table(table(data.test$Churn)), 4) * 100
 # Matriz de confusión
-round(prop.table(confusion_matrix_rf * 100), 2)
+round(addmargins(prop.table(confusion_matrix_rf)), 4) * 100
 # Matriz de confusión con margen en columnas
-round(addmargins(prop.table(confusion_matrix_rf * 100, 2), 1), 2)
+round(addmargins(prop.table(confusion_matrix_rf, 2), 1), 4) * 100
 # Matriz de confusión con margen en filas
-round(addmargins(prop.table(confusion_matrix_rf * 100, 1), 2), 2)
-
-# Vemos los predictores ordenados por importancia en función de la variable "Yyes"
-importance(modelo_rf)[order(importance(modelo_rf)[, 2], decreasing = TRUE), ]
-
-# Gráfico de importancia
-varImpPlot(modelo_rf, main = "Importancia de los predictores")
+round(addmargins(prop.table(confusion_matrix_rf, 1), 2), 4) * 100
 ```
+
+Vemos que de los clientes no desertores hemos predicho bien el 68% y de los no desertores el 77%. En el caso de haber usado un método completamente aleatorio (una moneda con 50% de probabilidad de elegir uno u otro) hubiéramos acertado el 73% de los desertores y el 27% de los no desertores, por lo que el modelo consigue su objetivo, que es detectar correctamente a los desertores a costa de perder un poco de precisión en los no desertores. Esto se puede ver reflejado en la matriz de confusión con suma en filas, donde vemos que de los que se han detectado como no desertores el 89% son realmente no desertores, mientras que de los detectados como desertores el 46% realmente lo eran, ya que tiende a clasificar como desertores.
+
+Una vez que tenemos el modelo y vemos cómo funciona, vamos a analizar las variables más importantes para el modelo. Lo que se quiere conseguir analizando estas variables es ver cuál es el perfil de los desertores y cuál es el de los no desertores. Para poder analizar correctamente el perfil de los desertores vamos a seleccionar las 5 variables más importantes.
+
+```{r}
+# Seleccionamos las cinco variables más importantes
+significant.predictors <- importance(modelo_rf)[order(importance(modelo_rf)[, 2], decreasing = TRUE), ][1:5, 2]
+
+# Creamos un dataframe con la variable desertores y las variables más importantes
+data.significant <- data[, c("Churn", names(significant.predictors))]
+
+# Como primer análisis vamos a realizar un boxplot para las variables numéricas y un barplot para las categóricas.
+# Las variables numéricas son: "tenure".
+# Las variables categóricas son: "Contract", "TechSupport", "OnlineSecurity", "InternetService".
+
+# Tenure
+plot1 <- ggplot(data.significant, aes(x = Churn, y = tenure)) +
+    geom_boxplot() +
+    labs(title = "Distribución de Tenure por Churn", x = "Churn", y = "Tenure")
+grid.arrange(plot1)
+
+# Contract
+plot2 <- ggplot(data.significant, aes(x = Churn, fill = Contract)) +
+    geom_bar(position = "dodge") +
+    labs(title = "Distribución del Contract por Churn", x = "Churn", y = "Frecuencia")
+grid.arrange(plot2)
+
+# TechSupport
+plot3 <- ggplot(data.significant, aes(x = Churn, fill = TechSupport)) +
+    geom_bar(position = "dodge") +
+    labs(title = "Distribución del TechSupport por Churn", x = "Churn", y = "Frecuencia")
+grid.arrange(plot3)
+
+# OnlineSecurity
+plot4 <- ggplot(data.significant, aes(x = Churn, fill = OnlineSecurity)) +
+    geom_bar(position = "dodge") +
+    labs(title = "Distribución del OnlineSecurity por Churn", x = "Churn", y = "Frecuencia")
+grid.arrange(plot4)
+
+# InternetService
+plot5 <- ggplot(data.significant, aes(x = Churn, fill = InternetService)) +
+    geom_bar(position = "dodge") +
+    labs(title = "Distribución del InternetService por Churn", x = "Churn", y = "Frecuencia")
+grid.arrange(plot5)
+```
+
+Vamos a analizar las diferentes variables una a una:
+- **Tenure**: En el caso de los desertores la permanencia media es de unos 10 meses, pudiendo variar desde cerca de 0 hasta 30 meses en los cuartiles. En el caso de los no desertores la permanencia media está sobre los 38 meses, con un rango de 15 a 61 meses en los cuartiles.
+- **Contract**: En el caso de los desertores la gran mayoría tienen un contrato mensual. Por otro lado, en los no desertores aunque la mayoría tenga un contrato mensual también hay una gran parte que tiene un contrato anual o bianual.
+- **TechSupport**: En el caso del soporte técnico, la mayoría de los desertores no tienen este soporte. Sin embargo, en los no desertores aunque la mayoría no lo tiene es poca la diferencia con los que sí lo tienen o los que no tienen servicie de internet.
+- **OnlineSecurity**: En el caso de los desertores la mayoría no tiene Seguridad Online contratada. Por otro lado, en los no desertores aunque la mayoría no lo tiene también hay una gran parte que sí lo tiene o que no tiene servicio de internet.
+- **InternetService**: En el caso de los desertores la mayoría usan fibra óptica, con bastante diferencia hacia los otros servicios. Sin embargo, en los no desertores la mayoría usan DSL, aunque también hay una gran parte que usa fibra óptica o que no tiene servicio de internet.
+
+Ahora que hemos analizado los cinco factores más importantes podemos saber que el perfil de los desertores es el siguiente:
+- **Tenure**: De hasta 30 meses, pero centrándonos sobre los 10 meses.
+- **Contract**: La mayoría tienen un contrato mensual.
+- **TechSupport**: La mayoría no tienen soporte técnico.
+- **OnlineSecurity**: La mayoría no tienen Seguridad Online.
+- **InternetService**: La mayoría tienen fibra óptica.
+  
+## Segmentación/creación de grupos entre los desertores y los no desertores.
+
+Ahora vamos a realizar una segmentación de los desertores y no desertores. Vamos a dividir en dataset en dos: uno de desertores y otro de no desertores. Luego, usaremos el algoritmo de clustering PAM (Partitioning Around Medoids) para segmentar los desertores y no desertores. Vamos a usar el algoritmo PAM ya que permite variables categóricas. Una vez tengamos los clusters vamos a visualizar los resultados y segmentar los perfiles en grupos. En este caso cogeremos tan solo las tres variables más importantes del modelo de Random Forest, ya que si cogiéramos más no podríamos hacer un análisis efectivo e intuitivo de los resultados.
 
 ```{r}
 # Filtrar los atributos relevantes y la variable de clase
@@ -128,12 +214,14 @@ data.churn.noscaled$cluster <- pam.churn$clustering
 data.nochurn.noscaled$cluster <- pam.nochurn$clustering
 
 # Visualizamos las variables de los clusters
-plot1 <- ggplot(data.churn.noscaled, aes(x = factor(cluster), y = TotalCharges)) +
+plot1 <- ggplot(data.churn.noscaled, aes(x = factor(cluster), y = tenure)) +
     geom_boxplot() +
-    labs(title = "Distribución de TotalCharges por Cluster", x = "Cluster ID", y = "TotalCharges")
-plot2 <- ggplot(data.nochurn.noscaled, aes(x = factor(cluster), y = TotalCharges)) +
+    labs(title = "Distribución de Tenure por Cluster
+    en desertores", x = "Cluster ID", y = "Tenure")
+plot2 <- ggplot(data.nochurn.noscaled, aes(x = factor(cluster), y = tenure)) +
     geom_boxplot() +
-    labs(title = "Distribución de TotalCharges por Cluster", x = "Cluster ID", y = "TotalCharges")
+    labs(title = "Distribución de TotalCharges por Cluster
+    en no desertores", x = "Cluster ID", y = "Tenure")
 grid.arrange(plot1, plot2, nrow = 1)
 
 plot1 <- ggplot(data.churn, aes(x = factor(pam.churn$clustering), fill = Contract)) +
@@ -157,3 +245,180 @@ plot2 <- ggplot(data.nochurn, aes(x = factor(pam.nochurn$clustering), fill = Tec
 grid.arrange(plot1, plot2, nrow = 1)
 ```
 
+Vamos a analizar los resultados de los clusters de desertores:
+- **Tenure**: Hay dos divisiones, una con una permanencia baja (poco menos 10 meses) y otra con una permanencia media (poco más de 20 meses). 
+- **Contract**: Hay dos grupos, el mayoritario con un contrato mensual y otro minoritario que, a pesar de que su mayoría sea de contrato mensual, no hay tanta diferencia con contratos anuales o bianuales.
+- **TechSupport**: En el grupo mayoritario casi nadie tiene soporte técnico, mientras que en el grupo minoritario casi todos tienen soporte técnico. 
+
+Por lo tanto, tenemos dos grupos de desertores:
+1. Un desertor con muy poca permanencia (por lo que acaba de optar por los sevicios de Movistar), que tiene el contrato mes a mes (por lo que no tiene la seguridad de seguir al menos un año más) y que no tiene soporte técnico (seguramente porque no tenga la cofianza en la empresa como para gastar más dinero en un servicio adicional).
+2. Un desertor con una permanencia medi (por lo que ya lleva un tiempo con Movistar), que tiene el contrato mes a mes pero puede llegar a pensar o estaba pensando en un contrato anual o bianual (por lo que estaba empezando a confiar en la empresa) y que tiene soporte técnico (por lo que ya tiene confianza en la empresa como para gastar más dinero en un servicio adicional).
+
+
+Ahora vamos a analizar los resultados de los clusters de no desertores:
+ **Tenure**: Hay tres divisiones, una con permanencia baja (poco más de 10 meses), otra con permanencia media-alt (unos 40 meses) y otra con permanencia alta (casi 70 meses).
+- **Contract**: Hay tres grupos, uno con un contrato casi exclusivamente mensual, otro con un contrato mayoriatiariamente anual (aunque más a la par con otros contratos) y otro con un contrato casi exclusivamente bianual.
+- **TechSupport**: Hay tres grupos, uno casi exclusivamente sin soporte técnico, otro sin prioridades respecto a tener soporte técnico o no, y otro con la gran mayoría con soporte ténico.
+
+Por lo tanto, tenemos tres grupos de no desertores:
+1. Un no desertor con poca permanencia, que tiene el contrato mes a mes (por lo que no tiene la seguridad de seguir al menos un año más) y que no tiene soporte técnico (seguramente porque no tenga la cofianza en la empresa como para gastar más dinero en un servicio adicional).
+2. Un no desertor con una permanencia media, que tiene el contrato anual y que no hay prioridades respecto a tener soporte técnico, no tenerlo o no tener conexión a internet.
+3. Un no desertor con una permanencia alta, que tiene el contrato bianua ly que tiene soporte técnico, por lo que denota una gran confianza en la empresa.
+
+## Diseño de la campaña de incentivos.
+
+Los principales grupos para generar incentivos son el primero grupo de deserotes y no desertores, ya que tienen las mismas características. Esto puede denotar que el grupo de no desertores con estas caractersísticas está al borde de pasar o al grupo 1 de desertores o al grupo 2 o 3 de no desertores. Por ello, hay que intentar que el grupo de no desertores no pase al grupo de desertores. Algunos incentivos que se le pueden ofrecer son:
+- **Ofertas a cambio de permanencia**: Se pueden ofrecer productos a precios muy bajos a cambio de diferentes tipos de permanencia. Por ejemplo, un móvil a 0 euros a cambio de una permanencia de 24 meses.
+- **Descuentos en el contrato**: Se pueden ofrecer descuentos en el contrato a cambio de una permanencia. Por ejemplo, un 20% de descuento en un contrato anual en comparación con el 0% del contrato mensual.
+- **Descuentos en el soporte técnico**: Se pueden ofrecer descuentos en el soporte técnico.
+
+Ahora vamos a pasar a los otros grupos. Estos otros grupos tienen la característica de haber estado mucho tiempo en Movistar, con contratos anuales o bianuales e incluso teniendo soporte técnico. Sin embargo, seguramente atraídos por las ofertas de otras empresas o un reciente descontento con la empresa, están pensando en desertar, conviertiéndose así en el segundo grupo de desertores. Podrían avisar de esto cambiando a contratos mensuales o incluso cancelando directamente los servicios de Movistar. Algunos incentivos que se le pueden ofrecer son:
+- **Regalos a cambio de la gran permanencia que tienen:** Se les puede ofrecer un regalo (ya sea un descuento en productos, regalo de meses en un servicio, etc) debido a la gran permanencia que tienen. Por ejemplo, 6 meses de servicio técnico gratuito al cumplir 40 meses de permanencia.
+- **Descuentos en el contrato**: Se les puede ofrecer descuentos en el contrato bianual al llevar una buena cantidad de años con este contrato. También se les puede ofrecer a las personas con contrato anual descuentos para incentivar el contrato bianual.
+- **Partes gratuitas en el servicio técnico**: A los usuarios con un gran tiempo con servicio técnico se les puede ofrecer partes gratuitas de este servicio. Por ejemplo, en la reparación de un router de menos de "X" años, se les puede ofrecer una parte gratuita de la reparación.
+
+Ahora que hemos definido los grupos y los incentivos, hay que simular los resultados de la campaña. Para ello, vamos a estimar porcentajes modestos de éxito en la campaña. Supongamos:
+- **Grupo 1 de no desertores**: En torno al 10% se pasan al siguinete grupo (el grupo 2) de no desertores. Suponiendo que el 100% de los desertores del grupo 1 son de este grupo de no desertores, este grupo de desertores se puede ver reducido en un 10% (es decir, el 90% de los desertores del grupo 1 pertenecerán al grupo 2 de no desertores).
+- **Grupo 2 de no desertores**: Al ser un grupo con más confianza en la empresa, será más fácil hacer que no deserten. Las políticas de permanencia hacen que el 10% se quede en el grupo 2 y que el 5% pase al grupo 3 de no desertores. Suponiendo que el grupo 2 de desrtores se compone por 2/3 del grupo 2 de no desertores y 1/3 del grupo 3 de no desertores, esto hace que el grupo 2 de desertores se vea reducido un 
+
+
+Vamos a ver cómo simular el resultado de estas campañas. El flujo de clientes después de una campaña sería el siguiente:
+1. Tenemos unos clientes iniciales (dataset actual)
+2. Se incorporan nuevos clientes a la empresa. Estos pertenecerían al grupo 1 de no desertores.
+3. Se realiza un movimiento de clientes entre los grupos de no desertores.
+4. Se realiza una fuga de clientes al grupo de desertores con unas nuevas probabiliadades debidas a la campaña.
+
+Vamos a representar matemáticamente todas estas cantidades y probabilidades. Representaremos los grupos de desertores como $B_i$ y los grupos de no desertores como $A_i$, teniendo así cantidades como $N($A_i$) o $N($B_i$)$, que representan el número de clientes en el grupo $A_i$ o $B_i$. Luego tenemos las probabiliaddes de flujo entre no desertores $P(B_{i} \rightarrow B_{j})$ y las probabilidades de flujo de deserción $P(B_{i} \rightarrow A_{j})$. Además, inicialmente tenemos un aumento de clientes en el grupo 1 de no desertores como hemos mencionado antes, que representaremos como $N_{0}$. Por lo tanto, si definimos $t_0$ como antes de la campaña y $t_1$ como después de la campaña, podemos definir el flujo de clientes como:
+$$
+    N(t_1; B_1) = 
+        N_0 + 
+        N(t_0; B_1)(
+            1 - 
+            P(t_1; B_1 \rightarrow A_1) - 
+            P(t_1; B_1 \rightarrow B_2)
+        ) \\
+    N(t_1; B_2) = 
+        N(t_0; B_2)(
+            1 -
+            P(t_1; B_2 \rightarrow A_2) -
+            P(t_1; B_2 \rightarrow B_3)
+        ) +
+        N(t_0; B_1)P(t_1; B_1 \rightarrow B_2) \\
+    N(t_1; B_3) =
+        N(t_0; B_3)(
+            1 -
+            P(t_1; B_3 \rightarrow A_2)
+        ) +
+        N(t_0; B_2)P(t_1; B_2 \rightarrow B_3) \\
+    N(t_1; A_1) =
+        N(t_0; A_1) + 
+        N(t_0; B_1)P(t_1; B_1 \rightarrow A_1) \\
+    N(t_1; A_2) =
+        N(t_0; A_2) + 
+        N(t_0; B_2)P(t_1; B_2 \rightarrow A_2) +
+        N(t_0; B_3)P(t_1; B_3 \rightarrow A_2)
+$$
+
+Vamos a dar valores a las probabilidades iniciales. Estos valores no son reales y son simplemente de demostración para la simulación.
+$$
+    P(t_0; B_1 \rightarrow A_1) = 0.20 \\
+    P(t_0; B_1 \rightarrow B_2) = 0.00 \\
+    P(t_0; B_2 \rightarrow A_2) = 0.10 \\
+    P(t_0; B_2 \rightarrow B_3) = 0.00 \\
+    P(t_0; B_3 \rightarrow A_2) = 0.05
+$$
+
+Ahora, vamos a proponer nuevas probabilidades dentro de unos márgenes de mejora modestos:
+$$
+    P(t_0; B_1 \rightarrow A_1) = 0.15 \\
+    P(t_0; B_1 \rightarrow B_2) = 0.05 \\
+    P(t_0; B_2 \rightarrow A_2) = 0.05 \\
+    P(t_0; B_2 \rightarrow B_3) = 0.10 \\
+    P(t_0; B_3 \rightarrow A_2) = 0.01
+$$
+
+Ahora que tenemos el método de simulación y los valores necesarios, vamos a crear un dataset que guarde el número de clientes antes y después (con y sin campaña). También creamos un dataset para guardar las probabiliadades con y sin campaña.
+```{r}
+# Creamos un dataset con los clientes antiguos y los nuevos
+clientes <- data.frame(
+    "A1" = c(0, 0, 0),
+    "A2" = c(0, 0, 0),
+    "B1" = c(0, 0, 0),
+    "B2" = c(0, 0, 0),
+    "B3" = c(0, 0, 0)
+)
+rownames(clientes) <- c("antes", "después (con campaña)", "después (sin campaña)")
+
+# Introducimos los datos antiguos
+clientes$A1[1] <- nrow(data.churn.noscaled[data.churn.noscaled$cluster == 1, ])
+clientes$A2[1] <- nrow(data.churn.noscaled[data.churn.noscaled$cluster == 2, ])
+clientes$B1[1] <- nrow(data.nochurn.noscaled[data.nochurn.noscaled$cluster == 1, ])
+clientes$B2[1] <- nrow(data.nochurn.noscaled[data.nochurn.noscaled$cluster == 2, ])
+clientes$B3[1] <- nrow(data.nochurn.noscaled[data.nochurn.noscaled$cluster == 3, ])
+
+# Vemos el dataset
+clientes
+
+# Creamos un dataset con las probabilidades de flujo
+probs <- data.frame(
+    "B1toA1" = c(0, 0),
+    "B1toB2" = c(0, 0),
+    "B2toA2" = c(0, 0),
+    "B2toB3" = c(0, 0),
+    "B3toA2" = c(0, 0)
+)
+rownames(probs) <- c("sin campaña", "con campaña")
+
+# Introducimos los datos
+probs$B1toA1 <- c(0.10, 0.10)
+probs$B1toB2 <- c(0.00, 0.05)
+probs$B2toA2 <- c(0.10, 0.05)
+probs$B2toB3 <- c(0.00, 0.10)
+probs$B3toA2 <- c(0.05, 0.01)
+```
+
+Ahora que tenemos los datos, vamos a simular el flujo de clientes. Supondremos un aumento inicial de los clientes de un 10%.
+```{r}
+# Flujos con campaña
+clientes$B1[2] <- clientes$B1[1] + (clientes$B1[1] * 0.10) * (1 - probs$B1toA1[2] - probs$B1toB2[2])
+clientes$B2[2] <- clientes$B2[1] * (1 - probs$B2toA2[2] - probs$B2toB3[2]) + clientes$B1[1] * probs$B1toB2[2]
+clientes$B3[2] <- clientes$B3[1] * (1 - probs$B3toA2[2]) + clientes$B2[1] * probs$B2toB3[2]
+clientes$A1[2] <- clientes$A1[1] + clientes$B1[1] * probs$B1toA1[2]
+clientes$A2[2] <- clientes$A2[1] + clientes$B2[1] * probs$B2toA2[2] + clientes$B3[1] * probs$B3toA2[2]
+
+# Flujos sin campaña
+clientes$B1[3] <- clientes$B1[1] + (clientes$B1[1] * 0.10) * (1 - probs$B1toA1[1] - probs$B1toB2[1])
+clientes$B2[3] <- clientes$B2[1] * (1 - probs$B2toA2[1] - probs$B2toB3[1]) + clientes$B1[1] * probs$B1toB2[1]
+clientes$B3[3] <- clientes$B3[1] * (1 - probs$B3toA2[1]) + clientes$B2[1] * probs$B2toB3[1]
+clientes$A1[3] <- clientes$A1[1] + clientes$B1[1] * probs$B1toA1[1]
+clientes$A2[3] <- clientes$A2[1] + clientes$B2[1] * probs$B2toA2[1] + clientes$B3[1] * probs$B3toA2[1]
+
+# Truncamos los valores del dataset a números enteros con la función suelo
+clientes <- floor(clientes)
+
+# Vemos el dataset
+clientes
+
+# Para visualizar mejor creamos un dataset que contenga dos filas, una con los datos despues de la campaña menos los de antes y otro con los valores sin campaña menos los de antes
+clientes.simulacion <- data.frame(
+    "A1" = c(clientes$A1[2] - clientes$A1[1], clientes$A1[3] - clientes$A1[1]),
+    "A2" = c(clientes$A2[2] - clientes$A2[1], clientes$A2[3] - clientes$A2[1]),
+    "B1" = c(clientes$B1[2] - clientes$B1[1], clientes$B1[3] - clientes$B1[1]),
+    "B2" = c(clientes$B2[2] - clientes$B2[1], clientes$B2[3] - clientes$B2[1]),
+    "B3" = c(clientes$B3[2] - clientes$B3[1], clientes$B3[3] - clientes$B3[1])
+)
+rownames(clientes.simulacion) <- c("con campaña", "sin campaña")
+
+# Representamos los resultados
+barplot(as.matrix(clientes.simulacion),
+    beside = TRUE,
+    col = c("blue", "red"),
+    main = "Resultados de la campaña de incentivos",
+    xlab = "Grupos",
+    ylab = "Número de clientes",
+    legend.text = rownames(clientes.simulacion),
+    args.legend = list(x = "topright"),
+    names.arg = c("A1", "A2", "B1", "B2", "B3")
+)
+abline(h = 0, col = "black")
+```
