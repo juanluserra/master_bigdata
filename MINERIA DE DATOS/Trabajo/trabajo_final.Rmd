@@ -12,6 +12,7 @@ library(dplyr)
 library(tidyr)
 library(caret)
 library(gridExtra)
+library(VIM)
 ```
 
 
@@ -62,8 +63,15 @@ data.vars <- data %>% select(NO_annualMean, PM10_daysOver50, PM2.5_annualMean)
 data.vars.neg <- data.vars %>% filter(NO_annualMean < 0 | PM10_daysOver50 < 0 | PM2.5_annualMean < 0)
 
 # Vemos el porcentaje de filas con valores negativos
-p.rows.neg <- nrow(data.vars.neg) / nrow(data) * 100
+p.rows.neg <- nrow(data.vars.neg) / (nrow(data) - nrow(data.vars.neg)) * 100
 p.rows.neg
+
+# TODO: Ver si se puede hacer algo con los valores negativos pasándolos a NA con la librería VIM (ver prácticas)
+```
+
+```{r}
+# ELIMINAR LOS VALORES NEGATIVOS
+# CUANDO NO SE PUEDA HACER NADA MÁS
 
 # Al ser solo un 2.3% de las filas, vamos a eliminarlas
 data <- data %>% filter(NO_annualMean >= 0 & PM10_daysOver50 >= 0 & PM2.5_annualMean >= 0)
@@ -153,3 +161,4 @@ Con el gráfico anterior hay algunas variables que tienen distribuciones relativ
 - **PM10_annualMean, PM10_daysOver50**: En los dos casos la media de la alta contaminacion es mayor a la de la baja contaminacion, teniendo distribuciones muy diferentes entre sí.
 
 Podemos afirmar, por tanto, que las zonas con alta contaminación por PM2.5 suelten tener también una alta contaminación por PM10. Debido a esto, si la zona tiene registros de muchos días con la contaminacion por PM10 mayor a 50, es probable de que la contaminación por PM2.5 sea también alta. El tener valores muy elevados de NO2 y NO también puede indicar que la contaminación por PM2.5 es alta, aunque es menos evidente que en el caso de PM10, ya que las distribuciones se solapan más. El caso de la baja contaminación por PM2.5 cumple las condiciones contrarias.
+
