@@ -1,0 +1,155 @@
+```{r}
+# Seleccionamos el "path" de este archivo como el directorio de trabajo
+if (interactive()) {
+    setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+}
+
+# Cargamos las librerías necesarias
+library(summarytools)
+library(ggplot2)
+library(scales)
+library(dplyr)
+library(tidyr)
+library(caret)
+library(gridExtra)
+```
+
+
+```{r}
+# Leemos el archivo CSV
+data <- read.csv("data.csv", sep = ";", stringsAsFactors = TRUE)
+
+# Inspeccionamos las características del dataframe
+dim(data)
+str(data)
+head(data)
+```
+
+Podemos ver que el dataframe tiene 24120 valores y 15 predictores. De todos estos predictores, hay 1 que no nos interesa: `kreis_code`. Este es simplemente un código que identifica la región, la cuAl ya se especifica en `kreis`. Por lo tanto, vamos a eliminar esta columna.
+
+Ahora vamos también a analizar los valores NA y duplicados, eliminándolos si es necesario.
+```{r}
+# Vemos el porcentaje de filas con valores NA
+p.rows.na <- sum(rowSums(is.na(data)) > 0) / nrow(data) * 100
+p.rows.na
+
+# Vemos el porcentaje de filas duplicadas
+p.rows.duplicated <- sum(duplicated(data)) / nrow(data) * 100
+p.rows.duplicated
+
+# Como apenas hay filas con valores NA vamos a eliminarlas directamente, ya que no deberían afectar a la distribución de los resultados
+data <- na.omit(data)
+
+# Eliminamos la columna "kreis_code"
+data$kreis_code <- NULL
+
+# Pasamos la variable "year" a factor
+data$year <- as.factor(data$year)
+```
+
+Hemos eliminado las flas con valores `NA` ya que apenas representaban un 0.10% del dataset. Vamos ahora que no hay valores `NA` un resumen estadístico de los datos.
+```{r}
+# Resumen estadístico de las variables numéricas
+print(dfSummary(data, varnumbers = FALSE, style = "grid"))
+```
+
+Vemos que hay algunas variables numéricas con valores negativos. Sin embargo, estas variables son porcentajes y concentraciones de partículas, por lo que los valores negativos no tienen sentido dada su definición matemática. Estas variables son: `NO_annualMean`, `PM10_daysOver50`, `PM2.5_annualMean`. Vamos a ver si podemos eliminar estos valores negativos.
+```{r}
+# Seleccioamos las variables que queremos inspeccionar
+data.vars <- data %>% select(NO_annualMean, PM10_daysOver50, PM2.5_annualMean)
+
+# Seleccionamos las filas con valores negativos
+data.vars.neg <- data.vars %>% filter(NO_annualMean < 0 | PM10_daysOver50 < 0 | PM2.5_annualMean < 0)
+
+# Vemos el porcentaje de filas con valores negativos
+p.rows.neg <- nrow(data.vars.neg) / nrow(data) * 100
+p.rows.neg
+
+# Al ser solo un 2.3% de las filas, vamos a eliminarlas
+data <- data %>% filter(NO_annualMean >= 0 & PM10_daysOver50 >= 0 & PM2.5_annualMean >= 0)
+
+# Volvemos a ver el resumen estadístico
+print(dfSummary(data, varnumbers = FALSE, style = "grid"))
+```
+
+Vemos que los valores de las variables categóricas están equilibrados, y que los valores de las variables numéricas en general son razonables. Sin embargo, hay algunos predictores numéricos que parece que tienen poca variabilidad. Vamos a analizar con `nearZeroVar` de caret si hace falta eliminar alguna de estas variables.
+```{r}
+# Seleccionamos las variables numéricas
+data.num <- data %>% select_if(is.numeric)
+
+# Analizamos la variabilidad de las variables numéricas
+data.nzv <- nearZeroVar(data.num, saveMetrics = TRUE)
+data.nzv
+```
+
+La métrica `freqRatio` nos indica la frecuencia de la variable más común sobre la segunda más común, es decir, si la variable más común tiene una frecuencia de 100 y la segunda más común de 25, este ratio será 4. Por otro lado, la métrica `percentUnique` nos indica el porcentaje de valores únicos sobre el total de valores, ayudándonos a ver una variable es continua (porcentaje alto) o es prácticamente constante (porcentaje bajo). 
+
+Podemos ver en los resultados que hay dos variables con un `freqRatio` muy alto: `NO2_hrOver200` y `O3_daysOver120`, aunque la primera es mucho mayor a la segunda. De primeras esto es un mal indicativo, sin embargo, las dos variables tienen un `percentUnique` alto, por lo que el algoritmo no las clasifica con `TRUE` en `nzv`. La segunda variable tiene un `freqRatio` de 11, que junto a su alto `percentUnique` de 62 indica que es una variable válida. Por otro lado, la primera variable tiene un `freqRatio` enorme en comparación con el resto (de 250) y, aunque tenga un `percentUnique` del 48.8 (lo cual no es bajo), sí que es mucho menor que el siguinete valor más pequeño (57.7), de casi 10 puntos menos. Por lo tanto, vamos a eliminar del dataset la variable `NO2_hrOver200`.
+
+```{r}
+# Eliminamos la variable "NO2_hrOver200"
+data$NO2_hrOver200 <- NULL
+```
+
+Vamos a responder a las preguntas: 
+
+- "¿Cuáles son las características de las zonas con alta contaminación por PM2.5?"
+- "¿Cuáles son las características de las zonas con baja contaminación por PM2.5?"
+```{r}
+# Creamos una nueva variable que indique el nivel de contaminación de forma categórica
+data$contamination <- cut(
+    data$PM2.5_annualMean,
+    breaks = c(-Inf, 10, 25, 50, Inf),
+    labels = c("Bajo", "Moderada", "Insalubre", "Muy Insalubre")
+)
+
+# Creamos una nueva variable que indique si la contaminacion es alta o baja
+data$contamination_2levels <- ifelse(data$PM2.5_annualMean > 25, "Alta", "Baja")
+
+# Creamos una lista con los nombres de las variables numéricas
+data.num.vars <- names(data)[sapply(data, is.numeric)]
+data.num.vars <- setdiff(data.num.vars, "PM2.5_annualMean")
+
+# Realizamos un histograma para cada variable numérica en el cual se vea su distribución según el nivel de contaminación.
+densities <- lapply(data.num.vars, function(var) {
+    ggplot(data, aes_string(x = var, fill = "contamination_2levels")) +
+        geom_density(
+            aes(y = after_stat(..scaled..)), # curva de densidad escalada [0,1]
+            alpha = 0.5, position = "identity"
+        ) +
+        scale_y_continuous(limits = c(0, 1), expand = c(0, 0)) +
+        scale_fill_manual(
+            name   = "Contaminación",
+            values = c("Baja" = "blue", "Alta" = "red")
+        ) +
+        labs(title = var, x = var, y = "Densidad normalizada") +
+        theme_minimal(base_size = 10) +
+        theme(
+            plot.title   = element_text(size = 10),
+            axis.title   = element_text(size = 9),
+            axis.text    = element_text(size = 8),
+            legend.title = element_text(size = 9),
+            legend.text  = element_text(size = 8)
+        )
+})
+do.call(grid.arrange, c(densities, ncol = 2))
+
+# Calculamos las medias y las desviaciones típicas de cada variable según el nivel de contaminación y lo enseñamos con print()
+means <- data %>%
+    group_by(contamination_2levels) %>%
+    summarise(across(all_of(data.num.vars), list(mean = mean, sd = sd), na.rm = TRUE))
+sds <- data %>%
+    group_by(contamination_2levels) %>%
+    summarise(across(all_of(data.num.vars), list(sd = sd), na.rm = TRUE))
+print(means, width = Inf)
+print(sds, width = Inf)
+```
+
+Con el gráfico anterior hay algunas variables que tienen distribuciones relativamente similares, ya que los valores se agrupan sobre valores parecidos pero la anchura de la distribución es diferente. Luego, tenemos variables con distribuciones diferentes pero solapadas, donde tanto la concentración como la anchura de los valores es distinta. Finalmente, tenemos variables donde las distribuciones son completamente diferentes, solapándose muy poco. Vamos a intentar sacar conclusiones de estas gráficas para definir las características de las zonas con alta contaminación por PM2.5.
+
+- **NO2_annualMean**: En este caso la media tiende a ser mayor y las mediciones se distribuyen en un rango más amplio en la parte superior del espectro de valores. Esto indica que las zonas con alta contaminación por PM2.5 tienden a tener una mayor concentración de NO2.
+- **NO_annualMean**: En este caso la media es ligeramente superior en las zonas co alta contaminación, además de que los valores se distribuyen en un rango más amplio en la parte superior del espectro de mediciones.
+- **O3_annualMean, O3_daysOver120, O3_dailyMaxAnnualMean, O3_dailyHourlyMax, O3_daily8HrMax**: En ninguno de estos casos se puede decir que la distribución sea tan diferente como para destacar diferencias. Las medias son muy parecidas y en algunos casos la distribución es algo más amplia.
+- **PM10_annualMean, PM10_daysOver50**: En los dos casos la media de la alta contaminacion es mayor a la de la baja contaminacion, teniendo distribuciones muy diferentes entre sí.
+
+Podemos afirmar, por tanto, que las zonas con alta contaminación por PM2.5 suelten tener también una alta contaminación por PM10. Debido a esto, si la zona tiene registros de muchos días con la contaminacion por PM10 mayor a 50, es probable de que la contaminación por PM2.5 sea también alta. El tener valores muy elevados de NO2 y NO también puede indicar que la contaminación por PM2.5 es alta, aunque es menos evidente que en el caso de PM10, ya que las distribuciones se solapan más. El caso de la baja contaminación por PM2.5 cumple las condiciones contrarias.

@@ -1,0 +1,337 @@
+---
+title: "Laboratorio de redes neuronales recurrentes"
+subtitle: "Minería de datos. Master en Tecnologías de Análisis de Datos Masivos: Big Data"
+author: "Aurora González Vidal, `aurora.gonzalez2@um.es`"
+date: '25 de Marzo de 2025'
+output: 
+  html_document:
+    theme: spacelab
+    highlight: kate
+    df_print: paged
+    toc: true
+    toc_float: true
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval=F)
+library(kableExtra)
+```
+
+# IMDb
+
+Vamos a centrarnos ahora en la aplicación de una red recurrente al conjunto de datos IMDb que es, básicamente, un conjunto de reviews sobre películas que nos va a permitir hacer predicciones sobre si lo que se dice en el texto de la review es positivo o negativo.
+
+
+# Trabajando con texto
+Las reviews de IMDd nos vienen en lenguaje natural, concretamente inglés. Y tenemos que procesarlas para que sean digeribles por las técnicas de ML que vamos a usar después. Y este problema no es trivial. Hay ciertos pasos que debemos seguir. Algunos de ellos están lejos de ser triviales, con lo que conviene detenerse en ellos. La premisa que debemos tener clara es las redes neuronales trabajan con tensores a la entrada. Por lo tanto, debemos pasar de una lista de tokens a un tensor, ¿cómo? Tenemos varias opciones
+
+- Dividimos el texto en palabras, transformamos las palabras en vectores (de la misma longitud)
+
+- Dividimos el texto en caracteres y los transformamos en vectores (de la misma longitud también)
+
+- Extraemos n-gramas de palabras o caracteres y tranformamos cada n-grama en un vector, siendo un n-grama una secuencia de $n$ palabras y el conjunto total de n-gramas sería el de todas las combinaciones posibles de palabras (o caracteres) de longitud $n$.
+
+Ya sean palabras, caracteres o n-gramas, a los elementos básicos en los que dividimos el texto los llamamos tokens. Y esos tokens los hemos de vectorizar. Vectorizar puede hacerse de múltiples formas. Nosotros optamos por los embeddings, que ya se han visto en una asigntura del primer cuatrimestre.
+
+Podemos ver un embedding como un mecanismo que toma como entrada una palabra y genera un vector en \( \mathbb{R}^n \). Matemáticamente, podemos expresarlo como:
+
+\[
+f(w) = x \in \mathbb{R}^n.
+\] 
+
+Vamos a usar word embeddings para transformar vectores dispersos de altas dimensiones en vectores densos de muchas menos dimensiones. Estos word embeddings se han aprendido mediante aprendizaje autosupervisado así que es de esperar que palabras con significado similar aparezcan juntas (i.e. su distancia del coseno será baja) en dicho espacio.
+
+#  Preparación de datos
+En la variable `max_features` vamos al indicar que queremos usar un diccionario con, a lo sumo, 10K palabras. ¿Cómo sabemos cuáles de el total entran en esas 10K? Fácil. Las palabras están ordenadas por frecuencia de aparición en las 25K reviews del documento. Si indicamos que necesitamos 10K, usaremos las más 10K más frecuentes.
+
+```{r}
+library(keras)
+max_features <- 10000
+imdb <- dataset_imdb(num_words = max_features)
+```
+
+
+```{r}
+c(c(x_train, y_train), c(x_test, y_test)) %<-% imdb
+x_train[[1]][1:12]
+```
+
+```{r}
+word_index <- dataset_imdb_word_index()
+decode_review <- function(text, word_index) {
+  word = names(word_index)
+  idx = unlist(word_index,use.names=F)
+  word = c("<PAD>","<START>","<UNK>","<UNUSED>",word)
+  idx = c(0:3, idx + 3) 
+  words = word[match(text,idx,2)] 
+#text es una secuencia de índices (por ejemplo, x_train[[1]][1:12]), y lo que se está haciendo aquí es buscar la palabra correspondiente a cada índice en el vector word que contiene las palabras.
+#match() busca los índices de text en idx (el vector con los índices ajustados). El parámetro 2 le dice a match() que devuelva NA si no encuentra el valor, en lugar de generar un error.
+#El resultado de match() es un vector de índices que corresponde a las posiciones de las palabras en el vector word.
+  paste(words, collapse = " ")
+}
+decode_review(x_train[[1]][1:12], word_index)
+```
+
+La función `decode_review()` nos permite acceder a la reviews e imprimirlas en modo texto ya que lo que se almacena de cada review no es la palabra sino su índice en el diccionario.
+
+En el código siguiente, y teniendo en cuenta que usamos una codificación one-hot para los textos, de tal forma que estarán a 1 aquellas columnas de la matriz correspondientes a palabras que aparezcan en el texto correspondiente a la fila, hacemos uso de una matriz dispersa. Si no, necesitaríamos realmente una matriz de $25K \times 10K$ dimensiones.
+
+Lo hacemos tanto para los ejemplos de train como para los de test.
+
+```{r}
+library(Matrix)
+```
+
+<!--
+Función one_hot
+
+    one_hot <- function(sequences, dimension) {
+
+        Se define una función llamada one_hot que toma dos argumentos:
+
+            sequences: Un conjunto de secuencias de índices (por ejemplo, las palabras codificadas de cada revisión).
+
+            dimension: El tamaño del vocabulario, es decir, el número total de palabras posibles (en este caso, 10,000).
+
+    seqlen <- sapply(sequences, length)
+
+        Aquí se calcula la longitud de cada secuencia en el conjunto de datos sequences utilizando sapply. Esto devuelve un vector seqlen donde cada elemento es la longitud de una secuencia en sequences.
+
+            Por ejemplo, si x_train[[1]] es una secuencia con 10 elementos, entonces seqlen[1] será 10.
+
+    n <- length(seqlen)
+
+        Se calcula la cantidad total de secuencias en el conjunto de datos. Es decir, cuántas filas tiene la matriz resultante. Esto es simplemente la longitud del vector seqlen.
+
+    rowind <- rep(1:n, seqlen)
+
+        Crea un vector rowind que contiene los índices de las filas en las que deben colocarse los valores en la matriz dispersa.
+
+            1:n genera una secuencia de números del 1 al n (el número de secuencias).
+
+            seqlen indica cuántas veces debe repetirse cada número en la secuencia 1:n. Por ejemplo, si la primera secuencia tiene 3 elementos, el valor 1 (correspondiente a la primera secuencia) se repetirá 3 veces, y si la segunda secuencia tiene 5 elementos, el valor 2 se repetirá 5 veces.
+
+            Esto crea una lista de filas para las cuales cada palabra (columna) estará presente en la matriz dispersa.
+
+    colind <- unlist(sequences)
+
+        Aplanamos (unlist) la lista de secuencias para obtener un vector colind de todos los índices de las palabras en las secuencias.
+
+            Cada elemento de sequences contiene un vector de números (los índices de las palabras en cada secuencia), y unlist lo convierte en un solo vector que contiene todos los índices de palabras de todas las secuencias.
+
+            Por ejemplo, si sequences = [[1, 4, 2], [3, 5]], entonces colind será [1, 4, 2, 3, 5].
+
+    sparseMatrix(i = rowind, j = colind, dims = c(n, dimension))
+
+        Crea una matriz dispersa utilizando la función sparseMatrix de la librería Matrix.
+
+            i = rowind: Especifica las filas en las que debe haber un valor distinto de cero.
+
+            j = colind: Especifica las columnas en las que debe haber un valor distinto de cero (los índices de las palabras).
+
+            dims = c(n, dimension): Establece el tamaño de la matriz. El número de filas es n (el número de secuencias) y el número de columnas es dimension (el tamaño del vocabulario).
+
+        Esto crea una matriz dispersa donde cada fila es una secuencia, cada columna representa un índice de palabra, y las celdas tienen un valor de 1 si esa palabra está presente en esa secuencia, y 0 si no lo está.
+-->
+
+```{r}
+one_hot <- function(sequences, dimension) {
+  seqlen <- sapply(sequences, length)
+  n <- length(seqlen)
+  rowind <- rep(1:n, seqlen)
+  colind <- unlist(sequences)
+  sparseMatrix(i = rowind, j = colind,
+               dims = c(n, dimension))
+}
+
+accuracy <- function(pred, truth)
+  mean(drop(pred) == drop(truth))
+
+x_train_1h <- one_hot(x_train, 10000) 
+x_test_1h <- one_hot(x_test, 10000)
+dim(x_train_1h)
+```
+
+```{r}
+nnzero(x_train_1h) / (25000 * 10000)
+# calcular la proporción de valores distintos de cero en la matriz dispersa x_train_1h, lo que indica el nivel de sparsidad de la representación.
+```
+
+
+# Solución con glmnet
+
+Entrena un modelo de regresión logística para resolver el problema utilizando `glmnet` y para la parte de validación utiliza un subconjunto del de entrenamiento. 
+
+```{r}
+set.seed(3)
+library(glmnet)
+```
+
+
+1. Entrena un modelo de regresión logística (o elasticNet) con glmnet 
+
+
+```{r}
+fit <- glmnet(x_train_1h, y_train, family = "binomial")
+
+# Imprimir el modelo para ver los parámetros
+print(fit)
+
+```
+
+2. Encuentra el mejor valor de lambda con cross validation para glmnet (puede ser pesado de ejecutar)
+
+
+```{r}
+# Utilizamos cv.glmnet para encontrar el mejor valor de lambda
+cv_fit <- cv.glmnet(x_train_1h, y_train, family = "binomial")
+
+# Visualizar el gráfico del error en función de lambda
+plot(cv_fit)
+
+# Ver el valor de lambda que da el mejor ajuste
+cv_fit$lambda.min # lambda.min es el valor de lambda que minimiza el error en la validación cruzada. Puedes usar este valor para realizar predicciones.
+
+```
+
+3. Realiza las predicciones en el conjunto de test
+
+```{r}
+predictions <- predict(cv_fit, newx = x_test_1h, s = "lambda.min", type = "response")
+# Convertir las probabilidades a una clase binaria (0 o 1)
+predicted_class <- ifelse(predictions > 0.5, 1, 0)
+```
+
+4. Muestra los resultados con una matriz de confusión
+```{r}
+table(Predicted = predicted_class, Actual = y_test)
+
+# Calcular precisión, recall, y F1
+library(caret)
+confusionMatrix(factor(predicted_class), factor(y_test))
+```
+
+# Red neuronal MLP
+
+1. Construye una MLP que, utilizando la representación one-hot codificada, siga la siguiente  arquitectura secuencial con tres capas densas:
+- Una capa densa de 16 neuronas con activación ReLU y una dimensión de entrada de 10,000 (tamaño del vocabulario).
+- Una segunda capa oculta de 16 neuronas con activación ReLU.
+- Una capa de salida de 1 neurona con activación sigmoide para obtener probabilidades de clasificación.
+
+El modelo debe ser compilado utilizando el optimizador RMSprop, la función de pérdida binary_crossentropy y la métrica de precisión (accuracy)
+
+```{r}
+model <- keras_model_sequential() %>%
+layer_dense(units = 16, activation = "relu",
+input_shape = c(10000)) %>%
+layer_dense(units = 16, activation = "relu") %>%
+layer_dense(units = 1, activation = "sigmoid")
+model %>% compile(optimizer = "rmsprop",
+                  loss = "binary_crossentropy", 
+                  metrics = c("accuracy"))
+
+```
+
+
+2. Entrena tu red MLP.  Utiliza un subconjunto de los datos de train de 2000 puntos para la parte de validación.
+
+```{r}
+ival <- sample(seq(along = y_train), 2000)
+
+history <- model %>% fit(x_train_1h[-ival, ], y_train[-ival],
+                         epochs = 20, batch_size = 512,
+                         validation_data = list(x_train_1h[ival, ],
+                                                y_train[ival]))
+
+plot(history)
+```
+
+# Modelo de red recurrente
+
+
+Ahora vamos a generar una red recurrente basada en un modelo LSTM. Como vamos a utilizar un modelo recurrente, no tiene sentido que usemos la codificación one-hot de antes ya que con ella perdemos la información sobre secuencialidad. Es decir, para una palabra dada, no sabemos qué posición o posiciones ocupaba en el texto, y mucho menos de qué otras palabras estaba rodeada. Para poder conservar esa información de alguna forma, Primero preparamos los datos.
+
+## Preparación de datos
+
+Debemos tener en cuenta que cada review tiene una longitud particular,
+
+
+```{r}
+wc <- sapply(x_train, length) 
+median(wc)
+```
+
+
+```{r}
+sum(wc <= 500) / length(wc)
+```
+
+El 91% de documentos tiene menos de 500 palabras, concretamente la mediana es de 178. Como requerimos documentos con la misma longitud, recortamos a 500 palabras, más que suficiente. Las reviews más cortas de 500 se rellenarán con caracteres en blanco al principio, para que la cadena de tokens termine con palabras útiles.
+
+
+```{r}
+maxlen <- 500
+x_trainpad <- pad_sequences(x_train, maxlen = maxlen) 
+x_testpad <- pad_sequences(x_test, maxlen = maxlen)
+dim(x_trainpad)
+```
+
+```{r}
+dim(x_testpad)
+```
+
+```{r}
+x_trainpad[1, 490:500]
+```
+
+Obsérvese que `pad_sequences()` usa el parámetro `padding` tal que `padding=pre`, indicando padding al principio de la review para las que son más cortas que 500.
+
+```{r}
+x_train[[1]][1:100]
+
+```
+
+
+```{r}
+length(x_train[[1]])
+
+```
+
+```{r}
+x_trainpad[1,1:100]
+
+```
+
+
+Ahora debemos plantearnos varias cuestiones. La principal es cómo codificamos los tokens de nuestro diccionario para introducirlos en la red. ¿Podemos usar los índices de cada token en el diccionario para la entrada? Cada mensaje tiene 500 tokens, dispuestos en forma secuencial.
+
+Si pensamos en términos de qué aporta cada capa, qué necesita a la entrada y qué genera a la salida tenemos las siguientes.
+
+- Capa 1, entrada: nuestras entradas serán 25K ejemplo, de 500 tokens cada uno.
+
+- Capa 2, codificación: necesitamos convertir cada una de las 500 palabras en
+
+Ahora creamos un modelo secuencial, con una primera capa de embedding de 10K nodos a la entrada y a la salida vectores de 32 componentes. Esos 32 componentes serán la entrada a una LSTM de 32 nodos, uno por cada componente del vector. Finalmente usaremos un nodo de activación sigmoidal a la salida.
+
+```{r}
+model <- keras_model_sequential() %>%
+  layer_embedding(input_dim = 10000, output_dim = 32) %>%
+  layer_lstm(units = 32) %>%
+  layer_dense(units = 1, activation = "sigmoid")
+
+
+model %>% compile(optimizer = "rmsprop",
+loss = "binary_crossentropy", metrics = c("acc"))
+history <- model %>% fit(x_trainpad, y_train, 
+                         epochs = 10, 
+                         batch_size = 128, 
+                         validation_data = list(x_testpad, y_test))
+plot(history)
+```
+
+```{r}
+predy <- predict(model, x_testpad) > 0.5
+mean(abs(y_test == as.numeric(predy)))
+```
+
