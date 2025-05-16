@@ -1,3 +1,5 @@
+# Apartado 2.1
+
 ```{r}
 # Seleccionamos el "path" de este archivo como el directorio de trabajo
 if (interactive()) {
@@ -13,6 +15,8 @@ library(tidyr)
 library(caret)
 library(gridExtra)
 library(VIM)
+library(doParallel)
+library(smotefamily)
 ```
 
 
@@ -65,16 +69,24 @@ data.vars.neg <- data.vars %>% filter(NO_annualMean < 0 | PM10_daysOver50 < 0 | 
 # Vemos el porcentaje de filas con valores negativos
 p.rows.neg <- nrow(data.vars.neg) / (nrow(data) - nrow(data.vars.neg)) * 100
 p.rows.neg
-
-# TODO: Ver si se puede hacer algo con los valores negativos pasándolos a NA con la librería VIM (ver prácticas)
 ```
 
+Vemos como el 2.3% de las filas tienen valores negativos. Esto es bastante más que el caso anterior de los `NA`, que suponían solo un 0.19%. Por lo tanto, vamos a ver si podemos hacer algo con estos valores negativos. Los trateremos como valores `NA`, ya que no tienen sentido en el contexto de este dataset. 
 ```{r}
-# ELIMINAR LOS VALORES NEGATIVOS
-# CUANDO NO SE PUEDA HACER NADA MÁS
+# Convertimos los valores negativos en NA
+data$NO_annualMean[data$NO_annualMean < 0] <- NA
+data$PM10_daysOver50[data$PM10_daysOver50 < 0] <- NA
+data$PM2.5_annualMean[data$PM2.5_annualMean < 0] <- NA
 
-# Al ser solo un 2.3% de las filas, vamos a eliminarlas
-data <- data %>% filter(NO_annualMean >= 0 & PM10_daysOver50 >= 0 & PM2.5_annualMean >= 0)
+# Usamos el paquete VIM para ver si se puede hacer algo con los valores NA
+data.plot <- data %>% select(NO_annualMean, PM10_daysOver50, PM2.5_annualMean)
+aggr(data.plot, numbers = TRUE, prop = FALSE)
+```
+
+Vemos que de estos valores negativos, casi el 100% de estos son de la variable a predecir en este práctica (`PM2.5_annualMean`). Por lo tanto, no vamos a imputar estos valores y los eliminaremos directamente, ya que pueden afectar a la predicción. 
+```{r}
+# Eliminamos las filas con N
+data <- na.omit(data)
 
 # Volvemos a ver el resumen estadístico
 print(dfSummary(data, varnumbers = FALSE, style = "grid"))
@@ -111,8 +123,12 @@ data$contamination <- cut(
     labels = c("Bajo", "Moderada", "Insalubre", "Muy Insalubre")
 )
 
+# Vemos la cantidad de filas por cada nivel de contaminación
+table(data$contamination)
+
 # Creamos una nueva variable que indique si la contaminacion es alta o baja
 data$contamination_2levels <- ifelse(data$PM2.5_annualMean > 25, "Alta", "Baja")
+data$contamination_2levels <- as.factor(data$contamination_2levels)
 
 # Creamos una lista con los nombres de las variables numéricas
 data.num.vars <- names(data)[sapply(data, is.numeric)]
@@ -151,7 +167,47 @@ sds <- data %>%
     summarise(across(all_of(data.num.vars), list(sd = sd), na.rm = TRUE))
 print(means, width = Inf)
 print(sds, width = Inf)
+
+# Creamos una lista con los nombres de las variables categóricas
+data.cat.vars <- c("year", "scenario")
+
+p_year <- ggplot(data, aes(x = factor(year), fill = contamination_2levels)) +
+    geom_bar(position = "stack") +
+    scale_y_continuous(trans = "log10") +
+    scale_fill_manual(values = c("Alta" = "red", "Baja" = "blue")) +
+    labs(
+        title = "Contaminación PM2.5 por año",
+        x = "Año",
+        y = "Frecuencia (escala log10)",
+        fill = "Contaminación"
+    ) +
+    theme_minimal() +
+    theme(
+        plot.title = element_text(hjust = 0.5),
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 8)
+    )
+
+p_scenario <- ggplot(data, aes(x = scenario, fill = contamination_2levels)) +
+    geom_bar(position = "stack") +
+    scale_y_continuous(trans = "log10") +
+    scale_fill_manual(values = c("Alta" = "red", "Baja" = "blue")) +
+    labs(
+        title = "Contaminación PM2.5 por escenario",
+        x = "Escenario",
+        y = "Frecuencia (escala log10)",
+        fill = "Contaminación"
+    ) +
+    theme_minimal() +
+    theme(
+        plot.title = element_text(hjust = 0.5),
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 8)
+    )
+
+# Unimos los tres gráficos en un grid de 3 columnas
+grid.arrange(p_year, p_scenario, nrow = 2)
 ```
+
+**__Respecto a las variables numéricas:__**
 
 Con el gráfico anterior hay algunas variables que tienen distribuciones relativamente similares, ya que los valores se agrupan sobre valores parecidos pero la anchura de la distribución es diferente. Luego, tenemos variables con distribuciones diferentes pero solapadas, donde tanto la concentración como la anchura de los valores es distinta. Finalmente, tenemos variables donde las distribuciones son completamente diferentes, solapándose muy poco. Vamos a intentar sacar conclusiones de estas gráficas para definir las características de las zonas con alta contaminación por PM2.5.
 
@@ -160,5 +216,143 @@ Con el gráfico anterior hay algunas variables que tienen distribuciones relativ
 - **O3_annualMean, O3_daysOver120, O3_dailyMaxAnnualMean, O3_dailyHourlyMax, O3_daily8HrMax**: En ninguno de estos casos se puede decir que la distribución sea tan diferente como para destacar diferencias. Las medias son muy parecidas y en algunos casos la distribución es algo más amplia.
 - **PM10_annualMean, PM10_daysOver50**: En los dos casos la media de la alta contaminacion es mayor a la de la baja contaminacion, teniendo distribuciones muy diferentes entre sí.
 
-Podemos afirmar, por tanto, que las zonas con alta contaminación por PM2.5 suelten tener también una alta contaminación por PM10. Debido a esto, si la zona tiene registros de muchos días con la contaminacion por PM10 mayor a 50, es probable de que la contaminación por PM2.5 sea también alta. El tener valores muy elevados de NO2 y NO también puede indicar que la contaminación por PM2.5 es alta, aunque es menos evidente que en el caso de PM10, ya que las distribuciones se solapan más. El caso de la baja contaminación por PM2.5 cumple las condiciones contrarias.
+**__Respecto a las variables categóricas:__**
+Podemos ver que la contaminación por PM2.5 es alta casi exclusivamente en el año 2003, con algunos casos en 2007 y 2011. Además, da igual el escenario ("medio", "remoto", "urbano") ya que la cantidad de contaminación es la misma en todos.
 
+Podemos afirmar, por tanto, que las zonas con alta contaminación por PM2.5 suelten tener también una alta contaminación por PM10. Debido a esto, si la zona tiene registros de muchos días con la contaminacion por PM10 mayor a 50, es probable de que la contaminación por PM2.5 sea también alta. El tener valores muy elevados de NO2 y NO también puede indicar que la contaminación por PM2.5 es alta, aunque es menos evidente que en el caso de PM10, ya que las distribuciones se solapan más. El caso de la baja contaminación por PM2.5 cumple las condiciones contrarias. Además, las zonas contaminadas se localizan casi todas en 2003, con algunas excepciones en 2007 y 2011, independientemente del escenario.
+
+
+# Apartado 2.2
+
+Vamos a ver la distribución de los diferentes valores de la variable a predecir, `contamination`.
+```{r}
+# Vemos la distribución de los valores de la variable a predecir
+table(data$contamination)
+```
+
+Vemos que apenas hay datos `Insalubres` y `Muy Insalubres`, por lo que vamos a tener que balancear el dataset. Antes de balancear el dataset dividiremos en train y test, de forma que el conjunto de test no se vea afectado por el balanceo y tenga datos sintéticos. Con esto se quiere mantener la integridad del conjunto de test la máximo.
+```{r}
+# Definimos conjuntos de train y test
+set.seed(123)
+trainIndex <- createDataPartition(
+    data$contamination,
+    p = .8,
+    list = FALSE,
+    times = 1
+)
+data.train <- data[trainIndex, ]
+data.test <- data[-trainIndex, ]
+
+# Vemos la distribución de los valores en el conjunto de test
+table(data.test$contamination)
+```
+
+Vemos que apenas tenemos datos de las clases `Insalubre` y `Muy Insalubre` para predecir en el conjunto de test. Pero, como se ha dicho anteriormente, es preferible tener pocos datos a tener un conjunto de test con datos sintéticos, los cuales no representarían la realidad. Ahora vamos a hacer un upsampling del conjutno de train.
+```{r}
+# Hacemos un upsampling con SMOTE
+set.seed(123)
+data.train.smote <- SMOTE(
+    data.train[, sapply(data.train, is.numeric)],
+    data.train$contamination,
+    dup_size = 15
+)
+data.train.balanced <- data.train.smote$data %>% rename(contamination = class)
+
+set.seed(123)
+data.train.smote <- SMOTE(
+    data.train.balanced[, sapply(data.train.balanced, is.numeric)],
+    data.train.balanced$contamination,
+    dup_size = 10
+)
+data.train.balanced <- data.train.smote$data %>% rename(contamination = class)
+
+# Hacemos un downsampling eligiendo una muestra aleatoria de la categoría "Moderada"
+set.seed(123)
+diff <- nrow(data.train.balanced[data.train.balanced$contamination == "Moderada", ]) - nrow(data.train.balanced[data.train.balanced$contamination == "Bajo", ])
+idxs <- sample(
+    which(data.train.balanced$contamination == "Moderada"),
+    diff
+)
+data.train.balanced <- data.train.balanced[-idxs, ]
+
+# Vemos la distribución de los valores en el conjunto de train
+table(data.train.balanced$contamination)
+```
+
+```{r}
+# Declaramos el cluster con doParallel dependiendo del número de núcleos de la CPU
+cluster <- makePSOCKcluster(2)
+registerDoParallel(cluster)
+
+# Seleccionamos las variables que queremos usar para la predicción
+df <- data %>% select(
+    -c(
+        PM2.5_annualMean,
+        contamination_2levels,
+        year,
+        scenario,
+        kreis
+    )
+)
+
+# Definimos el tamaño de los subconjuntos
+subsets <- 5:length(df)
+
+# Definimos el control de entrenamiento
+set.seed(123)
+rfe.ctrl <- rfeControl(
+    functions = rfFuncs,
+    method = "cv",
+    number = 5,
+    verbose = TRUE,
+    returnResamp = "final",
+    allowParallel = TRUE,
+)
+
+# Definimos los
+
+# Ejecutamos el algoritmo RFE
+set.seed(321)
+df.rfe <- rfe(
+    contamination ~ .,
+    data = df,
+    sizes = c(3:ncol(df)),
+    rfeControl = rfe.ctrl,
+)
+
+# Vemos los resultados
+df.rfe
+
+# Seleccionamos las variables óptimas
+df <- df %>% select(c(df.rfe$optVariables, "contamination"))
+```
+
+Vamos a usar modelos para realizar predicciones.
+```{r}
+##########
+# RPart #
+#########
+
+# Vemos la infomración del modelo con modelLookup
+modelLookup("rpart")
+
+# Definimos el control de la validación cruzada
+set.seed(123)
+fit.control.cv.10 <- trainControl(
+    method = "cv",
+    number = 10,
+    returnResamp = "all",
+    verboseIter = TRUE,
+    allowParallel = TRUE
+)
+
+# Realizamos la validación cruzada
+set.seed(342)
+rpart.cv <- train(contamination ~ .,
+    data = data.train.balanced,
+    method = "rpart",
+    tuneLength = 10,
+    trControl = fit.control.cv.10
+)
+rpart.cv
+```
