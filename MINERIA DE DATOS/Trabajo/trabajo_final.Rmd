@@ -17,6 +17,7 @@ library(gridExtra)
 library(VIM)
 library(doParallel)
 library(smotefamily)
+library(vip)
 ```
 
 
@@ -136,7 +137,7 @@ data.num.vars <- setdiff(data.num.vars, "PM2.5_annualMean")
 
 # Realizamos un histograma para cada variable numérica en el cual se vea su distribución según el nivel de contaminación.
 densities <- lapply(data.num.vars, function(var) {
-    ggplot(data, aes_string(x = var, fill = "contamination_2levels")) +
+    ggplot(data, aes(x = var, fill = "contamination_2levels")) +
         geom_density(
             aes(y = after_stat(..scaled..)), # curva de densidad escalada [0,1]
             alpha = 0.5, position = "identity"
@@ -247,14 +248,14 @@ data.test <- data[-trainIndex, ]
 table(data.test$contamination)
 ```
 
-Vemos que apenas tenemos datos de las clases `Insalubre` y `Muy Insalubre` para predecir en el conjunto de test. Pero, como se ha dicho anteriormente, es preferible tener pocos datos a tener un conjunto de test con datos sintéticos, los cuales no representarían la realidad. Ahora vamos a hacer un upsampling del conjutno de train.
+Vemos que apenas tenemos datos de las clases `Insalubre` y `Muy Insalubre` para predecir en el conjunto de test. Pero, como se ha dicho anteriormente, es preferible tener pocos datos a tener un conjunto de test con datos sintéticos, los cuales no representarían la realidad. Ahora vamos a hacer un upsampling y downsampling del conjunto de train.
 ```{r}
 # Hacemos un upsampling con SMOTE
 set.seed(123)
 data.train.smote <- SMOTE(
     data.train[, sapply(data.train, is.numeric)],
     data.train$contamination,
-    dup_size = 15
+    dup_size = 2
 )
 data.train.balanced <- data.train.smote$data %>% rename(contamination = class)
 
@@ -262,7 +263,7 @@ set.seed(123)
 data.train.smote <- SMOTE(
     data.train.balanced[, sapply(data.train.balanced, is.numeric)],
     data.train.balanced$contamination,
-    dup_size = 10
+    dup_size = 2
 )
 data.train.balanced <- data.train.smote$data %>% rename(contamination = class)
 
@@ -279,24 +280,20 @@ data.train.balanced <- data.train.balanced[-idxs, ]
 table(data.train.balanced$contamination)
 ```
 
+Hemos aumentado un 200% la cantidad de datos de las clases `Insalubre` y `Muy Insalubre`, y hemos reducido la cantidad de datos de la clase `Moderada` a la misma que `Bajo`. De esta forma, aunque no tenemos un dataset balanceado, sí que tenemos un dataset donde las clases `Insalubre` y `Muy Insalubre` tienen una cantidad de datos razonable para poder predecir. No se ha aumentado más el upsampling ya que si no estaríamos generando una cantidad demasiado grande de datos sintéticos, que pueden generar overfiting y otros problemas. Tampoco hemos reducido más la clase `Moderada` ni hemos reducido la clase `Bajo` ya que perderíamos casi toda nuestra información del dataset.
+
+Vamos a realizar ahora una eliminación de variables. Para ello usaremos el
 ```{r}
+# Modificamos las variables del dataset
+data.train.balanced$contamination <- as.factor(data.train.balanced$contamination)
+data.train.balanced$PM2.5_annualMean <- NULL
+
 # Declaramos el cluster con doParallel dependiendo del número de núcleos de la CPU
 cluster <- makePSOCKcluster(2)
 registerDoParallel(cluster)
 
-# Seleccionamos las variables que queremos usar para la predicción
-df <- data %>% select(
-    -c(
-        PM2.5_annualMean,
-        contamination_2levels,
-        year,
-        scenario,
-        kreis
-    )
-)
-
 # Definimos el tamaño de los subconjuntos
-subsets <- 5:length(df)
+subsets <- 3:ncol(data.train.balanced)
 
 # Definimos el control de entrenamiento
 set.seed(123)
@@ -309,22 +306,20 @@ rfe.ctrl <- rfeControl(
     allowParallel = TRUE,
 )
 
-# Definimos los
-
 # Ejecutamos el algoritmo RFE
 set.seed(321)
-df.rfe <- rfe(
+data.rfe <- rfe(
     contamination ~ .,
-    data = df,
-    sizes = c(3:ncol(df)),
+    data = data.train.balanced,
+    sizes = subsets,
     rfeControl = rfe.ctrl,
 )
 
 # Vemos los resultados
-df.rfe
+data.rfe
 
 # Seleccionamos las variables óptimas
-df <- df %>% select(c(df.rfe$optVariables, "contamination"))
+data.train.balanced <- data.train.balanced %>% select(c(data.rfe$optVariables, "contamination"))
 ```
 
 Vamos a usar modelos para realizar predicciones.
@@ -338,7 +333,7 @@ modelLookup("rpart")
 
 # Definimos el control de la validación cruzada
 set.seed(123)
-fit.control.cv.10 <- trainControl(
+rpart.ctrl <- trainControl(
     method = "cv",
     number = 10,
     returnResamp = "all",
@@ -346,13 +341,173 @@ fit.control.cv.10 <- trainControl(
     allowParallel = TRUE
 )
 
-# Realizamos la validación cruzada
+# Realizamos el entrenamiento del modelo
 set.seed(342)
 rpart.cv <- train(contamination ~ .,
     data = data.train.balanced,
     method = "rpart",
     tuneLength = 10,
-    trControl = fit.control.cv.10
+    trControl = rpart.ctrl
 )
 rpart.cv
 ```
+
+```{r}
+################
+# RandomForest #
+################
+
+# Vemos la infomración del modelo con modelLookup
+modelLookup("rf")
+
+# Definimos el control de la validación cruzada
+set.seed(123)
+rf.ctrl <- trainControl(
+    method = "cv",
+    number = 10,
+    returnResamp = "all",
+    verboseIter = TRUE,
+    allowParallel = TRUE
+)
+
+# Realizamos el entrenamiento del modelo
+set.seed(342)
+rf.cv <- train(contamination ~ .,
+    data = data.train.balanced,
+    method = "rf",
+    tuneLength = 10,
+    trControl = rf.ctrl
+)
+rf.cv
+```
+
+```{r}
+#######
+# GBM #
+#######
+
+# Vemos la infomración del modelo con modelLookup
+modelLookup("gbm")
+
+# Definimos el control de la validación cruzada
+set.seed(123)
+gbm.ctrl <- trainControl(
+    method = "cv",
+    number = 10,
+    returnResamp = "all",
+    verboseIter = TRUE,
+    allowParallel = TRUE
+)
+
+# Realizamos el entrenamiento del modelo
+set.seed(342)
+gbm.cv <- train(contamination ~ .,
+    data = data.train.balanced,
+    method = "gbm",
+    tuneLength = 10,
+    trControl = gbm.ctrl
+)
+gbm.cv
+```
+
+```{r}
+#######
+# SVM #
+#######
+
+# Vemos la infomración del modelo con modelLookup
+modelLookup("svmRadial")
+
+model_info <- getModelInfo("svmRadial", regex = FALSE)[[1]]
+auto_grid <- model_info$grid(
+    x = model.matrix(contamination ~ . - 1, data.train.balanced),
+    y = data.train.balanced$contamination,
+    len = 20
+)
+
+# Definimos el control de la validación cruzada
+set.seed(123)
+svm.ctrl <- trainControl(
+    method = "cv",
+    number = 10,
+    search = "random",
+    returnResamp = "all",
+    verboseIter = TRUE,
+    allowParallel = TRUE,
+)
+
+# Realizamos el entrenamiento del modelo
+set.seed(342)
+svm.cv <- train(contamination ~ .,
+    data = data.train.balanced,
+    method = "svmRadial",
+    preProcess = c("center", "scale"),
+    tuneLength = 10,
+    trControl = svm.ctrl
+)
+svm.cv
+```
+
+Ahora vamos a comparar los modelos viendo sus resultados en el conjunto de test.
+```{r}
+# Convertimos la variable de predicción a factor
+data.test$contamination <- as.factor(data.test$contamination)
+
+# Predecimos el conjunto de test
+rpart.pred <- predict(rpart.cv, newdata = data.test)
+rf.pred <- predict(rf.cv, newdata = data.test)
+gbm.pred <- predict(gbm.cv, newdata = data.test)
+svm.pred <- predict(svm.cv, newdata = data.test)
+
+# Creamos matrices de confusión para cada modelo
+rpart.conf <- confusionMatrix(rpart.pred, data.test$contamination)
+rpart.conf
+rf.conf <- confusionMatrix(rf.pred, data.test$contamination)
+rf.conf
+gbm.conf <- confusionMatrix(gbm.pred, data.test$contamination)
+gbm.conf
+svm.conf <- confusionMatrix(svm.pred, data.test$contamination)
+svm.conf
+```
+
+De primeras vemos que el modelo `rpart` es el menos preciso, lo cual tiene sentdio ya que es un modelo muy simple. Los otros son más parecidos entre sí. Además, un detalle muy importante es que todos tienen un buen desempeño en predecir las clases más desbalanceadas (`Insalubre` y `Muy Insalubre`), lo cual es un buen indicativo de que el balanceo ha funcionado. 
+
+Con cualquiera de los modelos de `rf`, `gbm` o `svm`, podemos afirmar que es posible predecir correctamente si jabrá contaminación por PM2.5 en una zona.
+
+Vamos a comparar estos tres modelos más en detalle.
+```{r}
+# Hacemos un resamp de los modelos
+resamps <- resamples(list(
+    GBM = gbm.cv,
+    SVM = svm.cv,
+    RF = rf.cv
+))
+summary(resamps)
+
+# Vemos la diferencia entre las métricas de evaluación de modelos
+diffs <- diff(resamps)
+summary(diffs)
+
+# Representamos el accuracy y el Kappa de los modelos dentro de un mismo grid
+grid.arrange(
+    bwplot(resamps, metric = "Kappa"),
+    bwplot(resamps, metric = "Accuracy"),
+    nrow = 2
+)
+```
+
+Las tablas que genera `summary(diffs)` nos ayudan a ver sin los modelos tienen desempeños similares o no. En la diagonal superior tenemos lo mejor que es una métrica de un modelo respecto al otro, mientrsa que en la diagonal inferior tenemos la significancia estadística de esa diferencia (el p-value). Se puede observar que las diferencias son muy pequeñas y los p-values muy altos, por lo que no hay una diferencia estadísticamente significativa entre los modelos. 
+
+Si ahora vemos las gráficas de las métricas de Kappa y Accuracy, vemos que efectivamente el desempeño es muy similar. Eso sí, el RandomForest está un poco por encima en sus valores mínimos y máximos. Por lo tanto, aunque no haya mucha diferencia entre los modelos, el RandomForest el el que mejor desempeño tiene. Además, este es un modelo muy simple y fácil de interpretar, que nos permite ver la importancia de las variables, lo que lo hace muy útil.
+
+Vamos a ver la importancia de las variables en el modelo RandomForest.
+```{r}
+# Vemos la importancia de las variables
+rf.imp <- varImp(rf.cv, scale = FALSE)
+rf.imp
+plot(rf.imp, top = 20)
+```
+
+Con este gráfico de imortancia vemos que las variables más importantes son las que tienen que ver con las partículas PM10, luego con el NO2, luego con el O3 y finalmente con el NO. Esto nos da una idea de la importancia de cada partícula a la hora de predecir la contaminación por PM2.5.
+
+# Apartado 2.3
