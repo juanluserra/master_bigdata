@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-library(keras)
+library(keras3)
 ```
 
 
@@ -28,19 +28,20 @@ Dado el siguiente modelo, calcular el número de parámetros a entrenar de la re
 
 ```{r,eval=F}
 # Define Model -----------------------------------------------------------
-input_shape = c(32,32,1)
-num_classes = 10
+input_shape <- c(32, 32, 1)
+num_classes <- 10
 model <- keras_model_sequential()
 model %>%
-  layer_conv_2d(filters = 32, kernel_size = c(5,5), activation = 'relu',
-                input_shape = input_shape) %>% 
-  layer_max_pooling_2d(pool_size = c(2, 2)) %>% 
-  layer_dropout(rate = 0.25) %>% 
-  layer_flatten() %>% 
-  layer_dense(units = 128, activation = 'relu') %>% 
-  layer_dropout(rate = 0.5) %>% 
-  layer_dense(units = num_classes, activation = 'softmax')
-
+  layer_conv_2d(
+    filters = 32, kernel_size = c(5, 5), activation = "relu",
+    input_shape = input_shape
+  ) %>%
+  layer_max_pooling_2d(pool_size = c(2, 2)) %>%
+  layer_dropout(rate = 0.25) %>%
+  layer_flatten() %>%
+  layer_dense(units = 128, activation = "relu") %>%
+  layer_dropout(rate = 0.5) %>%
+  layer_dense(units = num_classes, activation = "softmax")
 ```
 
 Suponemos para el ejercicio que input_shape es $32\times 32 \times 1$.
@@ -62,11 +63,11 @@ Recapitulando, el total de parámetros de la red es $832 + 802944 + 1290=805066$
 
 
 ```{r}
-(32-5+1)^2+(32-5+1) #Se calcula esto
-5*5*32+32 #Se entrena esto -> Los parámetros del kernel 5x5 * los 32 filtros + el sesgo
-#Después del pooling tenemos un volumen 14x14x32(misma profundidad y mitad de anchura y altura)
-14*14*32*128+128 #Parámetros de la salida del flatten por número de nodos + sesgo
-128*10+10 #Nodos de la capa oculta por los nodos a la salida
+(32 - 5 + 1)^2 + (32 - 5 + 1) # Se calcula esto
+5 * 5 * 32 + 32 # Se entrena esto -> Los parámetros del kernel 5x5 * los 32 filtros + el sesgo
+# Después del pooling tenemos un volumen 14x14x32(misma profundidad y mitad de anchura y altura)
+14 * 14 * 32 * 128 + 128 # Parámetros de la salida del flatten por número de nodos + sesgo
+128 * 10 + 10 # Nodos de la capa oculta por los nodos a la salida
 ```
 
 MEMORIA INFERENCIA:
@@ -135,32 +136,42 @@ El conjunto está disponible en <https://keras.rstudio.com/reference/dataset_fas
   
 La definición del modelo es la siguiente.
   
-  ```{r,eval=F}
+```{r,eval=F}
 # Define Model -----------------------------------------------------------
-input_shape = c(224,224,3)
-num_classes = 1000
+input_shape <- c(224, 224, 3)
+num_classes <- 1000
 model <- keras_model_sequential()
 model %>%
-layer_conv_2d(filters = 96, kernel_size = c(11,11),strides = 4, 
-activation = 'relu',
-input_shape = input_shape) %>% 
-layer_max_pooling_2d(pool_size = c(3, 3),strides = 2) %>% 
-layer_conv_2d(filters = 256, kernel_size = c(5,5), padding = 'same', 
-activation = 'relu') %>% 
-layer_max_pooling_2d(pool_size = c(3, 3),strides = 2) %>%
-layer_conv_2d(filters = 384, kernel_size = c(3,3), padding = 'same', 
-activation = 'relu') %>%
-layer_conv_2d(filters = 384, kernel_size = c(3,3), padding = 'same', 
-activation = 'relu') %>%
-layer_conv_2d(filters = 256, kernel_size = c(3,3), padding = 'same', 
-activation = 'relu') %>%
-layer_max_pooling_2d(pool_size = c(3, 3),strides = 2) %>%
-layer_flatten() %>% 
-layer_dense(units = 4096, activation = 'relu') %>% 
-layer_dropout(rate = 0.5) %>% 
-layer_dense(units = 4096, activation = 'relu') %>% 
-layer_dropout(rate = 0.5) %>% 
-layer_dense(units = num_classes, activation = 'softmax')
+  layer_conv_2d(
+    filters = 96, kernel_size = c(11, 11), strides = 4,
+    activation = "relu",
+    input_shape = input_shape
+  ) %>%
+  layer_max_pooling_2d(pool_size = c(3, 3), strides = 2) %>%
+  layer_conv_2d(
+    filters = 256, kernel_size = c(5, 5), padding = "same",
+    activation = "relu"
+  ) %>%
+  layer_max_pooling_2d(pool_size = c(3, 3), strides = 2) %>%
+  layer_conv_2d(
+    filters = 384, kernel_size = c(3, 3), padding = "same",
+    activation = "relu"
+  ) %>%
+  layer_conv_2d(
+    filters = 384, kernel_size = c(3, 3), padding = "same",
+    activation = "relu"
+  ) %>%
+  layer_conv_2d(
+    filters = 256, kernel_size = c(3, 3), padding = "same",
+    activation = "relu"
+  ) %>%
+  layer_max_pooling_2d(pool_size = c(3, 3), strides = 2) %>%
+  layer_flatten() %>%
+  layer_dense(units = 4096, activation = "relu") %>%
+  layer_dropout(rate = 0.5) %>%
+  layer_dense(units = 4096, activation = "relu") %>%
+  layer_dropout(rate = 0.5) %>%
+  layer_dense(units = num_classes, activation = "softmax")
 ```
 
 Que nos da lugar a casi 51M de parámetros.
@@ -168,35 +179,35 @@ Que nos da lugar a casi 51M de parámetros.
 
 1.Describir la arquitectura. Calcular los parámetros entrenables de la red.
 ```{r}
-#Entrada de imágenes 224*224*3
-11*11*96+96 # kernel de 11*11, 96 filtros y sesgo, aquí tendríamos un output shape de 214,214,3
+# Entrada de imágenes 224*224*3
+11 * 11 * 96 + 96 # kernel de 11*11, 96 filtros y sesgo, aquí tendríamos un output shape de 214,214,3
 ```
 
 
 2.Implementar la arquitectura AlexNet en R-Keras.
 
 ```{r}
-input_shape = c(224,224,3)
-num_classes = 1000
+input_shape <- c(224, 224, 3)
+num_classes <- 1000
 model <- keras_model_sequential()
 model %>%
-  layer_conv_2d(filters=96, kernel_size = c(11,11), strides = 4, activation = 'relu', input_shape=input_shape) %>%
-  layer_max_pooling_2d(pool_size = c(3, 3), strides = 2) %>% 
-  layer_conv_2d(filters = 256, kernel_size = c(5,5),padding = "same", activation = 'relu') %>%
-  layer_max_pooling_2d(pool_size = c(3, 3), strides = 2) %>% 
-  layer_conv_2d(filters = 384, kernel_size = c(3,3),padding = "same", activation = 'relu') %>%
-  layer_conv_2d(filters = 384, kernel_size = c(3,3),padding = "same", activation = 'relu') %>%
-  layer_conv_2d(filters = 256, kernel_size = c(3,3),padding = "same", activation = 'relu') %>%
-  layer_max_pooling_2d(pool_size = c(3, 3), strides = 2) %>% 
-  layer_flatten() %>% 
-  layer_dense(units = 4096, activation = 'relu') %>% 
-  layer_dropout(rate = 0.5) %>% 
-  layer_dense(units = 4096, activation = 'relu') %>% 
-  layer_dropout(rate = 0.5) %>% 
-  layer_dense(units = num_classes, activation = 'softmax')
+  layer_conv_2d(filters = 96, kernel_size = c(11, 11), strides = 4, activation = "relu", input_shape = input_shape) %>%
+  layer_max_pooling_2d(pool_size = c(3, 3), strides = 2) %>%
+  layer_conv_2d(filters = 256, kernel_size = c(5, 5), padding = "same", activation = "relu") %>%
+  layer_max_pooling_2d(pool_size = c(3, 3), strides = 2) %>%
+  layer_conv_2d(filters = 384, kernel_size = c(3, 3), padding = "same", activation = "relu") %>%
+  layer_conv_2d(filters = 384, kernel_size = c(3, 3), padding = "same", activation = "relu") %>%
+  layer_conv_2d(filters = 256, kernel_size = c(3, 3), padding = "same", activation = "relu") %>%
+  layer_max_pooling_2d(pool_size = c(3, 3), strides = 2) %>%
+  layer_flatten() %>%
+  layer_dense(units = 4096, activation = "relu") %>%
+  layer_dropout(rate = 0.5) %>%
+  layer_dense(units = 4096, activation = "relu") %>%
+  layer_dropout(rate = 0.5) %>%
+  layer_dense(units = num_classes, activation = "softmax")
 ```
 ```{r}
-(224-11+4+0)/4
+(224 - 11 + 4 + 0) / 4
 ```
 
 ```{r}
@@ -208,7 +219,7 @@ summary(model)
 El dataset es idéntico a MNIST, solo hay que cambiar el acceso al conjunto de datos.
 
 ```{r,eval=F}
-library(keras)
+library(keras3)
 # Data Preparation -----------------------------------------------------
 num_classes <- 10
 # Input image dimensions
@@ -230,9 +241,9 @@ input_shape <- c(img_rows, img_cols, 1)
 x_train <- x_train / 255
 x_test <- x_test / 255
 
-cat('x_train_shape:', dim(x_train), '\n')
-cat(nrow(x_train), 'train samples\n')
-cat(nrow(x_test), 'test samples\n')
+cat("x_train_shape:", dim(x_train), "\n")
+cat(nrow(x_train), "train samples\n")
+cat(nrow(x_test), "test samples\n")
 
 # Convert class vectors to binary class matrices
 y_train <- to_categorical(y_train, num_classes)
@@ -246,29 +257,39 @@ Por todo esto, definimos el modelo, cambiando el kernel size a 3x3, con un strid
 
 ```{r,eval=F}
 # Define Model -----------------------------------------------------------
-input_shape = c(img_rows,img_cols,1)
+input_shape <- c(img_rows, img_cols, 1)
 model <- keras_model_sequential()
 model %>%
-  layer_conv_2d(filters = 96, kernel_size = c(3,3),strides = 1, 
-                activation = 'relu',
-                input_shape = input_shape) %>% 
-  layer_max_pooling_2d(pool_size = c(3, 3),strides = 2) %>% 
-  layer_conv_2d(filters = 256, kernel_size = c(5,5), padding = 'same', 
-                activation = 'relu') %>% 
-  layer_max_pooling_2d(pool_size = c(3, 3),strides = 2) %>%
-  layer_conv_2d(filters = 384, kernel_size = c(3,3), padding = 'same', 
-                activation = 'relu') %>%
-  layer_conv_2d(filters = 384, kernel_size = c(3,3), padding = 'same', 
-                activation = 'relu') %>%
-  layer_conv_2d(filters = 256, kernel_size = c(3,3), padding = 'same', 
-                activation = 'relu') %>%
-  layer_max_pooling_2d(pool_size = c(3, 3),strides = 2) %>%
-  layer_flatten() %>% 
-  layer_dense(units = 4096, activation = 'relu') %>% 
-  layer_dropout(rate = 0.5) %>% 
-  layer_dense(units = 4096, activation = 'relu') %>% 
-  layer_dropout(rate = 0.5) %>% 
-  layer_dense(units = num_classes, activation = 'softmax')
+  layer_conv_2d(
+    filters = 96, kernel_size = c(3, 3), strides = 1,
+    activation = "relu",
+    input_shape = input_shape
+  ) %>%
+  layer_max_pooling_2d(pool_size = c(3, 3), strides = 2) %>%
+  layer_conv_2d(
+    filters = 256, kernel_size = c(5, 5), padding = "same",
+    activation = "relu"
+  ) %>%
+  layer_max_pooling_2d(pool_size = c(3, 3), strides = 2) %>%
+  layer_conv_2d(
+    filters = 384, kernel_size = c(3, 3), padding = "same",
+    activation = "relu"
+  ) %>%
+  layer_conv_2d(
+    filters = 384, kernel_size = c(3, 3), padding = "same",
+    activation = "relu"
+  ) %>%
+  layer_conv_2d(
+    filters = 256, kernel_size = c(3, 3), padding = "same",
+    activation = "relu"
+  ) %>%
+  layer_max_pooling_2d(pool_size = c(3, 3), strides = 2) %>%
+  layer_flatten() %>%
+  layer_dense(units = 4096, activation = "relu") %>%
+  layer_dropout(rate = 0.5) %>%
+  layer_dense(units = 4096, activation = "relu") %>%
+  layer_dropout(rate = 0.5) %>%
+  layer_dense(units = num_classes, activation = "softmax")
 ```
 
 
@@ -279,11 +300,11 @@ Y el mecanismo para entrenar, como siempre, lo definimos en una función
 batch_size <- 128
 epochs <- 5
 
-train_evaluate = function(model, x_train,y_train,batch_size,epochs,x_test,y_test){
+train_evaluate <- function(model, x_train, y_train, batch_size, epochs, x_test, y_test) {
   model %>% compile(
     loss = loss_categorical_crossentropy,
     optimizer = optimizer_adadelta(),
-    metrics = c('accuracy')
+    metrics = c("accuracy")
   )
   model %>% fit(
     x_train, y_train,
@@ -293,42 +314,47 @@ train_evaluate = function(model, x_train,y_train,batch_size,epochs,x_test,y_test
     validation_data = list(x_test, y_test)
   )
   scores <- model %>% evaluate(
-    x_test, y_test, verbose = 2
+    x_test, y_test,
+    verbose = 2
   )
   scores
 }
 
-scores = train_evaluate(model,x_train,y_train,batch_size,epochs,x_test,y_test)
+scores <- train_evaluate(model, x_train, y_train, batch_size, epochs, x_test, y_test)
 
 # Output metrics
-cat('Test loss:', scores[[1]], '\n')
-cat('Test accuracy:', scores[[2]], '\n')
+cat("Test loss:", scores[[1]], "\n")
+cat("Test accuracy:", scores[[2]], "\n")
 ```
 
 Este modelo no es tolerable así que lo reducimos a un mínimo para poder funcionar y volvemos a entrenar. Reducimos el MLP considerablemente, de dos capas de varios miles de nodos pasamos a una sola capa de 128 nodos. Por otro lado, nos quedamos solamente con dos capas de convolución 2D
 
 ```{r,eval=F}
 # Define Model -----------------------------------------------------------
-input_shape = c(img_rows,img_cols,1)
+input_shape <- c(img_rows, img_cols, 1)
 model <- keras_model_sequential()
 model %>%
-  layer_conv_2d(filters = 35, kernel_size = c(3,3),strides = 1, 
-                activation = 'relu',
-                input_shape = input_shape) %>% 
-  layer_max_pooling_2d(pool_size = c(3, 3),strides = 2) %>% 
-  layer_conv_2d(filters = 45, kernel_size = c(5,5), padding = 'same', 
-                activation = 'relu') %>% 
-  layer_max_pooling_2d(pool_size = c(3, 3),strides = 2) %>%
-  layer_flatten() %>% 
-  layer_dense(units = 128, activation = 'relu') %>% 
-  layer_dropout(rate = 0.5) %>% 
-  layer_dense(units = num_classes, activation = 'softmax')
+  layer_conv_2d(
+    filters = 35, kernel_size = c(3, 3), strides = 1,
+    activation = "relu",
+    input_shape = input_shape
+  ) %>%
+  layer_max_pooling_2d(pool_size = c(3, 3), strides = 2) %>%
+  layer_conv_2d(
+    filters = 45, kernel_size = c(5, 5), padding = "same",
+    activation = "relu"
+  ) %>%
+  layer_max_pooling_2d(pool_size = c(3, 3), strides = 2) %>%
+  layer_flatten() %>%
+  layer_dense(units = 128, activation = "relu") %>%
+  layer_dropout(rate = 0.5) %>%
+  layer_dense(units = num_classes, activation = "softmax")
 
-scores = train_evaluate(model,x_train,y_train,batch_size,epochs,x_test,y_test)
+scores <- train_evaluate(model, x_train, y_train, batch_size, epochs, x_test, y_test)
 
 # Output metrics
-cat('Test loss:', scores[[1]], '\n')
-cat('Test accuracy:', scores[[2]], '\n')
+cat("Test loss:", scores[[1]], "\n")
+cat("Test accuracy:", scores[[2]], "\n")
 ```
 
 
@@ -347,30 +373,39 @@ library(knitr)
 
 vgg11_architecture <- data.frame(
   Bloque = c(1, "", 2, "", 3, "", "", 4, "", "", 5, "", "", "FC", "", "", ""),
-  Capa = c("Conv1", "Pool1", "Conv2", "Pool2", "Conv3", "Conv4", "Pool3", 
-           "Conv5", "Conv6", "Pool4", "Conv7", "Conv8", "Pool5", 
-           "Flatten", "FC1", "FC2", "FC3"),
-  Tipo = c("Conv2D", "MaxPool", "Conv2D", "MaxPool", "Conv2D", "Conv2D", "MaxPool",
-           "Conv2D", "Conv2D", "MaxPool", "Conv2D", "Conv2D", "MaxPool",
-           "-", "Dense", "Dense", "Dense"),
+  Capa = c(
+    "Conv1", "Pool1", "Conv2", "Pool2", "Conv3", "Conv4", "Pool3",
+    "Conv5", "Conv6", "Pool4", "Conv7", "Conv8", "Pool5",
+    "Flatten", "FC1", "FC2", "FC3"
+  ),
+  Tipo = c(
+    "Conv2D", "MaxPool", "Conv2D", "MaxPool", "Conv2D", "Conv2D", "MaxPool",
+    "Conv2D", "Conv2D", "MaxPool", "Conv2D", "Conv2D", "MaxPool",
+    "-", "Dense", "Dense", "Dense"
+  ),
   Filtros = c(64, "-", 128, "-", 256, 256, "-", 512, 512, "-", 512, 512, "-", "-", 4096, 4096, 1000),
-  Kernel = c("(3,3)", "(2,2)", "(3,3)", "(2,2)", "(3,3)", "(3,3)", "(2,2)",
-             "(3,3)", "(3,3)", "(2,2)", "(3,3)", "(3,3)", "(2,2)",
-             "-", "-", "-", "-"),
-  Input_Shape = c("(224,224,3)", "(224,224,64)", "(112,112,64)", "(112,112,128)",
-                  "(56,56,128)", "(56,56,256)", "(56,56,256)", 
-                  "(28,28,256)", "(28,28,512)", "(28,28,512)",
-                  "(14,14,512)", "(14,14,512)", "(14,14,512)", 
-                  "(7,7,512)", "(25088)", "(4096)", "(4096)"),
-  Output_Shape = c("(224,224,64)", "(112,112,64)", "(112,112,128)", "(56,56,128)",
-                   "(56,56,256)", "(56,56,256)", "(28,28,256)",
-                   "(28,28,512)", "(28,28,512)", "(14,14,512)",
-                   "(14,14,512)", "(14,14,512)", "(7,7,512)",
-                   "(25088)", "(4096)", "(4096)", "(1000)")
+  Kernel = c(
+    "(3,3)", "(2,2)", "(3,3)", "(2,2)", "(3,3)", "(3,3)", "(2,2)",
+    "(3,3)", "(3,3)", "(2,2)", "(3,3)", "(3,3)", "(2,2)",
+    "-", "-", "-", "-"
+  ),
+  Input_Shape = c(
+    "(224,224,3)", "(224,224,64)", "(112,112,64)", "(112,112,128)",
+    "(56,56,128)", "(56,56,256)", "(56,56,256)",
+    "(28,28,256)", "(28,28,512)", "(28,28,512)",
+    "(14,14,512)", "(14,14,512)", "(14,14,512)",
+    "(7,7,512)", "(25088)", "(4096)", "(4096)"
+  ),
+  Output_Shape = c(
+    "(224,224,64)", "(112,112,64)", "(112,112,128)", "(56,56,128)",
+    "(56,56,256)", "(56,56,256)", "(28,28,256)",
+    "(28,28,512)", "(28,28,512)", "(14,14,512)",
+    "(14,14,512)", "(14,14,512)", "(7,7,512)",
+    "(25088)", "(4096)", "(4096)", "(1000)"
+  )
 )
 
 kable(vgg11_architecture, caption = "Estructura de la red VGG11", align = "c")
-
 ```
 
 
@@ -448,28 +483,23 @@ library(keras)
 # Definir el modelo VGG11
 model <- keras_model_sequential() %>%
   # Bloque 1
-  layer_conv_2d(filters = 64, kernel_size = c(3,3), padding = "same", activation = "relu", input_shape = c(224, 224, 3)) %>%
-  layer_max_pooling_2d(pool_size = c(2,2), strides = c(2,2)) %>%
-  
+  layer_conv_2d(filters = 64, kernel_size = c(3, 3), padding = "same", activation = "relu", input_shape = c(224, 224, 3)) %>%
+  layer_max_pooling_2d(pool_size = c(2, 2), strides = c(2, 2)) %>%
   # Bloque 2
-  layer_conv_2d(filters = 128, kernel_size = c(3,3), padding = "same", activation = "relu") %>%
-  layer_max_pooling_2d(pool_size = c(2,2), strides = c(2,2)) %>%
-  
+  layer_conv_2d(filters = 128, kernel_size = c(3, 3), padding = "same", activation = "relu") %>%
+  layer_max_pooling_2d(pool_size = c(2, 2), strides = c(2, 2)) %>%
   # Bloque 3
-  layer_conv_2d(filters = 256, kernel_size = c(3,3), padding = "same", activation = "relu") %>%
-  layer_conv_2d(filters = 256, kernel_size = c(3,3), padding = "same", activation = "relu") %>%
-  layer_max_pooling_2d(pool_size = c(2,2), strides = c(2,2)) %>%
-  
+  layer_conv_2d(filters = 256, kernel_size = c(3, 3), padding = "same", activation = "relu") %>%
+  layer_conv_2d(filters = 256, kernel_size = c(3, 3), padding = "same", activation = "relu") %>%
+  layer_max_pooling_2d(pool_size = c(2, 2), strides = c(2, 2)) %>%
   # Bloque 4
-  layer_conv_2d(filters = 512, kernel_size = c(3,3), padding = "same", activation = "relu") %>%
-  layer_conv_2d(filters = 512, kernel_size = c(3,3), padding = "same", activation = "relu") %>%
-  layer_max_pooling_2d(pool_size = c(2,2), strides = c(2,2)) %>%
-  
+  layer_conv_2d(filters = 512, kernel_size = c(3, 3), padding = "same", activation = "relu") %>%
+  layer_conv_2d(filters = 512, kernel_size = c(3, 3), padding = "same", activation = "relu") %>%
+  layer_max_pooling_2d(pool_size = c(2, 2), strides = c(2, 2)) %>%
   # Bloque 5
-  layer_conv_2d(filters = 512, kernel_size = c(3,3), padding = "same", activation = "relu") %>%
-  layer_conv_2d(filters = 512, kernel_size = c(3,3), padding = "same", activation = "relu") %>%
-  layer_max_pooling_2d(pool_size = c(2,2), strides = c(2,2)) %>%
-  
+  layer_conv_2d(filters = 512, kernel_size = c(3, 3), padding = "same", activation = "relu") %>%
+  layer_conv_2d(filters = 512, kernel_size = c(3, 3), padding = "same", activation = "relu") %>%
+  layer_max_pooling_2d(pool_size = c(2, 2), strides = c(2, 2)) %>%
   # Capas totalmente conectadas
   layer_flatten() %>%
   layer_dense(units = 4096, activation = "relu") %>%
@@ -478,7 +508,6 @@ model <- keras_model_sequential() %>%
 
 # Mostrar el resumen del modelo
 summary(model)
-
 ```
 
 

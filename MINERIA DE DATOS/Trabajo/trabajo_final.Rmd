@@ -6,6 +6,9 @@ if (interactive()) {
     setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 }
 
+# Cargamos el workspace.RData
+# load("workspace.RData")
+
 # Cargamos las librerías necesarias
 library(summarytools)
 library(ggplot2)
@@ -18,6 +21,9 @@ library(VIM)
 library(doParallel)
 library(smotefamily)
 library(vip)
+library(reticulate)
+library(keras3)
+library(MLmetrics)
 ```
 
 
@@ -137,17 +143,25 @@ data.num.vars <- setdiff(data.num.vars, "PM2.5_annualMean")
 
 # Realizamos un histograma para cada variable numérica en el cual se vea su distribución según el nivel de contaminación.
 densities <- lapply(data.num.vars, function(var) {
-    ggplot(data, aes(x = var, fill = "contamination_2levels")) +
+    ggplot(data, aes(
+        x     = .data[[var]],
+        fill  = contamination_2levels,
+        group = contamination_2levels
+    )) +
         geom_density(
-            aes(y = after_stat(..scaled..)), # curva de densidad escalada [0,1]
-            alpha = 0.5, position = "identity"
+            aes(y = after_stat(..scaled..)),
+            alpha = 0.5,
+            position = "identity"
         ) +
-        scale_y_continuous(limits = c(0, 1), expand = c(0, 0)) +
         scale_fill_manual(
             name   = "Contaminación",
             values = c("Baja" = "blue", "Alta" = "red")
         ) +
-        labs(title = var, x = var, y = "Densidad normalizada") +
+        labs(
+            title = var,
+            x     = var,
+            y     = "Densidad normalizada"
+        ) +
         theme_minimal(base_size = 10) +
         theme(
             plot.title   = element_text(size = 10),
@@ -158,6 +172,7 @@ densities <- lapply(data.num.vars, function(var) {
         )
 })
 do.call(grid.arrange, c(densities, ncol = 2))
+
 
 # Calculamos las medias y las desviaciones típicas de cada variable según el nivel de contaminación y lo enseñamos con print()
 means <- data %>%
@@ -276,6 +291,9 @@ idxs <- sample(
 )
 data.train.balanced <- data.train.balanced[-idxs, ]
 
+# Reordenamos las categorías de la variable a predecir
+data.train.balanced$contamination <- factor(data.train.balanced$contamination, levels = c("Bajo", "Moderada", "Insalubre", "Muy Insalubre"))
+
 # Vemos la distribución de los valores en el conjunto de train
 table(data.train.balanced$contamination)
 ```
@@ -289,7 +307,7 @@ data.train.balanced$contamination <- as.factor(data.train.balanced$contamination
 data.train.balanced$PM2.5_annualMean <- NULL
 
 # Declaramos el cluster con doParallel dependiendo del número de núcleos de la CPU
-cluster <- makePSOCKcluster(2)
+cluster <- makePSOCKcluster(detectCores() - 1)
 registerDoParallel(cluster)
 
 # Definimos el tamaño de los subconjuntos
@@ -324,7 +342,7 @@ data.train.balanced <- data.train.balanced %>% select(c(data.rfe$optVariables, "
 
 Vamos a usar modelos para realizar predicciones.
 ```{r}
-##########
+#########
 # RPart #
 #########
 
@@ -346,7 +364,7 @@ set.seed(342)
 rpart.cv <- train(contamination ~ .,
     data = data.train.balanced,
     method = "rpart",
-    tuneLength = 10,
+    tuneLength = 20,
     trControl = rpart.ctrl
 )
 rpart.cv
@@ -375,7 +393,7 @@ set.seed(342)
 rf.cv <- train(contamination ~ .,
     data = data.train.balanced,
     method = "rf",
-    tuneLength = 10,
+    tuneLength = 20,
     trControl = rf.ctrl
 )
 rf.cv
@@ -404,7 +422,7 @@ set.seed(342)
 gbm.cv <- train(contamination ~ .,
     data = data.train.balanced,
     method = "gbm",
-    tuneLength = 10,
+    tuneLength = 20,
     trControl = gbm.ctrl
 )
 gbm.cv
@@ -442,7 +460,7 @@ svm.cv <- train(contamination ~ .,
     data = data.train.balanced,
     method = "svmRadial",
     preProcess = c("center", "scale"),
-    tuneLength = 10,
+    tuneLength = 20,
     trControl = svm.ctrl
 )
 svm.cv
@@ -511,3 +529,177 @@ plot(rf.imp, top = 20)
 Con este gráfico de imortancia vemos que las variables más importantes son las que tienen que ver con las partículas PM10, luego con el NO2, luego con el O3 y finalmente con el NO. Esto nos da una idea de la importancia de cada partícula a la hora de predecir la contaminación por PM2.5.
 
 # Apartado 2.3
+
+```{r}
+set.seed(123)
+
+# Cremaos los datos de entrada para la red neuronal
+x <- scale(as.matrix(data.train.balanced %>% select(-contamination)))
+y <- as.integer(as.factor(data.train.balanced$contamination)) - 1L
+n <- ncol(x)
+K <- 4
+
+# Creamos los folds para la validación cruzada
+folds <- createFolds(y, k = 5, returnTrain = FALSE)
+
+# Creamos el grid de hiperparámetros
+grid <- expand.grid(
+    n_layers = c(1, 2, 3),
+    units = c(32, 64, 128),
+    lr = c(1e-2, 1e-3, 1e-4),
+    epochs = c(30, 50, 100)
+)
+
+# Realizamos la validación cruzada con el grid de hiperparámetros usando el paquete doParallel
+cl <- makeCluster(detectCores() - 2)
+registerDoParallel(cl)
+results <- foreach(i = 1:nrow(grid), .combine = rbind, .packages = c("keras3", "MLmetrics")) %dopar% {
+    # Cogemos los hiperparámetros
+    p <- grid[i, ]
+    # Creamos listas para guardar las métricas de evaluación
+    accs <- numeric(length(folds))
+    f1s <- numeric(length(folds))
+
+    # Realizamos un bucle para los folds
+    for (j in seq_along(folds)) {
+        idx_val <- folds[[j]]
+        idx_train <- setdiff(1:length(y), idx_val)
+
+        # Calculamos el class_weight
+        class_weights <- table(y[idx_train])
+        class_weights <- class_weights / sum(class_weights)
+        class_weights <- 1 / class_weights
+        class_weights <- class_weights / sum(class_weights)
+        class_weights <- as.list(class_weights)
+        class_weights <- setNames(class_weights, 0:(K - 1))
+
+        # Creamos el modelo
+        model <- keras_model_sequential()
+        model %>% layer_dense(units = p$units, activation = "relu", input_shape = n)
+        if (p$n_layers > 1) {
+            for (k in seq_len(p$n_layers - 1)) {
+                model %>% layer_dense(units = p$units, activation = "relu")
+            }
+        }
+        model %>% layer_dense(units = K, activation = "softmax")
+        model %>% compile(
+            optimizer = optimizer_adam(learning_rate = p$lr),
+            loss = "sparse_categorical_crossentropy",
+            metrics = "accuracy"
+        )
+
+        # Ajustamos el modelo
+        history <- model %>% fit(
+            x[idx_train, ], y[idx_train],
+            epochs = p$epochs, batch_size = 64, verbose = 0
+        )
+
+        # Predicciones
+        probs <- model %>% predict(x[idx_val, ], verbose = 0)
+        pred_cls <- apply(probs, 1, which.max) - 1L
+        true_cls <- y[idx_val]
+
+        # Calculamos el accuracy
+        ev <- model %>% evaluate(x[idx_val, ], y[idx_val], verbose = 0)
+        accs[j] <- ev["accuracy"]
+
+        # Calculamos el F1-score
+        f1.perr_class <- sapply(0:(K - 1), function(cls) {
+            y_pred_bin <- ifelse(pred_cls == cls, 1, 0)
+            y_true_bin <- ifelse(true_cls == cls, 1, 0)
+            # evita NA si no hay casos de la clase en el fold
+            if (all(y_true_bin == 0)) {
+                return(NA_real_)
+            }
+            F1_Score(y_pred = y_pred_bin, y_true = y_true_bin, positive = "1")
+        })
+        f1s[j] <- mean(f1.perr_class, na.rm = TRUE)
+    }
+
+    # Devolvemos los resultados
+    c(grid[i, ], mean_acc = mean(unlist(accs)), mean_f1 = mean(unlist(f1s)))
+}
+stopCluster(cl)
+
+# Convertimos los resultados a un dataframe
+results <- as.data.frame(results)
+# Mostrmoas los resultados
+print(results)
+# Escogemos el mejor modelo y lo mostramos
+best <- results[which.max(results$mean_f1), ]
+best
+```
+
+```{r}
+# Guardamos los hiperparámetros en variables de los tipos correspondientes
+best$n_layers <- as.integer(best$n_layers)
+best$units <- as.integer(best$units)
+best$lr <- as.numeric(best$lr)
+best$epochs <- as.integer(best$epochs)
+
+# Calculamos los pesos de las clases
+class_weights <- table(data.train.balanced$contamination)
+class_weights <- class_weights / sum(class_weights)
+class_weights <- 1 / class_weights
+class_weights <- class_weights / sum(class_weights)
+class_weights <- as.list(class_weights)
+class_weights <- setNames(class_weights, 0:(K - 1))
+
+# Cremos el modelo con los mejores hiperparámetros
+model <- keras_model_sequential()
+model %>% layer_dense(units = best$units, activation = "relu", input_shape = n)
+if (best$n_layers > 1) {
+    for (k in seq_len(best$n_layers - 1)) {
+        model %>% layer_dense(units = best$units, activation = "relu")
+    }
+}
+model %>% layer_dense(units = K, activation = "softmax")
+model %>% compile(
+    optimizer = optimizer_adam(learning_rate = best$lr),
+    loss = "sparse_categorical_crossentropy",
+    metrics = "accuracy"
+)
+
+# Ajustamos el modelo
+history <- model %>% fit(
+    x, y,
+    epochs = best$epochs, batch_size = 64, verbose = 1,
+    class_weight = class_weights
+)
+
+# Conjunto de test
+x.test <- data.test %>% select(-contamination)
+x.test <- x.test[, colnames(x.test) %in% colnames(data.train.balanced)]
+x.test <- scale(x.test)
+x.test <- as.matrix(x.test)
+y.test <- as.integer(as.factor(data.test$contamination)) - 1L
+
+# Predecimos el conjunto de test
+probs <- model %>% predict(x.test, verbose = 0)
+pred_cls <- apply(probs, 1, which.max) - 1L
+true_cls <- y.test
+
+# Calculamos el accuracy
+ev <- model %>% evaluate(x.test, y.test, verbose = 0)
+acc <- ev["accuracy"]
+f1.perr_class <- sapply(0:(K - 1), function(cls) {
+    y_pred_bin <- ifelse(pred_cls == cls, 1, 0)
+    y_true_bin <- ifelse(true_cls == cls, 1, 0)
+    # evita NA si no hay casos de la clase en el fold
+    if (all(y_true_bin == 0)) {
+        return(NA_real_)
+    }
+    F1_Score(y_pred = y_pred_bin, y_true = y_true_bin, positive = "1")
+})
+f1 <- mean(f1.perr_class, na.rm = TRUE)
+
+# Mostramos los resultados
+acc
+f1
+
+# Pasamos las predicciones y los test a factor
+pred_cls <- factor(pred_cls, levels = 0:(K - 1), labels = levels(data.test$contamination))
+true_cls <- factor(true_cls, levels = 0:(K - 1), labels = levels(data.test$contamination))
+cm <- confusionMatrix(pred_cls, true_cls)
+cm
+```
