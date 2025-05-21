@@ -18,21 +18,39 @@ if (interactive()) {
     setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 }
 
+# Lista de paquetes a usar
+packages <- c(
+    "summarytools",
+    "ggplot2",
+    "dplyr",
+    "tidyr",
+    "caret",
+    "gridExtra",
+    "VIM",
+    "doParallel",
+    "reticulate",
+    "keras3",
+    "gbm",
+    "UBL"
+)
+
+# Insalamos los paquetes que no estén instalados
+new.packages <- packages[!(packages %in% installed.packages()[, "Package"])]
+if (length(new.packages)) {
+    install.packages(new.packages)
+}
+
 # Cargamos las librerías necesarias
 library(summarytools)
 library(ggplot2)
-library(scales)
 library(dplyr)
 library(tidyr)
 library(caret)
 library(gridExtra)
 library(VIM)
 library(doParallel)
-library(smotefamily)
-library(vip)
 library(reticulate)
 library(keras3)
-library(MLmetrics)
 library(gbm)
 library(UBL)
 ```
