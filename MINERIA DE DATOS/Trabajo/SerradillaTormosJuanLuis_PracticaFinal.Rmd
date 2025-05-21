@@ -1,0 +1,854 @@
+---
+title: "Práctica Final - Minería de Datos"
+author: "Juan Luis Serradilla Tormos"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
+    highlight: kate
+    number_sections: yes
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+```{r, include = F}
+# Seleccionamos el "path" de este archivo como el directorio de trabajo
+if (interactive()) {
+    setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+}
+
+# Cargamos las librerías necesarias
+library(summarytools)
+library(ggplot2)
+library(scales)
+library(dplyr)
+library(tidyr)
+library(caret)
+library(gridExtra)
+library(VIM)
+library(doParallel)
+library(smotefamily)
+library(vip)
+library(reticulate)
+library(keras3)
+library(MLmetrics)
+library(gbm)
+library(UBL)
+```
+
+# Resumen ejecutivo
+
+
+
+# Análisis descriptivo de los datos
+
+Lo primero de todo es cargar los datos y ver cómo son. Al cargar estos datos vamos a importar los `strings` como factores.
+```{r}
+# Leemos el archivo CSV
+data <- read.csv("data.csv", sep = ";", stringsAsFactors = TRUE)
+
+# Inspeccionamos las características del dataframe
+dim(data)
+str(data)
+head(data)
+```
+
+De primeras vemos que tenemos un dataframe de 24120 variables y 15 predictores. Vamos a describir las diferentes variables que tenemos:
+
+- **kreis**: Nombre de la región en la que se ha tomado la medida.
+- **year**: Año en el que se ha tomado la medida.
+- **NO2_annualMean**: Media anual de partículas de NO2.
+- **NO2_hrOver200**: Número de horas al año con una concentración de NO2 superior a 200.
+- **NO_annualMean**: Media anual de partículas de NO.
+- **O3_annualMean**: Media anual de partículas de O3.
+- **O3_daysOver120**: Número de días al año con una concentración de O3 superior a 120.
+- **O3_dailyMaxAnnualMean:** Máxima concentración de O3 en un año (medias diarias).
+- **O3_dailyHourlyMax**: Máxima concentración de O3 en un año (medias cada hora).
+- **O3_daily8HrMax**: Máxima concentración de O3 en un año (medias cada 8 horas).
+- **PM10_annualMean**: Media anual de partículas de PM10.
+- **PM10_daysOver50**: Número de días al año con una concentración de PM10 superior a 50.
+- **PM2.5_annualMean**: Media anual de partículas de PM2.5.
+- **kreis_code**: Código de la región en la que se ha tomado la medida.
+- **scenario**: Descripción de la zona (`average`, `remote`, `urban`).
+
+De primeras, sabiendo solo esto la única variable que vamos a eliminar es `kreis_code`, ya que aporta la misma información que `kreis`. Además vamos a pasar `year` a factor.
+```{r}
+# Eliminamos la variable kreis_code
+data$kreis_code <- NULL
+
+# Pasamos year a factor
+data$year <- as.factor(data$year)
+```
+
+Ahora que hemos limpiado un poco las variables, vamos a ver la cantidad de datos duplicados y nulos que tenemos. En el caso caso de que representen cantidades muy pequeñas del dataset, directamente vamos a eliminarlos.
+```{r}
+# Vemos el porcentaje de filas con valores NA
+p.rows.na <- sum(rowSums(is.na(data)) > 0) / nrow(data) * 100
+p.rows.na
+
+# Vemos el porcentaje de filas duplicadas
+p.rows.duplicated <- sum(duplicated(data)) / nrow(data) * 100
+p.rows.duplicated
+
+# Como apenas hay filas con valores NA vamos a eliminarlas directamente, ya que no deberían afectar a la distribución de los resultados
+data <- na.omit(data)
+```
+
+Vemos que no hay duplicados en el dataset y que hay un 0.19% de filas con valores NA, por lo que las hemos eliminado directamente. Ahora que hemos hecho una pequeña limpieza, vamos a inspeccionar más a fondo los datos.
+```{r}
+print(dfSummary(data, plain.ascii = FALSE), method = "render")
+```
+
+Al analizar el reusmen del dataset podemos ver que hay algunas variables numéricas con valores negativos. Sin embargo, estas variables son concentraciones de partículas y conteo de horas o días, por lo que los valores negativos no tienen sentido dada su definición matemática. Estas variables son: `NO_annualMean`, `PM10_daysOver50`, `PM2.5_annualMean`. Vamos a ver si podemos eliminar estos valores negativos.
+```{r}
+# Seleccioamos las variables que queremos inspeccionar
+data.vars <- data %>% select(NO_annualMean, PM10_daysOver50, PM2.5_annualMean)
+
+# Seleccionamos las filas con valores negativos
+data.vars.neg <- data.vars %>% filter(NO_annualMean < 0 | PM10_daysOver50 < 0 | PM2.5_annualMean < 0)
+
+# Vemos el porcentaje de filas con valores negativos
+p.rows.neg <- nrow(data.vars.neg) / (nrow(data) - nrow(data.vars.neg)) * 100
+p.rows.neg
+```
+
+Se puede observar como los valores negativos representan un 2.38% del dataframe. Esto es batante más que el 0.19% que suponían los valores NA, por lo que en vez de eliminarlos vamos a usar el paquete `VIM` para ver si podemos imputar estos valores. Vamos a convertir estos valores a `NA` y luego observar su distribución con `aggr`.
+```{r}
+# Convertimos los valores negativos en NA
+data$NO_annualMean[data$NO_annualMean < 0] <- NA
+data$PM10_daysOver50[data$PM10_daysOver50 < 0] <- NA
+data$PM2.5_annualMean[data$PM2.5_annualMean < 0] <- NA
+
+# Usamos el paquete VIM para ver si se puede hacer algo con los valores NA
+data.plot <- data %>% select(NO_annualMean, PM10_daysOver50, PM2.5_annualMean)
+aggr(data.plot, numbers = TRUE, prop = FALSE)
+```
+
+Se puede ver en el gráfico que más del 95% de los valores negativos pertenecen a `P2.5_annualMean`. Como esta va a ser la variable objetivo a lo largo de la práctica no vamos a imputar estos valores, ya que no queremos generar muestras sintéticas que afecten a las predicciones. Como los valores negativos fuera de esta variable son realmente escasos, vamos a eliminarlos directamente. Luego volveremos a ver la distribución del dataset.
+```{r}
+# Eliminamos las filas con N
+data <- na.omit(data)
+
+# Volvemos a ver el resumen estadístico
+print(dfSummary(data, plain.ascii = FALSE), method = "render")
+```
+
+Vemos que los valores de las variables categóricas están equilibrados, y que los valores de las variables numéricas en general son razonables. Sin embargo, hay algunos predictores numéricos que parece que tienen poca variabilidad. Vamos a analizar con `nearZeroVar` de caret si hace falta eliminar alguna de estas variables debido a una baja varianza.
+```{r}
+# Seleccionamos las variables numéricas
+data.num <- data %>% select_if(is.numeric)
+
+# Analizamos la variabilidad de las variables numéricas
+data.nzv <- nearZeroVar(data.num, saveMetrics = TRUE)
+data.nzv
+```
+
+La métrica `freqRatio` nos indica la frecuencia de la variable más común sobre la segunda más común, es decir, si la variable más común tiene una frecuencia de 100 y la segunda más común de 25, este ratio será 4. Por otro lado, la métrica `percentUnique` nos indica el porcentaje de valores únicos sobre el total de valores, ayudándonos a ver si una variable es continua (porcentaje alto) o es prácticamente constante (porcentaje bajo). 
+
+Podemos ver en los resultados que hay dos variables con un `freqRatio` muy alto: `NO2_hrOver200` y `O3_daysOver120`, aunque la primera es mucho mayor a la segunda. De primeras esto es un mal indicativo, sin embargo, las dos variables tienen un `percentUnique` alto, por lo que el algoritmo no las clasifica con `TRUE` en `nzv`. La segunda variable tiene un `freqRatio` de 11, que junto a su alto `percentUnique` de 62 indica que es una variable válida. Por otro lado, la primera variable tiene un `freqRatio` enorme en comparación con el resto (de 250) y, aunque tenga un `percentUnique` del 48.6 (lo cual no es bajo), sí que es mucho menor que el siguinete valor más pequeño (57.4), de casi 10 puntos menos. Por lo tanto, vamos a eliminar del dataset la variable `NO2_hrOver200`.
+```{r}
+# Eliminamos la variable "NO2_hrOver200"
+data$NO2_hrOver200 <- NULL
+```
+
+Ahora, vamos a responder a las preguntas:
+
+- "¿Cuáles son las características de las zonas con alta contaminación por PM2.5?"
+- "¿Cuáles son las características de las zonas con baja contaminación por PM2.5?"
+
+Para poder responder, lo primero de todo es crear una variable binaria que nos indique si la zona tiene alta o baja contaminación por PM2.5. Como se indica en el documento de la práctica, la contaminación puede dividirse en Baja, Moderada, Insaluble y Muy Insalubre. Por lo tanto, vamos a realizar una variable con estas categorías y, después, agruparemos Baja e Insalubre en una sola categoría, y Moderada y Muy Insalubre en otra. Para ello, vamos a usar la función `cut` de R.
+```{r}
+# Creamos una nueva variable que indique el nivel de contaminación de forma categórica
+data$contamination <- cut(
+    data$PM2.5_annualMean,
+    breaks = c(-Inf, 10, 25, 50, Inf),
+    labels = c("Bajo", "Moderada", "Insalubre", "Muy Insalubre")
+)
+
+# Creamos una nueva variable que indique si la contaminacion es alta o baja
+data$contamination_2levels <- ifelse(data$PM2.5_annualMean > 25, "Alta", "Baja")
+data$contamination_2levels <- as.factor(data$contamination_2levels)
+
+# Vemos el resumen estadístico de las nuevas variables
+table(data$contamination)
+table(data$contamination_2levels)
+```
+
+Ahora que tenemos la variable categórica, vamos a ver las distribuciones de las variables numéricas en función del nivel de contaminación. También vamos a ver la distribución de las varaibles categóricas (año y scenario) en función del nivel de contaminación, buscando alguna relación.
+```{r}
+# Creamos una lista con los nombres de las variables numéricas
+data.num.vars <- names(data)[sapply(data, is.numeric)]
+data.num.vars <- setdiff(data.num.vars, "PM2.5_annualMean")
+
+# Realizamos un histograma para cada variable numérica en el cual se vea su distribución según el nivel de contaminación.
+densities <- lapply(data.num.vars, function(var) {
+    ggplot(data, aes(
+        x     = .data[[var]],
+        fill  = contamination_2levels,
+        group = contamination_2levels
+    )) +
+        geom_density(
+            aes(y = after_stat(..scaled..)),
+            alpha = 0.5,
+            position = "identity"
+        ) +
+        scale_fill_manual(
+            name   = "Contaminación",
+            values = c("Baja" = "blue", "Alta" = "red")
+        ) +
+        labs(
+            title = var,
+            x     = var,
+            y     = "Densidad normalizada"
+        ) +
+        theme_minimal(base_size = 10) +
+        theme(
+            plot.title   = element_text(size = 10),
+            axis.title   = element_text(size = 9),
+            axis.text    = element_text(size = 8),
+            legend.title = element_text(size = 9),
+            legend.text  = element_text(size = 8)
+        )
+})
+do.call(grid.arrange, c(densities, ncol = 2))
+
+
+# Creamos una lista con los nombres de las variables categóricas
+data.cat.vars <- c("year", "scenario")
+
+p_year <- ggplot(data, aes(x = factor(year), fill = contamination_2levels)) +
+    geom_bar(position = "stack") +
+    scale_y_continuous(trans = "log10") +
+    scale_fill_manual(values = c("Alta" = "red", "Baja" = "blue")) +
+    labs(
+        title = "Contaminación PM2.5 por año",
+        x = "Año",
+        y = "Frecuencia (escala log10)",
+        fill = "Contaminación"
+    ) +
+    theme_minimal() +
+    theme(
+        plot.title = element_text(hjust = 0.5),
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 8)
+    )
+
+p_scenario <- ggplot(data, aes(x = scenario, fill = contamination_2levels)) +
+    geom_bar(position = "stack") +
+    scale_y_continuous(trans = "log10") +
+    scale_fill_manual(values = c("Alta" = "red", "Baja" = "blue")) +
+    labs(
+        title = "Contaminación PM2.5 por escenario",
+        x = "Escenario",
+        y = "Frecuencia (escala log10)",
+        fill = "Contaminación"
+    ) +
+    theme_minimal() +
+    theme(
+        plot.title = element_text(hjust = 0.5),
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 8)
+    )
+
+# Unimos los tres gráficos en un grid de 3 columnas
+grid.arrange(p_year, p_scenario, nrow = 2)
+```
+
+**__Respecto a las variables numéricas:__**
+
+En el gráfico de las distribuciones de las variables numéricas podemos ver 3 casos: no hay diferencia entre distribuciones, hay diferencia en anchura, hay diferencia en posición y anchura. Vamos a anlizar cada uno de estos casos.
+
+- **Distribuciones similares:** Es el caso de `O3_dailyHourlyMax` y `O3_daily8HrMax`. No podemos ver ninguna diferencia, por lo que no hay conclusiones que sacar de estas variables respecto a la contaminación.
+- **Distribuciones solapadas:** En este caso tenemos a `NO2_annualMean`, `NO_annualMean`, `O3_annualMean`, `O3_daysOver120`, `O3_dailyMaxAnnualMean`. En estos casos la media es igual o similar tanto con o sin contaminación, pero la anchura de la distribución varía, por loq que hay regiones de valores que corresponden en su mayoría a una de las dos categorías. En el caso de `NO2_annualMean`, `NO_annualMean` y `O3_annualMean`, valores muy extremos de concentracione sde partículas tienden a indicar alta contaminación de PM2.5. Por otro lado, en el caso de las variables relacionadas con la cantidad de días u horas (`O3_daysOver120`, `O3_dailyMaxAnnualMean`), una alta cantidad de días u horas con concentraciones altas de O3 tienden a indicar alta contaminación de PM2.5.
+- **Distribuciones separadas:** En este caso tenemos a `PM10_annualMean` y `PM10_daysOver50`. En estos casos la media de la distribución de alta contaminación es mucho mayor que la de baja contaminación, por lo que podemos concluir que una alta concentración de PM10 indica una alta contaminación por PM2.5.
+
+**__Respecto a las variables categóricas:__**
+Podemos ver que la contaminación por PM2.5 es alta casi exclusivamente en el año 2003 (la gráfica está en escala logarítmica en el eje y), con algunos casos en 2007 y 2011. Además, da igual el escenario ("medio", "remoto", "urbano") ya que la cantidad de contaminación es la misma en todos.
+
+**__Características de las zonas con alta contaminación por PM2.5:__**
+Con los dos análisis anteriores podemos determinar que las características de las zonas con alta contaminación por PM2.5 son:
+
+- No es una característica real, pero ser mediciones del 2003 es un factor importante a la hora de haber detectado contaminación.
+- Tener una alta concentración de NO2, NO y PM10_annualMean.
+- Tener tanto una concentración alta como una concentración baja de partículas de O3.
+- Tener una alta cantidad de días con una concentración ala de O3 y PM10.
+- Tener máximas anuales muy altas o muy bajas de O3.
+
+
+# Construcción de modelos predictivos
+
+Vamos a pasar a la construcción de modelos predictivos. En esta sección no solo crearemos modelos que sirvan para predecir la contaminación de PM2.5, sino que también prepararemos y seleccionaremos las variables para predecir la contaminación. 
+
+Lo primero de todo es separar en conjunto de train y test.
+```{r}
+# Definimos conjuntos de train y test
+set.seed(123)
+trainIndex <- createDataPartition(
+    data$contamination,
+    p = .8,
+    list = FALSE,
+    times = 1
+)
+data.train <- data[trainIndex, ]
+data.test <- data[-trainIndex, ]
+```
+
+Ahora que tenemos el conjunto de train y test, vamos a ver el desbalanceo dentro del conjunto de train.
+```{r}
+# Vemos la distribución de los valores de la variable a predecir
+table(data.train$contamination)
+
+# Vemos las proporciones de las clases
+prop.table(table(data.train$contamination))
+```
+
+Vemos que la variable `contamination` no solo es que esté desbalanceada, sino que además este desbalanceo es extremo en las clases minoritarias, ya que las variables más pequeñas no suponen ni un 0.01% del total del dataset.
+
+Para solucionar esto vamos a hacer tanto un upsampling de las clases minoritarias como un downsampling. Para el upsampling se usará la función `SmoteClassif` del paquete `UBL`, mientras que para el downsampling se hará una selección aleatoria de valores en las clases mayoritarias. Se usará el paquete `UBL` y no `smotefamily` ya que este permite hacer `smote` en multiclase. En el caso del upsampling vamos a aumentar la muestra un 200%, lo cual se quedará aún muy lejos de la clase mayoritaria. No vamos a hacer un upsampling más grande ya que no queremos generar una cantidad excesiva de muestras sintéticas. 
+
+```{r}
+# Hacemos un upsampling con SMOTE
+set.seed(123)
+data.tosmote <- data.train[, sapply(data.train, is.numeric)]
+data.tosmote$contamination <- data.train$contamination
+
+data.train.balanced <- SmoteClassif(
+    contamination ~ ., data.tosmote,
+    C.perc = list(
+        Insalubre = 2,
+        "Muy Insalubre" = 2
+    ),
+    k = 5,
+    repl = FALSE
+)
+
+# Hacemos un downsampling eligiendo una muestra aleatoria de la categoría "Moderada"
+set.seed(123)
+diff <- nrow(data.train.balanced[data.train.balanced$contamination == "Moderada", ]) - nrow(data.train.balanced[data.train.balanced$contamination == "Bajo", ])
+idxs <- sample(
+    which(data.train.balanced$contamination == "Moderada"),
+    diff
+)
+data.train.balanced <- data.train.balanced[-idxs, ]
+
+# Reordenamos las categorías de la variable a predecir
+data.train.balanced$contamination <- factor(data.train.balanced$contamination, levels = c("Bajo", "Moderada", "Insalubre", "Muy Insalubre"))
+
+# Vemos la distribución de los valores en el conjunto de train
+table(data.train.balanced$contamination)
+prop.table(table(data.train.balanced$contamination))
+```
+
+Vemos que después del balanceo las clases minoritarias aún suponen menos de un 0.1% del total cada una. Por lo tanto, vamos a hacer otro downsampling mayor, bajando los datos de las calses Bajo y Moderada a la cantidad de Insalubre. Esto eliminará la mayoría de los datos del dataset, pero es necesario ya que si no el modelo no podrá aprender correctamente de las clases minoritarias.
+```{r}
+# Calculamos la cantidad de datos "Insalubre"
+nrow.insalubre <- nrow(data.train.balanced[data.train.balanced$contamination == "Insalubre", ])
+
+# Calculamos la cantidad de datos "Bajo" y "Moderada"
+nrow.bajo <- nrow(data.train.balanced[data.train.balanced$contamination == "Bajo", ])
+nrow.moderada <- nrow(data.train.balanced[data.train.balanced$contamination == "Moderada", ])
+
+# Hacemos un downsampling eligiendo una muestra aleatoria de la categoría "Bajo" y "Moderada"
+set.seed(123)
+idxs.bajo <- sample(
+    which(data.train.balanced$contamination == "Bajo"),
+    nrow.bajo - nrow.insalubre
+)
+data.train.balanced <- data.train.balanced[-idxs.bajo, ]
+idxs.moderada <- sample(
+    which(data.train.balanced$contamination == "Moderada"),
+    nrow.moderada - nrow.insalubre
+)
+data.train.balanced <- data.train.balanced[-idxs.moderada, ]
+
+# Mostramos la distribución de los valores en el conjunto de train
+table(data.train.balanced$contamination)
+prop.table(table(data.train.balanced$contamination))
+nrow(data.train.balanced)
+
+# Eliminamos la variable PM2.5_annualMean
+data.train.balanced$PM2.5_annualMean <- NULL
+```
+
+Hemos hecho este balanceo solo en el conjunto de train ya que el conjunto de test no debe modificarse, ya que tiene que representar lo más fielmente posible la realidad.
+
+Ahora vamos a analizar qué variables debemos usar para predecir la contaminación. Los predictores `kreis`, `year` y `scenario` no sirven para predecir, ya que el primero es simplemente el nombre de la región; el año no puede ser un predictor ya que los únicos años con contaminación son 2003, 2007 y 2001, por lo que se tendería a etiquetar solo esos años; y el escenario no depende de de la contaminación como se ha visto anteriormente. Por lo tanto, solo nos quedarían las variables numéricas (a excepción de PM2.5_annualMean que es la que genera la variable objetivo). Estas suman un total de 9 variables, lo cual es bastante razonable. Por lo tanto, no vamos a hacer una selección de variables con algoritmos de selección, ya que no tenemos un problema de exceso de predictores.
+
+Ahora sí, vamos a crear los modelos. Para ello se usará el paquete `caret` (a excepción de la red neuronal que usará `keras`). Estos modelos se entranrán con validación cruzada de 10 folds, escogiendo así los mejores parámetros. Los modelos que se van a usar son:
+
+- rpart
+- rf
+- gbm
+- svmRadial
+- Red neuronal
+
+Se usará el paquete `doParallel` para paralelizar el entrenamiento de los modelos, minimizando el timepo de cómputo. Los modelos que se usarán en el trabajo a etregar no se calcularán en el momento, sino que se habrán calculado previamente y simplemente habrá que cargar los archivos que los contienen.
+Vamos a empezar con los entrenamientos.
+
+Vamos a usar modelos para realizar predicciones.
+```{r, eval = F}
+# Creamos el cluster
+cluster <- makePSOCKcluster(detectCores() - 1)
+registerDoParallel(cluster)
+```
+
+```{r, eval = F}
+#########
+# RPart #
+#########
+
+# Vemos la infomración del modelo con modelLookup
+modelLookup("rpart")
+
+# Definimos el control de la validación cruzada
+set.seed(123)
+rpart.ctrl <- trainControl(
+    method = "cv",
+    number = 10,
+    returnResamp = "all",
+    verboseIter = TRUE,
+    allowParallel = TRUE
+)
+
+# Realizamos el entrenamiento del modelo
+set.seed(342)
+rpart.cv <- train(contamination ~ .,
+    data = data.train.balanced,
+    method = "rpart",
+    tuneLength = 20,
+    trControl = rpart.ctrl
+)
+rpart.cv
+
+# Guardamos el modelo
+saveRDS(rpart.cv, file = "rpart.rds")
+```
+
+```{r, eval = F}
+################
+# RandomForest #
+################
+
+# Vemos la infomración del modelo con modelLookup
+modelLookup("rf")
+
+# Definimos el control de la validación cruzada
+set.seed(123)
+rf.ctrl <- trainControl(
+    method = "cv",
+    number = 10,
+    returnResamp = "all",
+    verboseIter = TRUE,
+    allowParallel = TRUE
+)
+
+# Realizamos el entrenamiento del modelo
+set.seed(342)
+rf.cv <- train(contamination ~ .,
+    data = data.train.balanced,
+    method = "rf",
+    tuneLength = 20,
+    trControl = rf.ctrl
+)
+rf.cv
+
+# Guardamos el modelo
+saveRDS(rf.cv, file = "rf.rds")
+```
+
+```{r, eval = F}
+#######
+# GBM #
+#######
+
+# Vemos la infomración del modelo con modelLookup
+modelLookup("gbm")
+
+# Definimos el control de la validación cruzada
+set.seed(123)
+gbm.ctrl <- trainControl(
+    method = "cv",
+    number = 10,
+    returnResamp = "all",
+    verboseIter = TRUE,
+    allowParallel = TRUE
+)
+
+# Realizamos el entrenamiento del modelo
+set.seed(342)
+gbm.cv <- train(contamination ~ .,
+    data = data.train.balanced,
+    method = "gbm",
+    tuneLength = 20,
+    trControl = gbm.ctrl
+)
+gbm.cv
+
+# Guardamos el modelo
+saveRDS(gbm.cv, file = "gbm.rds")
+```
+
+```{r, eval = F}
+#######
+# SVM #
+#######
+
+# Vemos la infomración del modelo con modelLookup
+modelLookup("svmRadial")
+
+model_info <- getModelInfo("svmRadial", regex = FALSE)[[1]]
+auto_grid <- model_info$grid(
+    x = model.matrix(contamination ~ . - 1, data.train.balanced),
+    y = data.train.balanced$contamination,
+    len = 20
+)
+
+# Definimos el control de la validación cruzada
+set.seed(123)
+svm.ctrl <- trainControl(
+    method = "cv",
+    number = 10,
+    search = "random",
+    returnResamp = "all",
+    verboseIter = TRUE,
+    allowParallel = TRUE,
+)
+
+# Realizamos el entrenamiento del modelo
+set.seed(342)
+svm.cv <- train(contamination ~ .,
+    data = data.train.balanced,
+    method = "svmRadial",
+    preProcess = c("center", "scale"),
+    tuneLength = 20,
+    trControl = svm.ctrl
+)
+svm.cv
+
+# Guardamos el modelo
+saveRDS(svm.cv, file = "svm.rds")
+
+# Paramos el cluster
+stopCluster(cluster)
+```
+
+```{r, eval = F}
+################
+# Red Neuronal #
+################
+
+# Seleccionamos la semilla
+set.seed(123)
+
+# Creamos los datos de entrada de la red
+x.train <- scale(as.matrix(data.train.balanced %>% select(-contamination)))
+y.train <- as.integer(as.factor(data.train.balanced$contamination)) - 1L
+n.input <- ncol(x.train)
+n.classes <- length(unique(y.train))
+
+# Creamos los folds para la validación cruzada
+folds <- createFolds(y.train, k = 5, returnTrain = FALSE)
+
+# Creamos el grid de hiperparámetros
+grid <- expand.grid(
+    n_layers = c(1, 2, 3),
+    units = c(32, 64, 128),
+    lr = c(1e-2, 1e-3, 1e-4),
+    epochs = c(30, 50, 100)
+)
+
+# Iniciamos el cluster
+cluster <- makeCluster(detectCores() - 1)
+registerDoParallel(cluster)
+
+# Realizamos el bucle de la validación cruzada
+results <- foreach(
+    i = 1:nrow(grid),
+    .combine = rbind,
+    .packages = c("keras3", "caret")
+) %dopar% {
+    # Definimos los hiperparámetros
+    hiperparams <- grid[i, ]
+
+    # Creamos listas para guardar las métricas
+    accs <- numeric(length(folds))
+    f1s <- numeric(length(folds))
+
+    # Realizamos un bucle para los folds
+    for (j in seq_along(folds)) {
+        # Seleccionamos lo índices
+        idxs_test <- folds[[j]]
+        idxs_train <- setdiff(1:length(y.train), idxs_test)
+
+        # Calculamos los pesos de las clases
+        class_weights <- table(y.train[idxs_train])
+        class_weights <- class_weights / sum(class_weights)
+        class_weights <- 1 / class_weights
+        class_weights <- class_weights / sum(class_weights)
+        class_weights <- as.list(class_weights)
+        names(class_weights) <- 0:(n.classes - 1)
+
+        # Creamos el modelo
+        model <- keras_model_sequential()
+        model %>%
+            layer_dense(units = hiperparams$units, activation = "relu") %>%
+            layer_dropout(rate = 0.5)
+        if (hiperparams$n_layers > 1) {
+            for (l in seq_along(hiperparams$n_layers - 1)) {
+                model %>%
+                    layer_dense(units = hiperparams$units, activation = "relu") %>%
+                    layer_dropout(rate = 0.5)
+            }
+        }
+        model %>% layer_dense(units = n.classes, activation = "softmax")
+
+        # Compilamos el modelo
+        model %>% compile(
+            optimizer = optimizer_adam(learning_rate = hiperparams$lr),
+            loss = "sparse_categorical_crossentropy",
+            metrics = "accuracy"
+        )
+
+        # Ajustamos el modelo
+        history <- model %>% fit(
+            x.train[idxs_train, ], y.train[idxs_train],
+            epochs = hiperparams$epochs,
+            batch_size = 32,
+            verbose = 0
+        )
+
+        # Predicciones
+        probs <- model %>% predict(x.train[idxs_test, ], verbose = 0)
+        preds <- apply(probs, 1, which.max) - 1L
+
+        # Calculamos el accuracy
+        ev <- model %>% evaluate(x.train[idxs_test, ], y.train[idxs_test], verbose = 0)
+        accs[j] <- ev$accuracy
+
+        # Calculamos el f1_score
+        cm <- confusionMatrix(as.factor(preds), as.factor(y.train[idxs_test]))
+        f1s[j] <- mean(2 * cm$byClass[, "Sensitivity"] * cm$byClass[, "Specificity"] / (cm$byClass[, "Sensitivity"] + cm$byClass[, "Specificity"]))
+    }
+
+    # Guardamos los resultados
+    c(
+        grid[i, ],
+        mean_acc = mean(unlist(accs)), sd_acc = sd(unlist(accs)),
+        mean_f1 = mean(unlist(f1s)), sd_f1 = sd(unlist(f1s))
+    )
+}
+stopCluster(cluster)
+
+# Guardamos los resultados en un .Rdata
+saveRDS(results, file = "nnet.rds")
+```
+
+Vamos a seleccionar los mejores hiperparámetros de la red neuronal. Cogeremos el conjunto con el mejor valor de F1 Score, teniendo en cuenta la regla del error estándar.
+```{r}
+# Cargamos los resultados
+results <- readRDS("nnet.rds")
+results <- as.data.frame(results)
+
+# Añadimos la columna del error estándar de Kappa
+results$sd_f1 <- as.numeric(results$sd_f1)
+results$se_f1 <- results$sd_f1 / sqrt(5)
+
+# Restamos y sumamos el error estándar a la media de Kappa
+results$mean_f1 <- as.numeric(results$mean_f1)
+results$f1_lower <- results$mean_f1 - results$sd_f1
+results$f1_greater <- results$mean_f1 + results$sd_f1
+
+# Seleccionamos los resultados con un kpp_greater mayor que el valor máximo de kpp_lower
+best <- results[results$f1_greater > max(results$f1_lower), ]
+
+# Convertimos los valores a numéricos
+for (i in 1:ncol(best)) {
+    best[, i] <- as.numeric(best[, i])
+}
+
+# Mostramos los resultados y elegimos el que tenga los parámetros más simples
+# Ordenar 'best' por 'mean_f1' de forma descendente
+best <- best[order(best$mean_f1, decreasing = TRUE), ]
+best
+
+# Buscamos el modelo más simple, primero miramos los que tienen 1 capa
+best <- best[best$n_layers == 1, ]
+best
+```
+
+De los modelos más simples (de 1 capa) vamos a elegir el de 128 unidades y learning rate 0.01 con 30 epochs, ya que dentro de los modelos simples tener 128 unidades no supone mucho más costo computacional que tener 64 o 32, y el resultado de 30 epochs no está muy por debajo que el de 100 epochs.
+```{r}
+# Seleccionamos el mejor modelo
+best <- best[best$units == 128 & best$lr == 0.01 & best$epochs == 30, ]
+```
+
+Ahora que tenemos el conjunto de hiperparámetros vamos a entrenar el modelo de red neuronal.
+```{r}
+# Seleccionamos la semilla
+set.seed(123)
+
+# Creamos los datos de entrada de la red
+x.train <- data.train.balanced %>% select(-c(contamination))
+x.train <- scale(as.matrix(x.train))
+y.train <- as.integer(as.factor(data.train.balanced$contamination)) - 1L
+n.input <- ncol(x.train)
+n.classes <- length(unique(y.train))
+
+# Calculamos los pesos de las clases
+class_weights <- table(y.train)
+class_weights <- class_weights / sum(class_weights)
+class_weights <- 1 / class_weights
+class_weights <- class_weights / sum(class_weights)
+class_weights <- as.list(class_weights)
+names(class_weights) <- 0:(n.classes - 1)
+
+# Creamos el modelo
+model <- keras_model_sequential()
+model %>%
+    layer_dense(units = best$units, activation = "relu") %>%
+    layer_dropout(rate = 0.5)
+if (best$n_layers > 1) {
+    for (l in seq_along(best$n_layers - 1)) {
+        model %>%
+            layer_dense(units = best$units, activation = "relu") %>%
+            layer_dropout(rate = 0.5)
+    }
+}
+model %>% layer_dense(units = n.classes, activation = "softmax")
+
+# Compilamos el modelo
+model %>% compile(
+    optimizer = optimizer_adam(learning_rate = best$lr),
+    loss = "sparse_categorical_crossentropy",
+    metrics = "accuracy"
+)
+
+# Ajustamos el modelo
+history <- model %>% fit(
+    x.train, y.train,
+    epochs = best$epochs,
+    batch_size = 32,
+    class_weight = class_weights,
+    verbose = 0
+)
+```
+
+Ahora que tenemos evaluados los modelos, vamos a comprar sus resultados con el conjunto de test. Calcularemos las predicciones y evaluaremos los resultados de las predicciones.
+
+```{r}
+# Cargamos los modelos
+rpart.cv <- readRDS("rpart.rds")
+rf.cv <- readRDS("rf.rds")
+gbm.cv <- readRDS("gbm.rds")
+svm.cv <- readRDS("svm.rds")
+nnet.cv <- readRDS("nnet.rds")
+
+# Convertimos la variable de predicción a factor
+data.test$contamination <- as.factor(data.test$contamination)
+
+# Cremos los datos de test para la red neuronal
+data.test.nnet <- data.test %>% select(-c(kreis, year, PM2.5_annualMean, scenario, contamination_2levels))
+x.test <- scale(as.matrix(data.test.nnet %>% select(-contamination)))
+y.test <- as.integer(as.factor(data.test$contamination)) - 1L
+
+# Predecimos el conjunto de test
+rpart.pred <- predict(rpart.cv, newdata = data.test)
+rf.pred <- predict(rf.cv, newdata = data.test)
+gbm.pred <- predict(gbm.cv, newdata = data.test)
+svm.pred <- predict(svm.cv, newdata = data.test)
+nnet.pred <- model %>% predict(x.test, verbose = 0)
+nnet.pred <- apply(nnet.pred, 1, which.max) - 1L
+nnet.pred <- as.factor(nnet.pred)
+
+# Convertimos las predicciones de la red de 0,1,2,3 a "Bajo", "Moderada", "Insalubre" y "Muy Insalubre"
+levels(nnet.pred) <- c("Bajo", "Moderada", "Insalubre", "Muy Insalubre")
+
+# Creamos matrices de confusión para cada modelo
+rpart.conf <- confusionMatrix(rpart.pred, data.test$contamination)
+rpart.conf
+rf.conf <- confusionMatrix(rf.pred, data.test$contamination)
+rf.conf
+gbm.conf <- confusionMatrix(gbm.pred, data.test$contamination)
+gbm.conf
+svm.conf <- confusionMatrix(svm.pred, data.test$contamination)
+svm.conf
+nnet.conf <- confusionMatrix(nnet.pred, data.test$contamination)
+nnet.conf
+
+# Calculamos el F1Score para cada modelo
+rpart.f1 <- 2 * rpart.conf$byClass[, "Sensitivity"] * rpart.conf$byClass[, "Specificity"] / (rpart.conf$byClass[, "Sensitivity"] + rpart.conf$byClass[, "Specificity"])
+rf.f1 <- 2 * rf.conf$byClass[, "Sensitivity"] * rf.conf$byClass[, "Specificity"] / (rf.conf$byClass[, "Sensitivity"] + rf.conf$byClass[, "Specificity"])
+gbm.f1 <- 2 * gbm.conf$byClass[, "Sensitivity"] * gbm.conf$byClass[, "Specificity"] / (gbm.conf$byClass[, "Sensitivity"] + gbm.conf$byClass[, "Specificity"])
+svm.f1 <- 2 * svm.conf$byClass[, "Sensitivity"] * svm.conf$byClass[, "Specificity"] / (svm.conf$byClass[, "Sensitivity"] + svm.conf$byClass[, "Specificity"])
+nnet.f1 <- 2 * nnet.conf$byClass[, "Sensitivity"] * nnet.conf$byClass[, "Specificity"] / (nnet.conf$byClass[, "Sensitivity"] + nnet.conf$byClass[, "Specificity"])
+rpart.f1 <- mean(rpart.f1)
+rf.f1 <- mean(rf.f1)
+gbm.f1 <- mean(gbm.f1)
+svm.f1 <- mean(svm.f1)
+nnet.f1 <- mean(nnet.f1)
+
+# Realizamos un gráfico de barras del accuracy y el Kappa de cada modelo
+# Calculamos métricas de desempeño
+perf_df <- data.frame(
+    Model = factor(c("rpart", "RF", "GBM", "SVM", "nnet")),
+    F1_Score = c(
+        rpart.f1,
+        rf.f1,
+        gbm.f1,
+        svm.f1,
+        nnet.f1
+    ),
+    Kappa = c(
+        rpart.conf$overall["Kappa"],
+        rf.conf$overall["Kappa"],
+        gbm.conf$overall["Kappa"],
+        svm.conf$overall["Kappa"],
+        nnet.conf$overall["Kappa"]
+    )
+)
+
+# Creamos los dos gráficos
+p_acc <- ggplot(perf_df, aes(x = Model, y = F1_Score)) +
+    geom_col(fill = "skyblue") +
+    geom_text(aes(label = round(F1_Score, 3)), vjust = 0) +
+    labs(title = "F1 Score")
+
+p_kappa <- ggplot(perf_df, aes(x = Model, y = Kappa)) +
+    geom_col(fill = "salmon") +
+    geom_text(aes(label = round(Kappa, 3)), vjust = 0) +
+    labs(title = "Kappa")
+
+# Unimos ambos gráficos en un mismo grid
+grid.arrange(p_acc, p_kappa, nrow = 2)
+```
+
+Se puede observar como los modelos que mejor desempeño tienen son `rf` y `gbm`, con un F1 Score superior a 0.93 y un Kappa mayor que 0.62. Por el lado contrario tenemos la red neuronal y `rpart`, que tienen desempeños mucho menores. Es normal que `rpart` tenga un mal desmpeño, ya que es un modelo muy simple. Por otro lado, la red neuronal es un tipo de modelo que no está diseñado para este tipo de problemas, es decir, se desembuelve mucho mejor en casos con una gran cantidad de predictores y datos. Aquí, por el contrario, tenemos solo 9 predictores y se han tenido que eliminar una gran cantidad de datos debido al desbalanceo. Aún así, seguramente con hiperparámetros más exigentes como mayor número de capas, unidades y epochs la red neuronal podría haber tenido un desempeño cercado o igual al Random Forest y GBM.
+
+Aún así, tanto por simplicidad como por desempeño Random Forest y GBM son los mejores modelos para predecir el nivel de contaminación por PM2.5. Además, permiten conocer la importancia de los predictores. Vamos a visualizar esto último, de forma que podamos ver una jerarquía en las variables.
+```{r}
+# Calculamos la importancia de las variables predictoras
+vi.rf <- varImp(rf.cv, scale = FALSE)
+vi.gbm <- varImp(gbm.cv, scale = FALSE)
+
+# Represetamos estas importancias con un grid
+grid.arrange(
+    plot(vi.rf),
+    plot(vi.gbm),
+    nrow = 1
+)
+```
+
+Se observa en el gáfico superior que las variables más importantes en los dos modelos son las párticulas PM10, luego NO2, y ya después se pone en duda si O3 o NO, aunque queda claro que son las partículas menos significativas. Por otro lado, se ve como las medias anuales suelen estar por encima que la cantidad de días u horas por encima de cierto umbral (a excepción de `PM10_daysOver50`, que como se vio en gráficos anteriores es una variable muy correlacionada con la contaminación de PM2.5). 
+
+
+# Conclusiones
+
+Finalmente, vamos a analizar todo lo que se ha visto en la gráfica. 
+
+Respecto al dataset se ha visto que es de baja calidad, si lo que se quiere hacer es predecir la contaminación por PM2.5. Esto se debe a que sus datos están altamente desbalanceados, además de que los datos de contaminación se concentran únicamente en 3 años, lo cuál indica una mala calidad a la hora de medir. Lo bueno del dataset es que apenas tiene datos faltantes o inválidos, suponiendo menos de un 3% del total. Además, el tener poca cantidad de predictores lo hace asequible a la hora de interpretar las variables, su significado y su importancia en los modelos.
+
+Tras hacer los modelos y compararlos, se ha llegado a la conclusión que los mejores modelos para predecir la contaminación por PM2.5 son Random Forest y GBM, tanto por su eficacia como por su simpleza y facilidad de comprensión. La red neuronal, por muy potente que sea, al estar en una situación de pocos predicores y pocos datos (debido a la criba del balanceo) no se ha tenido un buen desempeño.
+
+Con toda esta información y la que se ha visto a lo largo de la práctica podemos finalmente responder a las preguntas planteadas en la práctica:
+- **¿Cuáles son las características de las zonas con alta y baja contaminación por PM2.5?** Las zonas con alta contaminación se caracterizan sobre todo por tener una alta concentración de partículas PM10 y NO2 (pero sobre todo PM10). Además el tener muy altas o muy baja concentraciones de O3 y NO puede ser también un indicativo de contaminación por PM2.5. Las zonas de baja contaminación tienen las características opuestas.
+- **¿Es posible predecir si una zona tendrá alta contaminación por PM2.5?** Sí, es posible predecir si una zona tendrá alta contaminación por PM2.5, ya que se ha visto que variables como PM10 tienen una alta correlación con PM2.5. Además, los modelos utilizados han tenido muy buen desempeño a la hora de predecir la contaminación, a pesar del desbalanceo de clases.
+- **¿Cuáles son las variables más relevantes para predecir la contaminación por PM2.5?** Como se ha visto con los modelos de Random Forest y GB, las variables más importantes son las relacionadas con las partículas de PM10, luego con NO2 y, finalmente, las de O3 y NO (aunque estas sin un orden específico). Además, se ha visto como las variables que representan medias anuales son más efectivas que las que representan días u horas por encima de cierto umbral.

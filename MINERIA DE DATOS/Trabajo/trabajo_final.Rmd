@@ -7,7 +7,7 @@ if (interactive()) {
 }
 
 # Cargamos el workspace.RData
-# load("workspace.RData")
+load("workspace.RData")
 
 # Cargamos las librerías necesarias
 library(summarytools)
@@ -24,6 +24,7 @@ library(vip)
 library(reticulate)
 library(keras3)
 library(MLmetrics)
+library(pROC)
 ```
 
 
@@ -129,9 +130,6 @@ data$contamination <- cut(
     breaks = c(-Inf, 10, 25, 50, Inf),
     labels = c("Bajo", "Moderada", "Insalubre", "Muy Insalubre")
 )
-
-# Vemos la cantidad de filas por cada nivel de contaminación
-table(data$contamination)
 
 # Creamos una nueva variable que indique si la contaminacion es alta o baja
 data$contamination_2levels <- ifelse(data$PM2.5_annualMean > 25, "Alta", "Baja")
@@ -534,8 +532,10 @@ Con este gráfico de imortancia vemos que las variables más importantes son las
 set.seed(123)
 
 # Cremaos los datos de entrada para la red neuronal
-x <- scale(as.matrix(data.train.balanced %>% select(-contamination)))
-y <- as.integer(as.factor(data.train.balanced$contamination)) - 1L
+data.train <- data.train %>% select(-c(contamination_2levels, PM2.5_annualMean, kreis, year))
+data.test <- data.test %>% select(-c(contamination_2levels, PM2.5_annualMean, kreis, year))
+x <- scale(as.matrix(data.train %>% select(-contamination)))
+y <- as.integer(as.factor(data.train$contamination)) - 1L
 n <- ncol(x)
 K <- 4
 
@@ -647,10 +647,13 @@ class_weights <- setNames(class_weights, 0:(K - 1))
 
 # Cremos el modelo con los mejores hiperparámetros
 model <- keras_model_sequential()
-model %>% layer_dense(units = best$units, activation = "relu", input_shape = n)
+model %>%
+    layer_dense(units = best$units, activation = "relu", input_shape = n) %>%
+    layer_dropout(rate = 0.5)
 if (best$n_layers > 1) {
     for (k in seq_len(best$n_layers - 1)) {
         model %>% layer_dense(units = best$units, activation = "relu")
+        layer_dropout(rate = 0.5)
     }
 }
 model %>% layer_dense(units = K, activation = "softmax")
@@ -675,8 +678,21 @@ x.test <- as.matrix(x.test)
 y.test <- as.integer(as.factor(data.test$contamination)) - 1L
 
 # Predecimos el conjunto de test
+freqs <- as.list(table(y) / sum(table(y)))
 probs <- model %>% predict(x.test, verbose = 0)
 pred_cls <- apply(probs, 1, which.max) - 1L
+pred_cls <- rep(0, nrow(probs))
+for (i in 1:nrow(probs)) {
+    if (probs[i, 4] >= freqs[4]) {
+        pred_cls[i] <- 3
+    } else if (probs[i, 3] >= freqs[3]) {
+        pred_cls[i] <- 2
+    } else if (probs[i, 2] >= freqs[2]) {
+        pred_cls[i] <- 1
+    } else {
+        pred_cls[i] <- 0
+    }
+}
 true_cls <- y.test
 
 # Calculamos el accuracy
