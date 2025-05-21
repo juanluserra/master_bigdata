@@ -39,6 +39,13 @@ library(UBL)
 
 # Resumen ejecutivo
 
+En esta práctica se ha analizado un dataset de contaminación del aire en regiones de Alemania. 
+
+Para el preprocesamiento de datos se han eliminado los valores `NA`, duplicados e inválidos, aunque para estos últimos se ha investagado con `aggr` si podían eliminarse. También se ha eliminado directamente la variable `kreis_code` por no aportar información, y la variable `NO2_hrOver200` por tener una vaianza muy baja. Este último análisis se ha hecho graicas a nearZeroVar de `caret`. Finalmente, en el análisis descriptivo se ha anlizado la distribución de las categorías contaminación baja y alta en todas las variables (numéricas y categóricas), sacando así conclusiones de las características de las zonas con alta y baja contaminación de P2.5. Finalmente, de este análisis descriptivo se ha visto que la variable más relacionada con la contaminación PM10 (con un exceso de esta en las zonas contaminadas), además de que los datos de contminación se juntan en su gran mayoría en un solo año (2003), y el resto se reparto solo en dos años más (2007 y 2011). 
+
+En el entrenamiento de modelos predictivos primero se han seleccionado las variables válidas del dataset y se han balanceado los datos. Se han descartado las varaibles `kreis`, `year` y `scenario` por no tener capacidad predictiva, de forma que nos quedamos con 9 predictores. Al no tener una alta cantidad de predictores, no se ha hecho una selección de variables, ya que perderíamos información innecesariamente. Luego, para el balanceo de datos se ha hecho un upsampling con SMOTE y un downsampling con selección aleatoria. El upsampling de SMOTE se ha hecho con `UBL` y no con `smotefamily`, ya que permite hacer un upsampling de varias clases a la vez, que era necesario en nuestro caso. Este upsampling  y downsampling se ha hehco solo con el conjunto de trai, ya que el conjunto te test debe permanecer intacto para representar fielmente la realidad.
+
+Una vez se tienen los datos balanceados se pasa a la creación de modelos. Para seleccionar los hiperparámetros se ha usado el método de la validación cruzada con una cantida de 10 folds. En los modelos que usan el paquete caret se escoge directamente el modelo con el mejor kappa y accuracy; mientras, en el caso de la red neuronal se ha hecho un bucle de validación cruzada de 10 folds y, cuando se tienen los resultados, se usa el F1 Score para seleccionar el mejor modelo. Sin embargo, no se coge directamente el modelo con mejor F1 Score, se usa el método del error estándar, seleccionando así el modelo más simple pero con mejor desempeño dentro de los modelos con mejor F1 Score. Luego, para la comparar modelos se ha sacado el índice Kappa y también el F1 Score medio de las clases, además de las matrices de confusión. Tras analizar las matrices de confusión y las métricas se verá como los mejores modelos para el problema con Random Forest y Boosting, permitiendo además una buena interpretabilidad con la importancia de variables. Al hacer un análisis de importancia con estos modelos se ve, además, como al igual se analiza anteriormente las variables de PM10 son las más importantes con diferencias, seguidas de NO2; además, las variables de medias anuales son más relevantes que las variables de conteo de días u horas.
 
 
 # Análisis descriptivo de los datos
@@ -420,7 +427,7 @@ rpart.cv <- train(contamination ~ .,
 rpart.cv
 
 # Guardamos el modelo
-saveRDS(rpart.cv, file = "rpart.rds")
+saveRDS(rpart.cv, file = "rpart.rds", compress = TRUE)
 ```
 
 ```{r, eval = F}
@@ -452,7 +459,7 @@ rf.cv <- train(contamination ~ .,
 rf.cv
 
 # Guardamos el modelo
-saveRDS(rf.cv, file = "rf.rds")
+saveRDS(rf.cv, file = "rf.rds", compress = TRUE)
 ```
 
 ```{r, eval = F}
@@ -484,7 +491,7 @@ gbm.cv <- train(contamination ~ .,
 gbm.cv
 
 # Guardamos el modelo
-saveRDS(gbm.cv, file = "gbm.rds")
+saveRDS(gbm.cv, file = "gbm.rds", compress = TRUE)
 ```
 
 ```{r, eval = F}
@@ -525,10 +532,7 @@ svm.cv <- train(contamination ~ .,
 svm.cv
 
 # Guardamos el modelo
-saveRDS(svm.cv, file = "svm.rds")
-
-# Paramos el cluster
-stopCluster(cluster)
+saveRDS(svm.cv, file = "svm.rds", compress = TRUE)
 ```
 
 ```{r, eval = F}
@@ -546,7 +550,7 @@ n.input <- ncol(x.train)
 n.classes <- length(unique(y.train))
 
 # Creamos los folds para la validación cruzada
-folds <- createFolds(y.train, k = 5, returnTrain = FALSE)
+folds <- createFolds(y.train, k = 10, returnTrain = FALSE)
 
 # Creamos el grid de hiperparámetros
 grid <- expand.grid(
@@ -555,10 +559,6 @@ grid <- expand.grid(
     lr = c(1e-2, 1e-3, 1e-4),
     epochs = c(30, 50, 100)
 )
-
-# Iniciamos el cluster
-cluster <- makeCluster(detectCores() - 1)
-registerDoParallel(cluster)
 
 # Realizamos el bucle de la validación cruzada
 results <- foreach(
@@ -636,6 +636,8 @@ results <- foreach(
         mean_f1 = mean(unlist(f1s)), sd_f1 = sd(unlist(f1s))
     )
 }
+
+# Paramos el cluster
 stopCluster(cluster)
 
 # Guardamos los resultados en un .Rdata
@@ -675,10 +677,10 @@ best <- best[best$n_layers == 1, ]
 best
 ```
 
-De los modelos más simples (de 1 capa) vamos a elegir el de 128 unidades y learning rate 0.01 con 30 epochs, ya que dentro de los modelos simples tener 128 unidades no supone mucho más costo computacional que tener 64 o 32, y el resultado de 30 epochs no está muy por debajo que el de 100 epochs.
+De los modelos más simples (de 1 capa) vamos a elegir el de 128 unidades y learning rate 0.01 con 50 epochs, ya que dentro de los modelos simples tener 128 unidades no supone mucho más costo computacional que tener 64 o 32, y el resultado de 50 epochs no está muy por debajo que el de 100 epochs.
 ```{r}
 # Seleccionamos el mejor modelo
-best <- best[best$units == 128 & best$lr == 0.01 & best$epochs == 30, ]
+best <- best[best$units == 128 & best$lr == 0.01 & best$epochs == 50, ]
 ```
 
 Ahora que tenemos el conjunto de hiperparámetros vamos a entrenar el modelo de red neuronal.
@@ -740,7 +742,6 @@ rpart.cv <- readRDS("rpart.rds")
 rf.cv <- readRDS("rf.rds")
 gbm.cv <- readRDS("gbm.rds")
 svm.cv <- readRDS("svm.rds")
-nnet.cv <- readRDS("nnet.rds")
 
 # Convertimos la variable de predicción a factor
 data.test$contamination <- as.factor(data.test$contamination)
@@ -849,6 +850,8 @@ Respecto al dataset se ha visto que es de baja calidad, si lo que se quiere hace
 Tras hacer los modelos y compararlos, se ha llegado a la conclusión que los mejores modelos para predecir la contaminación por PM2.5 son Random Forest y GBM, tanto por su eficacia como por su simpleza y facilidad de comprensión. La red neuronal, por muy potente que sea, al estar en una situación de pocos predicores y pocos datos (debido a la criba del balanceo) no se ha tenido un buen desempeño.
 
 Con toda esta información y la que se ha visto a lo largo de la práctica podemos finalmente responder a las preguntas planteadas en la práctica:
+
 - **¿Cuáles son las características de las zonas con alta y baja contaminación por PM2.5?** Las zonas con alta contaminación se caracterizan sobre todo por tener una alta concentración de partículas PM10 y NO2 (pero sobre todo PM10). Además el tener muy altas o muy baja concentraciones de O3 y NO puede ser también un indicativo de contaminación por PM2.5. Las zonas de baja contaminación tienen las características opuestas.
 - **¿Es posible predecir si una zona tendrá alta contaminación por PM2.5?** Sí, es posible predecir si una zona tendrá alta contaminación por PM2.5, ya que se ha visto que variables como PM10 tienen una alta correlación con PM2.5. Además, los modelos utilizados han tenido muy buen desempeño a la hora de predecir la contaminación, a pesar del desbalanceo de clases.
 - **¿Cuáles son las variables más relevantes para predecir la contaminación por PM2.5?** Como se ha visto con los modelos de Random Forest y GB, las variables más importantes son las relacionadas con las partículas de PM10, luego con NO2 y, finalmente, las de O3 y NO (aunque estas sin un orden específico). Además, se ha visto como las variables que representan medias anuales son más efectivas que las que representan días u horas por encima de cierto umbral.
+
