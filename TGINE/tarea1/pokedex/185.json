@@ -1,0 +1,29 @@
+{
+    "name": "Sudowoodo",
+    "number": "185",
+    "url": "https://pkparaiso.com//pokedex/sudowoodo.php",
+    "date": "21-09-2018",
+    "descriptions": {
+        " Pokémon Oro": "Aunque pretende ser un árbol, en su composición se parece más a una roca que a una planta.",
+        " Pokémon Plata": "Se disfraza de árbol para no ser atacado. Odia el agua, por lo que desaparecerá si empieza a llover.",
+        " Pokémon Cristal": "Si ves una rama moverse cuando no hay viento, habrás encontrado un Sudowoodo. Cuando llueve se esconde.",
+        " Pokémon Rubí": "Sudowoodo se camufla adoptando la imagen de un árbol para que no le ataque ningún enemigo. El problema viene en invierno; ya que las patas se le ven verdes y es fácil identificarle.",
+        " Pokémon Zafiro": "Sudowoodo se camufla adoptando la imagen de un árbol para que no le ataque ningún enemigo. El problema viene en invierno; ya que las patas se le ven verdes y es fácil identificarle.",
+        " Pokémon Esmeralda": "Se camufla adoptando la imagen de un árbol para que no le ataque ningún enemigo. El problema viene en invierno: las patas se le ven verdes y es fácil identificarle.",
+        " Pokémon Rojo Fuego": "Se disfraza de árbol para no ser atacado. Odia el agua, por lo que desaparecerá si empieza a llover.",
+        " Pokémon Verde Hoja": "Aunque pretende ser un árbol, en su composición se parece más a una roca que a una planta.",
+        " Pokémon Diamante": "Simula ser un árbol en los caminos. Si comienza a llover, desaparece.",
+        " Pokémon Perla": "Aunque parezca un árbol, su cuerpo se asemeja a las rocas y piedras. Es débil frente al agua.",
+        " Pokémon Platino": "Para evitar que le ataquen se limita a imitar un árbol. Odia el agua y huye de la lluvia.",
+        " Pokémon HeartGold": "Aunque pretende ser un árbol, en su composición se parece más a una roca que a una planta.",
+        " Pokémon SoulSilver": "Aunque pretende ser un árbol, en su composición se parece más a una roca que a una planta.",
+        " Pokémon Negro": "Para evitar que le ataquen, se limita a imitar un árbol. Odia el agua y huye de la lluvia.",
+        " Pokémon Blanco": "Para evitar que le ataquen, se limita a imitar un árbol. Odia el agua y huye de la lluvia.",
+        " Pokémon X": "Aunque pretende ser un árbol, en su composición se parece más a una roca que a una planta.",
+        " Pokémon Y": "Se disfraza de árbol para no ser atacado. Odia el agua, por lo que desaparecerá si empieza a llover.",
+        " Pokémon Rubí Omega": "Sudowoodo se camufla adoptando la imagen de un árbol para que no le ataque ningún enemigo. El problema viene en invierno, ya que las extremidades superiores tienen color verde y es fácil identificarle.",
+        " Pokémon Zafiro Alfa": "Sudowoodo se camufla adoptando la imagen de un árbol para que no le ataque ningún enemigo. El problema viene en invierno, ya que las extremidades superiores tienen color verde y es fácil identificarle.",
+        " Pokémon Sol": "Se disfraza de árbol para no ser atacado. Huirá rápidamente si alguien le echa agua por encima, pues no la soporta.",
+        " Pokémon Luna": "Es bastante popular entre la gente de mayor edad. La pasión que le profesan los fanáticos es proporcional al tamaño de su parte verde."
+    }
+}

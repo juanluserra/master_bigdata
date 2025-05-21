@@ -7,134 +7,116 @@ import random
 from bs4 import BeautifulSoup
 from typing import Generator, Any
 from pathlib import Path
-
+import re
 import scrapy.http
 import scrapy.http.response
+import random
+from datetime import datetime, timedelta
 
-# Crawler para la página de la Bulbapedia
-class BulbaSpyder(scrapy.Spider):
-    """
-    BulbaSpyder es un spyder de Scrapy diseñada para extraer información de la Bulbapedia.
-    Atributos:
-    
-    ----------
-    
-    name : str
-        Nombre del spyder.
-    allowed_domains : list
-        Lista de dominios permitidos para el spyder.
-    start_urls : list
-        Lista de URLs de inicio para el spyder.
-    custom_settings : dict
-        Configuraciones personalizadas para el spyder, como el USER_AGENT.
-    Métodos:
-    
-    --------
-    
-    parse(response):
-        Método principal que se llama para cada página que se analiza. Extrae información relevante
-        de la página y la guarda en un archivo JSON. También sigue los enlaces a otras páginas que
-        cumplen con ciertos criterios.
-    """
-    
-    name = 'bulbapedia'
 
-    # Decimos que el dominio válido es el de la Bulbapedia
-    allowed_domains = ['bulbapedia.bulbagarden.net']
+# Función para geenerar una fecha aleatoria
+def random_date(start: str, end: str) -> str:
+    """
+    Genera una fecha aleatoria entre 'inicio' y 'fin' (ambas en 'dd-mm-YYYY').
+
+    :param inicio: Fecha de inicio en formato 'dd-mm-YYYY'
+    :param fin:    Fecha final en formato 'dd-mm-YYYY'
+    :return:       Fecha aleatoria en formato 'dd-mm-YYYY'
+    """
+    fmt = "%d-%m-%Y"
+    d0 = datetime.strptime(start, fmt)
+    d1 = datetime.strptime(end,    fmt)
+    delta = d1 - d0
+    # número de días aleatorio en el rango [0, delta.days]
+    random_day = random.randrange(delta.days + 1)
+    date = d0 + timedelta(days=random_day)
+    return date.strftime(fmt)
+
+# Crawler para la página de la Pokedex
+
+
+class PokedexSpyder(scrapy.Spider):
+    name = 'pokedex'
+
+    # Decimos que el dominio válido es el de la página pkparaiso
+    allowed_domains = ['pkparaiso.com']
 
     # Definimos la página de inicio
-    start_urls = ['https://bulbapedia.bulbagarden.net/wiki/Abomasnow_(Pokémon)']
-    
+    start_urls = [
+        'https://www.pkparaiso.com/pokedex/nidorino.php']
+
     # Para evitar que el sitio te bloquee por usar scrapy es interesante cambiar el USER_AGENT
     # El user agent por defecto de Scrapy cuando hace una petición es
     # Scrapy/VERSION (+https://scrapy.org)
     custom_settings = {
         'USER_AGENT': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
     }
-    
-    stop_crawl = False
-    
+
+    # Creamos una carpeta para guardar los JSON
+    json_folder = Path("pokedex")
+
     # Ahora implementamos el método parse que se llama para cada página que se analiza
     def parse(self, response: scrapy.http.Response) -> Generator[Any, None, None]:
-        """
-        Analiza la respuesta de la página web y extrae información relevante sobre Pokémon.
-        Args:
-            response: La respuesta de la página web que se está analizando.
-        Returns:
-            Un generador que produce nuevas solicitudes para seguir enlaces en la página actual.
-        El método realiza las siguientes acciones:
-        1. Guarda la URL de la página actual.
-        2. Crea una carpeta para almacenar los archivos JSON.
-        3. Utiliza selectores CSS para extraer el nombre, número y descripción del Pokémon.
-        4. Convierte la información extraída en un diccionario y luego en un archivo JSON.
-        5. Guarda el archivo JSON en la carpeta especificada.
-        6. Extrae todos los enlaces de la página actual y sigue aquellos que contienen la palabra "_(Pokémon)" en su URL.
-        """
-        if self.stop_crawl:
+        # Comprobamos si el número de archivos JSON es mayor que 500
+        # Si es así, paramos el crawler
+        # y no seguimos buscando más pokemons
+        if len(list(self.json_folder.glob("*.json"))) > 500:
+            print("Se han encontrado más de 500 pokemons, se para el crawler")
             return
-        
+
         # Guardamos la URL del sitio que se está visitando
         url = str(response.request.url).strip()
-        
-        # Creamos una carpeta para guardar los JSON
-        json_folder = Path("bulbapedia")
-        
-        # Cogemos el contenido relevante y para eso debemos usar selectores CSS
-        for section in response.css('.bulbapediamonobook-body'):
-            # Seleccionamos el nombre del pokemon
-            pokemon = section.css('div .mw-parser-output > p').get().strip()
-            pokemon = BeautifulSoup(pokemon, 'html.parser').get_text().strip()
-            pokemon = pokemon.split(" (")[0]
-            
-            # Seleccionamos el número del pokemon
-            number = section.css('table .roundy th a span').get()      
-            number = BeautifulSoup(number, 'html.parser').get_text().strip()
-            number = number[1:]
-            
-            # Seleccionamos el origen del pokemon
-            origin = section.css('span.mw-headline#Origin').get()
-            origin = section.xpath('//h3[span[@id="Origin"]]/following-sibling::p[1]').get()
-            origin = BeautifulSoup(origin, 'html.parser').get_text().strip()
-            
-            # Seleccionamos la descripción del pokemon
-            description = section.xpath('//h2/following-sibling::*[preceding-sibling::h2 and self::p and not(preceding-sibling::h3)]').getall()
-            description = [BeautifulSoup(c, 'html.parser').get_text().strip() for c in description]
-            description = " ".join(description)
-                        
-            # Mostramos el contenido
-            data = {
-                "url": url,
-                "pokemon": pokemon,
-                "pokedex_number": number,
-                "origin": origin,
-                "description": description
-            }
-            
-            # Convertimos el diccionario a JSON
-            json_data = json.dumps(data, ensure_ascii=False, indent=4)
-            
-            # Mostramos el JSON
-            print(json_data)
-            
-            # Guardamos el JSON en un archivo
-            with open(json_folder / f"{number}.json", "w", encoding="utf-8") as file:
-                file.write(json_data)
-                if len(list(json_folder.glob("*.json"))) > 500:
-                    print("Se alcanzó el límite de 500 archivos JSON. Terminando el rastreo.")
-                    self.stop_crawl = True
-                    break
-            
-        
+
+        # Seleccionamos el nombre y número del pokemon
+        names_count = 0
+        for block in response.css('div.inblock'):
+            # Cogemos los textos
+            texts = block.css('::text').getall()
+
+            # Seleccionamos el nombre y el número del pokemon
+            names_count += sum(1 for text in texts if "#" in text)
+            if names_count == 2:
+                text1 = texts[1].split("#")
+                text2 = text1[1].split(" ")
+                number, name = text2
+                break
+
+        # Seleccionamos las descripciones de cada generación
+        videogames = response.css('td[width="140"]::text').getall()[1::2]
+        descriptions = response.css(
+            'td[style*="text-align:justify"]::text').getall()
+        descriptions_dict = {}
+        for videogame, description in zip(videogames, descriptions):
+            descriptions_dict[videogame] = description
+
+        # Generamos una fecha aleatoria entre 01-01-2000 y 31-12-2023 para asignar a los documentos
+        # y de esta forma poder filtrar por fecha en elasticsearch
+        start_date = "01-01-2000"
+        end_date = "31-12-2023"
+        date = random_date(start_date, end_date)
+
+        # Creamos un diccionario con los datos
+        data = {
+            "name": name,
+            "number": number,
+            "url": url,
+            "date": date,
+            "descriptions": descriptions_dict
+        }
+
+        # Guardamos el diccionaro en un archivo JSON
+        json_file = self.json_folder / f"{number.lower()}.json"
+        with open(json_file, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+
         # Obtenemos todas las otros links de la página representados por la etiqueta <a>
         url_in_current_document = response.css("a")
         for next_page in url_in_current_document:
-            # Para limitar que solamente se parseen las noticias dentro de 'https://bulbapedia.bulbagarden.net/wiki/'
-            # que contengan la palabra _(Pokémon) en su URL obtenemos el atributo href de la etiqueta <a> y 
-            # parseamos la página
-            url = str(next_page.css("a::attr(href)").get())
-            if "_(Pok%C3%A9mon)" in url and not any(substring in url for substring in ["_(Pok%C3%A9mon)/", ":", "#"]):
-                # Comprobamos si la URL es relativa y la convertimos en absoluta
-                if url.startswith("/wiki/"):
-                    url = self.allowed_domains[0] + url
-                if url.startswith(self.allowed_domains[0]):
-                    yield response.follow(next_page, self.parse)  # Ahora seguimos la URL correctamente
+            surl = str(next_page.css("a::attr(href)").get())
+            # Limitamos las búsquedas que sean tipo "/pokedex/*.php"
+            # Descartamos también la que contenga el nombre del pokemon actual
+            if surl.startswith("/pokedex/"):
+                # new_url = self.allowed_domains[0] + "/" + surl
+                new_url = "https://pkparaiso.com/" + surl
+                print(name, "->", new_url)
+                yield response.follow(new_url, self.parse)
