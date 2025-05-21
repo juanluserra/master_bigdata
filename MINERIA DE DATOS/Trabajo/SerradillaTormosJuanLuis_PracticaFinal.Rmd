@@ -41,11 +41,11 @@ library(UBL)
 
 En esta práctica se ha analizado un dataset de contaminación del aire en regiones de Alemania. 
 
-Para el preprocesamiento de datos se han eliminado los valores `NA`, duplicados e inválidos, aunque para estos últimos se ha investagado con `aggr` si podían eliminarse. También se ha eliminado directamente la variable `kreis_code` por no aportar información, y la variable `NO2_hrOver200` por tener una vaianza muy baja. Este último análisis se ha hecho graicas a nearZeroVar de `caret`. Finalmente, en el análisis descriptivo se ha anlizado la distribución de las categorías contaminación baja y alta en todas las variables (numéricas y categóricas), sacando así conclusiones de las características de las zonas con alta y baja contaminación de P2.5. Finalmente, de este análisis descriptivo se ha visto que la variable más relacionada con la contaminación PM10 (con un exceso de esta en las zonas contaminadas), además de que los datos de contminación se juntan en su gran mayoría en un solo año (2003), y el resto se reparto solo en dos años más (2007 y 2011). 
+Para el preprocesamiento de datos se han eliminado los valores `NA`, duplicados e inválidos, aunque para estos últimos se ha investigando con `aggr` si podían eliminarse. También se ha eliminado directamente la variable `kreis_code` por no aportar información, y la variable `NO2_hrOver200` por tener una varianza muy baja. Este último análisis se ha hecho gracias a nearZeroVar de `caret`. Finalmente, en el análisis descriptivo se ha analizado la distribución de las categorías contaminación baja y alta en todas las variables (numéricas y categóricas), sacando así conclusiones de las características de las zonas con alta y baja contaminación de P2.5. Finalmente, de este análisis descriptivo se ha visto que la variable más relacionada con la contaminación PM10 (con un exceso de esta en las zonas contaminadas), además de que los datos de contaminación se juntan en su gran mayoría en un solo año (2003), y el resto se reparto solo en dos años más (2007 y 2011). 
 
-En el entrenamiento de modelos predictivos primero se han seleccionado las variables válidas del dataset y se han balanceado los datos. Se han descartado las varaibles `kreis`, `year` y `scenario` por no tener capacidad predictiva, de forma que nos quedamos con 9 predictores. Al no tener una alta cantidad de predictores, no se ha hecho una selección de variables, ya que perderíamos información innecesariamente. Luego, para el balanceo de datos se ha hecho un upsampling con SMOTE y un downsampling con selección aleatoria. El upsampling de SMOTE se ha hecho con `UBL` y no con `smotefamily`, ya que permite hacer un upsampling de varias clases a la vez, que era necesario en nuestro caso. Este upsampling  y downsampling se ha hehco solo con el conjunto de trai, ya que el conjunto te test debe permanecer intacto para representar fielmente la realidad.
+En el entrenamiento de modelos predictivos primero se han seleccionado las variables válidas del dataset y se han balanceado los datos. Se han descartado las variables `kreis`, `year` y `scenario` por no tener capacidad predictiva, de forma que nos quedamos con 9 predictores. Al no tener una alta cantidad de predictores, no se ha hecho una selección de variables, ya que perderíamos información innecesariamente. Luego, para el balanceo de datos se ha hecho un upsampling con SMOTE y un downsampling con selección aleatoria. El upsampling de SMOTE se ha hecho con `UBL` y no con `smotefamily`, ya que permite hacer un upsampling de varias clases a la vez, que era necesario en nuestro caso. Este upsampling  y downsampling se ha hecho solo con el conjunto de train, ya que el conjunto te test debe permanecer intacto para representar fielmente la realidad.
 
-Una vez se tienen los datos balanceados se pasa a la creación de modelos. Para seleccionar los hiperparámetros se ha usado el método de la validación cruzada con una cantida de 10 folds. En los modelos que usan el paquete caret se escoge directamente el modelo con el mejor kappa y accuracy; mientras, en el caso de la red neuronal se ha hecho un bucle de validación cruzada de 10 folds y, cuando se tienen los resultados, se usa el F1 Score para seleccionar el mejor modelo. Sin embargo, no se coge directamente el modelo con mejor F1 Score, se usa el método del error estándar, seleccionando así el modelo más simple pero con mejor desempeño dentro de los modelos con mejor F1 Score. Luego, para la comparar modelos se ha sacado el índice Kappa y también el F1 Score medio de las clases, además de las matrices de confusión. Tras analizar las matrices de confusión y las métricas se verá como los mejores modelos para el problema con Random Forest y Boosting, permitiendo además una buena interpretabilidad con la importancia de variables. Al hacer un análisis de importancia con estos modelos se ve, además, como al igual se analiza anteriormente las variables de PM10 son las más importantes con diferencias, seguidas de NO2; además, las variables de medias anuales son más relevantes que las variables de conteo de días u horas.
+Una vez se tienen los datos balanceados se pasa a la creación de modelos. Para seleccionar los hiperparámetros se ha usado el método de la validación cruzada con una cantidad de 10 folds. En los modelos que usan el paquete caret se escoge directamente el modelo con el mejor kappa y accuracy; mientras, en el caso de la red neuronal se ha hecho un bucle de validación cruzada de 10 folds y, cuando se tienen los resultados, se usa el F1 Score para seleccionar el mejor modelo. Sin embargo, no se coge directamente el modelo con mejor F1 Score, se usa el método del error estándar, seleccionando así el modelo más simple pero con mejor desempeño dentro de los modelos con mejor F1 Score. Luego, para la comparar modelos se ha sacado el índice Kappa y también el F1 Score medio de las clases, además de las matrices de confusión. Tras analizar las matrices de confusión y las métricas se verá como los mejores modelos para el problema con Random Forest y Boosting, permitiendo además una buena interpretabilidad con la importancia de variables. Al hacer un análisis de importancia con estos modelos se ve, además, como al igual se analiza anteriormente las variables de PM10 son las más importantes con diferencias, seguidas de NO2; además, las variables de medias anuales son más relevantes que las variables de conteo de días u horas.
 
 
 # Análisis descriptivo de los datos
@@ -107,7 +107,7 @@ Vemos que no hay duplicados en el dataset y que hay un 0.19% de filas con valore
 print(dfSummary(data, plain.ascii = FALSE), method = "render")
 ```
 
-Al analizar el reusmen del dataset podemos ver que hay algunas variables numéricas con valores negativos. Sin embargo, estas variables son concentraciones de partículas y conteo de horas o días, por lo que los valores negativos no tienen sentido dada su definición matemática. Estas variables son: `NO_annualMean`, `PM10_daysOver50`, `PM2.5_annualMean`. Vamos a ver si podemos eliminar estos valores negativos.
+Al analizar el resumen del dataset podemos ver que hay algunas variables numéricas con valores negativos. Sin embargo, estas variables son concentraciones de partículas y conteo de horas o días, por lo que los valores negativos no tienen sentido dada su definición matemática. Estas variables son: `NO_annualMean`, `PM10_daysOver50`, `PM2.5_annualMean`. Vamos a ver si podemos eliminar estos valores negativos.
 ```{r}
 # Seleccioamos las variables que queremos inspeccionar
 data.vars <- data %>% select(NO_annualMean, PM10_daysOver50, PM2.5_annualMean)
@@ -120,7 +120,7 @@ p.rows.neg <- nrow(data.vars.neg) / (nrow(data) - nrow(data.vars.neg)) * 100
 p.rows.neg
 ```
 
-Se puede observar como los valores negativos representan un 2.38% del dataframe. Esto es batante más que el 0.19% que suponían los valores NA, por lo que en vez de eliminarlos vamos a usar el paquete `VIM` para ver si podemos imputar estos valores. Vamos a convertir estos valores a `NA` y luego observar su distribución con `aggr`.
+Se puede observar como los valores negativos representan un 2.38% del dataframe. Esto es bastante más que el 0.19% que suponían los valores NA, por lo que en vez de eliminarlos vamos a usar el paquete `VIM` para ver si podemos imputar estos valores. Vamos a convertir estos valores a `NA` y luego observar su distribución con `aggr`.
 ```{r}
 # Convertimos los valores negativos en NA
 data$NO_annualMean[data$NO_annualMean < 0] <- NA
@@ -153,7 +153,7 @@ data.nzv
 
 La métrica `freqRatio` nos indica la frecuencia de la variable más común sobre la segunda más común, es decir, si la variable más común tiene una frecuencia de 100 y la segunda más común de 25, este ratio será 4. Por otro lado, la métrica `percentUnique` nos indica el porcentaje de valores únicos sobre el total de valores, ayudándonos a ver si una variable es continua (porcentaje alto) o es prácticamente constante (porcentaje bajo). 
 
-Podemos ver en los resultados que hay dos variables con un `freqRatio` muy alto: `NO2_hrOver200` y `O3_daysOver120`, aunque la primera es mucho mayor a la segunda. De primeras esto es un mal indicativo, sin embargo, las dos variables tienen un `percentUnique` alto, por lo que el algoritmo no las clasifica con `TRUE` en `nzv`. La segunda variable tiene un `freqRatio` de 11, que junto a su alto `percentUnique` de 62 indica que es una variable válida. Por otro lado, la primera variable tiene un `freqRatio` enorme en comparación con el resto (de 250) y, aunque tenga un `percentUnique` del 48.6 (lo cual no es bajo), sí que es mucho menor que el siguinete valor más pequeño (57.4), de casi 10 puntos menos. Por lo tanto, vamos a eliminar del dataset la variable `NO2_hrOver200`.
+Podemos ver en los resultados que hay dos variables con un `freqRatio` muy alto: `NO2_hrOver200` y `O3_daysOver120`, aunque la primera es mucho mayor a la segunda. De primeras esto es un mal indicativo, sin embargo, las dos variables tienen un `percentUnique` alto, por lo que el algoritmo no las clasifica con `TRUE` en `nzv`. La segunda variable tiene un `freqRatio` de 11, que junto a su alto `percentUnique` de 62 indica que es una variable válida. Por otro lado, la primera variable tiene un `freqRatio` enorme en comparación con el resto (de 250) y, aunque tenga un `percentUnique` del 48.6 (lo cual no es bajo), sí que es mucho menor que el siguiente valor más pequeño (57.4), de casi 10 puntos menos. Por lo tanto, vamos a eliminar del dataset la variable `NO2_hrOver200`.
 ```{r}
 # Eliminamos la variable "NO2_hrOver200"
 data$NO2_hrOver200 <- NULL
@@ -164,7 +164,7 @@ Ahora, vamos a responder a las preguntas:
 - "¿Cuáles son las características de las zonas con alta contaminación por PM2.5?"
 - "¿Cuáles son las características de las zonas con baja contaminación por PM2.5?"
 
-Para poder responder, lo primero de todo es crear una variable binaria que nos indique si la zona tiene alta o baja contaminación por PM2.5. Como se indica en el documento de la práctica, la contaminación puede dividirse en Baja, Moderada, Insaluble y Muy Insalubre. Por lo tanto, vamos a realizar una variable con estas categorías y, después, agruparemos Baja e Insalubre en una sola categoría, y Moderada y Muy Insalubre en otra. Para ello, vamos a usar la función `cut` de R.
+Para poder responder, lo primero de todo es crear una variable binaria que nos indique si la zona tiene alta o baja contaminación por PM2.5. Como se indica en el documento de la práctica, la contaminación puede dividirse en Baja, Moderada, Insalubre y Muy Insalubre. Por lo tanto, vamos a realizar una variable con estas categorías y, después, agruparemos Baja e Insalubre en una sola categoría, y Moderada y Muy Insalubre en otra. Para ello, vamos a usar la función `cut` de R.
 ```{r}
 # Creamos una nueva variable que indique el nivel de contaminación de forma categórica
 data$contamination <- cut(
@@ -182,7 +182,7 @@ table(data$contamination)
 table(data$contamination_2levels)
 ```
 
-Ahora que tenemos la variable categórica, vamos a ver las distribuciones de las variables numéricas en función del nivel de contaminación. También vamos a ver la distribución de las varaibles categóricas (año y scenario) en función del nivel de contaminación, buscando alguna relación.
+Ahora que tenemos la variable categórica, vamos a ver las distribuciones de las variables numéricas en función del nivel de contaminación. También vamos a ver la distribución de las variables categóricas (año y scenario) en función del nivel de contaminación, buscando alguna relación.
 ```{r}
 # Creamos una lista con los nombres de las variables numéricas
 data.num.vars <- names(data)[sapply(data, is.numeric)]
@@ -262,10 +262,10 @@ grid.arrange(p_year, p_scenario, nrow = 2)
 
 **__Respecto a las variables numéricas:__**
 
-En el gráfico de las distribuciones de las variables numéricas podemos ver 3 casos: no hay diferencia entre distribuciones, hay diferencia en anchura, hay diferencia en posición y anchura. Vamos a anlizar cada uno de estos casos.
+En el gráfico de las distribuciones de las variables numéricas podemos ver 3 casos: no hay diferencia entre distribuciones, hay diferencia en anchura, hay diferencia en posición y anchura. Vamos a analizar cada uno de estos casos.
 
 - **Distribuciones similares:** Es el caso de `O3_dailyHourlyMax` y `O3_daily8HrMax`. No podemos ver ninguna diferencia, por lo que no hay conclusiones que sacar de estas variables respecto a la contaminación.
-- **Distribuciones solapadas:** En este caso tenemos a `NO2_annualMean`, `NO_annualMean`, `O3_annualMean`, `O3_daysOver120`, `O3_dailyMaxAnnualMean`. En estos casos la media es igual o similar tanto con o sin contaminación, pero la anchura de la distribución varía, por loq que hay regiones de valores que corresponden en su mayoría a una de las dos categorías. En el caso de `NO2_annualMean`, `NO_annualMean` y `O3_annualMean`, valores muy extremos de concentracione sde partículas tienden a indicar alta contaminación de PM2.5. Por otro lado, en el caso de las variables relacionadas con la cantidad de días u horas (`O3_daysOver120`, `O3_dailyMaxAnnualMean`), una alta cantidad de días u horas con concentraciones altas de O3 tienden a indicar alta contaminación de PM2.5.
+- **Distribuciones solapadas:** En este caso tenemos a `NO2_annualMean`, `NO_annualMean`, `O3_annualMean`, `O3_daysOver120`, `O3_dailyMaxAnnualMean`. En estos casos la media es igual o similar tanto con o sin contaminación, pero la anchura de la distribución varía, por loq que hay regiones de valores que corresponden en su mayoría a una de las dos categorías. En el caso de `NO2_annualMean`, `NO_annualMean` y `O3_annualMean`, valores muy extremos de concentraciones sde partículas tienden a indicar alta contaminación de PM2.5. Por otro lado, en el caso de las variables relacionadas con la cantidad de días u horas (`O3_daysOver120`, `O3_dailyMaxAnnualMean`), una alta cantidad de días u horas con concentraciones altas de O3 tienden a indicar alta contaminación de PM2.5.
 - **Distribuciones separadas:** En este caso tenemos a `PM10_annualMean` y `PM10_daysOver50`. En estos casos la media de la distribución de alta contaminación es mucho mayor que la de baja contaminación, por lo que podemos concluir que una alta concentración de PM10 indica una alta contaminación por PM2.5.
 
 **__Respecto a las variables categóricas:__**
@@ -345,7 +345,7 @@ table(data.train.balanced$contamination)
 prop.table(table(data.train.balanced$contamination))
 ```
 
-Vemos que después del balanceo las clases minoritarias aún suponen menos de un 0.1% del total cada una. Por lo tanto, vamos a hacer otro downsampling mayor, bajando los datos de las calses Bajo y Moderada a la cantidad de Insalubre. Esto eliminará la mayoría de los datos del dataset, pero es necesario ya que si no el modelo no podrá aprender correctamente de las clases minoritarias.
+Vemos que después del balanceo las clases minoritarias aún suponen menos de un 0.1% del total cada una. Por lo tanto, vamos a hacer otro downsampling mayor, bajando los datos de las clases Bajo y Moderada a la cantidad de Insalubre. Esto eliminará la mayoría de los datos del dataset, pero es necesario ya que si no el modelo no podrá aprender correctamente de las clases minoritarias.
 ```{r}
 # Calculamos la cantidad de datos "Insalubre"
 nrow.insalubre <- nrow(data.train.balanced[data.train.balanced$contamination == "Insalubre", ])
@@ -380,7 +380,7 @@ Hemos hecho este balanceo solo en el conjunto de train ya que el conjunto de tes
 
 Ahora vamos a analizar qué variables debemos usar para predecir la contaminación. Los predictores `kreis`, `year` y `scenario` no sirven para predecir, ya que el primero es simplemente el nombre de la región; el año no puede ser un predictor ya que los únicos años con contaminación son 2003, 2007 y 2001, por lo que se tendería a etiquetar solo esos años; y el escenario no depende de de la contaminación como se ha visto anteriormente. Por lo tanto, solo nos quedarían las variables numéricas (a excepción de PM2.5_annualMean que es la que genera la variable objetivo). Estas suman un total de 9 variables, lo cual es bastante razonable. Por lo tanto, no vamos a hacer una selección de variables con algoritmos de selección, ya que no tenemos un problema de exceso de predictores.
 
-Ahora sí, vamos a crear los modelos. Para ello se usará el paquete `caret` (a excepción de la red neuronal que usará `keras`). Estos modelos se entranrán con validación cruzada de 10 folds, escogiendo así los mejores parámetros. Los modelos que se van a usar son:
+Ahora sí, vamos a crear los modelos. Para ello se usará el paquete `caret` (a excepción de la red neuronal que usará `keras`). Estos modelos se entrarán con validación cruzada de 10 folds, escogiendo así los mejores parámetros. Los modelos que se van a usar son:
 
 - rpart
 - rf
@@ -388,7 +388,7 @@ Ahora sí, vamos a crear los modelos. Para ello se usará el paquete `caret` (a 
 - svmRadial
 - Red neuronal
 
-Se usará el paquete `doParallel` para paralelizar el entrenamiento de los modelos, minimizando el timepo de cómputo. Los modelos que se usarán en el trabajo a etregar no se calcularán en el momento, sino que se habrán calculado previamente y simplemente habrá que cargar los archivos que los contienen.
+Se usará el paquete `doParallel` para paralelizar el entrenamiento de los modelos, minimizando el tiempo de cómputo. Los modelos que se usarán en el trabajo a entregar no se calcularán en el momento, sino que se habrán calculado previamente y simplemente habrá que cargar los archivos que los contienen.
 Vamos a empezar con los entrenamientos.
 
 Vamos a usar modelos para realizar predicciones.
@@ -641,7 +641,7 @@ results <- foreach(
 stopCluster(cluster)
 
 # Guardamos los resultados en un .Rdata
-saveRDS(results, file = "nnet.rds")
+saveRDS(results, file = "nnet.rds", compress = TRUE)
 ```
 
 Vamos a seleccionar los mejores hiperparámetros de la red neuronal. Cogeremos el conjunto con el mejor valor de F1 Score, teniendo en cuenta la regla del error estándar.
@@ -822,7 +822,7 @@ p_kappa <- ggplot(perf_df, aes(x = Model, y = Kappa)) +
 grid.arrange(p_acc, p_kappa, nrow = 2)
 ```
 
-Se puede observar como los modelos que mejor desempeño tienen son `rf` y `gbm`, con un F1 Score superior a 0.93 y un Kappa mayor que 0.62. Por el lado contrario tenemos la red neuronal y `rpart`, que tienen desempeños mucho menores. Es normal que `rpart` tenga un mal desmpeño, ya que es un modelo muy simple. Por otro lado, la red neuronal es un tipo de modelo que no está diseñado para este tipo de problemas, es decir, se desembuelve mucho mejor en casos con una gran cantidad de predictores y datos. Aquí, por el contrario, tenemos solo 9 predictores y se han tenido que eliminar una gran cantidad de datos debido al desbalanceo. Aún así, seguramente con hiperparámetros más exigentes como mayor número de capas, unidades y epochs la red neuronal podría haber tenido un desempeño cercado o igual al Random Forest y GBM.
+Se puede observar como los modelos que mejor desempeño tienen son `rf` y `gbm`, con un F1 Score superior a 0.93 y un Kappa mayor que 0.62. Por el lado contrario tenemos la red neuronal y `rpart`, que tienen desempeños mucho menores. Es normal que `rpart` tenga un mal desempeño, ya que es un modelo muy simple. Por otro lado, la red neuronal es un tipo de modelo que no está diseñado para este tipo de problemas, es decir, se desenvuelve mucho mejor en casos con una gran cantidad de predictores y datos. Aquí, por el contrario, tenemos solo 9 predictores y se han tenido que eliminar una gran cantidad de datos debido al desbalanceo. Aún así, seguramente con hiperparámetros más exigentes como mayor número de capas, unidades y epochs la red neuronal podría haber tenido un desempeño cercado o igual al Random Forest y GBM.
 
 Aún así, tanto por simplicidad como por desempeño Random Forest y GBM son los mejores modelos para predecir el nivel de contaminación por PM2.5. Además, permiten conocer la importancia de los predictores. Vamos a visualizar esto último, de forma que podamos ver una jerarquía en las variables.
 ```{r}
@@ -838,7 +838,7 @@ grid.arrange(
 )
 ```
 
-Se observa en el gáfico superior que las variables más importantes en los dos modelos son las párticulas PM10, luego NO2, y ya después se pone en duda si O3 o NO, aunque queda claro que son las partículas menos significativas. Por otro lado, se ve como las medias anuales suelen estar por encima que la cantidad de días u horas por encima de cierto umbral (a excepción de `PM10_daysOver50`, que como se vio en gráficos anteriores es una variable muy correlacionada con la contaminación de PM2.5). 
+Se observa en el gráfico superior que las variables más importantes en los dos modelos son las partículas PM10, luego NO2, y ya después se pone en duda si O3 o NO, aunque queda claro que son las partículas menos significativas. Por otro lado, se ve como las medias anuales suelen estar por encima que la cantidad de días u horas por encima de cierto umbral (a excepción de `PM10_daysOver50`, que como se vio en gráficos anteriores es una variable muy correlacionada con la contaminación de PM2.5). 
 
 
 # Conclusiones
@@ -847,7 +847,7 @@ Finalmente, vamos a analizar todo lo que se ha visto en la gráfica.
 
 Respecto al dataset se ha visto que es de baja calidad, si lo que se quiere hacer es predecir la contaminación por PM2.5. Esto se debe a que sus datos están altamente desbalanceados, además de que los datos de contaminación se concentran únicamente en 3 años, lo cuál indica una mala calidad a la hora de medir. Lo bueno del dataset es que apenas tiene datos faltantes o inválidos, suponiendo menos de un 3% del total. Además, el tener poca cantidad de predictores lo hace asequible a la hora de interpretar las variables, su significado y su importancia en los modelos.
 
-Tras hacer los modelos y compararlos, se ha llegado a la conclusión que los mejores modelos para predecir la contaminación por PM2.5 son Random Forest y GBM, tanto por su eficacia como por su simpleza y facilidad de comprensión. La red neuronal, por muy potente que sea, al estar en una situación de pocos predicores y pocos datos (debido a la criba del balanceo) no se ha tenido un buen desempeño.
+Tras hacer los modelos y compararlos, se ha llegado a la conclusión que los mejores modelos para predecir la contaminación por PM2.5 son Random Forest y GBM, tanto por su eficacia como por su simpleza y facilidad de comprensión. La red neuronal, por muy potente que sea, al estar en una situación de pocos predictores y pocos datos (debido a la criba del balanceo) no se ha tenido un buen desempeño.
 
 Con toda esta información y la que se ha visto a lo largo de la práctica podemos finalmente responder a las preguntas planteadas en la práctica:
 
