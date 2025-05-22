@@ -2,7 +2,13 @@
     "name": "Greninja",
     "number": "658",
     "url": "https://pkparaiso.com//pokedex/greninja.php",
-    "date": "18-01-2022",
+    "types": [
+        "agua",
+        "siniestro"
+    ],
+    "class": "Pokémon Ninja",
+    "weight": 40.0,
+    "height": 1.5,
     "descriptions": {
         " Pokémon X": "Comprime el agua y crea estrellas ninja con las que ataca al enemigo. Cuando las hace girar a gran velocidad cortan en dos hasta el metal.",
         " Pokémon Y": "Aparece y desaparece de improvisto, cual ninja. Marea al oponente con su soberbia agilidad y lo hace trizas con sus Shuriken de Agua.",

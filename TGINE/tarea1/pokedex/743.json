@@ -2,7 +2,13 @@
     "name": "Ribombee",
     "number": "743",
     "url": "https://pkparaiso.com//pokedex/ribombee.php",
-    "date": "04-08-2019",
+    "types": [
+        "bicho",
+        "hada"
+    ],
+    "class": "Pokémon Mosca Abeja",
+    "weight": 0.5,
+    "height": 0.2,
     "descriptions": {
         " Pokémon Sol": "Fabrica varios tipos de bolas de polen. Algunas se usan como alimento y otras para el combate.",
         " Pokémon Luna": "Algunas de las bolas de polen que fabrican son extremadamente nutritivas, por lo que a veces se venden como suplementos alimenticios."

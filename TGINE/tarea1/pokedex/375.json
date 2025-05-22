@@ -2,7 +2,13 @@
     "name": "Metang",
     "number": "375",
     "url": "https://pkparaiso.com//pokedex/metang.php",
-    "date": "14-10-2020",
+    "types": [
+        "acero",
+        "psiquico"
+    ],
+    "class": "Pokémon Garra Hierro",
+    "weight": 202.5,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Rubí": "Cuando dos Beldum se fusionan, forman un Metang. Los cerebros de los Beldum se unen mediante un sistema nervioso magnético y generan potente energía psicoquinética.",
         " Pokémon Zafiro": "Cuando se funden dos Beldum, uniendo los cerebros por un sistema nervioso magnético, se forma un Metang. Para desplazarse a mayor velocidad, este Pokémon echa los brazos hacia atrás.",

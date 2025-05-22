@@ -2,7 +2,13 @@
     "name": "Meloetta",
     "number": "648",
     "url": "https://pkparaiso.com//pokedex/meloetta.php",
-    "date": "22-06-2015",
+    "types": [
+        "normal",
+        "psiquico"
+    ],
+    "class": "Pokémon Melodía",
+    "weight": 6.5,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Negro": "Controla los sentimientos de los que escuchan las melodías que emite con su singular vocalización.",
         " Pokémon Blanco": "Se han creado innumerables canciones inspiradas en las melodías que emite Meloetta.",

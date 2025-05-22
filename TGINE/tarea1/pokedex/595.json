@@ -2,7 +2,13 @@
     "name": "Joltik",
     "number": "595",
     "url": "https://pkparaiso.com//pokedex/joltik.php",
-    "date": "22-01-2023",
+    "types": [
+        "bicho",
+        "electrico"
+    ],
+    "class": "Pokémon Lapa",
+    "weight": 0.6,
+    "height": 0.1,
     "descriptions": {
         " Pokémon Negro": "Los que viven en las ciudades saben absorber electricidad de los enchufes de las casas particulares.",
         " Pokémon Blanco": "Se agarra a Pokémon de gran tamaño, absorbe su electricidad estática y la guarda en una bolsa interna.",

@@ -1,0 +1,35 @@
+{
+    "name": "Charizard",
+    "number": "006",
+    "url": "https://pkparaiso.com//pokedex/charizard.php",
+    "types": [
+        "fuego",
+        "volador"
+    ],
+    "class": "Pokémon Llama",
+    "weight": 90.5,
+    "height": 1.7,
+    "descriptions": {
+        " Pokémon Rojo y Azul": "Escupe fuego tan caliente que funde las rocas. Causa incendios forestales sin querer",
+        " Pokémon Amarillo": "Cuando lanza una descarga de fuego súper caliente, la roja llama de su cola brilla más intensamente",
+        " Pokémon Oro": "Si Charizard se enfurece, la llama de la punta de su cola producirá destellos de color azul claro.",
+        " Pokémon Plata": "Con sus intensas llamas, derrite casi cualquier cosa. Su aliento causa un terrible dolor al enemigo.",
+        " Pokémon Cristal": "Utiliza las alas para volar muy alto. La temperatura de su fuego aumenta al ganar experiencia.",
+        " Pokémon Rubí": "Charizard se dedica a volar por los cielos en busca de oponentes fuertes. Echa fuego por la boca y es capaz de derretir cualquier cosa. No obstante, si su rival es más débil que él, no usará este ataque.",
+        " Pokémon Zafiro": "Charizard se dedica a volar por los cielos en busca de oponentes fuertes. Echa fuego por la boca y es capaz de derretir cualquier cosa. No obstante, si su rival es más débil que él, no usará este ataque.",
+        " Pokémon Esmeralda": "Charizard va volando en busca de rivales fuertes. Echa fuego por la boca y es capaz de derretirlo todo. Ahora bien, si su rival es más débil que él, no usará este ataque.",
+        " Pokémon Rojo Fuego": "Con las alas que tiene puede alcanzar una altura de casi 1.400 m. Suele escupir fuego por la boca.",
+        " Pokémon Verde Hoja": "Escupe fuego tan caliente que funde las rocas. Causa incendios forestales sin querer.",
+        " Pokémon Diamante": "Se dice que el fuego de Charizard arde con más fuerza si ha vivido duras batallas.",
+        " Pokémon Perla": "Se dice que el fuego de Charizard arde con más fuerza si ha vivido duras batallas.",
+        " Pokémon Platino": "Se dice que el fuego de Charizard arde con más fuerza si ha vivido duras batallas.",
+        " Pokémon HeartGold": "Si Charizard se enfurece, la llama de la punta de su cola producirá destellos de color azul claro.",
+        " Pokémon SoulSilver": "Si Charizard se enfurece, la llama de la punta de su cola producirá destellos de color azul claro.",
+        " Pokémon Negro": "Se dice que el fuego de Charizard arde con más fuerza si ha vivido duras batallas.",
+        " Pokémon Blanco": "Se dice que el fuego de Charizard arde con más fuerza si ha vivido duras batallas.",
+        " Pokémon X": "Cuando lanza una descarga de fuego supercaliente, la roja llama de su cola brilla más intensamente.",
+        " Pokémon Y": "Con las alas que tiene puede alcanzar una altura de casi 1400 m. Suele escupir fuego por la boca.",
+        " Pokémon Rubí Omega": "Charizard se dedica a volar por los cielos en busca de oponentes fuertes. Echa fuego por la boca y es capaz de derretir cualquier cosa. No obstante, si su rival es más débil que él, no usará este ataque.",
+        " Pokémon Zafiro Alfa": "Charizard se dedica a volar por los cielos en busca de oponentes fuertes. Echa fuego por la boca y es capaz de derretir cualquier cosa. No obstante, si su rival es más débil que él, no usará este ataque."
+    }
+}

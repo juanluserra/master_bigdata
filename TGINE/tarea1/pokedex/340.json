@@ -2,7 +2,13 @@
     "name": "Whiscash",
     "number": "340",
     "url": "https://pkparaiso.com//pokedex/whiscash.php",
-    "date": "02-12-2019",
+    "types": [
+        "agua",
+        "tierra"
+    ],
+    "class": "Pokémon Bigotudo",
+    "weight": 23.6,
+    "height": 0.9,
     "descriptions": {
         " Pokémon Rubí": "Whiscash defiende su territorio a toda costa. Es capaz de apoderarse de un estanque entero para sí solo. Si alguien se le acerca, se revolverá y provocará un terremoto devastador.",
         " Pokémon Zafiro": "Si Whiscash entra en estado de cólera salvaje, provoca un temblor sísmico de un radio de cinco kilómetros. Este Pokémon tiene la habilidad de predecir terremotos de verdad.",

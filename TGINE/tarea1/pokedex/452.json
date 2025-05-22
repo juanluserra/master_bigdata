@@ -2,7 +2,13 @@
     "name": "Drapion",
     "number": "452",
     "url": "https://pkparaiso.com//pokedex/drapion.php",
-    "date": "14-08-2012",
+    "types": [
+        "veneno",
+        "siniestro"
+    ],
+    "class": "Pokémon Escorpiogro",
+    "weight": 61.5,
+    "height": 1.3,
     "descriptions": {
         " Pokémon Diamante": "Está dentro de una fuerte coraza. Su cabeza rota 180 grados para poder ver en todas direcciones.",
         " Pokémon Perla": "Sus brazos tienen fuerza para destrozar un coche. La punta de sus zarpas segrega veneno.",

@@ -2,7 +2,13 @@
     "name": "Gardevoir",
     "number": "282",
     "url": "https://pkparaiso.com//pokedex/gardevoir.php",
-    "date": "26-07-2014",
+    "types": [
+        "psiquico",
+        "hada"
+    ],
+    "class": "Pokémon Envolvente",
+    "weight": 48.4,
+    "height": 1.6,
     "descriptions": {
         " Pokémon Rubí": "Gardevoir es capaz de leer el futuro. Si siente que su ENTRENADOR está en peligro inminente, dicen que libera automáticamente toda su energía psicoquinética.",
         " Pokémon Zafiro": "Gardevoir tiene el poder psicoquinético de alterar las dimensiones y crear un agujero negro pequeño. Este Pokémon intenta proteger siempre a su ENTRENADOR aunque tenga que arriesgar su propia vida.",

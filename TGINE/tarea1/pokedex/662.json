@@ -2,7 +2,13 @@
     "name": "Fletchinder",
     "number": "662",
     "url": "https://pkparaiso.com//pokedex/fletchinder.php",
-    "date": "06-11-2018",
+    "types": [
+        "fuego",
+        "volador"
+    ],
+    "class": "Pokémon Lumbre",
+    "weight": 16.0,
+    "height": 0.7,
     "descriptions": {
         " Pokémon X": "Lanza chispas por su pico y prende fuego a la hierba alta para así sorprender a sus presas y atraparlas cuando intentan escapar.",
         " Pokémon Y": "Cuanto más intenso sea el calor que se genera en la saca de fuego de su vientre, más rápido es capaz de volar. Sin embargo, la llama tarda en prender.",

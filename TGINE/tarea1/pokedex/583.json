@@ -2,7 +2,12 @@
     "name": "Vanillish",
     "number": "583",
     "url": "https://pkparaiso.com//pokedex/vanillish.php",
-    "date": "26-11-2011",
+    "types": [
+        "hielo"
+    ],
+    "class": "Pokémon Nieve Helada",
+    "weight": 41.0,
+    "height": 1.1,
     "descriptions": {
         " Pokémon Negro": "Vive en las cumbres nevadas. Migró hacia el sur durante la era glaciar, hace muchísimos años.",
         " Pokémon Blanco": "Genera multitud de pequeñas partículas de hielo para ocultarse de sus enemigos.",

@@ -2,7 +2,13 @@
     "name": "Golbat",
     "number": "042",
     "url": "https://pkparaiso.com//pokedex/golbat.php",
-    "date": "12-04-2022",
+    "types": [
+        "veneno",
+        "volador"
+    ],
+    "class": "Pokémon Murciélago",
+    "weight": 55.0,
+    "height": 1.6,
     "descriptions": {
         " Pokémon Rojo y Azul": "Cuando ataque, seguirá chupando energía de su víctima, aunque pese tanto que ya no pueda volar",
         " Pokémon Amarillo": "Ataca de manera violenta sin avisar. Utiliza sus afilados colmillos para chupar sangre",

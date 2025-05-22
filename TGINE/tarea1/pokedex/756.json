@@ -2,7 +2,13 @@
     "name": "Shiinotic",
     "number": "756",
     "url": "https://pkparaiso.com//pokedex/shiinotic.php",
-    "date": "07-01-2014",
+    "types": [
+        "planta",
+        "hada"
+    ],
+    "class": "Pokémon Luminiscente",
+    "weight": 11.5,
+    "height": 1.0,
     "descriptions": {
         " Pokémon Sol": "Es peligroso adentrarse por la noche en un bosque habitado por Shiinotic. Su luz confunde a los caminantes, que terminan perdiéndose.",
         " Pokémon Luna": "Las esporas parpadeantes que despide tienen un efecto somnífero. Absorbe la vitalidad de su presa cuando esta se queda dormida."

@@ -2,7 +2,13 @@
     "name": "Steelix",
     "number": "208",
     "url": "https://pkparaiso.com//pokedex/steelix.php",
-    "date": "21-11-2021",
+    "types": [
+        "acero",
+        "tierra"
+    ],
+    "class": "Pokémon Serpférrea",
+    "weight": 400.0,
+    "height": 9.2,
     "descriptions": {
         " Pokémon Oro": "Su cuerpo ha sido comprimido en el interior de la tierra, y por eso es hasta más duro que el diamante.",
         " Pokémon Plata": "Dicen que si Onix viviera más de 100 años, su composición sería la del diamante, como Steelix.",

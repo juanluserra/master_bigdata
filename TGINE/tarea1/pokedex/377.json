@@ -2,7 +2,12 @@
     "name": "Regirock",
     "number": "377",
     "url": "https://pkparaiso.com//pokedex/regirock.php",
-    "date": "28-01-2013",
+    "types": [
+        "roca"
+    ],
+    "class": "Pokémon Pico Roca",
+    "weight": 230.0,
+    "height": 1.7,
     "descriptions": {
         " Pokémon Rubí": "A Regirock lo mantuvieron encerrado y lejos hace tiempo. Dicen que, si resulta dañado en combate, se pone él mismo a buscar piedras parecidas a las suyas y se las pone para recomponerse.",
         " Pokémon Zafiro": "Regirock está formado en su totalidad por piedras. Debido a un estudio reciente, se descubrió que cada una de las piedras había sido desenterrada en sitios distintos.",

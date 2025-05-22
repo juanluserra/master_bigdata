@@ -2,7 +2,13 @@
     "name": "Vibrava",
     "number": "329",
     "url": "https://pkparaiso.com//pokedex/vibrava.php",
-    "date": "22-07-2021",
+    "types": [
+        "tierra",
+        "dragon"
+    ],
+    "class": "Pokémon Vibrante",
+    "weight": 15.3,
+    "height": 1.1,
     "descriptions": {
         " Pokémon Rubí": "Para debilitar a su víctima, Vibrava genera ondas ultrasónicas haciendo vibrar con fuerza las alas. Las ondas que crea son tan fuertes que pueden dar dolor de cabeza a la gente.",
         " Pokémon Zafiro": "Vibrava no ha desarrollado las alas del todo. Más que para volar y recorrer largas distancias, le resultan útiles para generar ondas ultrasónicas al hacer que vibren.",

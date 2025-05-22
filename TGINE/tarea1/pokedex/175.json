@@ -2,7 +2,12 @@
     "name": "Togepi",
     "number": "175",
     "url": "https://pkparaiso.com//pokedex/togepi.php",
-    "date": "17-04-2019",
+    "types": [
+        "hada"
+    ],
+    "class": "Pokémon Bolaclavos",
+    "weight": 1.5,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Oro": "El cascarón parece estar lleno de alegría. Dicen que trae buena suerte si es tratado con cariño.",
         " Pokémon Plata": "Dice el proverbio que quien despierte a un Togepi de su sueño, alcanzará la felicidad.",

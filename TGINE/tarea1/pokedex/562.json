@@ -2,7 +2,12 @@
     "name": "Yamask",
     "number": "562",
     "url": "https://pkparaiso.com//pokedex/yamask.php",
-    "date": "18-11-2003",
+    "types": [
+        "fantasma"
+    ],
+    "class": "Pokémon Espíritu",
+    "weight": 1.5,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Negro": "Su máscara representa la cara que poseía cuando era humano. A veces se le saltan las lágrimas al contemplarla.",
         " Pokémon Blanco": "Nació del alma de un humano enterrado hace milenios. Aún conserva recuerdos del pasado.",

@@ -2,7 +2,13 @@
     "name": "Bronzong",
     "number": "437",
     "url": "https://pkparaiso.com//pokedex/bronzong.php",
-    "date": "01-08-2000",
+    "types": [
+        "acero",
+        "psiquico"
+    ],
+    "class": "Pokémon Cam. Bronce",
+    "weight": 187.0,
+    "height": 1.3,
     "descriptions": {
         " Pokémon Diamante": "Puede conjurar nubes de lluvia. Hace tiempo, la gente creía que traía buenas cosechas.",
         " Pokémon Perla": "Se produjo un gran revuelo cuando encontrAron uno en una obra después de 2000 años durmiendo.",

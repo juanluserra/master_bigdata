@@ -2,7 +2,13 @@
     "name": "Froslass",
     "number": "478",
     "url": "https://pkparaiso.com//pokedex/froslass.php",
-    "date": "13-11-2006",
+    "types": [
+        "hielo",
+        "fantasma"
+    ],
+    "class": "Pokémon Tierra Fría",
+    "weight": 26.6,
+    "height": 1.3,
     "descriptions": {
         " Pokémon Diamante": "Congela a sus enemigos con un aliento gélido de 50 grados bajo cero. Está hueco por dentro.",
         " Pokémon Perla": "Congela a sus enemigos con un aliento gélido de 50 grados bajo cero. Está hueco por dentro.",

@@ -2,7 +2,12 @@
     "name": "Gulpin",
     "number": "316",
     "url": "https://pkparaiso.com//pokedex/gulpin.php",
-    "date": "23-12-2021",
+    "types": [
+        "veneno"
+    ],
+    "class": "Pokémon Estómago",
+    "weight": 10.3,
+    "height": 0.4,
     "descriptions": {
         " Pokémon Rubí": "Casi la totalidad del cuerpo de Gulpin está compuesto por el estómago. Por eso puede tragarse todo lo que tenga su tamaño. En el interior del estómago, tiene un fluido capaz de corroerlo todo.",
         " Pokémon Zafiro": "La mayor parte del cuerpo de Gulpin está ocupado por su estómago. En comparación, el corazón y el cerebro son muy pequeños. Este Pokémon tiene enzimas especiales en el estómago capaces de corroerlo todo.",

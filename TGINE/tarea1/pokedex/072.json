@@ -2,7 +2,13 @@
     "name": "Tentacool",
     "number": "072",
     "url": "https://pkparaiso.com//pokedex/tentacool.php",
-    "date": "24-10-2015",
+    "types": [
+        "agua",
+        "veneno"
+    ],
+    "class": "Pokémon Medusa",
+    "weight": 45.5,
+    "height": 0.9,
     "descriptions": {
         " Pokémon Rojo y Azul": "Va a la deriva a poca profundidad. Si es pescado por accidente, el castigo será su punzante ácido",
         " Pokémon Amarillo": "A veces puede ser encontrado seco y medio enterrado en una playa. Al lanzarlo otra vez al mar revivirá",

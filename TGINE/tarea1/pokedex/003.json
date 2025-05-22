@@ -1,0 +1,35 @@
+{
+    "name": "Venusaur",
+    "number": "003",
+    "url": "https://pkparaiso.com//pokedex/venusaur.php",
+    "types": [
+        "planta",
+        "veneno"
+    ],
+    "class": "Pokémon Semilla",
+    "weight": 100.0,
+    "height": 2.0,
+    "descriptions": {
+        " Pokémon Rojo y Azul": "La planta florece cuando absorbe energía solar. Ésta le obliga a ponerse en busca de la luz solar",
+        " Pokémon Amarillo": "La flor de su espalda recoge los rayos del Sol. Los transforma en energía",
+        " Pokémon Oro": "Llena su cuerpo de energía con los rayos solares que captan los anchos pétalos de su flor.",
+        " Pokémon Plata": "Puede convertir la luz del sol en energía. Por esa razón, es más poderoso en verano.",
+        " Pokémon Cristal": "Cuando se calienta al absorber la luz del sol, sus pétalos emiten una placentera fragancia.",
+        " Pokémon Rubí": "Venusaur tiene una flor enorme en el lomo que, según parece, adquiere unos colores muy vivos si está bien nutrido y le da mucho el sol. El aroma delicado de la flor tiene un efecto relajante en el ánimo de las personas.",
+        " Pokémon Zafiro": "Venusaur tiene una flor enorme en el lomo que, según parece, adquiere unos colores muy vivos si está bien nutrido y le da mucho el sol. El aroma delicado de la flor tiene un efecto relajante en el ánimo de las personas.",
+        " Pokémon Esmeralda": "Según parece, la flor de Venusaur adquiere unos colores muy vivos con una buena nutrición y mucho sol. El aroma delicado de esta flor calma los ánimos.",
+        " Pokémon Rojo Fuego": "La flor que tiene en el lomo libera un delicado aroma. En combate, este aroma tiene un efecto relajante.",
+        " Pokémon Verde Hoja": "La planta florece cuando absorbe energía solar, por eso le obliga a buscar luz del Sol.",
+        " Pokémon Diamante": "Después de un día de lluvia, la flor de su lomo tiene un aroma más potente y atrae a otros Pokémon.",
+        " Pokémon Perla": "Después de un día de lluvia, la flor de su lomo tiene un aroma más potente y atrae a otros Pokémon.",
+        " Pokémon Platino": "Después de un día de lluvia, la flor de su lomo tiene un aroma más potente y atrae a otros Pokémon.",
+        " Pokémon HeartGold": "Llena su cuerpo de energía con los rayos solares que captan los anchos pétalos de su flor.",
+        " Pokémon SoulSilver": "Llena su cuerpo de energía con los rayos solares que captan los anchos pétalos de su flor.",
+        " Pokémon Negro": "Después de un día de lluvia, la flor de su lomo tiene un aroma más potente y atrae a otros Pokémon.",
+        " Pokémon Blanco": "Después de un día de lluvia, la flor de su lomo tiene un aroma más potente y atrae a otros Pokémon.",
+        " Pokémon X": "Llena su cuerpo de energía con los rayos solares que captan los anchos pétalos de su flor.",
+        " Pokémon Y": "Después de un día de lluvia, la flor de su lomo tiene un aroma más potente y atrae a otros Pokémon.",
+        " Pokémon Rubí Omega": "Venusaur tiene una flor enorme en el lomo que, según parece, adquiere unos colores muy vivos si está bien nutrido y le da mucho el sol. El aroma delicado de la flor tiene un efecto relajante en el ánimo de las personas.",
+        " Pokémon Zafiro Alfa": "Venusaur tiene una flor enorme en el lomo que, según parece, adquiere unos colores muy vivos si está bien nutrido y le da mucho el sol. El aroma delicado de la flor tiene un efecto relajante en el ánimo de las personas."
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "name": "Bellossom",
+    "number": "182",
+    "url": "https://pkparaiso.com//pokedex/bellossom.php",
+    "types": [
+        "planta"
+    ],
+    "class": "Pokémon Flor",
+    "weight": 5.8,
+    "height": 0.4,
+    "descriptions": {
+        " Pokémon Oro": "Los Bellossom suelen reunirse para bailar. Dicen que sus danzas son un ritual para invocar al sol.",
+        " Pokémon Plata": "Abundan en los trópicos. Cuando baila, sus pétalos se rozan creando un agradable tintineo.",
+        " Pokémon Cristal": "Si los Bellossom se ponen a bailar juntos, el roce de los pétalos produce unos sonidos muy relajantes.",
+        " Pokémon Rubí": "Cuando Bellossom se expone a gran cantidad de luz solar, le empiezan a girar las hojas que le rodean. La danza de este Pokémon es famosa en las zonas del sur.",
+        " Pokémon Zafiro": "La belleza de las flores que le crecen a Bellossom depende de lo mal que oliera el Gloom a partir del cual evolucionó. A mayor hedor, mayor belleza. Por la noche, este Pokémon cierra los pétalos y se echa a dormir.",
+        " Pokémon Esmeralda": "A los pétalos de las flores se les acentúa el color si están expuestos a la luz solar. Cuando persiste el tiempo nublado, dicen que invoca al sol mediante un baile ritual.",
+        " Pokémon Rojo Fuego": "Abundan en los trópicos. Cuando baila, sus pétalos se rozan creando un agradable tintineo.",
+        " Pokémon Verde Hoja": "Los Bellossom suelen reunirse para bailar. Dicen que sus danzas son un ritual para invocar al Sol.",
+        " Pokémon Diamante": "Cuando acaba la estación de las lluvias, sale al sol e inicia una peculiar danza.",
+        " Pokémon Perla": "Cuando acaba la estación de las lluvias, sale al sol e inicia una peculiar danza.",
+        " Pokémon Platino": "Cuando acaba la estación de las lluvias, sale al sol e inicia una peculiar danza.",
+        " Pokémon HeartGold": "Los Bellossom suelen reunirse para bailar. Dicen que sus danzas son un ritual para invocar al sol.",
+        " Pokémon SoulSilver": "Los Bellossom suelen reunirse para bailar. Dicen que sus danzas son un ritual para invocar al sol.",
+        " Pokémon Negro": "Cuando acaba la estación de las lluvias, sale al sol e inicia una peculiar danza.",
+        " Pokémon Blanco": "Cuando acaba la estación de las lluvias, sale al sol e inicia una peculiar danza.",
+        " Pokémon X": "Los Bellossom suelen reunirse para bailar. Dicen que sus danzas son un ritual para invocar al sol.",
+        " Pokémon Y": "Cuando acaba la estación de las lluvias, sale al sol e inicia una peculiar danza.",
+        " Pokémon Rubí Omega": "Cuando Bellossom se expone a gran cantidad de luz solar, le empiezan a girar las hojas que le rodean. La danza de este Pokémon es famosa en las zonas del sur.",
+        " Pokémon Zafiro Alfa": "La belleza de las flores que le crecen a Bellossom depende de lo mal que oliera el Gloom a partir del cual evolucionó. A mayor hedor, mayor belleza. Por la noche, este Pokémon cierra los pétalos y se echa a dormir."
+    }
+}

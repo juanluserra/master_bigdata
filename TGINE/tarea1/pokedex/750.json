@@ -2,7 +2,12 @@
     "name": "Mudsdale",
     "number": "750",
     "url": "https://pkparaiso.com//pokedex/mudsdale.php",
-    "date": "04-03-2009",
+    "types": [
+        "tierra"
+    ],
+    "class": "Pokémon Caballo Tiro",
+    "weight": 920.0,
+    "height": 2.5,
     "descriptions": {
         " Pokémon Sol": "El lodo que segrega por la boca se vuelve impermeable al secarse, por lo que solía usarse como capa aislante en las paredes de las casas.",
         " Pokémon Luna": "Su especialidad son los ataques a base de patadas con lodo endurecido, con las que puede reducir a chatarra un camión de gran tamaño."

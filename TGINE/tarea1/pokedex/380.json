@@ -2,7 +2,13 @@
     "name": "Latias",
     "number": "380",
     "url": "https://pkparaiso.com//pokedex/latias.php",
-    "date": "02-01-2005",
+    "types": [
+        "dragon",
+        "psiquico"
+    ],
+    "class": "Pokémon Eón",
+    "weight": 40.0,
+    "height": 1.4,
     "descriptions": {
         " Pokémon Rubí": "Latias es muy sensible a los sentimientos de la gente. Si detecta algún ápice de hostilidad, desplegará las plumas que tiene por todo el cuerpo y se pondrá a chillar para intimidar al enemigo.",
         " Pokémon Zafiro": "Latias tiene un nivel de inteligencia tan alto que es capaz de entender el lenguaje humano. Este Pokémon usa el plumón cristalizado del que está cubierto como peto para desprender luz y cambiar de aspecto.",

@@ -2,7 +2,13 @@
     "name": "Pidove",
     "number": "519",
     "url": "https://pkparaiso.com//pokedex/pidove.php",
-    "date": "18-10-2014",
+    "types": [
+        "normal",
+        "volador"
+    ],
+    "class": "Pokémon Pichón",
+    "weight": 2.1,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Negro": "Es muy obediente con su Entrenador, pero a veces no logra comprender órdenes complicadas.",
         " Pokémon Blanco": "Vive en la ciudad, pues se lleva muy bien con la gente. Le encantan los parques y las plazas, donde se reúne con otros.",

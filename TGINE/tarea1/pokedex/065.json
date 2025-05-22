@@ -2,7 +2,12 @@
     "name": "Alakazam",
     "number": "065",
     "url": "https://pkparaiso.com//pokedex/alakazam.php",
-    "date": "17-11-2015",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Psi",
+    "weight": 48.0,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Rojo y Azul": "Su cerebro puede ganar al de un súper-ordenador. Tiene un cociente intelectual de 5000",
         " Pokémon Amarillo": "Este Pokémon lo recuerda todo. Nunca olvida lo que aprende. Es un Pokémon muy listo",

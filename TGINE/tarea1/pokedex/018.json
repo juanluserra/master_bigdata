@@ -2,7 +2,13 @@
     "name": "Pidgeot",
     "number": "018",
     "url": "https://pkparaiso.com//pokedex/pidgeot.php",
-    "date": "14-12-2010",
+    "types": [
+        "normal",
+        "volador"
+    ],
+    "class": "Pokémon Pájaro",
+    "weight": 39.5,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Rojo y Azul": "Cuando caza, vuela muy deprisa a ras del agua, y sorprende a inocentes presas como el Magikarp",
         " Pokémon Amarillo": "Este Pokémon vuela a velocidad Mach 2. Sus grandes garras son armas muy peligrosas",

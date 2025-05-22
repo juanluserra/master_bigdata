@@ -2,7 +2,12 @@
     "name": "Seaking",
     "number": "119",
     "url": "https://pkparaiso.com//pokedex/seaking.php",
-    "date": "04-04-2022",
+    "types": [
+        "agua"
+    ],
+    "class": "Pokémon Pez Color",
+    "weight": 39.0,
+    "height": 1.3,
     "descriptions": {
         " Pokémon Rojo y Azul": "En otoño, cuando se reproducen, pueden ser vistos nadando con energía por ríos y arroyos",
         " Pokémon Amarillo": "Este Pokémon hace sus nidos tallando cantos de riachuelo con el cuerno de su cabeza",

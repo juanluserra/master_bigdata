@@ -2,7 +2,13 @@
     "name": "Starly",
     "number": "396",
     "url": "https://pkparaiso.com//pokedex/starly.php",
-    "date": "24-04-2008",
+    "types": [
+        "normal",
+        "volador"
+    ],
+    "class": "Pokémon Estornino",
+    "weight": 2.0,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Diamante": "Suele volar en bandadas, pero pasa desapercibido cuando está solo. Chilla de forma estridente.",
         " Pokémon Perla": "Viaja en grandes bandadas. Aunque es pequeño, agita las alas con gran fuerza.",

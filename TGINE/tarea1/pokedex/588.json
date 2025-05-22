@@ -2,7 +2,12 @@
     "name": "Karrablast",
     "number": "588",
     "url": "https://pkparaiso.com//pokedex/karrablast.php",
-    "date": "21-08-2022",
+    "types": [
+        "bicho"
+    ],
+    "class": "Pokémon Bocado",
+    "weight": 5.9,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Negro": "Si recibe un estímulo eléctrico al estar en contacto con un Shelmet, evoluciona.",
         " Pokémon Blanco": "Cuando presiente peligro, expulsa por la boca un ácido que lanza a sus enemigos. Siempre va tras los Shelmet.",

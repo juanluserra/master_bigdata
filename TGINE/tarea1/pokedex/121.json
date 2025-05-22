@@ -2,7 +2,13 @@
     "name": "Starmie",
     "number": "121",
     "url": "https://pkparaiso.com//pokedex/starmie.php",
-    "date": "11-02-2010",
+    "types": [
+        "agua",
+        "psiquico"
+    ],
+    "class": "Pokémon Misterioso",
+    "weight": 80.0,
+    "height": 1.1,
     "descriptions": {
         " Pokémon Rojo y Azul": "Su núcleo central brilla con los 7 colores del arco iris. Es valorado como gema por algunos",
         " Pokémon Amarillo": "Su zona central es conocida como el núcleo. Se piensa que se comunica mediante colores",

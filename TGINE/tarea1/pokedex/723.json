@@ -2,7 +2,13 @@
     "name": "Dartrix",
     "number": "723",
     "url": "https://pkparaiso.com//pokedex/dartrix.php",
-    "date": "07-12-2015",
+    "types": [
+        "planta",
+        "volador"
+    ],
+    "class": "Pokémon Pluma Filo",
+    "weight": 16.0,
+    "height": 0.7,
     "descriptions": {
         " Pokémon Sol": "Es un poco coqueto, por lo que, cuando puede, se acicala las alas. En ocasiones se niega a combatir por temor a mancharse las plumas.",
         " Pokémon Luna": "Ataca a sus presas y enemigos lanzándoles plumas sorprendentemente afiladas. Acierta prácticamente siempre."

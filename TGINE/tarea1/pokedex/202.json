@@ -2,7 +2,12 @@
     "name": "Wobbuffet",
     "number": "202",
     "url": "https://pkparaiso.com//pokedex/wobbuffet.php",
-    "date": "27-02-2003",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Paciente",
+    "weight": 28.5,
+    "height": 1.3,
     "descriptions": {
         " Pokémon Oro": "Odia la luz y las sacudidas. Si le atacan, infla su cuerpo para aumentar su contraataque.",
         " Pokémon Plata": "Para mantener oculta su negra cola, vive en silencio en la oscuridad. Nunca ataca primero.",

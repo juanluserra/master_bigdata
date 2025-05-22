@@ -2,7 +2,13 @@
     "name": "Ledian",
     "number": "166",
     "url": "https://pkparaiso.com//pokedex/ledian.php",
-    "date": "22-12-2020",
+    "types": [
+        "bicho",
+        "volador"
+    ],
+    "class": "Pokémon 5 Estrellas",
+    "weight": 35.6,
+    "height": 1.4,
     "descriptions": {
         " Pokémon Oro": "Cuando parpadean las estrellas en el cielo nocturno, se mece, desprendiendo un polvo brillante.",
         " Pokémon Plata": "Las estrellas de su lomo crecen y decrecen dependiendo de las estrellas del cielo nocturno.",

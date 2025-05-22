@@ -2,7 +2,13 @@
     "name": "Gastrodon",
     "number": "423",
     "url": "https://pkparaiso.com//pokedex/gastrodon.php",
-    "date": "10-09-2000",
+    "types": [
+        "agua",
+        "tierra"
+    ],
+    "class": "Pokémon Babosa Mar.",
+    "weight": 29.9,
+    "height": 0.9,
     "descriptions": {
         " Pokémon Diamante": "Al parecer, hace mucho tiempo tenía una gran concha protectora. Vive en aguas poco profundas.",
         " Pokémon Perla": "Posee un cuerpo flexible sin huesos. Si pierde alguna parte, le vuelve a crecer.",

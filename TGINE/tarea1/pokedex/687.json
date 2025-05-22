@@ -2,7 +2,13 @@
     "name": "Malamar",
     "number": "687",
     "url": "https://pkparaiso.com//pokedex/malamar.php",
-    "date": "22-11-2010",
+    "types": [
+        "siniestro",
+        "psiquico"
+    ],
+    "class": "Pokémon Revolución",
+    "weight": 47.0,
+    "height": 1.5,
     "descriptions": {
         " Pokémon X": "Tiene a su disposición los poderes hipnóticos más poderosos de entre todos los Pokémon. Controla al enemigo a su voluntad.",
         " Pokémon Y": "Hipnotiza a su objetivo para atraerlo y lo aprisiona con los tentáculos de su cabeza, para asestarle el golpe de gracia rociándolo con sus jugos gástricos.",

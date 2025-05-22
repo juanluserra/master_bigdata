@@ -2,7 +2,13 @@
     "name": "Togekiss",
     "number": "468",
     "url": "https://pkparaiso.com//pokedex/togekiss.php",
-    "date": "21-10-2023",
+    "types": [
+        "hada",
+        "volador"
+    ],
+    "class": "Pokémon Festejo",
+    "weight": 38.0,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Diamante": "Nunca aparece donde hay peleas. Últimamente no se deja ver muy a menudo.",
         " Pokémon Perla": "Nunca aparece donde hay peleas. Últimamente no se deja ver muy a menudo.",

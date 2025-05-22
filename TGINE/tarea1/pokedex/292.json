@@ -2,7 +2,13 @@
     "name": "Shedinja",
     "number": "292",
     "url": "https://pkparaiso.com//pokedex/shedinja.php",
-    "date": "02-07-2005",
+    "types": [
+        "bicho",
+        "fantasma"
+    ],
+    "class": "Pokémon Muda",
+    "weight": 1.2,
+    "height": 0.8,
     "descriptions": {
         " Pokémon Rubí": "Shedinja tiene un cuerpo robusto que no mueve en Absoluto. De hecho, parece una especie de caparazón hueco. Se cree que si alguien se atreviera a mirarle por la espalda lo que tiene en su interior, Shedinja le robaría el alma.",
         " Pokémon Zafiro": "Shedinja es un Pokémon peculiar. Según parece, surge por las buenas en una POKé BALL cuando Nincada evoluciona. Este raro Pokémon no se mueve nada; ni siquiera respira.",

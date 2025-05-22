@@ -2,7 +2,13 @@
     "name": "Virizion",
     "number": "640",
     "url": "https://pkparaiso.com//pokedex/virizion.php",
-    "date": "09-11-2009",
+    "types": [
+        "planta",
+        "lucha"
+    ],
+    "class": "Pokémon Prado",
+    "weight": 200.0,
+    "height": 2.0,
     "descriptions": {
         " Pokémon Negro": "Desafió a los humanos para defender a los suyos. Multitud de leyendas hablan de él.",
         " Pokémon Blanco": "Sus cuernos son hojas afiladas. Sacude a sus enemigos con sus relampagueantes movimientos y los reduce.",

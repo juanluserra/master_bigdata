@@ -2,7 +2,13 @@
     "name": "Chatot",
     "number": "441",
     "url": "https://pkparaiso.com//pokedex/chatot.php",
-    "date": "26-12-2016",
+    "types": [
+        "normal",
+        "volador"
+    ],
+    "class": "Pokémon Corchea",
+    "weight": 1.9,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Diamante": "Mantiene el compás agitando las plumas de su cola como un metrónomo. Imita el habla humana.",
         " Pokémon Perla": "Pueden aprender y hablar lenguas humanas. Si se juntan, todos aprenden las mismas palabras.",

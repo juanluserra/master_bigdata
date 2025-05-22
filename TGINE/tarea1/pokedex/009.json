@@ -1,0 +1,34 @@
+{
+    "name": "Blastoise",
+    "number": "009",
+    "url": "https://pkparaiso.com//pokedex/blastoise.php",
+    "types": [
+        "agua"
+    ],
+    "class": "Pokémon Marisco",
+    "weight": 85.5,
+    "height": 1.6,
+    "descriptions": {
+        " Pokémon Rojo y Azul": "Un brutal Pokémon con reactores de agua en su caparazón. Éstos son usados para rápidos placajes",
+        " Pokémon Amarillo": "Cuando ataca a un enemigo, su descarga de agua es aún más potente que una manga de bombero",
+        " Pokémon Oro": "Deliberadamente se hace más pesado para contrarrestar la fuerza de los chorros de agua que dispara.",
+        " Pokémon Plata": "Los cañones de su concha disparan chorros de agua capaces de hacer agujeros en las planchas de acero.",
+        " Pokémon Cristal": "Planta firmemente las patas en el suelo antes de disparar chorros de agua desde la espalda.",
+        " Pokémon Rubí": "Blastoise lanza chorros de agua por los tubos que le salen del caparazón que tiene en la espalda, con gran precisión. Puede disparar chorros de agua con tanta puntería que no fallaría al tirar contra una lata pequeña a 50 metros.",
+        " Pokémon Zafiro": "Blastoise lanza chorros de agua por los tubos que le salen del caparazón que tiene en la espalda, con gran precisión. Puede disparar chorros de agua con tanta puntería que no fallaría al tirar contra una lata pequeña a 50 metros.",
+        " Pokémon Esmeralda": "Lanza chorros de agua por los tubos del caparazón con gran precisión. Tiene tanta puntería que no fallaría al tirar contra una lata pequeña a 50 metros.",
+        " Pokémon Rojo Fuego": "Para acabar con su enemigo, lo aplasta con el peso de su cuerpo. En momentos de apuro, se esconde en el caparazón.",
+        " Pokémon Verde Hoja": "Es un Pokémon violento. Tiene reactores de agua en el caparazón, que le sirven para atacar con fuerza.",
+        " Pokémon Diamante": "Los chorros de agua que lanza por los tubos de su caparazón pueden atravesar el acero.",
+        " Pokémon Perla": "Los chorros de agua que lanza por los tubos de su caparazón pueden atravesar el acero.",
+        " Pokémon Platino": "Los chorros de agua que lanza por los tubos de su caparazón pueden atravesar el acero.",
+        " Pokémon HeartGold": "Deliberadamente se hace más pesado para contrarrestar la fuerza de los chorros de agua que dispara.",
+        " Pokémon SoulSilver": "Deliberadamente se hace más pesado para contrarrestar la fuerza de los chorros de agua que dispara.",
+        " Pokémon Negro": "Los chorros de agua que lanza por los tubos de su caparazón pueden atravesar el acero.",
+        " Pokémon Blanco": "Los chorros de agua que lanza por los tubos de su caparazón pueden atravesar el acero.",
+        " Pokémon X": "Para acabar con su enemigo, lo aplasta con el peso de su cuerpo. En momentos de apuro, se esconde en el caparazón.",
+        " Pokémon Y": "Es un Pokémon imponente. Tiene reactores de agua en el caparazón, que le sirven para atacar con fuerza.",
+        " Pokémon Rubí Omega": "Blastoise lanza chorros de agua con gran precisión por los tubos que le salen del caparazón que tiene en la espalda. Puede disparar chorros de agua con tanta puntería que no fallaría al tirar contra una lata pequeña a 50 m.",
+        " Pokémon Zafiro Alfa": "Blastoise lanza chorros de agua con gran precisión por los tubos que le salen del caparazón que tiene en la espalda. Puede disparar chorros de agua con tanta puntería que no fallaría al tirar contra una lata pequeña a 50 m."
+    }
+}

@@ -2,7 +2,12 @@
     "name": "Silcoon",
     "number": "266",
     "url": "https://pkparaiso.com//pokedex/silcoon.php",
-    "date": "12-06-2013",
+    "types": [
+        "bicho"
+    ],
+    "class": "Pokémon Capullo",
+    "weight": 10.0,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Rubí": "Silcoon usa la seda que produce para atarse a la rama de un árbol y sujetarse bien. Y se queda ahí colgado a la espera de su evolución, asomado por un agujero del capullo de seda.",
         " Pokémon Zafiro": "Se pensaba que Silcoon podía aguantar el hambre y no consumir nada antes de evolucionar. Sin embargo, ahora se cree que sacia su necesidad bebiendo el agua de la lluvia que se le queda sobre la piel.",

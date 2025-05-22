@@ -2,7 +2,13 @@
     "name": "Volcarona",
     "number": "637",
     "url": "https://pkparaiso.com//pokedex/volcarona.php",
-    "date": "30-11-2004",
+    "types": [
+        "bicho",
+        "fuego"
+    ],
+    "class": "Pokémon Sol",
+    "weight": 46.0,
+    "height": 1.6,
     "descriptions": {
         " Pokémon Negro": "Antaño, las cenizas volcánicas cubrieron los cielos. Entonces, sus llamaradas sirvieron de sol.",
         " Pokémon Blanco": "Cuando combate, despide escamas ardientes de sus seis alas y genera un mar ígneo a su alrededor.",

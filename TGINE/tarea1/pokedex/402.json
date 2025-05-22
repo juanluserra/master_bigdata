@@ -2,7 +2,12 @@
     "name": "Kricketune",
     "number": "402",
     "url": "https://pkparaiso.com//pokedex/kricketune.php",
-    "date": "09-07-2021",
+    "types": [
+        "bicho"
+    ],
+    "class": "Pokémon Grillo",
+    "weight": 25.5,
+    "height": 1.0,
     "descriptions": {
         " Pokémon Diamante": "Los científicos tratan de estudiar sus melodías, que son reflejo de sus emociones.",
         " Pokémon Perla": "Cuando llora, cruza sus brazos con forma de cuchillo. Puede improvisar melodías.",

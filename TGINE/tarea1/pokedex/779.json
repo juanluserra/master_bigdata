@@ -2,7 +2,13 @@
     "name": "Bruxish",
     "number": "779",
     "url": "https://pkparaiso.com//pokedex/bruxish.php",
-    "date": "21-03-2019",
+    "types": [
+        "agua",
+        "psiquico"
+    ],
+    "class": "Pokémon Rechinante",
+    "weight": 19.0,
+    "height": 0.9,
     "descriptions": {
         " Pokémon Sol": "Cuando la protuberancia que tiene en la cabeza emite poderes psíquicos, se escucha como un ruido de dientes rechinando muy molesto.",
         " Pokémon Luna": "Paraliza a su presa con poderes telequinéticos y la hace picadillo con su robusta dentadura. Ni siquiera Shellder se le resiste."

@@ -2,7 +2,13 @@
     "name": "Cottonee",
     "number": "546",
     "url": "https://pkparaiso.com//pokedex/cottonee.php",
-    "date": "30-09-2000",
+    "types": [
+        "planta",
+        "hada"
+    ],
+    "class": "Pokémon Bolalgodón",
+    "weight": 0.6,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Negro": "Despide motas de algodón cuando lo atacan para confundir a los enemigos y poner pies en polvorosa.",
         " Pokémon Blanco": "Se deja llevar por las ráfagas de viento. Cuando llueve, su cuerpo pesa mucho, así que se guarece bajo árboles grandes.",

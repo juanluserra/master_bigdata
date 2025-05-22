@@ -1,0 +1,35 @@
+{
+    "name": "Bellsprout",
+    "number": "069",
+    "url": "https://pkparaiso.com//pokedex/bellsprout.php",
+    "types": [
+        "planta",
+        "veneno"
+    ],
+    "class": "Pokémon Flor",
+    "weight": 4.0,
+    "height": 0.7,
+    "descriptions": {
+        " Pokémon Rojo y Azul": "Un Pokémon carnívoro que caza insectos. Usa sus raíces para absorber humedad",
+        " Pokémon Amarillo": "Prefiere los lugares calientes y húmedos. Atrapa pequeños insectos con sus ramas para devorarlos",
+        " Pokémon Oro": "Aunque su cuerpo es extremadamente delgado, es muy rápido a la hora de capturar a sus presas.",
+        " Pokémon Plata": "Planta sus patas bajo tierra para absorber agua. No puede escapar de su enemigo si está arraigado.",
+        " Pokémon Cristal": "Si detecta algún movimiento, no dudará ni un segundo en inclinar el tallo hacia el objeto sospechoso.",
+        " Pokémon Rubí": "Bellsprout tiene un cuerpo delgado y flexible que le permite inclinarse y balancearse para esquivar los ataques. Este Pokémon escupe por la boca un fluido corrosivo capaz de hacer que se derrita hasta el hierro.",
+        " Pokémon Zafiro": "Bellsprout tiene un cuerpo delgado y flexible que le permite inclinarse y balancearse para esquivar los ataques. Este Pokémon escupe por la boca un fluido corrosivo capaz de hacer que se derrita hasta el hierro.",
+        " Pokémon Esmeralda": "Tiene un cuerpo delgado y flexible que le permite inclinarse y balancearse para esquivar ataques. Escupe un fluido corrosivo que derrite hasta el hierro.",
+        " Pokémon Rojo Fuego": "Tiene cara de persona. Por el aspecto que tiene se ha comentado que podría ser algún tipo de mandrágora legendaria.",
+        " Pokémon Verde Hoja": "Un Pokémon carnívoro que caza insectos. Usa sus raíces para absorber humedad.",
+        " Pokémon Diamante": "Prefiere los lugares cálidos y húmedos. Captura presas con sus  rápidas lianas.",
+        " Pokémon Perla": "Prefiere los lugares cálidos y húmedos. Captura presas con sus  rápidas lianas.",
+        " Pokémon Platino": "Prefiere los lugares cálidos y húmedos. Captura presas con sus  rápidas lianas.",
+        " Pokémon HeartGold": "Aunque su cuerpo es extremadamente delgado, es muy rápido a la hora de capturar sus presas.",
+        " Pokémon SoulSilver": "Aunque su cuerpo es extremadamente delgado, es muy rápido a la hora de capturar sus presas.",
+        " Pokémon Negro": "Prefiere los lugares cálidos y húmedos. Captura presas con sus rápidas lianas.",
+        " Pokémon Blanco": "Prefiere los lugares cálidos y húmedos. Captura presas con sus rápidas lianas.",
+        " Pokémon X": "Aunque su cuerpo es extremadamente delgado, es muy rápido a la hora de capturar sus presas.",
+        " Pokémon Y": "Tiene cara de persona. Por el aspecto que tiene se ha comentado que podría ser algún tipo de mandrágora legendaria.",
+        " Pokémon Rubí Omega": "Bellsprout tiene un cuerpo delgado y flexible que le permite inclinarse y balancearse para esquivar los ataques. Este Pokémon escupe por la boca un fluido corrosivo capaz de hacer que se derrita hasta el hierro.",
+        " Pokémon Zafiro Alfa": "Bellsprout tiene un cuerpo delgado y flexible que le permite inclinarse y balancearse para esquivar los ataques. Este Pokémon escupe por la boca un fluido corrosivo capaz de hacer que se derrita hasta el hierro."
+    }
+}

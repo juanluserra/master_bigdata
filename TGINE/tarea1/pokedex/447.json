@@ -2,7 +2,12 @@
     "name": "Riolu",
     "number": "447",
     "url": "https://pkparaiso.com//pokedex/riolu.php",
-    "date": "13-02-2013",
+    "types": [
+        "lucha"
+    ],
+    "class": "Pokémon Emanación",
+    "weight": 20.2,
+    "height": 0.7,
     "descriptions": {
         " Pokémon Diamante": "Su cuerpo es ágil pero fuerte. Puede subir tres montañas y cruzar dos cañones en una noche.",
         " Pokémon Perla": "Su aura se intensifica para alertar a otros cuando está triste o tiene miedo.",

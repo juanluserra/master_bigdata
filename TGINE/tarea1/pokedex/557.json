@@ -2,7 +2,13 @@
     "name": "Dwebble",
     "number": "557",
     "url": "https://pkparaiso.com//pokedex/dwebble.php",
-    "date": "25-04-2016",
+    "types": [
+        "bicho",
+        "roca"
+    ],
+    "class": "Pokémon Casapiedra",
+    "weight": 14.5,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Negro": "Derrite las piedras más sólidas gracias al líquido corrosivo que segrega su boca. También puede abrir agujeros en ellas.",
         " Pokémon Blanco": "Abre un agujero en la roca y vive en él. Si la roca se resquebraja, no se queda tranquilo hasta que no encuentra otra.",

@@ -2,7 +2,13 @@
     "name": "Latios",
     "number": "381",
     "url": "https://pkparaiso.com//pokedex/latios.php",
-    "date": "24-12-2015",
+    "types": [
+        "dragon",
+        "psiquico"
+    ],
+    "class": "Pokémon Eón",
+    "weight": 60.0,
+    "height": 2.0,
     "descriptions": {
         " Pokémon Rubí": "Latios tiene la habilidad de hacer que su rival vea algo que él ha visto o imaginado. Este Pokémon es muy inteligente. Es capaz de entender el lenguaje humano.",
         " Pokémon Zafiro": "Latios sólo le abre el corazón a los ENTRENADORES compasivos. A la hora de volar, este Pokémon pliega las patas delanteras para minimizar la resistencia al aire y supera en velocidad a un avión a reacción.",

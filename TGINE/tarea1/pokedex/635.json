@@ -2,7 +2,13 @@
     "name": "Hydreigon",
     "number": "635",
     "url": "https://pkparaiso.com//pokedex/hydreigon.php",
-    "date": "04-12-2012",
+    "types": [
+        "siniestro",
+        "dragon"
+    ],
+    "class": "Pokémon Voraz",
+    "weight": 160.0,
+    "height": 1.8,
     "descriptions": {
         " Pokémon Negro": "Vuela ayudado por sus seis alas y ataca todo aquello que encuentra a su paso. Es muy agresivo.",
         " Pokémon Blanco": "Las cabezas de sus dos brazos no tienen cerebro. Con sus tres cabezas destruye y devora todo a su paso.",

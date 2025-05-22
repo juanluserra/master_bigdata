@@ -2,7 +2,12 @@
     "name": "Goldeen",
     "number": "118",
     "url": "https://pkparaiso.com//pokedex/goldeen.php",
-    "date": "19-10-2018",
+    "types": [
+        "agua"
+    ],
+    "class": "Pokémon Pez Color",
+    "weight": 15.0,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Rojo y Azul": "La aleta de su cola se hincha como un elegante traje de baile. Es llamado Reina del Agua",
         " Pokémon Amarillo": "En su época de puesta de huevos, suelen ser vistos nadando por ríos contracorriente en grandes grupos",

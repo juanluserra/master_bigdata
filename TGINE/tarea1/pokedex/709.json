@@ -2,7 +2,13 @@
     "name": "Trevenant",
     "number": "709",
     "url": "https://pkparaiso.com//pokedex/trevenant.php",
-    "date": "22-08-2021",
+    "types": [
+        "fantasma",
+        "planta"
+    ],
+    "class": "Pokémon Árbol Viejo",
+    "weight": 71.0,
+    "height": 1.5,
     "descriptions": {
         " Pokémon X": "Puede controlar los árboles a su voluntad. Retiene hasta el fin de sus días a los humanos que se adentran en el bosque y lo mancillan.",
         " Pokémon Y": "Sus raíces le permiten controlar los árboles del bosque, al funcionar como un sistema nervioso. Es amable con los Pokémon que habitan su cuerpo.",

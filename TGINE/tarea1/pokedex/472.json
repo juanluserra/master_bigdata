@@ -2,7 +2,13 @@
     "name": "Gliscor",
     "number": "472",
     "url": "https://pkparaiso.com//pokedex/gliscor.php",
-    "date": "01-06-2023",
+    "types": [
+        "tierra",
+        "volador"
+    ],
+    "class": "Pokémon Colmicorpio",
+    "weight": 42.5,
+    "height": 2.0,
     "descriptions": {
         " Pokémon Diamante": "Espera a sus presas colgado de una rama bocabajo. Cuando llega su oportunidad, se lanza en picado.",
         " Pokémon Perla": "Espera a sus presas colgado de una rama bocabajo. Cuando llega su oportunidad, se lanza en picado.",

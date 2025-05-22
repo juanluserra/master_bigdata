@@ -2,7 +2,13 @@
     "name": "Archen",
     "number": "566",
     "url": "https://pkparaiso.com//pokedex/archen.php",
-    "date": "09-07-2003",
+    "types": [
+        "roca",
+        "volador"
+    ],
+    "class": "Pokémon Protopájaro",
+    "weight": 9.5,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Negro": "Dicen que es el Pokémon pájaro primigenio. No puede volar, así que solo salta de rama en rama.",
         " Pokémon Blanco": "Pokémon que renació de un fósil. Dicen que es el antepasado de todos los Pokémon pájaro.",

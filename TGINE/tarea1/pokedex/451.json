@@ -2,7 +2,13 @@
     "name": "Skorupi",
     "number": "451",
     "url": "https://pkparaiso.com//pokedex/skorupi.php",
-    "date": "09-04-2015",
+    "types": [
+        "veneno",
+        "bicho"
+    ],
+    "class": "Pokémon Escorpión",
+    "weight": 12.0,
+    "height": 0.8,
     "descriptions": {
         " Pokémon Diamante": "Vive en zonas áridas. Se entierra en la arena y espera a que pase una presa confiada.",
         " Pokémon Perla": "Agarra a sus presas con las garras de la cola y les inyecta veneno. Espera hasta que hace efecto.",

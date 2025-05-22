@@ -2,7 +2,12 @@
     "name": "Machamp",
     "number": "068",
     "url": "https://pkparaiso.com//pokedex/machamp.php",
-    "date": "22-05-2020",
+    "types": [
+        "lucha"
+    ],
+    "class": "Pokémon Superpoder",
+    "weight": 130.0,
+    "height": 1.6,
     "descriptions": {
         " Pokémon Rojo y Azul": "Con sus fuertes músculos, lanza bestiales puñetazos y envía a su víctima al lejano horizonte",
         " Pokémon Amarillo": "Con sólo un brazo puede mover montañas. Usando los cuatro, este Pokémon puede ser terrible",

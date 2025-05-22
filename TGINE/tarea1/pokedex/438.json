@@ -2,7 +2,12 @@
     "name": "Bonsly",
     "number": "438",
     "url": "https://pkparaiso.com//pokedex/bonsly.php",
-    "date": "05-09-2021",
+    "types": [
+        "roca"
+    ],
+    "class": "Pokémon Bonsái",
+    "weight": 15.0,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Diamante": "Prefiere entornos áridos. Sus ojos expulsan agua para ajustar los niveles de fluido corporal.",
         " Pokémon Perla": "Parece que siempre está llorando, pero en realidad está eliminando el exceso de fluidos corporales.",

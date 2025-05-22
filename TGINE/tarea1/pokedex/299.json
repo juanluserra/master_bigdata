@@ -2,7 +2,12 @@
     "name": "Nosepass",
     "number": "299",
     "url": "https://pkparaiso.com//pokedex/nosepass.php",
-    "date": "08-06-2003",
+    "types": [
+        "roca"
+    ],
+    "class": "Pokémon Brújula",
+    "weight": 97.0,
+    "height": 1.0,
     "descriptions": {
         " Pokémon Rubí": "Nosepass siempre está con el pico magnético que tiene orientado hacia el norte. Si se encuentra con otro ejemplar de su especie, no puede mirarle de frente porque sus polos magnéticos se repelen.",
         " Pokémon Zafiro": "De Nosepass se llegó a decir que era totalmente estático; siempre con el pico orientado hacia el norte. Sin embargo, tras recientes estudios se ha visto que sí se mueve en realidad, apenas un centímetro al año.",

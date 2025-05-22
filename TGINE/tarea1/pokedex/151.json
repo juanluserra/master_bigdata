@@ -2,7 +2,12 @@
     "name": "Mew",
     "number": "151",
     "url": "https://pkparaiso.com//pokedex/mew.php",
-    "date": "11-12-2008",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon N. Especie",
+    "weight": 4.0,
+    "height": 0.4,
     "descriptions": {
         " Pokémon Rojo y Azul": "Es tan raro que muchos expertos opinan que es sólo una ilusión. Sólo unos pocos lo han visto",
         " Pokémon Amarillo": "Cuando es mirado a través de un microscopio, puede observarse el delicado pelo de este Pokémon",

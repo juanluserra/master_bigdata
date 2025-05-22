@@ -2,7 +2,13 @@
     "name": "Carracosta",
     "number": "565",
     "url": "https://pkparaiso.com//pokedex/carracosta.php",
-    "date": "28-12-2020",
+    "types": [
+        "agua",
+        "roca"
+    ],
+    "class": "Pokémon Pretortuga",
+    "weight": 81.0,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Negro": "Vive en el mar y en la superficie. Sus garras pueden abrir un agujero en el fondo de un petrolero.",
         " Pokémon Blanco": "La fuerza de sus mandíbulas es enorme. Tritura presas, huesos y rocas a la vez y los engulle.",

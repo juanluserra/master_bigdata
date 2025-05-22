@@ -2,7 +2,12 @@
     "name": "Azelf",
     "number": "482",
     "url": "https://pkparaiso.com//pokedex/azelf.php",
-    "date": "06-10-2023",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Voluntad",
+    "weight": 0.3,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Diamante": "Se cree que Uxie, Mesprit y Azelf provienen del mismo huevo.",
         " Pokémon Perla": "Se le conoce como el ",

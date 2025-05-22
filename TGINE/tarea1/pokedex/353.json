@@ -2,7 +2,12 @@
     "name": "Shuppet",
     "number": "353",
     "url": "https://pkparaiso.com//pokedex/shuppet.php",
-    "date": "27-08-2002",
+    "types": [
+        "fantasma"
+    ],
+    "class": "Pokémon Títere",
+    "weight": 2.3,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Rubí": "A Shuppet le atraen los sentimientos de celos y rencor. Si alguien desarrolla fuertes sentimientos de venganza, aparecerá una multitud de Shuppet que se quedará bajo los aleros de su casa.",
         " Pokémon Zafiro": "Shuppet crece alimentándose de sentimientos negativos como el rencor y la envidia, que nacen en el corazón de las personas. Se dedica a vagar por las ciudades en busca del rencor que contamina a la gente.",

@@ -2,7 +2,12 @@
     "name": "Cryogonal",
     "number": "615",
     "url": "https://pkparaiso.com//pokedex/cryogonal.php",
-    "date": "02-08-2023",
+    "types": [
+        "hielo"
+    ],
+    "class": "Pokémon Cristal",
+    "weight": 148.0,
+    "height": 1.1,
     "descriptions": {
         " Pokémon Negro": "Se convierte en vapor y desaparece cuando sube su temperatura corporal. Cuando baja, vuelve a hacerse de hielo.",
         " Pokémon Blanco": "Nació entre nubes de nieve. Atrapa a sus presas con una cadena hecha de hielo cristalizado.",

@@ -2,7 +2,13 @@
     "name": "Lanturn",
     "number": "171",
     "url": "https://pkparaiso.com//pokedex/lanturn.php",
-    "date": "31-05-2022",
+    "types": [
+        "agua",
+        "electrico"
+    ],
+    "class": "Pokémon Luz",
+    "weight": 22.5,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Oro": "La luz que emite es tan brillante que puede iluminar la superficie del mar desde unos 5 km de profundidad.",
         " Pokémon Plata": "Ciega a su presa con una luz intensa, y luego se la traga de un solo bocado.",

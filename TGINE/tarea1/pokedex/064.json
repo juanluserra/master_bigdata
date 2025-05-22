@@ -2,7 +2,12 @@
     "name": "Kadabra",
     "number": "064",
     "url": "https://pkparaiso.com//pokedex/kadabra.php",
-    "date": "22-02-2007",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Psi",
+    "weight": 56.5,
+    "height": 1.3,
     "descriptions": {
         " Pokémon Rojo y Azul": "Emite ondas-alfa especiales de su cuerpo que causan jaquecas a todo aquel que se acerca",
         " Pokémon Amarillo": "Muchas cosas raras suceden si está cerca. Por ejemplo, hace que los relojes vayan al revés",

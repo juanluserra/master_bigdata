@@ -2,7 +2,12 @@
     "name": "Kyogre",
     "number": "382",
     "url": "https://pkparaiso.com//pokedex/kyogre.php",
-    "date": "15-12-2019",
+    "types": [
+        "agua"
+    ],
+    "class": "Pokémon Cuenca Mar",
+    "weight": 352.0,
+    "height": 4.5,
     "descriptions": {
         " Pokémon Rubí": "Kyogre es capaz de crear grandes cantidades de nubarrones, cubrir el cielo y desatar lluvias torrenciales. Este Pokémon ha salvado de la sequía a mucha gente.",
         " Pokémon Zafiro": "En mitología se conoce a Kyogre como el Pokémon que extendió la superficie de los mares haciendo que diluviara y creando maremotos. Tras un combate contra Groudon, que acabó en cataclismo, se echó a dormir.",

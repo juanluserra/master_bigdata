@@ -2,7 +2,13 @@
     "name": "Ninjask",
     "number": "291",
     "url": "https://pkparaiso.com//pokedex/ninjask.php",
-    "date": "03-08-2008",
+    "types": [
+        "bicho",
+        "volador"
+    ],
+    "class": "Pokémon Ninja",
+    "weight": 12.0,
+    "height": 0.8,
     "descriptions": {
         " Pokémon Rubí": "Ninjask se mueve de un lado a otro a tal velocidad que es imposible verlo. Sin embargo, como su zumbido no deja de oírse, se pensó Durante mucho tiempo que este Pokémon era invisible.",
         " Pokémon Zafiro": "Si Ninjask no recibe un entrenamiento adecuado, desobedece a su ENTRENADOR y empieza a dar zumbidos sin parar. Es muy buen Pokémon; todos dicen que pone a prueba las habilidades de su ENTRENADOR.",

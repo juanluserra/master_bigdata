@@ -2,7 +2,13 @@
     "name": "Onix",
     "number": "095",
     "url": "https://pkparaiso.com//pokedex/onix.php",
-    "date": "16-05-2007",
+    "types": [
+        "roca",
+        "tierra"
+    ],
+    "class": "Pokémon Serp. Roca",
+    "weight": 210.0,
+    "height": 8.8,
     "descriptions": {
         " Pokémon Rojo y Azul": "Cuando crece, las partes rocosas de su cuerpo se endurecen. Acaba pareciéndose a un diamante negro",
         " Pokémon Amarillo": "Cava a gran velocidad en busca de comida. Los túneles que deja son usados por los Diglett",

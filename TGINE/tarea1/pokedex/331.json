@@ -2,7 +2,12 @@
     "name": "Cacnea",
     "number": "331",
     "url": "https://pkparaiso.com//pokedex/cacnea.php",
-    "date": "17-01-2019",
+    "types": [
+        "planta"
+    ],
+    "class": "Pokémon Cactus",
+    "weight": 51.3,
+    "height": 0.4,
     "descriptions": {
         " Pokémon Rubí": "Cacnea habita en desiertos y otras zonas áridas. Para atraer a su presa, libera un fuerte aroma por la flor y, cuando se le acerca, le lanza pinchos por todo el cuerpo para reducirla.",
         " Pokémon Zafiro": "Cuanto más árido y hostil sea el hábitat de Cacnea, más bonita y aromática será la flor que le crece. Este Pokémon lucha agitando violentamente los brazos cargados de pinchos que tiene.",

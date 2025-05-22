@@ -2,7 +2,12 @@
     "name": "Regice",
     "number": "378",
     "url": "https://pkparaiso.com//pokedex/regice.php",
-    "date": "17-12-2023",
+    "types": [
+        "hielo"
+    ],
+    "class": "Pokémon Iceberg",
+    "weight": 175.0,
+    "height": 1.8,
     "descriptions": {
         " Pokémon Rubí": "Regice surgió Durante la edad de hielo. El cuerpo de este Pokémon está totalmente congelado, ni siquiera el fuego puede derretirlo. Regice libera y regula un aire gélido de -200 grados centígrados.",
         " Pokémon Zafiro": "Regice se rodea de un aire gélido que llega a -200 grados centígrados y deja congelado a todo lo que se le acerca. Es imposible derretir a este Pokémon; tiene una temperatura demasiado baja.",

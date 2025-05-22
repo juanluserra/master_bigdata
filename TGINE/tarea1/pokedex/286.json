@@ -2,7 +2,13 @@
     "name": "Breloom",
     "number": "286",
     "url": "https://pkparaiso.com//pokedex/breloom.php",
-    "date": "25-07-2011",
+    "types": [
+        "planta",
+        "lucha"
+    ],
+    "class": "Pokémon Hongo",
+    "weight": 39.2,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Rubí": "Breloom se acerca al enemigo realizando un juego de piernas ágil y enérgico. Y, a continuación, le da unos puñetazos con los brazos elásticos que tiene. Las técnicas de lucha que usa dejan en ridículo al boxeador más profesional.",
         " Pokémon Zafiro": "Las semillas que Breloom tiene prendidas de la cola están formadas por sólidas esporas tóxicas. Comérselas puede resultar fatal. Hasta el más mínimo bocado puede hacerte polvo el estómago.",

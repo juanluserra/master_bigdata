@@ -2,7 +2,13 @@
     "name": "Graveler",
     "number": "075",
     "url": "https://pkparaiso.com//pokedex/graveler.php",
-    "date": "12-08-2021",
+    "types": [
+        "roca",
+        "tierra"
+    ],
+    "class": "Pokémon Roca",
+    "weight": 105.0,
+    "height": 1.0,
     "descriptions": {
         " Pokémon Rojo y Azul": "Se mueve rodando cuesta abajo. Rueda sobre todo obstáculo sin frenar o cambiar de dirección",
         " Pokémon Amarillo": "Se le suele ver rodando por las montañas. Los obstáculos no los evita. ¡Los arrolla!",

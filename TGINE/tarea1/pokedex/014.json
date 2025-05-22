@@ -2,7 +2,13 @@
     "name": "Kakuna",
     "number": "014",
     "url": "https://pkparaiso.com//pokedex/kakuna.php",
-    "date": "23-03-2015",
+    "types": [
+        "bicho",
+        "veneno"
+    ],
+    "class": "Pokémon Capullo",
+    "weight": 10.0,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Rojo y Azul": "Casi incapaz de moverse, este Pokémon sólo puede endurecer su caparazón para protegerse",
         " Pokémon Amarillo": "Sólo puede moverse un poco. Cuando está en peligro, envenena a su enemigo con su aguijón",

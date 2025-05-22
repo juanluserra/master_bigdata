@@ -2,7 +2,12 @@
     "name": "Swalot",
     "number": "317",
     "url": "https://pkparaiso.com//pokedex/swalot.php",
-    "date": "04-07-2003",
+    "types": [
+        "veneno"
+    ],
+    "class": "Pokémon Bolsa Veneno",
+    "weight": 80.0,
+    "height": 1.7,
     "descriptions": {
         " Pokémon Rubí": "Cuando Swalot detecta una presa, echa por los poros y a borbotones un fluido tóxico espantoso y rocía a su víctima. Una vez la debilita, se la traga entera gracias a la gigantesca boca que tiene.",
         " Pokémon Zafiro": "Swalot no tiene dientes, así que lo que come se lo traga de una vez; da igual lo que sea. A este Pokémon le cabría un neumático en la boca sin problema.",

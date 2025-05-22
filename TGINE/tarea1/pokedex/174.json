@@ -2,7 +2,13 @@
     "name": "Igglybuff",
     "number": "174",
     "url": "https://pkparaiso.com//pokedex/igglybuff.php",
-    "date": "14-08-2001",
+    "types": [
+        "normal",
+        "hada"
+    ],
+    "class": "Pokémon Globo",
+    "weight": 1.0,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Oro": "Su cuerpo es muy blando. Si se pone a rodar, rebotará contra todo y será imposible de parar.",
         " Pokémon Plata": "Su cuerpo realmente flexible y elástico le permite rebotar cuando sea y donde sea.",

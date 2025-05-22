@@ -2,7 +2,13 @@
     "name": "Salamence",
     "number": "373",
     "url": "https://pkparaiso.com//pokedex/salamence.php",
-    "date": "19-10-2008",
+    "types": [
+        "dragon",
+        "volador"
+    ],
+    "class": "Pokémon Dragón",
+    "weight": 102.6,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Rubí": "Salamence surgió del profundo deseo de tener alas. Dicen que este fuerte deseo fue lo que causó la repentina mutación de las células y el crecimiento de las alas.",
         " Pokémon Zafiro": "Al evolucionar Shelgon y convertirse por fin en Salamence, ve cumplido el sueño de su vida de tener alas. Para expresar su alegría, Salamence vuela y revolotea por el cielo al tiempo que lanza llamas por la boca.",

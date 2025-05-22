@@ -2,7 +2,12 @@
     "name": "Xurkitree",
     "number": "796",
     "url": "https://pkparaiso.com//pokedex/xurkitree.php",
-    "date": "25-07-2019",
+    "types": [
+        "electrico"
+    ],
+    "class": "Pokémon Luminaria",
+    "weight": 100.0,
+    "height": 3.8,
     "descriptions": {
         " Pokémon Sol": "Un Ultraente rodeado de misterio. Se dice que su cuerpo desprende descargas eléctricas de inmensa potencia.",
         " Pokémon Luna": "Este Ultraente surgió de un Ultraumbral. Se cree que la electricidad es su fuente de energía, ya que una vez asaltó una central eléctrica."

@@ -2,7 +2,12 @@
     "name": "Mismagius",
     "number": "429",
     "url": "https://pkparaiso.com//pokedex/mismagius.php",
-    "date": "07-01-2003",
+    "types": [
+        "fantasma"
+    ],
+    "class": "Pokémon Mágico",
+    "weight": 4.4,
+    "height": 0.9,
     "descriptions": {
         " Pokémon Diamante": "Recita cánticos. Algunos de ellos atormentan a sus rivales, mientras que otros producen felicidad.",
         " Pokémon Perla": "Sus gritos parecen cánticos. Los que los escuchan padecen migrañas y alucinaciones.",

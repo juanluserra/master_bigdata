@@ -2,7 +2,12 @@
     "name": "Koffing",
     "number": "109",
     "url": "https://pkparaiso.com//pokedex/koffing.php",
-    "date": "05-11-2019",
+    "types": [
+        "veneno"
+    ],
+    "class": "Pokémon Gas Venenoso",
+    "weight": 1.0,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Rojo y Azul": "Como encierra varios tipos de gases tóxicos en su cuerpo, suele explosionar sin previo aviso",
         " Pokémon Amarillo": "A veces puede explotar sin avisar, ya que en lugares calurosos su gas interno se expande",

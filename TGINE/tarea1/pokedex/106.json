@@ -2,7 +2,12 @@
     "name": "Hitmonlee",
     "number": "106",
     "url": "https://pkparaiso.com//pokedex/hitmonlee.php",
-    "date": "11-06-2016",
+    "types": [
+        "lucha"
+    ],
+    "class": "Pokémon Patada",
+    "weight": 49.8,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Rojo y Azul": "Si tiene prisa, sus patas se extenderán. Corre suavemente con zancadas extra-largas",
         " Pokémon Amarillo": "Cuando da patadas al enemigo, la planta de sus pies se vuelve tan dura como el diamante",

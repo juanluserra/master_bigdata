@@ -2,7 +2,13 @@
     "name": "Anorith",
     "number": "347",
     "url": "https://pkparaiso.com//pokedex/anorith.php",
-    "date": "27-04-2001",
+    "types": [
+        "roca",
+        "bicho"
+    ],
+    "class": "Pokémon Camarón",
+    "weight": 12.5,
+    "height": 0.7,
     "descriptions": {
         " Pokémon Rubí": "Anorith se regeneró a partir de un fósil prehistórico. Este Pokémon primitivo vivió en una ocasión en mares cálidos. Para cazar, utiliza las grandes pinzas que tiene y agarra con firmeza a su víctima con ellas.",
         " Pokémon Zafiro": "De Anorith dicen que es una especie de Pokémon predecesor. Tiene ocho alas a ambos lados del cuerpo. Gracias a ellas, pudo nadar por las primeras aguas que hubo.",

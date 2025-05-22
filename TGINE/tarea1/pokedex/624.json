@@ -2,7 +2,13 @@
     "name": "Pawniard",
     "number": "624",
     "url": "https://pkparaiso.com//pokedex/pawniard.php",
-    "date": "27-08-2018",
+    "types": [
+        "siniestro",
+        "acero"
+    ],
+    "class": "Pokémon Tajo",
+    "weight": 10.2,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Negro": "Su cuerpo está provisto de hojas afiladas. Cuando se desgastan, las afila con cantos rodados a la orilla del río.",
         " Pokémon Blanco": "Lucha bajo las órdenes de Bisharp. Se agarra a sus oponentes y les inflige daño utilizando sus cuchillas.",

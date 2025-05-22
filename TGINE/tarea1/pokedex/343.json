@@ -2,7 +2,13 @@
     "name": "Baltoy",
     "number": "343",
     "url": "https://pkparaiso.com//pokedex/baltoy.php",
-    "date": "20-06-2000",
+    "types": [
+        "tierra",
+        "psiquico"
+    ],
+    "class": "Pokémon Muñeca Barro",
+    "weight": 21.5,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Rubí": "Baltoy se mueve girando alrededor de sí mismo sobre la extremidad inferior que tiene. En unas ruinas antiguas, descubrieron pinturas rupestres en las que aparecía este Pokémon conviviendo con personas.",
         " Pokémon Zafiro": "Al ver a más de los suyos, Baltoy se une al grupo y todos se ponen a chillar escandalosamente y al unísono. Este Pokémon duerme manteniendo hábilmente el equilibrio sobre la extremidad inferior que tiene.",

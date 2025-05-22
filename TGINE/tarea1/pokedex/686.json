@@ -2,7 +2,13 @@
     "name": "Inkay",
     "number": "686",
     "url": "https://pkparaiso.com//pokedex/inkay.php",
-    "date": "19-06-2019",
+    "types": [
+        "siniestro",
+        "psiquico"
+    ],
+    "class": "Pokémon Rotación",
+    "weight": 3.5,
+    "height": 0.4,
     "descriptions": {
         " Pokémon X": "Los enemigos que contemplan el titilante fulgor de su brillante cuerpo terminan mareándose y pierden las ganas de continuar combatiendo.",
         " Pokémon Y": "La luz intermitente que emite aplaca el ánimo de lucha del enemigo. Aprovecha la ocasión para esconderse.",

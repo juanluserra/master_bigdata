@@ -2,7 +2,12 @@
     "name": "Pinsir",
     "number": "127",
     "url": "https://pkparaiso.com//pokedex/pinsir.php",
-    "date": "16-06-2013",
+    "types": [
+        "bicho"
+    ],
+    "class": "Pokémon Escarabajo",
+    "weight": 55.0,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Rojo y Azul": "Si no consigue triturar a su víctima con sus pinzas, le dará vueltas y le arrojará lejos",
         " Pokémon Amarillo": "Atrapa a su presa con sus pinzas, y aprieta fuerte. No se puede mover si hace mucho frío",

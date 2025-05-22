@@ -2,7 +2,12 @@
     "name": "Klink",
     "number": "599",
     "url": "https://pkparaiso.com//pokedex/klink.php",
-    "date": "11-09-2016",
+    "types": [
+        "acero"
+    ],
+    "class": "Pokémon Engranaje",
+    "weight": 21.0,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Negro": "La combinación de sus dos cuerpos es predeterminada. Si no se corresponde con su homólogo, se separa.",
         " Pokémon Blanco": "Genera la energía vital que necesita haciendo girar sus dos cuerpos.",

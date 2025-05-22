@@ -2,7 +2,13 @@
     "name": "Chinchou",
     "number": "170",
     "url": "https://pkparaiso.com//pokedex/chinchou.php",
-    "date": "20-05-2007",
+    "types": [
+        "agua",
+        "electrico"
+    ],
+    "class": "Pokémon Rape",
+    "weight": 12.0,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Oro": "Descarga electricidad positiva y negativa entre las puntas de sus dos antenas y electrocuta al enemigo.",
         " Pokémon Plata": "En el oscuro fondo del océano, su único modo de comunicarse es emitiendo luces parpadeantes.",

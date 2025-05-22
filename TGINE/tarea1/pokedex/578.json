@@ -2,7 +2,12 @@
     "name": "Duosion",
     "number": "578",
     "url": "https://pkparaiso.com//pokedex/duosion.php",
-    "date": "07-05-2006",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Mitosis",
+    "weight": 8.0,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Negro": "Dado que su cerebro está dividido en dos, a veces tiene conflictos a la hora de decidir qué hacer.",
         " Pokémon Blanco": "Cuando las dos partes de su cerebro piensan lo mismo, saca todo su poder a relucir.",

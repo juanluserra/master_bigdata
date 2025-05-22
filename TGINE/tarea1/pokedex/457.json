@@ -2,7 +2,12 @@
     "name": "Lumineon",
     "number": "457",
     "url": "https://pkparaiso.com//pokedex/lumineon.php",
-    "date": "01-10-2014",
+    "types": [
+        "agua"
+    ],
+    "class": "Pokémon Neón",
+    "weight": 24.0,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Diamante": "Para que los depredadores no lo detecten, se arrastra por el fondo marino con las aletas del pecho.",
         " Pokémon Perla": "Vive en las profundidades marinas. Atrae a sus presas con parpadeos del dibujo de sus cuatro aletas.",

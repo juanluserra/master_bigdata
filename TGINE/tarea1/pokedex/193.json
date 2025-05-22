@@ -2,7 +2,13 @@
     "name": "Yanma",
     "number": "193",
     "url": "https://pkparaiso.com//pokedex/yanma.php",
-    "date": "08-03-2005",
+    "types": [
+        "bicho",
+        "volador"
+    ],
+    "class": "Pokémon Ala Clara",
+    "weight": 38.0,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Oro": "Si aletea muy rápido, genera ondas expansivas capaces de hacer añicos todas las ventanas próximas.",
         " Pokémon Plata": "Sus grandes ojos pueden girar 360. Mira en todas direcciones en busca de insectos como presa.",

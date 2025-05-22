@@ -2,7 +2,12 @@
     "name": "Rockruff",
     "number": "744",
     "url": "https://pkparaiso.com//pokedex/rockruff.php",
-    "date": "04-11-2008",
+    "types": [
+        "roca"
+    ],
+    "class": "Pokémon Perrito",
+    "weight": 9.2,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Sol": "Su carácter amigable lo convierte en el Pokémon ideal para Entrenadores novatos. Sin embargo, al crecer suele volverse un poco agresivo.",
         " Pokémon Luna": "Acostumbran a vivir con los humanos desde la antigüedad. Intuyen si su Entrenador está triste, en cuyo caso no se despegan de su lado."

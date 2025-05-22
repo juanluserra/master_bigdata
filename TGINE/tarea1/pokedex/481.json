@@ -2,7 +2,12 @@
     "name": "Mesprit",
     "number": "481",
     "url": "https://pkparaiso.com//pokedex/mesprit.php",
-    "date": "13-01-2020",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Sensorio",
+    "weight": 0.3,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Diamante": "Duerme en el fondo de un lago. Se dice que su espíritu deja el cuerpo para volar sobre el agua.",
         " Pokémon Perla": "Se le conoce como el ",

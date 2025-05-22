@@ -2,7 +2,12 @@
     "name": "Arceus",
     "number": "493",
     "url": "https://pkparaiso.com//pokedex/arceus.php",
-    "date": "16-02-2019",
+    "types": [
+        "normal"
+    ],
+    "class": "Pokémon Alfa",
+    "weight": 320.0,
+    "height": 3.2,
     "descriptions": {
         " Pokémon Diamante": "La mitología cuenta que este Pokémon nació antes de que el Universo existiera.",
         " Pokémon Perla": "La mitología lo describe como el Pokémon que dio forma al Universo con sus 1000 brazos.",

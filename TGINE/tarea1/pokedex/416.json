@@ -2,7 +2,13 @@
     "name": "Vespiquen",
     "number": "416",
     "url": "https://pkparaiso.com//pokedex/vespiquen.php",
-    "date": "11-07-2006",
+    "types": [
+        "bicho",
+        "volador"
+    ],
+    "class": "Pokémon Colmena",
+    "weight": 38.5,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Diamante": "Si está en peligro, ataca con larvas de su panal de seis celdas. Solo hay uno por colonia.",
         " Pokémon Perla": "Su abdomen es un panal de larvas que alimenta con la miel recogida por Combee.",

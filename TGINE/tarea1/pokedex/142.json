@@ -2,7 +2,13 @@
     "name": "Aerodactyl",
     "number": "142",
     "url": "https://pkparaiso.com//pokedex/aerodactyl.php",
-    "date": "30-10-2005",
+    "types": [
+        "roca",
+        "volador"
+    ],
+    "class": "Pokémon Fósil",
+    "weight": 59.0,
+    "height": 1.8,
     "descriptions": {
         " Pokémon Rojo y Azul": "Un prehistórico y feroz Pokémon que ataca con sus colmillos la garganta del enemigo",
         " Pokémon Amarillo": "Este Pokémon salvaje, extinto hace siglos, fue resucitado usando ADN tomado de un ámbar",

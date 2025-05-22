@@ -2,7 +2,12 @@
     "name": "Clamperl",
     "number": "366",
     "url": "https://pkparaiso.com//pokedex/clamperl.php",
-    "date": "08-10-2001",
+    "types": [
+        "agua"
+    ],
+    "class": "Pokémon Bivalvo",
+    "weight": 52.5,
+    "height": 0.4,
     "descriptions": {
         " Pokémon Rubí": "La sólida concha que rodea a Clamperl no sólo le sirve para protegerse, sino también para poner un cepo y atrapar a su presa. Cuando la concha alcanza su mayor tamaño, presenta muescas y rasguños por todas partes.",
         " Pokémon Zafiro": "Clamperl crece protegido por la sólida concha que tiene. Si vemos que el cuerpo no le cabe, será porque está a punto de evolucionar.",

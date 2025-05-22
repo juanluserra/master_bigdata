@@ -2,7 +2,12 @@
     "name": "Wynaut",
     "number": "360",
     "url": "https://pkparaiso.com//pokedex/wynaut.php",
-    "date": "01-09-2005",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Radiante",
+    "weight": 14.0,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Rubí": "Wynaut está siempre con una gran sonrisa puesta. Para ver si está enfadado, basta con mirarle la cola. Cuando se le molesta, se pone a dar golpetazos en el suelo.",
         " Pokémon Zafiro": "Los Wynaut se agrupan cuando hay luna para jugar achuchándose unos a otros. Cuanto más se achuchan, más ganan en resistencia y lanzan fuertes contraataques con más facilidad.",

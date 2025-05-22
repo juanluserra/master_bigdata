@@ -2,7 +2,13 @@
     "name": "Zygarde",
     "number": "718",
     "url": "https://pkparaiso.com//pokedex/zygarde.php",
-    "date": "01-12-2019",
+    "types": [
+        "dragon",
+        "tierra"
+    ],
+    "class": "Pokémon Equilibrio",
+    "weight": 305.0,
+    "height": 5.0,
     "descriptions": {
         " Pokémon X": "Cuando el ecosistema de Kalos se encuentra en peligro, aparece y revela su poder secreto.",
         " Pokémon Y": "Vive en las profundidades de las cavernas, desde donde vigila a todos aquellos que se dediquen a destruir el ecosistema.",

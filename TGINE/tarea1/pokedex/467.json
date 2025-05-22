@@ -2,7 +2,12 @@
     "name": "Magmortar",
     "number": "467",
     "url": "https://pkparaiso.com//pokedex/magmortar.php",
-    "date": "15-09-2023",
+    "types": [
+        "fuego"
+    ],
+    "class": "Pokémon Explosión",
+    "weight": 68.0,
+    "height": 1.6,
     "descriptions": {
         " Pokémon Diamante": "Sus brazos disparan bolas de fuego de más de 2000 grados. Vive en cráteres volcánicos.",
         " Pokémon Perla": "Sus brazos disparan bolas de fuego de más de 2000 grados. Vive en cráteres volcánicos.",

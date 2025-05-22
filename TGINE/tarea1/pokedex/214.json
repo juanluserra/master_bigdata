@@ -2,7 +2,13 @@
     "name": "Heracross",
     "number": "214",
     "url": "https://pkparaiso.com//pokedex/heracross.php",
-    "date": "12-12-2013",
+    "types": [
+        "bicho",
+        "lucha"
+    ],
+    "class": "Pokémon Unicornio",
+    "weight": 54.0,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Oro": "Este fuerte Pokémon clava su preciado cuerno en la tripa del enemigo, lo eleva y luego lo arroja.",
         " Pokémon Plata": "Suele ser dócil, pero si se le molesta mientras succiona miel, perseguirá con su cuerno al intruso.",

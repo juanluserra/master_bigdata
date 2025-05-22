@@ -2,7 +2,12 @@
     "name": "Clefable",
     "number": "036",
     "url": "https://pkparaiso.com//pokedex/clefable.php",
-    "date": "10-02-2017",
+    "types": [
+        "hada"
+    ],
+    "class": "Pokémon Hada",
+    "weight": 40.0,
+    "height": 1.3,
     "descriptions": {
         " Pokémon Rojo y Azul": "Un encantador y tímido Pokémon muy raro de ver. Corre y se oculta en cuanto siente que viene gente",
         " Pokémon Amarillo": "Protege bastante bien su propio entorno. Es una especie de hada, raramente vista por los humanos",

@@ -2,7 +2,12 @@
     "name": "Tsareena",
     "number": "763",
     "url": "https://pkparaiso.com//pokedex/tsareena.php",
-    "date": "01-08-2020",
+    "types": [
+        "planta"
+    ],
+    "class": "Pokémon Fruto",
+    "weight": 21.4,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Sol": "Propinar patadas implacables es su especialidad. Patea a sus oponentes derrotados y proclama su victoria con una gran carcajada.",
         " Pokémon Luna": "La belleza de sus piernas es bien conocida. Por eso no es de extrañar que se utilice como reclamo para salones de belleza y similares."

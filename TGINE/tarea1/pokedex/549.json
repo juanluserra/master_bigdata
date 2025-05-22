@@ -2,7 +2,12 @@
     "name": "Lilligant",
     "number": "549",
     "url": "https://pkparaiso.com//pokedex/lilligant.php",
-    "date": "18-07-2010",
+    "types": [
+        "planta"
+    ],
+    "class": "Pokémon Adornofloral",
+    "weight": 16.3,
+    "height": 1.1,
     "descriptions": {
         " Pokémon Negro": "Todos los famosos quieren uno. Incluso a los Entrenadores más curtidos les cuesta que florezca.",
         " Pokémon Blanco": "El aroma de la flor de su tocado relaja a cualquiera a su alrededor. Hay que cuidarlo para que no se marchite.",

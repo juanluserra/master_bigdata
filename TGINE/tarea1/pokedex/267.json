@@ -2,7 +2,13 @@
     "name": "Beautifly",
     "number": "267",
     "url": "https://pkparaiso.com//pokedex/beautifly.php",
-    "date": "03-02-2009",
+    "types": [
+        "bicho",
+        "volador"
+    ],
+    "class": "Pokémon Mariposa",
+    "weight": 28.4,
+    "height": 1.0,
     "descriptions": {
         " Pokémon Rubí": "La comida favorita de Beautifly es el dulce polen de las flores. Si quieres ver a este Pokémon, deja una maceta con flores al lado de la ventana y verás cómo aparece un ejemplar de Beautifly en busca de polen.",
         " Pokémon Zafiro": "Beautifly tiene una boca enorme en espiral que parece una aguja y le resulta muy útil para recolectar polen. Este Pokémon va revoloteando de flor en flor para recogerlo.",

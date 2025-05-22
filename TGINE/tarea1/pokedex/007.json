@@ -1,0 +1,34 @@
+{
+    "name": "Squirtle",
+    "number": "007",
+    "url": "https://pkparaiso.com//pokedex/squirtle.php",
+    "types": [
+        "agua"
+    ],
+    "class": "Pokémon Tortuguita",
+    "weight": 9.0,
+    "height": 0.5,
+    "descriptions": {
+        " Pokémon Rojo y Azul": "Tras nacer, su espalda se hincha y endurece como una concha. Echa potente espuma por la boca",
+        " Pokémon Amarillo": "Lanza agua a su presa desde el agua. Se esconde en su concha cuando se siente en peligro",
+        " Pokémon Oro": "Su caparazón es blando al nacer. Pero pronto se endurecerá y será capaz de resistir cualquier amenaza.",
+        " Pokémon Plata": "La concha, que se endurece al poco de nacer, es elástica. Si la golpeas, rebotará.",
+        " Pokémon Cristal": "Cuando se siente amenazado, esconde las patas dentro de la concha y expele agua por la boca.",
+        " Pokémon Rubí": "El caparazón de Squirtle no le sirve de protección únicamente. Su forma redondeada y las hendiduras que tiene le ayudan a reducir su resistencia al agua y le permiten nadar a gran velocidad.",
+        " Pokémon Zafiro": "El caparazón de Squirtle no le sirve de protección únicamente. Su forma redondeada y las hendiduras que tiene le ayudan a reducir su resistencia al agua y le permiten nadar a gran velocidad.",
+        " Pokémon Esmeralda": "El caparazón de Squirtle no sólo lo protege; su forma redondeada y sus hendiduras reducen su resistencia al agua y le permiten nadar más rápido.",
+        " Pokémon Rojo Fuego": "Cuando se esconde en el caparazón, dispara agua a una presión increíble.",
+        " Pokémon Verde Hoja": "Tras nacer, se le hincha el lomo y se le forma un caparazón. Echa potente espuma por la boca.",
+        " Pokémon Diamante": "Se protege con su caparazón y luego contraataca lanzando agua a presión cuando tiene oportunidad.",
+        " Pokémon Perla": "Se protege con su caparazón y luego contraataca lanzando agua a presión cuando tiene oportunidad.",
+        " Pokémon Platino": "Se protege con su caparazón y luego contraataca lanzando agua a presión cuando tiene oportunidad.",
+        " Pokémon HeartGold": "Su caparazón es blando al nacer. Pero pronto se endurecerá y será capaz de resistir cualquier amenaza.",
+        " Pokémon SoulSilver": "Su caparazón es blando al nacer. Pero pronto se endurecerá y será capaz de resistir cualquier amenaza.",
+        " Pokémon Negro": "Se protege con su caparazón y luego contraataca lanzando agua a presión cuando tiene oportunidad.",
+        " Pokémon Blanco": "Se protege con su caparazón y luego contraataca lanzando agua a presión cuando tiene oportunidad.",
+        " Pokémon X": "Se protege con su caparazón y luego contraataca lanzando agua a presión cuando tiene oportunidad.",
+        " Pokémon Y": "Lanza agua a su presa desde el agua. Se esconde en su concha cuando se siente en peligro.",
+        " Pokémon Rubí Omega": "El caparazón de Squirtle no le sirve de protección únicamente. Su forma redondeada y las hendiduras que tiene le ayudan a deslizarse en el agua y le permiten nadar a gran velocidad.",
+        " Pokémon Zafiro Alfa": "El caparazón de Squirtle no le sirve de protección únicamente. Su forma redondeada y las hendiduras que tiene le ayudan a deslizarse en el agua y le permiten nadar a gran velocidad."
+    }
+}

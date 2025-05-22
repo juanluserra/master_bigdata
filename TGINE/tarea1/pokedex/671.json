@@ -2,7 +2,12 @@
     "name": "Florges",
     "number": "671",
     "url": "https://pkparaiso.com//pokedex/florges.php",
-    "date": "03-11-2007",
+    "types": [
+        "hada"
+    ],
+    "class": "Pokémon Jardín",
+    "weight": 10.0,
+    "height": 1.1,
     "descriptions": {
         " Pokémon X": "Habita en preciosos jardines floridos. Absorbe la energía que emiten las plantas y la convierte en su fuente de poder.",
         " Pokémon Y": "Los propietarios de los castillos de antaño solían invitar a Florges para que creasen jardines floridos, a fin de decorar sus terrenos.",

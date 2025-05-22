@@ -2,7 +2,12 @@
     "name": "Cascoon",
     "number": "268",
     "url": "https://pkparaiso.com//pokedex/cascoon.php",
-    "date": "12-07-2008",
+    "types": [
+        "bicho"
+    ],
+    "class": "Pokémon Capullo",
+    "weight": 11.5,
+    "height": 0.7,
     "descriptions": {
         " Pokémon Rubí": "Cascoon forma el capullo que lo protege enrollándose por completo en la seda que libera por la boca. Cuando está totalmente recubierto, se prepara para evolucionar en el interior del capullo.",
         " Pokémon Zafiro": "Si atacan a Cascoon, se queda inmóvil aunque le hayan hecho mucho daño. Y es que, si se moviera, perdería fuerzas para evolucionar. Aunque nunca olvida el daño que le han hecho.",

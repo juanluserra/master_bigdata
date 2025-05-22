@@ -2,7 +2,13 @@
     "name": "Hoothoot",
     "number": "163",
     "url": "https://pkparaiso.com//pokedex/hoothoot.php",
-    "date": "31-05-2018",
+    "types": [
+        "normal",
+        "volador"
+    ],
+    "class": "Pokémon Búho",
+    "weight": 21.2,
+    "height": 0.7,
     "descriptions": {
         " Pokémon Oro": "Camina con un solo pie. Cambia tan rápidamente de pie que apenas se le ve.",
         " Pokémon Plata": "Su percepción del tiempo es exacta. Ocurra lo que ocurra, lleva el ritmo moviendo la cabeza.",

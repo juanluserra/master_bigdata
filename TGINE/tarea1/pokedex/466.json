@@ -2,7 +2,12 @@
     "name": "Electivire",
     "number": "466",
     "url": "https://pkparaiso.com//pokedex/electivire.php",
-    "date": "31-05-2023",
+    "types": [
+        "electrico"
+    ],
+    "class": "Pokémon Rayo",
+    "weight": 138.6,
+    "height": 1.8,
     "descriptions": {
         " Pokémon Diamante": "Toca a su enemigo con las puntas de sus dos colas y le suelta una descarga de más de 20000 voltios.",
         " Pokémon Perla": "Toca a su enemigo con las puntas de sus dos colas y le suelta una descarga de más de 20000 voltios.",

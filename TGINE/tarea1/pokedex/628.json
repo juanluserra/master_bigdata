@@ -2,7 +2,13 @@
     "name": "Braviary",
     "number": "628",
     "url": "https://pkparaiso.com//pokedex/braviary.php",
-    "date": "01-01-2007",
+    "types": [
+        "normal",
+        "volador"
+    ],
+    "class": "Pokémon Aguerrido",
+    "weight": 41.0,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Negro": "Lucha por sus compañeros sin reparar en el peligro. Es capaz de volar alto incluso con un coche en sus garras.",
         " Pokémon Blanco": "Guerrero avezado. Su número de cicatrices es directamente proporcional al respeto que recibe de los suyos.",

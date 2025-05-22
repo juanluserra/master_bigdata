@@ -2,7 +2,12 @@
     "name": "Reuniclus",
     "number": "579",
     "url": "https://pkparaiso.com//pokedex/reuniclus.php",
-    "date": "29-04-2013",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Ampliación",
+    "weight": 20.1,
+    "height": 1.0,
     "descriptions": {
         " Pokémon Negro": "Cuando los Reuniclus se dan la mano, sus cerebros se conectan y multiplican sus poderes psíquicos.",
         " Pokémon Blanco": "La fortaleza de sus brazos le permite hacer añicos hasta rocas. Está dotado de una inteligencia superior.",

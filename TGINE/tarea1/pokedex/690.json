@@ -2,7 +2,13 @@
     "name": "Skrelp",
     "number": "690",
     "url": "https://pkparaiso.com//pokedex/skrelp.php",
-    "date": "17-06-2006",
+    "types": [
+        "veneno",
+        "agua"
+    ],
+    "class": "Pokémon Pseudoalga",
+    "weight": 7.3,
+    "height": 0.5,
     "descriptions": {
         " Pokémon X": "Adopta la apariencia de algas podridas y lanza un líquido venenoso a las presas desprevenidas que pasan cerca.",
         " Pokémon Y": "Es idéntico a un alga podrida. Mientras burla al enemigo, acumula energía para evolucionar.",

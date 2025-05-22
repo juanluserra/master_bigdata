@@ -2,7 +2,13 @@
     "name": "Skarmory",
     "number": "227",
     "url": "https://pkparaiso.com//pokedex/skarmory.php",
-    "date": "23-02-2021",
+    "types": [
+        "acero",
+        "volador"
+    ],
+    "class": "Pokémon Coraza Ave",
+    "weight": 50.5,
+    "height": 1.7,
     "descriptions": {
         " Pokémon Oro": "Sus fuertes alas parecen pesadas, aunque son huecas y ligeras, y le permiten volar libremente.",
         " Pokémon Plata": "Después de anidar en zarzas, las alas de sus polluelos crecen fortalecidas por los rasguños.",

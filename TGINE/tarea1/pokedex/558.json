@@ -2,7 +2,13 @@
     "name": "Crustle",
     "number": "558",
     "url": "https://pkparaiso.com//pokedex/crustle.php",
-    "date": "15-08-2021",
+    "types": [
+        "bicho",
+        "roca"
+    ],
+    "class": "Pokémon Casarroca",
+    "weight": 200.0,
+    "height": 1.4,
     "descriptions": {
         " Pokémon Negro": "Se disputa el territorio con sus congéneres. Pierde aquel al que le rompan la roca que lleva a cuestas.",
         " Pokémon Blanco": "Su inmensa capacidad motriz le permite desplazarse cargando a sus espaldas rocas enormes durante días.",

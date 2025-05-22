@@ -2,7 +2,13 @@
     "name": "Shuckle",
     "number": "213",
     "url": "https://pkparaiso.com//pokedex/shuckle.php",
-    "date": "19-10-2022",
+    "types": [
+        "bicho",
+        "roca"
+    ],
+    "class": "Pokémon Moho",
+    "weight": 20.5,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Oro": "Las BAYAS que almacena en su concha se descomponen en un líquido pegajoso.",
         " Pokémon Plata": "Almacena BAYAS dentro de su concha. Para evitar ataques, se esconde inmóvil bajo las rocas.",

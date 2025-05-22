@@ -2,7 +2,12 @@
     "name": "Klang",
     "number": "600",
     "url": "https://pkparaiso.com//pokedex/klang.php",
-    "date": "20-02-2014",
+    "types": [
+        "acero"
+    ],
+    "class": "Pokémon Engranaje",
+    "weight": 51.0,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Negro": "Muestra sus sentimientos cambiando la dirección de su giro. Cuanto más se enfade, más rápido girará.",
         " Pokémon Blanco": "Hace girar sus engranajes menores frenéticamente para lanzarlos en sus ataques. Es peligroso si no regresan.",

@@ -2,7 +2,12 @@
     "name": "Castform",
     "number": "351",
     "url": "https://pkparaiso.com//pokedex/castform.php",
-    "date": "07-07-2004",
+    "types": [
+        "normal"
+    ],
+    "class": "Pokémon Clima",
+    "weight": 0.8,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Rubí": "El tipo de Castform cambia con las variaciones del tiempo. Este Pokémon consiguió aprender a usar el gran poder de la Naturaleza para proteger el pequeño cuerpo que tiene.",
         " Pokémon Zafiro": "Castform se vale del poder de la Naturaleza para transformarse en el sol y en nubarrones cargados de lluvia o nieve. El tipo de este Pokémon varía según el clima.",

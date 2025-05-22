@@ -2,7 +2,12 @@
     "name": "Hariyama",
     "number": "297",
     "url": "https://pkparaiso.com//pokedex/hariyama.php",
-    "date": "03-02-2008",
+    "types": [
+        "lucha"
+    ],
+    "class": "Pokémon Empuje",
+    "weight": 253.8,
+    "height": 2.3,
     "descriptions": {
         " Pokémon Rubí": "Hariyama practica los empujones que da estirando los brazos allá por donde va. Este Pokémon puede partir por la mitad un poste de teléfono de un enérgico golpe con los brazos estirados y las manos abiertas.",
         " Pokémon Zafiro": "Puede que parezca que Hariyama está grueso, pero en realidad es una mole de puro músculo. Si este Pokémon hace fuerza y tensa la musculatura, se pone sólido como una roca.",

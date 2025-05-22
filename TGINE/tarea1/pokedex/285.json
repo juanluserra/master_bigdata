@@ -2,7 +2,12 @@
     "name": "Shroomish",
     "number": "285",
     "url": "https://pkparaiso.com//pokedex/shroomish.php",
-    "date": "30-12-2010",
+    "types": [
+        "planta"
+    ],
+    "class": "Pokémon Hongo",
+    "weight": 4.5,
+    "height": 0.4,
     "descriptions": {
         " Pokémon Rubí": "Los Shroomish viven en zonas húmedas en la profunda oscuridad del bosque. Suelen quedarse tranquilamente bajo las hojas caídas. Se alimentan del abono que éstas generan al empezar a pudrirse.",
         " Pokémon Zafiro": "Si Shroomish siente peligro, agita el cuerpo y libera esporas venenosas por la cabeza. Estas esporas son tan tóxicas que pueden hacer que se marchiten los árboles y hasta las malas hierbas.",

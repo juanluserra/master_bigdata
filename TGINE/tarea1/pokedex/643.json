@@ -2,7 +2,13 @@
     "name": "Reshiram",
     "number": "643",
     "url": "https://pkparaiso.com//pokedex/reshiram.php",
-    "date": "21-11-2021",
+    "types": [
+        "dragon",
+        "fuego"
+    ],
+    "class": "Pokémon Blanco Veraz",
+    "weight": 330.0,
+    "height": 3.2,
     "descriptions": {
         " Pokémon Negro": "Pokémon omnipresente en leyendas. Hace brotar llamas de su cola y consume todo lo que se le pone por delante.",
         " Pokémon Blanco": "Cuando la cola de Reshiram arde, su energía calorífica altera la atmósfera, y el tiempo meteorológico cambia.",

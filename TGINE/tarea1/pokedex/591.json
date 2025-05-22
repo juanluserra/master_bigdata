@@ -2,7 +2,13 @@
     "name": "Amoonguss",
     "number": "591",
     "url": "https://pkparaiso.com//pokedex/amoonguss.php",
-    "date": "25-07-2000",
+    "types": [
+        "planta",
+        "veneno"
+    ],
+    "class": "Pokémon Hongo",
+    "weight": 10.5,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Negro": "Baila meciendo rítmicamente los dos brazos a modo de Poké Ball para hacer que sus presas se acerquen.",
         " Pokémon Blanco": "Aunque intenta pasar por parte superior de una Poké Ball para atraer a sus presas, consigue engañar a pocos.",

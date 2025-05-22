@@ -2,7 +2,13 @@
     "name": "Mareanie",
     "number": "747",
     "url": "https://pkparaiso.com//pokedex/mareanie.php",
-    "date": "22-12-2012",
+    "types": [
+        "veneno",
+        "agua"
+    ],
+    "class": "Pokémon Estrellatroz",
+    "weight": 8.0,
+    "height": 0.4,
     "descriptions": {
         " Pokémon Sol": "Aturde a su presa con los aguijones venenosos de la cabeza. Cuando esta se debilita, la rodea con sus diez extremidades y la remata.",
         " Pokémon Luna": "Reptan por las profundidades marinas o junto a la costa. Les encantan las ramas de coral que crecen en la cabeza de los Corsola."

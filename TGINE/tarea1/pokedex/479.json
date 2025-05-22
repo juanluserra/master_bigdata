@@ -2,7 +2,13 @@
     "name": "Rotom",
     "number": "479",
     "url": "https://pkparaiso.com//pokedex/rotom.php",
-    "date": "21-01-2018",
+    "types": [
+        "electrico",
+        "fantasma"
+    ],
+    "class": "Pokémon Plasma",
+    "weight": 0.3,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Diamante": "Su cuerpo está hecho de plasma. Puede infiltrarse en dispositivos electrónicos e inutilizarlos.",
         " Pokémon Perla": "Su cuerpo está hecho de plasma. Puede infiltrarse en dispositivos electrónicos e inutilizarlos.",

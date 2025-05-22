@@ -2,7 +2,13 @@
     "name": "Lileep",
     "number": "345",
     "url": "https://pkparaiso.com//pokedex/lileep.php",
-    "date": "22-01-2001",
+    "types": [
+        "roca",
+        "planta"
+    ],
+    "class": "Pokémon Lila Mar",
+    "weight": 23.8,
+    "height": 1.0,
     "descriptions": {
         " Pokémon Rubí": "Los Lileep se extinguieron hace unos cien millones de años aproximadamente. Este Pokémon se ancla a una roca en el fondo del mar y atrapa a las presas que se le acercan con los tentáculos que tiene en forma de pétalos de flor.",
         " Pokémon Zafiro": "Lileep es un Pokémon antiguo que se regeneró a partir de un fósil. Siempre está anclado a una roca. Desde su percha inmóvil está al acecho y pendiente de que no se le escape su presa.",

@@ -2,7 +2,12 @@
     "name": "Audino",
     "number": "531",
     "url": "https://pkparaiso.com//pokedex/audino.php",
-    "date": "01-06-2012",
+    "types": [
+        "normal"
+    ],
+    "class": "Pokémon Escucha",
+    "weight": 31.0,
+    "height": 1.1,
     "descriptions": {
         " Pokémon Negro": "Al tocar a alguien con las antenas de sus orejas, conoce su estado de ánimo y de salud por los latidos del corazón.",
         " Pokémon Blanco": "Su sentido del oído es infalible: capta cualquier ruido de su alrededor y hace las veces de radar.",

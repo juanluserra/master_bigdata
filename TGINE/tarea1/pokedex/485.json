@@ -2,7 +2,13 @@
     "name": "Heatran",
     "number": "485",
     "url": "https://pkparaiso.com//pokedex/heatran.php",
-    "date": "14-02-2020",
+    "types": [
+        "fuego",
+        "acero"
+    ],
+    "class": "Pokémon Domo Lava",
+    "weight": 430.0,
+    "height": 1.7,
     "descriptions": {
         " Pokémon Diamante": "Habita cuevas volcánicas. Cava con sus pies en forma de cruz para trepar por techos y paredes.",
         " Pokémon Perla": "Habita cuevas volcánicas. Cava con sus pies en forma de cruz para trepar por techos y paredes.",

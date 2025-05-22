@@ -1,0 +1,35 @@
+{
+    "name": "Victreebel",
+    "number": "071",
+    "url": "https://pkparaiso.com//pokedex/victreebel.php",
+    "types": [
+        "planta",
+        "veneno"
+    ],
+    "class": "Pokémon Matamoscas",
+    "weight": 15.5,
+    "height": 1.7,
+    "descriptions": {
+        " Pokémon Rojo y Azul": "Vive en grandes colonias en el interior de las junglas, aunque nadie ha podido verificarlo",
+        " Pokémon Amarillo": "Engaña a su presa con un dulce aroma a miel. Una vez atrapada, la presa perderá hasta sus huesos",
+        " Pokémon Oro": "El ÁCIDO con que disuelve a muchas presas se endulza, haciéndolo hasta más efectivo para atraer a su presa.",
+        " Pokémon Plata": "Este terrorífico Pokémon planta atrae a su presa con miel aromática para derretirla luego en su boca.",
+        " Pokémon Cristal": "Cuando este Pokémon ingiere algo, incluso el objeto más duro se disolverá al instante.",
+        " Pokémon Rubí": "Victreebel tiene una enredadera que le sale de la cabeza. Cuando la agita y colea, recuerda a un animal que está a punto de atacar a su presa. Como se le acerque un rival, se lo tragará entero.",
+        " Pokémon Zafiro": "Victreebel tiene una enredadera que le sale de la cabeza. Cuando la agita y colea, recuerda a un animal que está a punto de atacar a su presa. Como se le acerque un rival, se lo tragará entero.",
+        " Pokémon Esmeralda": "Tiene una enredadera que le sale de la cabeza. Cuando la agita y colea, recuerda a un animal y así consigue atraer a sus presas. Si se le acerca un rival, lo engulle.",
+        " Pokémon Rojo Fuego": "Deja que su presa se le acerque a la boca, atraída por el aroma a miel. Una vez dentro, la disuelve con un fluido.",
+        " Pokémon Verde Hoja": "Dicen que vive en grandes colonias en el interior de las junglas, aunque nadie ha podido verificarlo.",
+        " Pokémon Diamante": "Su boca segrega un fluido de olor parecido a la miel: un potente ácido que disuelve cualquier cosa.",
+        " Pokémon Perla": "Su boca segrega un fluido de olor parecido a la miel: un potente ácido que disuelve cualquier cosa.",
+        " Pokémon Platino": "Su boca segrega un fluido de olor parecido a la miel: un potente ácido que disuelve cualquier cosa.",
+        " Pokémon HeartGold": "El ácido con que disuelve a muchas presas se endulza, haciéndolo hasta más efectivo para atraer a su presa.",
+        " Pokémon SoulSilver": "El ácido con que disuelve a muchas presas se endulza, haciéndolo hasta más efectivo para atraer a su presa.",
+        " Pokémon Negro": "Su boca segrega un fluido de olor parecido a la miel: un potente ácido que disuelve cualquier cosa.",
+        " Pokémon Blanco": "Su boca segrega un fluido de olor parecido a la miel: un potente ácido que disuelve cualquier cosa.",
+        " Pokémon X": "Dicen que vive en grandes colonias en el interior de las junglas, aunque nadie ha podido verificarlo.",
+        " Pokémon Y": "Cuando este Pokémon ingiere algo, incluso el objeto más duro se disolverá al instante.",
+        " Pokémon Rubí Omega": "Victreebel tiene una enredadera que le sale de la cabeza y que agita a modo de señuelo para atraer a sus presas y así engullirlas por sorpresa cuando estas se aproximan incautas.",
+        " Pokémon Zafiro Alfa": "Victreebel tiene una enredadera que le sale de la cabeza y que agita a modo de señuelo para atraer a sus presas y así engullirlas por sorpresa cuando estas se aproximan incautas."
+    }
+}

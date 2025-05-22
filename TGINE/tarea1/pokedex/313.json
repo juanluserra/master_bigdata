@@ -2,7 +2,12 @@
     "name": "Volbeat",
     "number": "313",
     "url": "https://pkparaiso.com//pokedex/volbeat.php",
-    "date": "30-10-2022",
+    "types": [
+        "bicho"
+    ],
+    "class": "Pokémon Luciérnaga",
+    "weight": 17.7,
+    "height": 0.7,
     "descriptions": {
         " Pokémon Rubí": "Cuando llega la noche, Volbeat emite luz por la cola y regula la intensidad y el destello para comunicarse con el resto. A este Pokémon le atrae el dulce aroma de Illumise.",
         " Pokémon Zafiro": "La cola de Volbeat brilla como una bombilla. Ante otro de su grupo, la usa para dibujar formas geométricas en la oscuridad del cielo por la noche. Este Pokémon adora el dulce aroma que desprende Illumise.",

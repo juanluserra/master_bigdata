@@ -2,7 +2,13 @@
     "name": "Geodude",
     "number": "074",
     "url": "https://pkparaiso.com//pokedex/geodude.php",
-    "date": "21-11-2009",
+    "types": [
+        "roca",
+        "tierra"
+    ],
+    "class": "Pokémon Roca",
+    "weight": 20.0,
+    "height": 0.4,
     "descriptions": {
         " Pokémon Rojo y Azul": "Aparece en llanos y montañas. Semejantes a las rocas, la gente se tropieza con ellos o los pisa",
         " Pokémon Amarillo": "Se encuentran normalmente en los caminos de montaña. Si te cruzas con uno, se enfadará",

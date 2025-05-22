@@ -2,7 +2,12 @@
     "name": "Gorebyss",
     "number": "368",
     "url": "https://pkparaiso.com//pokedex/gorebyss.php",
-    "date": "06-08-2011",
+    "types": [
+        "agua"
+    ],
+    "class": "Pokémon Mar del Sur",
+    "weight": 22.6,
+    "height": 1.8,
     "descriptions": {
         " Pokémon Rubí": "Gorebyss vive en los Mares del Sur, en lo más profundo; de ahí que tenga el cuerpo preparado para soportar la presión tan grande que hay en el fondo marino, y que no le hagan daño los ataques comunes.",
         " Pokémon Zafiro": "Aunque Gorebyss es la imagen de la elegancia y la belleza al nadar, es también la definición de la crueldad. Al detectar a su presa, este Pokémon le hinca los finos dientes que tiene y le absorbe los fluidos corporales.",

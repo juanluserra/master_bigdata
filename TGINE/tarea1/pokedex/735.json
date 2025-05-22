@@ -1,0 +1,15 @@
+{
+    "name": "Gumshoos",
+    "number": "735",
+    "url": "https://pkparaiso.com//pokedex/gumshoos.php",
+    "types": [
+        "normal"
+    ],
+    "class": "Pokémon Vigilante",
+    "weight": 14.2,
+    "height": 0.7,
+    "descriptions": {
+        " Pokémon Sol": "Al detectar el rastro de una presa, la acecha con tenacidad, pero al ponerse el sol le vence el sueño.",
+        " Pokémon Luna": "Sus presas favoritas son los Rattata y Raticate, pero, al ser estos diurnos, rara vez se cruza con ellos. La perseverancia es su gran virtud."
+    }
+}

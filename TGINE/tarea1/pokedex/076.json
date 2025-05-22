@@ -2,7 +2,13 @@
     "name": "Golem",
     "number": "076",
     "url": "https://pkparaiso.com//pokedex/golem.php",
-    "date": "27-04-2008",
+    "types": [
+        "roca",
+        "tierra"
+    ],
+    "class": "Pokémon Megatón",
+    "weight": 300.0,
+    "height": 1.4,
     "descriptions": {
         " Pokémon Rojo y Azul": "Su cuerpo rocoso es súper duro. Soporta las explosiones de dinamita sin sufrir daños",
         " Pokémon Amarillo": "Cuando pierde su piel, su cuerpo se vuelve blando y blanquecino. Si esto ocurre, se esconderá",

@@ -2,7 +2,13 @@
     "name": "Golett",
     "number": "622",
     "url": "https://pkparaiso.com//pokedex/golett.php",
-    "date": "18-08-2005",
+    "types": [
+        "tierra",
+        "fantasma"
+    ],
+    "class": "Pokémon Autómata",
+    "weight": 92.0,
+    "height": 1.0,
     "descriptions": {
         " Pokémon Negro": "Se mueve gracias a la energía que quema dentro de su cuerpo, pero el origen de esta energía es incierto.",
         " Pokémon Blanco": "Los rumores apuntan a que fue un Pokémon creado por la ciencia de una antigua y misteriosa civilización.",

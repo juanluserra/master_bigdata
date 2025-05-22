@@ -2,7 +2,13 @@
     "name": "Lunala",
     "number": "792",
     "url": "https://pkparaiso.com//pokedex/lunala.php",
-    "date": "21-08-2002",
+    "types": [
+        "psiquico",
+        "fantasma"
+    ],
+    "class": "Pokémon Corona Lunar",
+    "weight": 120.0,
+    "height": 4.0,
     "descriptions": {
         " Pokémon Sol": "Se dice que es la evolución final hembra de Cosmog. Su tercer ojo aparece cuando se traslada a un mundo distinto.",
         " Pokémon Luna": "Se dice que vive en otro mundo. Devora la luz con tamaña fruición que es capaz de provocar la penumbra más absoluta en pleno día."

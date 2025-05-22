@@ -2,7 +2,12 @@
     "name": "Cherrim",
     "number": "421",
     "url": "https://pkparaiso.com//pokedex/cherrim.php",
-    "date": "09-10-2023",
+    "types": [
+        "planta"
+    ],
+    "class": "Pokémon Floración",
+    "weight": 9.3,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Diamante": "Es muy dócil como capullo y alegre cuando florece. Si la luz solar mengua, se transforma en capullo.",
         " Pokémon Perla": "Florece en épocas de mucha luz solar. Intenta compensar lo que soportó como capullo.",

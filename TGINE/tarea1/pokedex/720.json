@@ -2,7 +2,13 @@
     "name": "Hoopa",
     "number": "720",
     "url": "https://pkparaiso.com//pokedex/hoopa.php",
-    "date": "18-06-2010",
+    "types": [
+        "psiquico",
+        "fantasma"
+    ],
+    "class": "Pokémon Travesura",
+    "weight": 9.0,
+    "height": 0.5,
     "descriptions": {
         " Pokémon X": "Este problemático Pokémon envía cualquier objeto a lugares remotos mediante unos anillos que deforman el espacio.",
         " Pokémon Y": "Reúne los objetos que le atraen para esconderlos en una guarida secreta, teletransportándolos a través de sus anillos.",

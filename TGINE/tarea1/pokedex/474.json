@@ -2,7 +2,12 @@
     "name": "Porygon-Z",
     "number": "474",
     "url": "https://pkparaiso.com//pokedex/porygon-z.php",
-    "date": "23-09-2009",
+    "types": [
+        "normal"
+    ],
+    "class": "Pokémon Virtual",
+    "weight": 34.0,
+    "height": 0.9,
     "descriptions": {
         " Pokémon Diamante": "Se le instaló un software para mejorarlo. Sin embargo, comenzó a comportarse de manera extraña.",
         " Pokémon Perla": "Se le instaló un software para mejorarlo. Sin embargo, comenzó a comportarse de manera extraña.",

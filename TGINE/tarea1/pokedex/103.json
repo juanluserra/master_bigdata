@@ -1,0 +1,37 @@
+{
+    "name": "Exeggutor",
+    "number": "103",
+    "url": "https://pkparaiso.com//pokedex/exeggutor.php",
+    "types": [
+        "planta",
+        "psiquico"
+    ],
+    "class": "Pokémon Coco",
+    "weight": 120.0,
+    "height": 2.0,
+    "descriptions": {
+        " Pokémon Rojo y Azul": "Dice la leyenda que en raras ocasiones una de sus cabezas cae y sobrevive como un Exeggcute",
+        " Pokémon Amarillo": "Este Pokémon es muy ruidoso. Esto es debido a que cada una de sus cabezas hace lo que quiere",
+        " Pokémon Oro": "Sus tres cabezas piensan de forma independiente. Sin embargo, son amigas y no suelen discutir nunca.",
+        " Pokémon Plata": "Si se le cae una cabeza, emite una señal telepática para buscar a más y formar un grupo de Exeggcute.",
+        " Pokémon Cristal": "Deben estar en un buen entorno para que le crezcan cabezas. Si una se desprende, vivirá como Exeggcute.",
+        " Pokémon Rubí": "Exeggutor es originario del trópico. Cuando se expone a un sol intenso, le empiezan a crecer las cabezas. Hay quien dice que, cuando las cabezas caen al suelo, se unen para formar un Exeggcute.",
+        " Pokémon Zafiro": "Exeggutor es originario del trópico. Cuando se expone a un sol intenso, le empiezan a crecer las cabezas. Hay quien dice que, cuando las cabezas caen al suelo, se unen para formar un Exeggcute.",
+        " Pokémon Esmeralda": "Es originario del trópico. Cuando se expone a un sol intenso, le empiezan a crecer las cabezas. Dicen que, si caen al suelo, las cabezas se unen para formar un Exeggcute.",
+        " Pokémon Rojo Fuego": "Suelen referirse a él como la \"vegetación del trópico con patas\"2. Cada una de sus cabezas tiene autonomía.",
+        " Pokémon Verde Hoja": "Dice la leyenda que en raras ocasiones una de sus cabezas cae y sobrevive como un Exeggcute.",
+        " Pokémon Diamante": "Se le llama la ",
+        " Pokémon Perla": "Se le llama la ",
+        " Pokémon Platino": "Se le llama la ",
+        " Pokémon HeartGold": "Sus tres cabezas piensan de forma independiente. Sin embargo, son amigas y no suelen discutir nunca.",
+        " Pokémon SoulSilver": "Sus tres cabezas piensan de forma independiente. Sin embargo, son amigas y no suelen discutir nunca.",
+        " Pokémon Negro": "Se le llama la Selva Andante. Si una cabeza crece demasiado, se cae y forma un Exeggcute.",
+        " Pokémon Blanco": "Se le llama la Selva Andante. Si una cabeza crece demasiado, se cae y forma un Exeggcute.",
+        " Pokémon X": "Sus tres cabezas piensan de forma independiente. Sin embargo, son amigas y no suelen discutir nunca.",
+        " Pokémon Y": "Se le llama la Selva Andante. Si una cabeza crece demasiado, se cae y forma un Exeggcute.",
+        " Pokémon Rubí Omega": "Exeggutor es originario del trópico. Cuando se expone a un sol intenso, le empiezan a crecer las cabezas. Hay quien dice que, cuando las cabezas caen al suelo, se unen para formar un Exeggcute.",
+        " Pokémon Zafiro Alfa": "Exeggutor es originario del trópico. Cuando se expone a un sol intenso, le empiezan a crecer las cabezas. Hay quien dice que, cuando las cabezas caen al suelo, se unen para formar un Exeggcute.",
+        " Pokémon Sol": "Cada una de sus cabezas piensa de forma individual. Para tomar decisiones, se comunican entre ellas telepáticamente.",
+        " Pokémon Luna": "En algún momento de su vida, una de sus tres cabezas se desprende y se transforma en un nuevo Exeggcute."
+    }
+}

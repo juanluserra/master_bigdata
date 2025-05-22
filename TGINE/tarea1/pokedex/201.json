@@ -2,7 +2,12 @@
     "name": "Unown",
     "number": "201",
     "url": "https://pkparaiso.com//pokedex/unown.php",
-    "date": "19-09-2005",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Símbolo",
+    "weight": 5.0,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Oro": "Tienen forma de jeroglíficos sobre lápidas antiguas. Dicen que ambos están relacionados.",
         " Pokémon Plata": "Su cuerpo fino y plano aparece siempre en los muros. Su forma parece tener algún significado.",

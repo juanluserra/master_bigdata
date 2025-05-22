@@ -1,0 +1,29 @@
+{
+    "name": "Exploud",
+    "number": "295",
+    "url": "https://pkparaiso.com//pokedex/exploud.php",
+    "types": [
+        "normal"
+    ],
+    "class": "Pokémon Escandaloso",
+    "weight": 84.0,
+    "height": 1.5,
+    "descriptions": {
+        " Pokémon Rubí": "Exploud provoca terremotos con el temblor que causa al levantar la voz. Si ves a este Pokémon inhalar aire por los tubos, ojo, que está a punto de soltar un buen bramido.",
+        " Pokémon Zafiro": "Exploud expresa sus sentimientos a los otros emitiendo una especie de silbidos a través de los tubos que tiene. Este Pokémon sólo levanta la voz cuando está en combate.",
+        " Pokémon Esmeralda": "Tiene órganos que generan sonido por todo el cuerpo. Se comunica con otros ajustando el tono y el volumen de los gritos que emite.",
+        " Pokémon Rojo Fuego": "Emite diversos sonidos a través de los tubos que tiene por el cuerpo. Cuando chilla, se le puede oír a 10 km.",
+        " Pokémon Verde Hoja": "Emite diversos sonidos a través de los tubos que tiene por el cuerpo. Cuando chilla, se le puede oír a 10 km.",
+        " Pokémon Diamante": "Su aullido se puede oír a 10 km. Emite todo tipo de sonidos desde los tubos de su cuerpo.",
+        " Pokémon Perla": "Su aullido se puede oír a 10 km. Emite todo tipo de sonidos desde los tubos de su cuerpo.",
+        " Pokémon Platino": "Su aullido se puede oír a 10 km. Emite todo tipo de sonidos desde los tubos de su cuerpo.",
+        " Pokémon HeartGold": "El bramido que emite al atacar puede sacudir la tierra con la intensidad de un terremoto.",
+        " Pokémon SoulSilver": "El bramido que emite al atacar puede sacudir la tierra con la intensidad de un terremoto.",
+        " Pokémon Negro": "Su aullido se puede oír a 10 km. Emite todo tipo de sonidos desde los tubos de su cuerpo.",
+        " Pokémon Blanco": "Su aullido se puede oír a 10 km. Emite todo tipo de sonidos desde los tubos de su cuerpo.",
+        " Pokémon X": "Su aullido se puede oír a 10 km. Emite todo tipo de sonidos desde los tubos de su cuerpo.",
+        " Pokémon Y": "El bramido que emite al atacar puede sacudir la tierra con la intensidad de un terremoto.",
+        " Pokémon Rubí Omega": "Exploud provoca terremotos con el temblor que causa al levantar la voz. Cuando inhala aire por los tubos, hay que prestar atención, ya que está a punto de soltar un buen bramido.",
+        " Pokémon Zafiro Alfa": "Exploud expresa sus sentimientos a los otros emitiendo una especie de silbidos a través de los tubos que tiene. Este Pokémon solo levanta la voz cuando está en combate."
+    }
+}

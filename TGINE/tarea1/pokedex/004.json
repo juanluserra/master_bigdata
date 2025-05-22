@@ -1,0 +1,34 @@
+{
+    "name": "Charmander",
+    "number": "004",
+    "url": "https://pkparaiso.com//pokedex/charmander.php",
+    "types": [
+        "fuego"
+    ],
+    "class": "Pokémon Lagartija",
+    "weight": 8.5,
+    "height": 0.6,
+    "descriptions": {
+        " Pokémon Rojo y Azul": "Prefiere los sitios calientes. Dicen que cuando llueve sale vapor de la punta de su cola",
+        " Pokémon Amarillo": "La llama en la punta de su cola chisporrotea al arder. Sólo se oye en lugares silenciosos",
+        " Pokémon Oro": "La llama de su cola indica su fuerza vital. Si está débil, la llama arderá más tenue.",
+        " Pokémon Plata": "La llama de su cola indica la fuerza vital de Charmander. Será brillante si está sano.",
+        " Pokémon Cristal": "Si está sano, la llama que tiene en la cola arderá vigorosamente, aunque se le moje un poco.",
+        " Pokémon Rubí": "La llama que tiene en la punta de la cola arde según sus sentimientos. Llamea levemente cuando está alegre y arde vigorosamente cuando está enfadado.",
+        " Pokémon Zafiro": "La llama que tiene en la punta de la cola arde según sus sentimientos. Llamea levemente cuando está alegre y arde vigorosamente cuando está enfadado.",
+        " Pokémon Esmeralda": "La llama que tiene en la punta de la cola arde según sus sentimientos. Llamea levemente cuando está alegre y arde vigorosamente cuando está enfadado.",
+        " Pokémon Rojo Fuego": "Este Pokémon nace con una llama en la punta de la cola. Si la llama se apagara, el Pokémon se debilitaría.",
+        " Pokémon Verde Hoja": "Prefiere los sitios cálidos. Dicen que cuando llueve le sale vapor de la punta de la cola.",
+        " Pokémon Diamante": "La llama de la punta de su cola indica su salud. Si Charmander está sano, arderá con más fuerza.",
+        " Pokémon Perla": "La llama de la punta de su cola indica su salud. Si Charmander está sano, arderá con más fuerza.",
+        " Pokémon Platino": "La llama de la punta de su cola indica su salud. Si Charmander está sano, arderá con más fuerza.",
+        " Pokémon HeartGold": "La llama de su cola indica su fuerza vital. Si está débil, la llama arderá más tenue.",
+        " Pokémon SoulSilver": "La llama de su cola indica su fuerza vital. Si está débil, la llama arderá más tenue.",
+        " Pokémon Negro": "La llama de la punta de su cola indica su salud. Si Charmander está sano, arderá con más fuerza.",
+        " Pokémon Blanco": "La llama de la punta de su cola indica su salud. Si Charmander está sano, arderá con más fuerza.",
+        " Pokémon X": "La llama de su cola indica la fuerza vital de Charmander. Será brillante si está sano.",
+        " Pokémon Y": "Este Pokémon nace con una llama en la punta de la cola. Si la llama se apagara, el Pokémon se debilitaría.",
+        " Pokémon Rubí Omega": "La llama que tiene en la punta de la cola arde según sus sentimientos. Llamea levemente cuando está alegre y arde vigorosamente cuando está enfadado.",
+        " Pokémon Zafiro Alfa": "La llama que tiene en la punta de la cola arde según sus sentimientos. Llamea levemente cuando está alegre y arde vigorosamente cuando está enfadado."
+    }
+}

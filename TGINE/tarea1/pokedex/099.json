@@ -2,7 +2,12 @@
     "name": "Kingler",
     "number": "099",
     "url": "https://pkparaiso.com//pokedex/kingler.php",
-    "date": "30-08-2012",
+    "types": [
+        "agua"
+    ],
+    "class": "Pokémon Tenaza",
+    "weight": 60.0,
+    "height": 1.3,
     "descriptions": {
         " Pokémon Rojo y Azul": "La pinza más grande tiene una enorme potencia, pero su gran tamaño la hace poco manejable",
         " Pokémon Amarillo": "Una de sus pinzas crece más que la otra, y es dura como el acero. De todos modos, pesa demasiado",

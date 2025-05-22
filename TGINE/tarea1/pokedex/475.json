@@ -2,7 +2,13 @@
     "name": "Gallade",
     "number": "475",
     "url": "https://pkparaiso.com//pokedex/gallade.php",
-    "date": "22-02-2017",
+    "types": [
+        "psiquico",
+        "lucha"
+    ],
+    "class": "Pokémon Cuchilla",
+    "weight": 52.0,
+    "height": 1.6,
     "descriptions": {
         " Pokémon Diamante": "Lucha con las espadas que salen de sus codos. Es un maestro de la cortesía y la esgrima.",
         " Pokémon Perla": "Lucha con las espadas que salen de sus codos. Es un maestro de la cortesía y la esgrima.",

@@ -2,7 +2,13 @@
     "name": "Crobat",
     "number": "169",
     "url": "https://pkparaiso.com//pokedex/crobat.php",
-    "date": "04-09-2012",
+    "types": [
+        "veneno",
+        "volador"
+    ],
+    "class": "Pokémon Murciélago",
+    "weight": 75.0,
+    "height": 1.8,
     "descriptions": {
         " Pokémon Oro": "Es tan silencioso cuando vuela en la oscuridad con sus cuatro alas, que cuesta percibirlo cuando se acerca.",
         " Pokémon Plata": "Las alas de sus patas le permiten volar rápidamente, pero también le dificultan pararse y descansar.",

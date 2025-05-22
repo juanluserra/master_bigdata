@@ -2,7 +2,12 @@
     "name": "Gothita",
     "number": "574",
     "url": "https://pkparaiso.com//pokedex/gothita.php",
-    "date": "16-12-2012",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Inquisitivo",
+    "weight": 5.8,
+    "height": 0.4,
     "descriptions": {
         " Pokémon Negro": "Amplifica su poder psíquico con sus antenitas en forma de lazo. Siempre está mirando algo fijamente.",
         " Pokémon Blanco": "Clava su mirada en Pokémon y Entrenadores como si observara algo solo perceptible por él.",

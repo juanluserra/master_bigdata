@@ -2,7 +2,13 @@
     "name": "Mantyke",
     "number": "458",
     "url": "https://pkparaiso.com//pokedex/mantyke.php",
-    "date": "07-10-2010",
+    "types": [
+        "agua",
+        "volador"
+    ],
+    "class": "Pokémon Milano",
+    "weight": 65.0,
+    "height": 1.0,
     "descriptions": {
         " Pokémon Diamante": "Los científicos descubrieron que el característico diseño de su espalda varía según la región.",
         " Pokémon Perla": "Un Pokémon amable que captura los débiles flujos de agua marina con sus dos antenas.",

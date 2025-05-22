@@ -2,7 +2,13 @@
     "name": "Gourgeist",
     "number": "711",
     "url": "https://pkparaiso.com//pokedex/gourgeist.php",
-    "date": "27-01-2008",
+    "types": [
+        "fantasma",
+        "planta"
+    ],
+    "class": "Pokémon Calabaza",
+    "weight": 12.5,
+    "height": 0.9,
     "descriptions": {
         " Pokémon X": "En las noches de luna nueva deambula por las calles de las ciudades y emite espeluznantes alaridos que maldicen a quienes los oyen.",
         " Pokémon Y": "Atrapa a su presa con los brazos, que parecen formar sendas matas de pelo, y entona una alegre canción mientras se regodea con su sufrimiento.",

@@ -2,7 +2,13 @@
     "name": "Natu",
     "number": "177",
     "url": "https://pkparaiso.com//pokedex/natu.php",
-    "date": "10-12-2016",
+    "types": [
+        "psiquico",
+        "volador"
+    ],
+    "class": "Pokémon Pajarito",
+    "weight": 2.0,
+    "height": 0.2,
     "descriptions": {
         " Pokémon Oro": "Va dando saltitos porque sus alas no han crecido lo suficiente. Siempre está pendiente de algo.",
         " Pokémon Plata": "Normalmente busca comida por el suelo. En raras ocasiones, salta a las ramas para picotear brotes.",

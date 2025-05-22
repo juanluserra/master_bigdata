@@ -2,7 +2,12 @@
     "name": "Chansey",
     "number": "113",
     "url": "https://pkparaiso.com//pokedex/chansey.php",
-    "date": "28-09-2011",
+    "types": [
+        "normal"
+    ],
+    "class": "Pokémon Huevo",
+    "weight": 34.6,
+    "height": 1.1,
     "descriptions": {
         " Pokémon Rojo y Azul": "Un raro y evasivo Pokémon que, según dicen, trae la felicidad a aquellos que lo atrapan",
         " Pokémon Amarillo": "Este amable Pokémon es capaz de compartir sus nutrientes huevos con un Pokémon herido",

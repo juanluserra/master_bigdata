@@ -2,7 +2,13 @@
     "name": "Beedrill",
     "number": "015",
     "url": "https://pkparaiso.com//pokedex/beedrill.php",
-    "date": "31-12-2000",
+    "types": [
+        "bicho",
+        "veneno"
+    ],
+    "class": "Pokémon Abeja Veneno",
+    "weight": 29.5,
+    "height": 1.0,
     "descriptions": {
         " Pokémon Rojo y Azul": "Vuela muy deprisa y ataca con los venenosos y grandes aguijones de su cola y patas delanteras",
         " Pokémon Amarillo": "Tiene 3 aguijones venenosos en sus patas y cola. Suelen pinchar a sus enemigos repetidas veces",

@@ -2,7 +2,12 @@
     "name": "Happiny",
     "number": "440",
     "url": "https://pkparaiso.com//pokedex/happiny.php",
-    "date": "17-07-2022",
+    "types": [
+        "normal"
+    ],
+    "class": "Pokémon Casita",
+    "weight": 24.4,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Diamante": "Les da a sus amigos una roca con forma de huevo que transporta en la bolsa de su panza.",
         " Pokémon Perla": "Le encantan las cosas blancas y redondas. Imita a Chansey llevando una roca con forma de huevo.",

@@ -2,7 +2,13 @@
     "name": "Barboach",
     "number": "339",
     "url": "https://pkparaiso.com//pokedex/barboach.php",
-    "date": "16-10-2004",
+    "types": [
+        "agua",
+        "tierra"
+    ],
+    "class": "Pokémon Bigotudo",
+    "weight": 1.9,
+    "height": 0.4,
     "descriptions": {
         " Pokémon Rubí": "Barboach tiene unos bigotes sensibles que le sirven de infalible radar. Este Pokémon se sumerge en lodo y sólo deja los bigotes por fuera de la superficie, al acecho, mientras espera a que llegue su presa.",
         " Pokémon Zafiro": "Barboach está completamente recubierto por una película viscosa. Si lo atrapan, puede escurrirse fácilmente. Si se le seca la capa viscosa, este Pokémon se debilitará.",

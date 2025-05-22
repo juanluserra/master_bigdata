@@ -2,7 +2,12 @@
     "name": "Passimian",
     "number": "766",
     "url": "https://pkparaiso.com//pokedex/passimian.php",
-    "date": "23-05-2016",
+    "types": [
+        "lucha"
+    ],
+    "class": "Pokémon Cooperación",
+    "weight": 82.8,
+    "height": 2.0,
     "descriptions": {
         " Pokémon Sol": "Suele ir en grupos de unos veinte ejemplares. Sus miembros permanecen siempre unidos y nunca se abandonan unos a otros.",
         " Pokémon Luna": "Utiliza bayas duras en combate. Para que esta técnica perviva de generación en generación, los jefes la transmiten a un grupo de elegidos."

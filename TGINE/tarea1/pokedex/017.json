@@ -2,7 +2,13 @@
     "name": "Pidgeotto",
     "number": "017",
     "url": "https://pkparaiso.com//pokedex/pidgeotto.php",
-    "date": "05-05-2022",
+    "types": [
+        "normal",
+        "volador"
+    ],
+    "class": "Pokémon Pájaro",
+    "weight": 30.0,
+    "height": 1.1,
     "descriptions": {
         " Pokémon Rojo y Azul": "Muy protector de su amplio territorio, este Pokémon picoteará ferozmente a todo intruso",
         " Pokémon Amarillo": "Este Pokémon está repleto de vitalidad. Suele volar por su territorio en busca de presas",

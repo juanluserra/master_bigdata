@@ -2,7 +2,12 @@
     "name": "Krabby",
     "number": "098",
     "url": "https://pkparaiso.com//pokedex/krabby.php",
-    "date": "29-08-2005",
+    "types": [
+        "agua"
+    ],
+    "class": "Pokémon Cangrejo",
+    "weight": 6.5,
+    "height": 0.4,
     "descriptions": {
         " Pokémon Rojo y Azul": "Sus pinzas son potentes armas, además de usarlas para equilibrarse cuando camina lateralmente",
         " Pokémon Amarillo": "Sus pinzas son armas perfectas. En alguna ocasión pueden romperse en combate, pero crecerán rápido",

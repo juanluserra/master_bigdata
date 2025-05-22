@@ -2,7 +2,13 @@
     "name": "Yanmega",
     "number": "469",
     "url": "https://pkparaiso.com//pokedex/yanmega.php",
-    "date": "06-10-2006",
+    "types": [
+        "bicho",
+        "volador"
+    ],
+    "class": "Pokémon Libélula",
+    "weight": 51.5,
+    "height": 1.9,
     "descriptions": {
         " Pokémon Diamante": "Agita sus alas para crear ondas de choque que producen lesiones internas a sus rivales.",
         " Pokémon Perla": "Agita sus alas para crear ondas de choque que producen lesiones internas a sus rivales.",

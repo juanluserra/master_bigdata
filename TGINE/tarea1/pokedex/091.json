@@ -2,7 +2,13 @@
     "name": "Cloyster",
     "number": "091",
     "url": "https://pkparaiso.com//pokedex/cloyster.php",
-    "date": "03-01-2021",
+    "types": [
+        "agua",
+        "hielo"
+    ],
+    "class": "Pokémon Bivalvo",
+    "weight": 132.5,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Rojo y Azul": "Cuando es atacado lanza sus cuernos con gran rapidez. Sus entrañas jamás han sido vistas",
         " Pokémon Amarillo": "Utiliza su concha para protegerse. Dicen que es más dura que el diamante. También lanza espinas",

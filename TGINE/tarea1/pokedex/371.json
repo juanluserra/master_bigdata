@@ -2,7 +2,12 @@
     "name": "Bagon",
     "number": "371",
     "url": "https://pkparaiso.com//pokedex/bagon.php",
-    "date": "18-04-2015",
+    "types": [
+        "dragon"
+    ],
+    "class": "Pokémon Cabeza Roca",
+    "weight": 42.1,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Rubí": "Bagon sueña con poder pasar un día volando por el cielo. En vanos intentos por volar, ha llegado a tirarse desde riscos. Como resultado de estas caídas en picado, se le ha puesto la cabeza dura como las piedras.",
         " Pokémon Zafiro": "Bagon sueña siempre con lo mismo: pasar todo un día volando entre las nubes. Frustrado ante la imposibilidad de volar, parece que se desahoga dándose cabezazos contra rocas enormes hasta hacerlas añicos.",

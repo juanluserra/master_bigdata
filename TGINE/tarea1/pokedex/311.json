@@ -2,7 +2,12 @@
     "name": "Plusle",
     "number": "311",
     "url": "https://pkparaiso.com//pokedex/plusle.php",
-    "date": "15-06-2010",
+    "types": [
+        "electrico"
+    ],
+    "class": "Pokémon Ánimo",
+    "weight": 4.2,
+    "height": 0.4,
     "descriptions": {
         " Pokémon Rubí": "Plusle siempre hace las veces de líder con sus compañeros. Cuando algún miembro de su grupo hace un gran esfuerzo en combate, causa un cortocircuito en su interior para mostrar con el chisporroteo su alegría.",
         " Pokémon Zafiro": "Cuando Plusle está animando a su compañero, resplandece y provoca un chisporroteo que le rodea todo el cuerpo. Si su compañero pierde, se pone a chillar a voz en grito.",

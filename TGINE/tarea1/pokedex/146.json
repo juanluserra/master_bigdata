@@ -2,7 +2,13 @@
     "name": "Moltres",
     "number": "146",
     "url": "https://pkparaiso.com//pokedex/moltres.php",
-    "date": "08-03-2002",
+    "types": [
+        "fuego",
+        "volador"
+    ],
+    "class": "Pokémon Llama",
+    "weight": 60.0,
+    "height": 2.0,
     "descriptions": {
         " Pokémon Rojo y Azul": "Más conocido como el legendario pájaro de fuego. Con cada aleteo crea brillantes llamas",
         " Pokémon Amarillo": "Un legendario pájaro Pokémon. Cuando aletea sus flamígeras alas, la oscura noche se torna roja",

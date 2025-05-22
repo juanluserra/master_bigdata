@@ -2,7 +2,12 @@
     "name": "Banette",
     "number": "354",
     "url": "https://pkparaiso.com//pokedex/banette.php",
-    "date": "05-06-2005",
+    "types": [
+        "fantasma"
+    ],
+    "class": "Pokémon Marioneta",
+    "weight": 12.5,
+    "height": 1.1,
     "descriptions": {
         " Pokémon Rubí": "Banette genera energía para echar un infalible hechizo clavándose púas a sí mismo. Los orígenes de este Pokémon son algo tristes: era un muñeco de felpa al que tirAron a la basura.",
         " Pokémon Zafiro": "Fue un hechizo el que hizo que el relleno de este muñeco de felpa olvidado y abandonado pasara a ser Banette. Si este Pokémon abriera la boca, se quedaría sin energía.",

@@ -2,7 +2,12 @@
     "name": "Entei",
     "number": "244",
     "url": "https://pkparaiso.com//pokedex/entei.php",
-    "date": "01-07-2014",
+    "types": [
+        "fuego"
+    ],
+    "class": "Pokémon Volcán",
+    "weight": 198.0,
+    "height": 2.1,
     "descriptions": {
         " Pokémon Oro": "Cuando ladra, los volcanes entran en erupción. Como no puede controlar su poder, corre siempre en cabeza.",
         " Pokémon Plata": "Un Pokémon que corre por la tierra. Dicen que siempre nace uno cuando aparece un nuevo volcán.",

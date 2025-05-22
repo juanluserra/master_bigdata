@@ -1,0 +1,34 @@
+{
+    "name": "Tangela",
+    "number": "114",
+    "url": "https://pkparaiso.com//pokedex/tangela.php",
+    "types": [
+        "planta"
+    ],
+    "class": "Pokémon Enredadera",
+    "weight": 35.0,
+    "height": 1.0,
+    "descriptions": {
+        " Pokémon Rojo y Azul": "Todo su cuerpo está cubierto con anchas cintas del tipo-alga. Éstas se mueven cuando camina",
+        " Pokémon Amarillo": "Se camufla tras una gran masa de enredaderas azules. Se dice que nunca dejan de crecer",
+        " Pokémon Oro": "Las cintas que ocultan todo su cuerpo no dejan de moverse. Esto desconcierta a sus enemigos.",
+        " Pokémon Plata": "Enreda cualquier cosa que se mueva con sus parras. Si te atrapa, te hará cosquillas con su delicado balanceo.",
+        " Pokémon Cristal": "Durante el combate no deja de mover los tentáculos que cubren su cuerpo para molestar a sus enemigos.",
+        " Pokémon Rubí": "A Tangela se le desprenden los tentáculos con facilidad en cuanto se los agarras. Y no sólo no le duele, sino que le resulta muy útil para escapar rápido. Además, al día siguiente le crecen otros.",
+        " Pokémon Zafiro": "A Tangela se le desprenden los tentáculos con facilidad en cuanto se los agarras. Y no sólo no le duele, sino que le resulta muy útil para escapar rápido. Además, al día siguiente le crecen otros.",
+        " Pokémon Esmeralda": "Se le desprenden los tentáculos en cuanto se los agarran. Y no sólo no le duele, sino que le permite huir rápidamente. Además, al día siguiente le crecen otros.",
+        " Pokémon Rojo Fuego": "Las cintas de tipo alga que tiene a modo de tentáculos le dan su identidad. Es una masa que todo lo enreda.",
+        " Pokémon Verde Hoja": "Tiene el cuerpo cubierto con anchas cintas del tipo alga que se mueven cuando camina.",
+        " Pokémon Diamante": "Está envuelto en lianas azules. Nadie ha logrado ver el rostro que se oculta tras ellas.",
+        " Pokémon Perla": "Está envuelto en lianas azules. Nadie ha logrado ver el rostro que se oculta tras ellas.",
+        " Pokémon Platino": "Las lianas azules que envuelven su cuerpo están cubiertas de vello. Se dice que tiene cosquillas.",
+        " Pokémon HeartGold": "Las lianas que ocultan todo su cuerpo no dejan de moverse. Esto desconcierta a sus enemigos.",
+        " Pokémon SoulSilver": "Las lianas que ocultan todo su cuerpo no dejan de moverse. Esto desconcierta a sus enemigos.",
+        " Pokémon Negro": "Las lianas azules que envuelven su cuerpo están cubiertas de vello. Se dice que tiene cosquillas.",
+        " Pokémon Blanco": "Las lianas azules que envuelven su cuerpo están cubiertas de vello. Se dice que tiene cosquillas.",
+        " Pokémon X": "Se camufla con la multitud de lianas que envuelven su cuerpo y que no dejan de crecer a lo largo de toda su vida.",
+        " Pokémon Y": "Enreda cualquier cosa que se mueva con sus lianas. Si te atrapa, te hará cosquillas con su delicado balanceo.",
+        " Pokémon Rubí Omega": "A Tangela se le desprenden los tentáculos con facilidad en cuanto se los agarras. Y no solo no le duele, sino que le resulta muy útil para escapar rápido. Además, al día siguiente le crecen otros.",
+        " Pokémon Zafiro Alfa": "A Tangela se le desprenden los tentáculos con facilidad en cuanto se los agarras. Y no solo no le duele, sino que le resulta muy útil para escapar rápido. Además, al día siguiente le crecen otros."
+    }
+}

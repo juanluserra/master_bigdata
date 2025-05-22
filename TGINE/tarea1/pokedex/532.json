@@ -2,7 +2,12 @@
     "name": "Timburr",
     "number": "532",
     "url": "https://pkparaiso.com//pokedex/timburr.php",
-    "date": "30-07-2010",
+    "types": [
+        "lucha"
+    ],
+    "class": "Pokémon Musculoso",
+    "weight": 12.5,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Negro": "Lucha bamboleando vigas de madera. Cuando las transporta sin dificultad, es señal de que va a evolucionar.",
         " Pokémon Blanco": "Siempre lleva vigas de madera. Normalmente ayuda en obras de construcción.",

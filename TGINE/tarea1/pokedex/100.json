@@ -2,7 +2,12 @@
     "name": "Voltorb",
     "number": "100",
     "url": "https://pkparaiso.com//pokedex/voltorb.php",
-    "date": "07-06-2017",
+    "types": [
+        "electrico"
+    ],
+    "class": "Pokémon Bola",
+    "weight": 10.4,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Rojo y Azul": "Suele vivir en centrales de energía. Mucha gente muere al confundirlo con una POKÉ BALL",
         " Pokémon Amarillo": "Se dice que se camufla como una POKÉ BALL. Al más mínimo estímulo se autodestruirá",

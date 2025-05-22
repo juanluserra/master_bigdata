@@ -2,7 +2,13 @@
     "name": "Escavalier",
     "number": "589",
     "url": "https://pkparaiso.com//pokedex/escavalier.php",
-    "date": "07-12-2009",
+    "types": [
+        "bicho",
+        "acero"
+    ],
+    "class": "Pokémon Soldado",
+    "weight": 33.0,
+    "height": 1.0,
     "descriptions": {
         " Pokémon Negro": "Ataca a los enemigos con sus lanzas a una velocidad frenética. Se enfrenta con valentía aun con rivales poderosos.",
         " Pokémon Blanco": "Pokémon que evolucionó poniéndose el caparazón de Shelmet. Su armazón de acero le protege todo el cuerpo.",

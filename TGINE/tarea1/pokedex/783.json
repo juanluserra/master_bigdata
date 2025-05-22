@@ -2,7 +2,13 @@
     "name": "Hakamo-o",
     "number": "783",
     "url": "https://pkparaiso.com//pokedex/hakamo-o.php",
-    "date": "20-07-2007",
+    "types": [
+        "dragon",
+        "lucha"
+    ],
+    "class": "Pokémon Escamas",
+    "weight": 47.0,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Sol": "Se lanza sobre su presa entonando un grito de guerra. Golpea al enemigo y lo hace trizas con sus escamas.",
         " Pokémon Luna": "Muda constantemente sus escamas, que cada vez se vuelven más duras y afiladas."

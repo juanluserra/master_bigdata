@@ -2,7 +2,12 @@
     "name": "Hitmontop",
     "number": "237",
     "url": "https://pkparaiso.com//pokedex/hitmontop.php",
-    "date": "22-09-2018",
+    "types": [
+        "lucha"
+    ],
+    "class": "Pokémon Boca Abajo",
+    "weight": 48.0,
+    "height": 1.4,
     "descriptions": {
         " Pokémon Oro": "Si te gustan sus suaves, elegantes y danzarinas patadas, acabarás taladrado.",
         " Pokémon Plata": "Lanza patadas mientras gira. Si alcanza mucha velocidad, puede cavar un hoyo en la tierra.",

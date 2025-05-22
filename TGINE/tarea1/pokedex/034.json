@@ -2,7 +2,13 @@
     "name": "Nidoking",
     "number": "034",
     "url": "https://pkparaiso.com//pokedex/nidoking.php",
-    "date": "22-08-2015",
+    "types": [
+        "veneno",
+        "tierra"
+    ],
+    "class": "Pokémon Taladro",
+    "weight": 62.0,
+    "height": 1.4,
     "descriptions": {
         " Pokémon Rojo y Azul": "Usa su potente cola en combate para aplastar y oprimir a su presa. Después le rompe los huesos",
         " Pokémon Amarillo": "Duro como el acero, posee una poderosa carga. Sus cuernos son tan duros como el diamante",

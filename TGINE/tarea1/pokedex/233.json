@@ -2,7 +2,12 @@
     "name": "Porygon2",
     "number": "233",
     "url": "https://pkparaiso.com//pokedex/porygon2.php",
-    "date": "17-10-2008",
+    "types": [
+        "normal"
+    ],
+    "class": "Pokémon Virtual",
+    "weight": 32.5,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Oro": "Esta versión mejorada de Porygon fue creada para explorar el espacio, aunque no puede volar.",
         " Pokémon Plata": "La investigación mejoró sus habilidades. A veces, puede actuar de forma no programada.",

@@ -2,7 +2,12 @@
     "name": "Darkrai",
     "number": "491",
     "url": "https://pkparaiso.com//pokedex/darkrai.php",
-    "date": "22-11-2016",
+    "types": [
+        "siniestro"
+    ],
+    "class": "Pokémon Oscuridad",
+    "weight": 50.5,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Diamante": "Las historias populares cuentan que en las noches sin luna hace soñar pesadillas horribles.",
         " Pokémon Perla": "Puede adormecer a la gente y hacerle soñar. Está activo en las noches de luna nueva.",

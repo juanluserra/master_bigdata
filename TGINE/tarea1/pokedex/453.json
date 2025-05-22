@@ -2,7 +2,13 @@
     "name": "Croagunk",
     "number": "453",
     "url": "https://pkparaiso.com//pokedex/croagunk.php",
-    "date": "24-08-2009",
+    "types": [
+        "veneno",
+        "lucha"
+    ],
+    "class": "Pokémon Boca Tóxica",
+    "weight": 23.0,
+    "height": 0.7,
     "descriptions": {
         " Pokémon Diamante": "Cuando infla sus bolsas venenosas, emite un fuerte sonido para intimidar.",
         " Pokémon Perla": "Tiene bolsas venenosas en las mejillas. Pilla desprevenidos a sus rivales para pincharles.",

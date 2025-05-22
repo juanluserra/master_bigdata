@@ -1,0 +1,26 @@
+{
+    "name": "Munchlax",
+    "number": "446",
+    "url": "https://pkparaiso.com//pokedex/munchlax.php",
+    "types": [
+        "normal"
+    ],
+    "class": "Pokémon Comilón",
+    "weight": 105.0,
+    "height": 0.6,
+    "descriptions": {
+        " Pokémon Diamante": "Esconde comida bajo el largo pelo de su cuerpo, pero más tarde lo olvida.",
+        " Pokémon Perla": "Engulle su peso en comida una vez al día. Se lo traga todo sin apenas masticar.",
+        " Pokémon Platino": "En su desesperación por engullir comida, se suele olvidar de la que esconde debajo de su pelaje.",
+        " Pokémon HeartGold": "En el interior de su pelaje revuelto esconde la comida que luego engullirá de una vez.",
+        " Pokémon SoulSilver": "En el interior de su pelaje revuelto esconde la comida que luego engullirá de una vez.",
+        " Pokémon Negro": "En su desesperación por engullir comida, se suele olvidar de la que esconde debajo de su pelaje.",
+        " Pokémon Blanco": "En su desesperación por engullir comida, se suele olvidar de la que esconde debajo de su pelaje.",
+        " Pokémon X": "Esconde comida bajo el largo pelo de su cuerpo, pero más tarde lo olvida.",
+        " Pokémon Y": "En el interior de su pelaje revuelto esconde la comida que luego engullirá de una vez.",
+        " Pokémon Rubí Omega": "Esconde comida bajo el largo pelo de su cuerpo, pero más tarde lo olvida.",
+        " Pokémon Zafiro Alfa": "En el interior de su pelaje revuelto esconde la comida que luego engullirá de una vez.",
+        " Pokémon Sol": "Necesita ingerir cada día el equivalente a su peso corporal en comida. Le importa poco el sabor que pueda tener.",
+        " Pokémon Luna": "En cuanto encuentra algo comestible, lo recoge y lo engulle de un bocado, por lo que cada día está más y más gordo."
+    }
+}

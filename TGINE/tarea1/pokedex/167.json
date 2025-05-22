@@ -2,7 +2,13 @@
     "name": "Spinarak",
     "number": "167",
     "url": "https://pkparaiso.com//pokedex/spinarak.php",
-    "date": "11-08-2017",
+    "types": [
+        "bicho",
+        "veneno"
+    ],
+    "class": "Pokémon Escupesoga",
+    "weight": 8.5,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Oro": "Mantiene la misma postura en su telaraña Durante días, esperando a que se acerque una presa inocente.",
         " Pokémon Plata": "Teje su telaraña con hilo fino pero resistente. Espera pacientemente a que caiga su presa.",

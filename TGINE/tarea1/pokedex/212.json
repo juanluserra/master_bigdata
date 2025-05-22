@@ -2,7 +2,13 @@
     "name": "Scizor",
     "number": "212",
     "url": "https://pkparaiso.com//pokedex/scizor.php",
-    "date": "11-01-2017",
+    "types": [
+        "bicho",
+        "acero"
+    ],
+    "class": "Pokémon Tenaza",
+    "weight": 118.0,
+    "height": 1.8,
     "descriptions": {
         " Pokémon Oro": "Mueve sus pinzas para asustar al enemigo. Por los dibujos de su cuerpo parece tener 3 cabezas.",
         " Pokémon Plata": "No usa sus alas para volar. Las agita a gran velocidad para regular su temperatura.",

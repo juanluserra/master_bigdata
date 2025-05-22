@@ -2,7 +2,13 @@
     "name": "Ariados",
     "number": "168",
     "url": "https://pkparaiso.com//pokedex/ariados.php",
-    "date": "10-07-2000",
+    "types": [
+        "bicho",
+        "veneno"
+    ],
+    "class": "Pokémon Pata Larga",
+    "weight": 33.5,
+    "height": 1.1,
     "descriptions": {
         " Pokémon Oro": "Teje su telaraña desde atrás y desde su boca. Es muy difícil saber dónde está cada cual.",
         " Pokémon Plata": "Una hebra de un hilo especial es tejida sin fin desde su parte trasera. El hilo acaba en su nido.",

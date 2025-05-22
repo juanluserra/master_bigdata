@@ -2,7 +2,13 @@
     "name": "Magnezone",
     "number": "462",
     "url": "https://pkparaiso.com//pokedex/magnezone.php",
-    "date": "03-07-2008",
+    "types": [
+        "electrico",
+        "acero"
+    ],
+    "class": "Pokémon Magnético",
+    "weight": 180.0,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Diamante": "Evolucionó por la exposición a un campo magnético especial. Tres unidades generan magnetismo.",
         " Pokémon Perla": "Evolucionó por la exposición a un campo magnético especial. Tres unidades generan magnetismo.",

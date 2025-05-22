@@ -2,7 +2,12 @@
     "name": "Elekid",
     "number": "239",
     "url": "https://pkparaiso.com//pokedex/elekid.php",
-    "date": "15-05-2020",
+    "types": [
+        "electrico"
+    ],
+    "class": "Pokémon Eléctrico",
+    "weight": 23.5,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Oro": "Gira sus brazos para generar electricidad, pero se agota rápido, así que sólo se recarga un poco.",
         " Pokémon Plata": "Incluso en la peor de las tormentas, este Pokémon juega feliz si un trueno cruza el cielo.",

@@ -2,7 +2,13 @@
     "name": "Magnemite",
     "number": "081",
     "url": "https://pkparaiso.com//pokedex/magnemite.php",
-    "date": "29-06-2019",
+    "types": [
+        "electrico",
+        "acero"
+    ],
+    "class": "Pokémon Imán",
+    "weight": 6.0,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Rojo y Azul": "Anula la gravedad para mantenerse en el aire. Sin previo aviso usa la ONDATRUENO y parecidos",
         " Pokémon Amarillo": "Puede desafiar a la gravedad desde su nacimiento. Flota en el aire gracias a ondas electromagnéticas",

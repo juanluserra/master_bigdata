@@ -2,7 +2,12 @@
     "name": "Groudon",
     "number": "383",
     "url": "https://pkparaiso.com//pokedex/groudon.php",
-    "date": "24-06-2021",
+    "types": [
+        "tierra"
+    ],
+    "class": "Pokémon Continente",
+    "weight": 950.0,
+    "height": 3.5,
     "descriptions": {
         " Pokémon Rubí": "A Groudon siempre se le ha descrito en mitología como el Pokémon que elevó la tierra y expandió los continentes. Tras un combate contra Kyogre que acabó en cataclismo, se echó a dormir.",
         " Pokémon Zafiro": "Groudon tiene el poder de disipar las nubes que amenazan con lluvia y de hacer que el agua se evapore con luz y calor. Es el héroe de quienes sufren terribles inundaciones.",

@@ -2,7 +2,13 @@
     "name": "Relicanth",
     "number": "369",
     "url": "https://pkparaiso.com//pokedex/relicanth.php",
-    "date": "10-05-2019",
+    "types": [
+        "agua",
+        "roca"
+    ],
+    "class": "Pokémon Longevo",
+    "weight": 23.4,
+    "height": 1.0,
     "descriptions": {
         " Pokémon Rubí": "Relicanth pertenece a una especie de Pokémon que lleva millones de años sin cambiar de forma. Este ancestral Pokémon se alimenta de microorganismos por la boca desdentada que tiene.",
         " Pokémon Zafiro": "Relicanth pertenece a una rara especie descubierta al explorar el fondo marino. Es grande y está cubierto de toscas y duras escamas, con las que puede soportar la presión del fondo oceánico.",

@@ -2,7 +2,13 @@
     "name": "Rufflet",
     "number": "627",
     "url": "https://pkparaiso.com//pokedex/rufflet.php",
-    "date": "01-02-2008",
+    "types": [
+        "normal",
+        "volador"
+    ],
+    "class": "Pokémon Aguilucho",
+    "weight": 10.5,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Negro": "Quiebra bayas con sus extremidades. Se enfrenta con valentía a todo enemigo por fuerte que este sea.",
         " Pokémon Blanco": "Desafía indiscriminadamente a rivales poderosos. Librar numerosas batallas lo hace fuerte.",

@@ -2,7 +2,12 @@
     "name": "Regigigas",
     "number": "486",
     "url": "https://pkparaiso.com//pokedex/regigigas.php",
-    "date": "09-05-2023",
+    "types": [
+        "normal"
+    ],
+    "class": "Pokémon Colosal",
+    "weight": 420.0,
+    "height": 3.7,
     "descriptions": {
         " Pokémon Diamante": "Una antigua leyenda afirma que este Pokémon arrastraba continentes con cuerdas.",
         " Pokémon Perla": "Una antigua leyenda afirma que este Pokémon arrastraba continentes con cuerdas.",

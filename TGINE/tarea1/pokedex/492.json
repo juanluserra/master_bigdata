@@ -2,7 +2,12 @@
     "name": "Shaymin",
     "number": "492",
     "url": "https://pkparaiso.com//pokedex/shaymin.php",
-    "date": "05-09-2009",
+    "types": [
+        "planta"
+    ],
+    "class": "Pokémon Gratitud",
+    "weight": 2.1,
+    "height": 0.2,
     "descriptions": {
         " Pokémon Diamante": "Puede disolver las toxinas del aire para transformar tierra yerma en campos de flores.",
         " Pokémon Perla": "Vive entre las flores. Para evitar ser descubierto, se enrosca como si fuera una planta.",

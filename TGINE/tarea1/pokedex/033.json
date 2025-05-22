@@ -2,7 +2,12 @@
     "name": "Nidorino",
     "number": "033",
     "url": "https://pkparaiso.com//pokedex/nidorino.php#ventajas",
-    "date": "23-09-2000",
+    "types": [
+        "veneno"
+    ],
+    "class": "Pokémon Pin Veneno",
+    "weight": 19.5,
+    "height": 0.9,
     "descriptions": {
         " Pokémon Rojo y Azul": "Un Pokémon agresivo, siempre listo para atacar. El cuerno de su cabeza segrega un potente veneno",
         " Pokémon Amarillo": "Sus cuernos contienen veneno. Si se introducen en el cuerpo del enemigo, soltarán su tóxica carga",

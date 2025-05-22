@@ -2,7 +2,13 @@
     "name": "Articuno",
     "number": "144",
     "url": "https://pkparaiso.com//pokedex/articuno.php",
-    "date": "07-07-2010",
+    "types": [
+        "hielo",
+        "volador"
+    ],
+    "class": "Pokémon Congelar",
+    "weight": 55.4,
+    "height": 1.7,
     "descriptions": {
         " Pokémon Rojo y Azul": "Un legendario pájaro Pokémon. Se aparece a la gente que se ha perdido en las heladas montañas",
         " Pokémon Amarillo": "Un legendario pájaro Pokémon. Congela el agua que encuentra en el aire para generar nieve",

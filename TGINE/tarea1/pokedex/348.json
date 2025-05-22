@@ -2,7 +2,13 @@
     "name": "Armaldo",
     "number": "348",
     "url": "https://pkparaiso.com//pokedex/armaldo.php",
-    "date": "12-09-2002",
+    "types": [
+        "roca",
+        "bicho"
+    ],
+    "class": "Pokémon Armadura",
+    "weight": 68.2,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Rubí": "Armaldo tiene una sólida armadura que repele cualquier ataque. Este Pokémon puede estirar o encoger todo lo que quiera las pinzas que tiene. Con ellas, puede atravesar una plancha de acero.",
         " Pokémon Zafiro": "Armaldo es una de las especies de Pokémon que se extinguieron en la era prehistórica. Se cree que caminaban sobre las patas traseras; lo más apropiado para la vida en tierra firme.",

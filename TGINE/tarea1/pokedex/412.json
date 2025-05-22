@@ -2,7 +2,12 @@
     "name": "Burmy",
     "number": "412",
     "url": "https://pkparaiso.com//pokedex/burmy.php",
-    "date": "22-02-2007",
+    "types": [
+        "bicho"
+    ],
+    "class": "Pokémon Larva",
+    "weight": 3.4,
+    "height": 0.2,
     "descriptions": {
         " Pokémon Diamante": "Si su caparazón se rompe en combate, lo rehace rápidamente con lo que tenga a mano.",
         " Pokémon Perla": "Para protegerse de los vientos fríos invernales, se cubre con un caparazón de ramas y hojas.",

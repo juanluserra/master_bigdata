@@ -2,7 +2,12 @@
     "name": "Dusknoir",
     "number": "477",
     "url": "https://pkparaiso.com//pokedex/dusknoir.php",
-    "date": "08-04-2012",
+    "types": [
+        "fantasma"
+    ],
+    "class": "Pokémon Grilletes",
+    "weight": 106.6,
+    "height": 2.2,
     "descriptions": {
         " Pokémon Diamante": "La antena de la cabeza captura ondas de radio lejanas que le permiten secuestrar a gente.",
         " Pokémon Perla": "La antena de la cabeza captura ondas de radio lejanas que le permiten secuestrar a gente.",

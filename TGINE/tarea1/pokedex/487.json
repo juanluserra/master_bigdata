@@ -2,7 +2,13 @@
     "name": "Giratina",
     "number": "487",
     "url": "https://pkparaiso.com//pokedex/giratina.php",
-    "date": "02-12-2002",
+    "types": [
+        "fantasma",
+        "dragon"
+    ],
+    "class": "Pokémon Renegado",
+    "weight": 750.0,
+    "height": 4.5,
     "descriptions": {
         " Pokémon Diamante": "Se dice que vive en un mundo en el lado inverso del nuestro. Aparece en viejos cementerios.",
         " Pokémon Perla": "Se dice que vive en un mundo en el lado inverso del nuestro. Aparece en viejos cementerios.",

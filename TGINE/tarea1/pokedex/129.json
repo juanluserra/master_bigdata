@@ -2,7 +2,12 @@
     "name": "Magikarp",
     "number": "129",
     "url": "https://pkparaiso.com//pokedex/magikarp.php",
-    "date": "14-06-2016",
+    "types": [
+        "agua"
+    ],
+    "class": "Pokémon Pez",
+    "weight": 10.0,
+    "height": 0.9,
     "descriptions": {
         " Pokémon Rojo y Azul": "En un pasado lejano, era más fuerte que sus horribles descendientes de hoy en día",
         " Pokémon Amarillo": "Famoso por ser poco fiable. Puede encontrarse nadando en mares, lagos, ríos y charcos",

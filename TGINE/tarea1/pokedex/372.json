@@ -2,7 +2,12 @@
     "name": "Shelgon",
     "number": "372",
     "url": "https://pkparaiso.com//pokedex/shelgon.php",
-    "date": "01-12-2019",
+    "types": [
+        "dragon"
+    ],
+    "class": "Pokémon Resistencia",
+    "weight": 110.5,
+    "height": 1.1,
     "descriptions": {
         " Pokémon Rubí": "Dentro de la capa acorazada de Shelgon, las células están en pleno proceso de creación de un cuerpo nuevo. El peso de la coraza le hace tener unos movimientos lentos.",
         " Pokémon Zafiro": "Shelgon está recubierto por una especie de capa ósea: una coraza muy dura que hace rebotar los ataques enemigos. Este Pokémon se esconde en las cavernas para evolucionar.",

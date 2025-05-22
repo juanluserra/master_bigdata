@@ -2,7 +2,13 @@
     "name": "Spearow",
     "number": "021",
     "url": "https://pkparaiso.com//pokedex/spearow.php",
-    "date": "10-08-2011",
+    "types": [
+        "normal",
+        "volador"
+    ],
+    "class": "Pokémon Pajarito",
+    "weight": 2.0,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Rojo y Azul": "Come bichos en zonas de hierba. Agita sus cortas alas muy rápido para mantenerse en el aire",
         " Pokémon Amarillo": "Es incapaz de volar a gran altura, pero es muy rápido, lo que le permite protegerse",

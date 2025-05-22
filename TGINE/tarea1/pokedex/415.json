@@ -2,7 +2,13 @@
     "name": "Combee",
     "number": "415",
     "url": "https://pkparaiso.com//pokedex/combee.php",
-    "date": "26-11-2019",
+    "types": [
+        "bicho",
+        "volador"
+    ],
+    "class": "Pokémon Abejita",
+    "weight": 5.5,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Diamante": "Almacenan miel en su colonia. Por la noche, se apiñan para formar una colmena y dormir.",
         " Pokémon Perla": "Está formado por otros tres Pokémon. Le lleva miel floral a Vespiquen.",

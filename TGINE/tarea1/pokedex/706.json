@@ -2,7 +2,12 @@
     "name": "Goodra",
     "number": "706",
     "url": "https://pkparaiso.com//pokedex/goodra.php",
-    "date": "23-12-2018",
+    "types": [
+        "dragon"
+    ],
+    "class": "Pokémon Dragón",
+    "weight": 150.5,
+    "height": 2.0,
     "descriptions": {
         " Pokémon X": "Pokémon de tipo Dragón muy afable al que le gusta abrazar con efusión a su Entrenador, aunque después lo deja totalmente pringado.",
         " Pokémon Y": "Ataca con sus antenas retráctiles, desplegando una fuerza comparable a los puñetazos de 100 boxeadores profesionales.",

@@ -2,7 +2,13 @@
     "name": "Drifblim",
     "number": "426",
     "url": "https://pkparaiso.com//pokedex/drifblim.php",
-    "date": "29-12-2004",
+    "types": [
+        "fantasma",
+        "volador"
+    ],
+    "class": "Pokémon Dirigible",
+    "weight": 15.0,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Diamante": "Transporta a gente y a Pokémon volando pero, como se deja llevar, puede acabar en cualquier sitio.",
         " Pokémon Perla": "Durante el día está somnoliento, pero por la noche sale volando en grupo, aunque nadie sabe adónde.",

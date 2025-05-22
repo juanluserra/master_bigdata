@@ -2,7 +2,13 @@
     "name": "Lunatone",
     "number": "337",
     "url": "https://pkparaiso.com//pokedex/lunatone.php",
-    "date": "04-09-2006",
+    "types": [
+        "roca",
+        "psiquico"
+    ],
+    "class": "Pokémon Meteorito",
+    "weight": 168.0,
+    "height": 1.0,
     "descriptions": {
         " Pokémon Rubí": "Lunatone fue descubierto en el lugar de impacto de un meteorito. Por eso, hay quien especula con la idea de que procede del espacio. Con todo, hasta el día de hoy nadie ha podido probar esta teoría.",
         " Pokémon Zafiro": "Lunatone entra en actividad en épocas de luna llena más o menos. No camina, se desplaza flotando por el aire. Tiene unos ojos rojos sobrecogedores que cortan la respiración a todo aquel que los ve.",

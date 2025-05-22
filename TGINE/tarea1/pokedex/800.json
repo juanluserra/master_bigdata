@@ -2,7 +2,12 @@
     "name": "Necrozma",
     "number": "800",
     "url": "https://pkparaiso.com//pokedex/necrozma.php",
-    "date": "28-08-2007",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Prisma",
+    "weight": 230.0,
+    "height": 2.4,
     "descriptions": {
         " Pokémon Sol": "Se dice que yacía en el interior de la tierra. Se cree que esta criatura, parecida a un Ultraente, vino de otro mundo hace muchísimo tiempo.",
         " Pokémon Luna": "Este Ultraente parece alimentarse de luz. Posee un carácter muy hostil y no duda en lanzar rayos láser."

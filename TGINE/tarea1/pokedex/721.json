@@ -2,7 +2,13 @@
     "name": "Volcanion",
     "number": "721",
     "url": "https://pkparaiso.com//pokedex/volcanion.php",
-    "date": "23-01-2009",
+    "types": [
+        "fuego",
+        "agua"
+    ],
+    "class": "Pokémon Vapor",
+    "weight": 195.0,
+    "height": 1.7,
     "descriptions": {
         " Pokémon X": "Expulsa vapor y desaparece entre la densa niebla. Dicen que habita en montañas solitarias.",
         " Pokémon Y": "Expulsa vapor de agua por los brazos que tiene en la espalda. Sale a tal potencia que sería capaz de arrasar una montaña entera.",

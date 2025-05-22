@@ -1,0 +1,34 @@
+{
+    "name": "Charmeleon",
+    "number": "005",
+    "url": "https://pkparaiso.com//pokedex/charmeleon.php",
+    "types": [
+        "fuego"
+    ],
+    "class": "Pokémon Llama",
+    "weight": 19.0,
+    "height": 1.1,
+    "descriptions": {
+        " Pokémon Rojo y Azul": "Cuando balancea su ardiente cola, eleva la temperatura a niveles muy altos",
+        " Pokémon Amarillo": "Las duras luchas excitan a este Pokémon. Entonces, lanzará llamaradas blanco-azuladas",
+        " Pokémon Oro": "Por Naturaleza, se acalora con facilidad: siempre está buscando enemigos. Sólo se calma cuando gana.",
+        " Pokémon Plata": "De Naturaleza bárbara, en la batalla esgrime su fiera cola, y araña con sus afiladas garras.",
+        " Pokémon Cristal": "Si se inquieta en combate, expulsa intensas llamaradas que incineran los alrededores.",
+        " Pokémon Rubí": "Charmeleon no tiene reparo en acabar con su rival usando las afiladas garras que tiene. Si su enemigo es fuerte, se vuelve agresivo, y la llama que tiene en el extremo de la cola empieza a arder con mayor intensidad tornándose azulada.",
+        " Pokémon Zafiro": "Charmeleon no tiene reparo en acabar con su rival usando las afiladas garras que tiene. Si su enemigo es fuerte, se vuelve agresivo, y la llama que tiene en el extremo de la cola empieza a arder con mayor intensidad tornándose azulada.",
+        " Pokémon Esmeralda": "Acaba sin piedad con su enemigo usando sus afiladas garras. Ante rivales fuertes se vuelve agresivo y la llama que tiene en la cola arde con un tono azulado.",
+        " Pokémon Rojo Fuego": "Suele usar la cola para derribar a su rival. Cuando lo tira, se vale de sus afiladas garras para acabar con él.",
+        " Pokémon Verde Hoja": "Cuando balancea la ardiente cola, eleva la temperatura a niveles muy altos.",
+        " Pokémon Diamante": "En las montañas rocosas donde viven los Charmeleon, sus colas ardientes brillan como estrellas.",
+        " Pokémon Perla": "En las montañas rocosas donde viven los Charmeleon, sus colas ardientes brillan como estrellas.",
+        " Pokémon Platino": "En las montañas rocosas donde viven los Charmeleon, sus colas ardientes brillan como estrellas.",
+        " Pokémon HeartGold": "Por Naturaleza, se acalora con facilidad: siempre está buscando enemigos. Solo se calma cuando gana.",
+        " Pokémon SoulSilver": "Por Naturaleza, se acalora con facilidad: siempre está buscando enemigos. Solo se calma cuando gana.",
+        " Pokémon Negro": "En las montañas rocosas donde viven los Charmeleon, sus colas ardientes brillan como estrellas.",
+        " Pokémon Blanco": "En las montañas rocosas donde viven los Charmeleon, sus colas ardientes brillan como estrellas.",
+        " Pokémon X": "Suele usar la cola para derribar a su rival. Cuando lo tira, se vale de sus afiladas garras para acabar con él.",
+        " Pokémon Y": "Cuando balancea la ardiente cola, eleva la temperatura a niveles muy altos.",
+        " Pokémon Rubí Omega": "Charmeleon no tiene reparo en acabar con su rival usando las afiladas garras que tiene. Si su enemigo es fuerte, se vuelve agresivo, y la llama que tiene en el extremo de la cola empieza a arder con mayor intensidad tornándose azulada.",
+        " Pokémon Zafiro Alfa": "Charmeleon no tiene reparo en acabar con su rival usando las afiladas garras que tiene. Si su enemigo es fuerte, se vuelve agresivo, y la llama que tiene en el extremo de la cola empieza a arder con mayor intensidad tornándose azulada."
+    }
+}

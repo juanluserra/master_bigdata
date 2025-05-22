@@ -2,7 +2,12 @@
     "name": "Misdreavus",
     "number": "200",
     "url": "https://pkparaiso.com//pokedex/misdreavus.php",
-    "date": "05-03-2012",
+    "types": [
+        "fantasma"
+    ],
+    "class": "Pokémon Chirrido",
+    "weight": 1.0,
+    "height": 0.7,
     "descriptions": {
         " Pokémon Oro": "Le gusta hacer travesuras como gritar y aullar por la noche, para asustar a la gente.",
         " Pokémon Plata": "Le gusta morder y tirar del pelo de la gente desde atrás sin avisar, sólo para ver su reacción.",

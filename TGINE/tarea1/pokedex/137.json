@@ -2,7 +2,12 @@
     "name": "Porygon",
     "number": "137",
     "url": "https://pkparaiso.com//pokedex/porygon.php",
-    "date": "23-03-2004",
+    "types": [
+        "normal"
+    ],
+    "class": "Pokémon Virtual",
+    "weight": 36.5,
+    "height": 0.8,
     "descriptions": {
         " Pokémon Rojo y Azul": "Un Pokémon formado por códigos de programación. Se mueve libre en el ciberespacio",
         " Pokémon Amarillo": "La gente dice que se trata del único Pokémon que puede volar por el espacio. Aún no lo ha logrado",

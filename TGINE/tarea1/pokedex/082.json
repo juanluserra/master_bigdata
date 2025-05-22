@@ -2,7 +2,13 @@
     "name": "Magneton",
     "number": "082",
     "url": "https://pkparaiso.com//pokedex/magneton.php",
-    "date": "16-12-2010",
+    "types": [
+        "electrico",
+        "acero"
+    ],
+    "class": "Pokémon Imán",
+    "weight": 60.0,
+    "height": 1.0,
     "descriptions": {
         " Pokémon Rojo y Azul": "Están formados por Magnemites unidos. Suelen aparecer cuando arden las manchas solares",
         " Pokémon Amarillo": "Genera extrañas señales de radio. Es capaz de elevar la temperatura 3 centígrados",

@@ -2,7 +2,12 @@
     "name": "Registeel",
     "number": "379",
     "url": "https://pkparaiso.com//pokedex/registeel.php",
-    "date": "04-05-2013",
+    "types": [
+        "acero"
+    ],
+    "class": "Pokémon Hierro",
+    "weight": 205.0,
+    "height": 1.9,
     "descriptions": {
         " Pokémon Rubí": "No hay metal que supere en dureza el cuerpo de Registeel, que tiene aspecto de estar hueco. Nadie sabe de qué se alimenta este Pokémon.",
         " Pokémon Zafiro": "Hace mucho tiempo Registeel estuvo preso. La gente piensa que el metal del que está hecho es una curiosa sustancia extraterrestre.",

@@ -2,7 +2,13 @@
     "name": "Lugia",
     "number": "249",
     "url": "https://pkparaiso.com//pokedex/lugia.php",
-    "date": "30-12-2004",
+    "types": [
+        "psiquico",
+        "volador"
+    ],
+    "class": "Pokémon Buceo",
+    "weight": 216.0,
+    "height": 5.2,
     "descriptions": {
         " Pokémon Oro": "Dicen que permanece en silencio en el fondo del mar debido a su inmenso poder.",
         " Pokémon Plata": "Dicen que es el guardián de los mares. Hay rumores de que fue visto en una noche de tormenta.",

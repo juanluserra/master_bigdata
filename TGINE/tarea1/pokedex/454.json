@@ -2,7 +2,13 @@
     "name": "Toxicroak",
     "number": "454",
     "url": "https://pkparaiso.com//pokedex/toxicroak.php",
-    "date": "27-04-2004",
+    "types": [
+        "veneno",
+        "lucha"
+    ],
+    "class": "Pokémon Boca Tóxica",
+    "weight": 44.4,
+    "height": 1.3,
     "descriptions": {
         " Pokémon Diamante": "Sus bolsas venenosas almacenan una toxina que le llega a las garras por unos tubos en los brazos.",
         " Pokémon Perla": "Sus garras segregan una toxina tan potente que un simple arañazo puede ser mortal.",

@@ -2,7 +2,13 @@
     "name": "Litwick",
     "number": "607",
     "url": "https://pkparaiso.com//pokedex/litwick.php",
-    "date": "23-03-2000",
+    "types": [
+        "fantasma",
+        "fuego"
+    ],
+    "class": "Pokémon Vela",
+    "weight": 3.1,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Negro": "La luz que desprende absorbe la energía vital de humanos y Pokémon.",
         " Pokémon Blanco": "Finge ser una luz guía en el camino, pero en realidad solo quiere absorber la energía vital de quien lo sigue.",

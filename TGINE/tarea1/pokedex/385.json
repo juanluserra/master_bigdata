@@ -2,7 +2,13 @@
     "name": "Jirachi",
     "number": "385",
     "url": "https://pkparaiso.com//pokedex/jirachi.php",
-    "date": "04-03-2012",
+    "types": [
+        "acero",
+        "psiquico"
+    ],
+    "class": "Pokémon Deseo",
+    "weight": 1.1,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Rubí": "Cuenta la leyenda que Jirachi hará realidad el deseo que se le escriba en las notas que lleva en la cabeza cuando las lea al despertarse. Si este Pokémon siente peligro, luchará sin haber llegado a despertarse.",
         " Pokémon Zafiro": "Jirachi despertará de su letargo de miles de años si se le canta con una voz pura. Dicen que este Pokémon hace realidad cualquier deseo que se tenga.",

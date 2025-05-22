@@ -2,7 +2,12 @@
     "name": "Vanillite",
     "number": "582",
     "url": "https://pkparaiso.com//pokedex/vanillite.php",
-    "date": "21-06-2000",
+    "types": [
+        "hielo"
+    ],
+    "class": "Pokémon Nieve Fresca",
+    "weight": 5.7,
+    "height": 0.4,
     "descriptions": {
         " Pokémon Negro": "Lanza un aliento de 50° bajo cero. Crea bloques de nieve y es capaz de lograr que nieve a su alrededor.",
         " Pokémon Blanco": "Nació de un carámbano que absorbió la energía del sol al alba. Duerme arropado por la nieve.",

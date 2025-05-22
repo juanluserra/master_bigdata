@@ -2,7 +2,12 @@
     "name": "Gigalith",
     "number": "526",
     "url": "https://pkparaiso.com//pokedex/gigalith.php",
-    "date": "17-01-2012",
+    "types": [
+        "roca"
+    ],
+    "class": "Pokémon Presurizado",
+    "weight": 260.0,
+    "height": 1.7,
     "descriptions": {
         " Pokémon Negro": "El núcleo de su cuerpo comprime la energía para lanzar ataques capaces de destruir una montaña.",
         " Pokémon Blanco": "Con los cristales naranjas de su cuerpo, absorbe la energía de los rayos de sol, la amplifica y la expulsa por la boca.",

@@ -2,7 +2,13 @@
     "name": "Venipede",
     "number": "543",
     "url": "https://pkparaiso.com//pokedex/venipede.php",
-    "date": "14-07-2001",
+    "types": [
+        "bicho",
+        "veneno"
+    ],
+    "class": "Pokémon Ciempiés",
+    "weight": 5.3,
+    "height": 0.4,
     "descriptions": {
         " Pokémon Negro": "Inocula un poderoso veneno al morder. Hasta sus enemigos acérrimos, los Pokémon pájaro, se quedan inmóviles.",
         " Pokémon Blanco": "Percibe su entorno con su sentido del tacto, residente en su cabeza y cola. Su carácter es violento por naturaleza.",

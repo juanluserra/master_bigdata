@@ -2,7 +2,12 @@
     "name": "Tynamo",
     "number": "602",
     "url": "https://pkparaiso.com//pokedex/tynamo.php",
-    "date": "27-03-2018",
+    "types": [
+        "electrico"
+    ],
+    "class": "Pokémon Electropez",
+    "weight": 0.3,
+    "height": 0.2,
     "descriptions": {
         " Pokémon Negro": "La electricidad de uno solo es diminuta, pero, si multitud de Tynamo se conectan, consiguen la potencia de un rayo.",
         " Pokémon Blanco": "Actúa siempre en su cardumen. Cuenta con un mecanismo que genera electricidad y la libera cuando está en peligro.",

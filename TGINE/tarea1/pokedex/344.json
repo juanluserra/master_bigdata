@@ -2,7 +2,13 @@
     "name": "Claydol",
     "number": "344",
     "url": "https://pkparaiso.com//pokedex/claydol.php",
-    "date": "31-03-2002",
+    "types": [
+        "tierra",
+        "psiquico"
+    ],
+    "class": "Pokémon Muñeca Barro",
+    "weight": 108.0,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Rubí": "Dicen que los Claydol son figuras de barro hechas por humanos primitivos. Y dicen también que cobrAron vida gracias a un misterioso rayo. Este Pokémon se mueve mientras levita.",
         " Pokémon Zafiro": "Claydol es un enigma, una figura de barro procedente de una civilización antigua de hace más de 20.000 años. Este Pokémon dispara rayos por las manos.",

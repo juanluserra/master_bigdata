@@ -2,7 +2,12 @@
     "name": "Grimer",
     "number": "088",
     "url": "https://pkparaiso.com//pokedex/grimer.php",
-    "date": "20-03-2020",
+    "types": [
+        "veneno"
+    ],
+    "class": "Pokémon Lodo",
+    "weight": 30.0,
+    "height": 0.9,
     "descriptions": {
         " Pokémon Rojo y Azul": "Aparece en zonas asquerosas. Crece absorbiendo los residuos tóxicos expulsados por las fábricas",
         " Pokémon Amarillo": "Está hecho de fango endurecido. Huele a pútrido. ¡Por donde pasa, no crece la hierba!",

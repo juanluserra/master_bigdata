@@ -1,0 +1,35 @@
+{
+    "name": "Vileplume",
+    "number": "045",
+    "url": "https://pkparaiso.com//pokedex/vileplume.php",
+    "types": [
+        "planta",
+        "veneno"
+    ],
+    "class": "Pokémon Flor",
+    "weight": 18.6,
+    "height": 1.2,
+    "descriptions": {
+        " Pokémon Rojo y Azul": "A mayor pétalo, más tóxico es su polen. Su cabeza es pesada y le cuesta mantenerla",
+        " Pokémon Amarillo": "Aletea sus pétalos de flores para propagar su venenoso polen. El sonido que emite es agudo",
+        " Pokémon Oro": "Tiene los pétalos más grandes del mundo. Éstos expulsan densas nubes de polen tóxico al caminar.",
+        " Pokémon Plata": "El capullo florece de golpe. Entonces, empieza a soltar polen alergénico y venenoso.",
+        " Pokémon Cristal": "Al sacudir los enormes pétalos que tiene, libera nubes de polen tóxico de color amarillo.",
+        " Pokémon Rubí": "El polen que contienen las esporas tóxicas de Vileplume causan unos ataques de alergia muy agudos. Por eso, no es aconsejable acercarse a ninguna flor que resulte atractiva, por muy bonita que sea.",
+        " Pokémon Zafiro": "Vileplume tiene los mayores pétalos del mundo. Los usa para atraer a sus presas y llenarlas de esporas tóxicas. Una vez ha inmovilizado a las víctimas, las atrapa y las devora.",
+        " Pokémon Esmeralda": "En las estaciones en las que produce más polen, Vileplume tiñe de amarillo el aire al caminar. El polen es altamente tóxico y provoca parálisis.",
+        " Pokémon Rojo Fuego": "Tiene unos pétalos inmensos. Libera con la mejor sonrisa un polen que provoca agudos ataques de alergia.",
+        " Pokémon Verde Hoja": "Cuanto mayores son sus pétalos, más tóxico es su polen. Le pesa la cabeza y le cuesta mantenerla erguida.",
+        " Pokémon Diamante": "Sus pétalos son los más grandes del mundo. Cuando anda desprende un terrible polen alergénico.",
+        " Pokémon Perla": "Sus pétalos son los más grandes del mundo. Cuando anda desprende un terrible polen alergénico.",
+        " Pokémon Platino": "Sus pétalos son los más grandes del mundo. Cuando anda desprende un terrible polen alergénico.",
+        " Pokémon HeartGold": "Tiene los pétalos más grandes del mundo. Estos expulsan densas nubes de polen tóxico al caminar.",
+        " Pokémon SoulSilver": "Tiene los pétalos más grandes del mundo. Estos expulsan densas nubes de polen tóxico al caminar.",
+        " Pokémon Negro": "Sus pétalos son los más grandes del mundo. Cuando anda, desprende un terrible polen alergénico.",
+        " Pokémon Blanco": "Sus pétalos son los más grandes del mundo. Cuando anda, desprende un terrible polen alergénico.",
+        " Pokémon X": "Cuanto mayores son sus pétalos, más tóxico es su polen. Le pesa la cabeza y le cuesta mantenerla erguida.",
+        " Pokémon Y": "Tiene los pétalos más grandes del mundo. Estos expulsan densas nubes de polen tóxico al caminar.",
+        " Pokémon Rubí Omega": "El polen que contienen las esporas tóxicas de Vileplume causa unos ataques de alergia muy agudos. Por eso, no es aconsejable acercarse a ninguna flor selvática, por muy bonita que sea.",
+        " Pokémon Zafiro Alfa": "Vileplume tiene los mayores pétalos del mundo. Los usa para atraer a sus presas y llenarlas de esporas tóxicas. Una vez que ha inmovilizado a las víctimas, las atrapa y las devora."
+    }
+}

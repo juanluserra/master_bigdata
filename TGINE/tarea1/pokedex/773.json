@@ -2,7 +2,12 @@
     "name": "Silvally",
     "number": "773",
     "url": "https://pkparaiso.com//pokedex/silvally.php",
-    "date": "04-01-2011",
+    "types": [
+        "normal"
+    ],
+    "class": "Pokémon Multigénico",
+    "weight": 100.5,
+    "height": 2.3,
     "descriptions": {
         " Pokémon Sol": "La confianza con su Entrenador ha despertado su potencial. Ahora es capaz de cambiar de tipo a voluntad durante el combate.",
         " Pokémon Luna": "Debe su nombre al joven que hizo evolucionar por primera vez a Código Cero para que adquiriese este aspecto."

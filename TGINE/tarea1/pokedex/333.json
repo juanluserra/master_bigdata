@@ -2,7 +2,13 @@
     "name": "Swablu",
     "number": "333",
     "url": "https://pkparaiso.com//pokedex/swablu.php",
-    "date": "18-01-2015",
+    "types": [
+        "normal",
+        "volador"
+    ],
+    "class": "Pokémon Ave Algodón",
+    "weight": 1.2,
+    "height": 0.4,
     "descriptions": {
         " Pokémon Rubí": "Swablu tiene unas alas ligeras y esponjosas que parecen nubes de algodón. A este Pokémon no le asusta la gente. De hecho, se te puede posar en la cabeza y servirte de gorro sedoso.",
         " Pokémon Zafiro": "A Swablu le encanta limpiarlo todo. Si ve algo sucio, lo dejará como nuevo y reluciente con las alas de algodón que tiene. Cuando se le ensucian, busca un manantial y las limpia.",

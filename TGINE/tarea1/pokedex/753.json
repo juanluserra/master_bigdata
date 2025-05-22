@@ -2,7 +2,12 @@
     "name": "Fomantis",
     "number": "753",
     "url": "https://pkparaiso.com//pokedex/fomantis.php",
-    "date": "11-09-2009",
+    "types": [
+        "planta"
+    ],
+    "class": "Pokémon Filo Hoja",
+    "weight": 1.5,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Sol": "Mientras que de día duerme tranquilamente a la luz del sol, al caer la noche busca un sitio más seguro para dormir.",
         " Pokémon Luna": "Desprende un aroma fresco y dulce. En la hierba alta donde se esconde también suelen acudir Cutiefly."

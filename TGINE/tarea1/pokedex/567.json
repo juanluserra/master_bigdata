@@ -2,7 +2,13 @@
     "name": "Archeops",
     "number": "567",
     "url": "https://pkparaiso.com//pokedex/archeops.php",
-    "date": "23-11-2017",
+    "types": [
+        "roca",
+        "volador"
+    ],
+    "class": "Pokémon Protopájaro",
+    "weight": 32.0,
+    "height": 1.4,
     "descriptions": {
         " Pokémon Negro": "Levanta el vuelo tras coger carrerilla. Coopera con sus compañeros de bandada para atrapar a sus presas.",
         " Pokémon Blanco": "Se le da mejor correr que volar. Atrapa a sus presas corriendo más rápido que un coche.",

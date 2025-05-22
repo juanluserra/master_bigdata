@@ -2,7 +2,12 @@
     "name": "Caterpie",
     "number": "010",
     "url": "https://pkparaiso.com//pokedex/caterpie.php",
-    "date": "02-10-2004",
+    "types": [
+        "bicho"
+    ],
+    "class": "Pokémon Gusano",
+    "weight": 2.9,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Rojo y Azul": "Sus cortas patas están recubiertas de ventosas que le permiten subir incansable por muros y cuestas",
         " Pokémon Amarillo": "Si tocas los receptores de su cabeza, soltará un terrible olor para protegerse",

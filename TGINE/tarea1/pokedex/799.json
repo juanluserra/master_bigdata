@@ -2,7 +2,13 @@
     "name": "Guzzlord",
     "number": "799",
     "url": "https://pkparaiso.com//pokedex/guzzlord.php",
-    "date": "10-11-2020",
+    "types": [
+        "siniestro",
+        "dragon"
+    ],
+    "class": "Pokémon Tragaldabas",
+    "weight": 888.0,
+    "height": 5.5,
     "descriptions": {
         " Pokémon Sol": "Se dice que este Ultraente ha sido avistado devorando montañas enteras y tragándose prominentes edificios.",
         " Pokémon Luna": "Un Ultraente extremadamente peligroso. Engulle todo lo que encuentra, pero, por alguna razón, no se han encontrado excrementos suyos."

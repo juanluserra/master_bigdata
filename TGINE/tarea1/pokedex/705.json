@@ -2,7 +2,12 @@
     "name": "Sliggoo",
     "number": "705",
     "url": "https://pkparaiso.com//pokedex/sliggoo.php",
-    "date": "13-01-2003",
+    "types": [
+        "dragon"
+    ],
+    "class": "Pokémon Molusco",
+    "weight": 17.5,
+    "height": 0.8,
     "descriptions": {
         " Pokémon X": "Segrega una mucosidad que corroe todo lo que toca y consigue así ahuyentar al enemigo. Sus ojos han involucionado, por lo que no puede ver.",
         " Pokémon Y": "Sus cuatro antenas constituyen un radar de gran potencia. Hacen las veces de nariz y oídos para percibir tanto ruidos como olores.",

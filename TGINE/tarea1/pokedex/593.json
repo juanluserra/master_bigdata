@@ -2,7 +2,13 @@
     "name": "Jellicent",
     "number": "593",
     "url": "https://pkparaiso.com//pokedex/jellicent.php",
-    "date": "14-12-2022",
+    "types": [
+        "agua",
+        "fantasma"
+    ],
+    "class": "Pokémon Ingrávido",
+    "weight": 135.0,
+    "height": 2.2,
     "descriptions": {
         " Pokémon Negro": "Jellicent hunde los barcos que acaban perdidos en su territorio y absorbe la energía vital de su tripulación.",
         " Pokémon Blanco": "Avanza expulsando violentamente el agua de mar absorbida anteriormente. Le encanta la energía vital.",

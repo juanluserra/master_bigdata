@@ -2,7 +2,12 @@
     "name": "Finneon",
     "number": "456",
     "url": "https://pkparaiso.com//pokedex/finneon.php",
-    "date": "05-06-2010",
+    "types": [
+        "agua"
+    ],
+    "class": "Pokémon Pez Ala",
+    "weight": 7.0,
+    "height": 0.4,
     "descriptions": {
         " Pokémon Diamante": "Se le llama el ",
         " Pokémon Perla": "Si se expone mucho al sol, los dibujos de sus aletas brillan en la oscuridad.",

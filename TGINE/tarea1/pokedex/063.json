@@ -2,7 +2,12 @@
     "name": "Abra",
     "number": "063",
     "url": "https://pkparaiso.com//pokedex/abra.php",
-    "date": "04-04-2012",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Psi",
+    "weight": 19.5,
+    "height": 0.9,
     "descriptions": {
         " Pokémon Rojo y Azul": "Con su capacidad de leer la mente, detecta cualquier peligro y se TELETRANSPORTA a un lugar seguro",
         " Pokémon Amarillo": "Duerme 18 horas al día. Si siente peligro, se teletransporta a lugar seguro, aun durmiendo",

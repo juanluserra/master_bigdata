@@ -2,7 +2,13 @@
     "name": "Foongus",
     "number": "590",
     "url": "https://pkparaiso.com//pokedex/foongus.php",
-    "date": "26-01-2000",
+    "types": [
+        "planta",
+        "veneno"
+    ],
+    "class": "Pokémon Hongo",
+    "weight": 1.0,
+    "height": 0.2,
     "descriptions": {
         " Pokémon Negro": "Gracias a su misterioso parecido a una Poké Ball, atrae a sus presas y lanza rápidamente esporas de veneno.",
         " Pokémon Blanco": "Por razones desconocidas, se parece a una Poké Ball. Lanza esporas de veneno para repeler al enemigo.",

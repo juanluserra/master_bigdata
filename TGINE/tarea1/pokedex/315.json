@@ -2,7 +2,13 @@
     "name": "Roselia",
     "number": "315",
     "url": "https://pkparaiso.com//pokedex/roselia.php",
-    "date": "03-02-2018",
+    "types": [
+        "planta",
+        "veneno"
+    ],
+    "class": "Pokémon Espina",
+    "weight": 2.0,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Rubí": "Roselia lanza finas espinas a todo el que se le acerca con intención de robarle las flores de los brazos. El aroma de este Pokémon resulta relajante a los seres vivos.",
         " Pokémon Zafiro": "Dicen que, en muy raras ocasiones, aparece un ejemplar de Roselia con las flores de colores muy poco comunes. Las espinas que este Pokémon tiene en la cabeza contienen un veneno extremadamente peligroso.",

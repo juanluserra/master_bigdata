@@ -2,7 +2,13 @@
     "name": "Cobalion",
     "number": "638",
     "url": "https://pkparaiso.com//pokedex/cobalion.php",
-    "date": "14-11-2006",
+    "types": [
+        "acero",
+        "lucha"
+    ],
+    "class": "Pokémon Tesón Acero",
+    "weight": 250.0,
+    "height": 2.1,
     "descriptions": {
         " Pokémon Negro": "Pokémon legendario que luchó contra los humanos para defender a los Pokémon. Es frío y mantiene la serenidad.",
         " Pokémon Blanco": "Posee un cuerpo y un corazón de acero. Basta una mirada suya para que Pokémon violentos le obedezcan.",

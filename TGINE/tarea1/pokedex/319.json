@@ -2,7 +2,13 @@
     "name": "Sharpedo",
     "number": "319",
     "url": "https://pkparaiso.com//pokedex/sharpedo.php",
-    "date": "20-09-2004",
+    "types": [
+        "agua",
+        "siniestro"
+    ],
+    "class": "Pokémon Voraz",
+    "weight": 88.8,
+    "height": 1.8,
     "descriptions": {
         " Pokémon Rubí": "Conocido como \"el terror de los mares\"2, Sharpedo es temido por todos. Si este Pokémon pierde las escalofriantes mandíbulas que tiene, las recupera en breve. Basta con un Sharpedo para destrozar un buque-cisterna.",
         " Pokémon Zafiro": "Sharpedo puede alcanzar nadando los 120 kilómetros por hora agitando la aleta trasera y propulsándose por el agua. El punto flaco de este Pokémon es la imposibilidad que tiene de nadar largas distancias.",

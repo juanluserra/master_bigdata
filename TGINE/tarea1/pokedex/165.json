@@ -2,7 +2,13 @@
     "name": "Ledyba",
     "number": "165",
     "url": "https://pkparaiso.com//pokedex/ledyba.php",
-    "date": "04-06-2006",
+    "types": [
+        "bicho",
+        "volador"
+    ],
+    "class": "Pokémon 5 Estrellas",
+    "weight": 10.8,
+    "height": 1.0,
     "descriptions": {
         " Pokémon Oro": "Es muy tímido. Tiene miedo de moverse cuando va solo. Pero si va en grupo, se vuelve muy activo.",
         " Pokémon Plata": "Cuando llega el frío, se reúnen muchos Ledyba de todas partes para darse calor.",

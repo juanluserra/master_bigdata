@@ -2,7 +2,13 @@
     "name": "Toxapex",
     "number": "748",
     "url": "https://pkparaiso.com//pokedex/toxapex.php",
-    "date": "29-10-2007",
+    "types": [
+        "veneno",
+        "agua"
+    ],
+    "class": "Pokémon Estrellatroz",
+    "weight": 14.5,
+    "height": 0.7,
     "descriptions": {
         " Pokémon Sol": "Se arrastra por el lecho marino con sus doce extremidades. Deja siempre una estela de restos de Corsola por donde pasa.",
         " Pokémon Luna": "Los afectados por su veneno sufren dolores intensos durante tres días y tres noches. Aunque sobrevivan, las secuelas permanecerán."

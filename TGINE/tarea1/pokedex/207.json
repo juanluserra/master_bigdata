@@ -2,7 +2,13 @@
     "name": "Gligar",
     "number": "207",
     "url": "https://pkparaiso.com//pokedex/gligar.php",
-    "date": "11-05-2017",
+    "types": [
+        "tierra",
+        "volador"
+    ],
+    "class": "Pokémon Escorpiala",
+    "weight": 64.8,
+    "height": 1.1,
     "descriptions": {
         " Pokémon Oro": "Vuela directo a la cara del objetivo, y acaba con su aterrada víctima inyectándole veneno.",
         " Pokémon Plata": "A veces se sujeta a los precipicios. Cuando divisa una presa, despliega sus alas y planea para atacar.",

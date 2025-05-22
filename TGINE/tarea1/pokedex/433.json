@@ -2,7 +2,12 @@
     "name": "Chingling",
     "number": "433",
     "url": "https://pkparaiso.com//pokedex/chingling.php",
-    "date": "27-03-2002",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Campana",
+    "weight": 0.6,
+    "height": 0.2,
     "descriptions": {
         " Pokémon Diamante": "Emite un zumbido cada vez que salta. Ensordece a sus rivales con sonidos de alta frecuencia.",
         " Pokémon Perla": "Emite chillidos al agitar la esfera de su garganta. Se mueve con enérgicos saltos.",

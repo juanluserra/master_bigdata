@@ -2,7 +2,13 @@
     "name": "Metagross",
     "number": "376",
     "url": "https://pkparaiso.com//pokedex/metagross.php",
-    "date": "25-12-2020",
+    "types": [
+        "acero",
+        "psiquico"
+    ],
+    "class": "Pokémon Pata Hierro",
+    "weight": 550.0,
+    "height": 1.6,
     "descriptions": {
         " Pokémon Rubí": "Metagross tiene cuatro cerebros en total que, combinados, son capaces de resolver cálculos complicados más rápido que el mejor ordenador que haya. Metagross puede flotar en el aire si mete las patas hacia adentro.",
         " Pokémon Zafiro": "Metagross es el resultado de la fusión de dos Metang. Cuando caza, acorrala a su presa, sujetándola contra el suelo con el cuerpo. Después, devora a la víctima indefensa con la gran boca del estómago.",

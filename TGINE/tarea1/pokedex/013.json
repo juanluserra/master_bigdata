@@ -2,7 +2,13 @@
     "name": "Weedle",
     "number": "013",
     "url": "https://pkparaiso.com//pokedex/weedle.php",
-    "date": "14-07-2008",
+    "types": [
+        "bicho",
+        "veneno"
+    ],
+    "class": "Pokémon Oruga",
+    "weight": 3.2,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Rojo y Azul": "Fácil de ver por los bosques comiendo hojas. Tiene un aguijón venenoso en la cabeza",
         " Pokémon Amarillo": "Cuidado con el aguijón venenoso de su cabeza. Se esconde en la hierba y arbustos mientras come",

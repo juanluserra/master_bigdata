@@ -2,7 +2,13 @@
     "name": "Seismitoad",
     "number": "537",
     "url": "https://pkparaiso.com//pokedex/seismitoad.php",
-    "date": "03-01-2001",
+    "types": [
+        "agua",
+        "tierra"
+    ],
+    "class": "Pokémon Vibrante",
+    "weight": 62.0,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Negro": "Despide un líquido paralizador por los bultos de su cabeza. Atormenta a sus oponentes con enormes vibraciones.",
         " Pokémon Blanco": "Aumenta la potencia de sus puñetazos haciendo vibrar sus puños. Es capaz de quebrar una roca de un solo golpe.",

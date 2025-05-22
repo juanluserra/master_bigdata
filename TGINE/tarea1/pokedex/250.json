@@ -2,7 +2,13 @@
     "name": "Ho-Oh",
     "number": "250",
     "url": "https://pkparaiso.com//pokedex/ho-oh.php",
-    "date": "06-12-2005",
+    "types": [
+        "fuego",
+        "volador"
+    ],
+    "class": "Pokémon Arcoíris",
+    "weight": 199.0,
+    "height": 3.8,
     "descriptions": {
         " Pokémon Oro": "Cuenta la leyenda que este Pokémon vuela por el cielo con sus magníficas alas de siete colores.",
         " Pokémon Plata": "Cuenta la leyenda que brilla en siete colores. Dicen que deja un arco iris tras de sí al volar.",

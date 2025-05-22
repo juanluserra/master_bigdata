@@ -2,7 +2,12 @@
     "name": "Uxie",
     "number": "480",
     "url": "https://pkparaiso.com//pokedex/uxie.php",
-    "date": "11-03-2014",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Sabiduría",
+    "weight": 0.3,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Diamante": "Se dice que su aparición otorgó a los humanos la inteligencia para mejorar sus vidas.",
         " Pokémon Perla": "Se le conoce como el ",

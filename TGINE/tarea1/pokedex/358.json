@@ -2,7 +2,12 @@
     "name": "Chimecho",
     "number": "358",
     "url": "https://pkparaiso.com//pokedex/chimecho.php",
-    "date": "17-11-2008",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Sonido Aire",
+    "weight": 1.0,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Rubí": "Chimecho hace que sus gritos resuenen con eco en su interior. Cuando se enfada, los chillidos se convierten en ondas ultrasónicas capaces de derribar a los enemigos voladores.",
         " Pokémon Zafiro": "Cuando hay viento fuerte, Chimecho chilla colgado de la rama de un árbol o de los aleros de un edificio por la ventosa que tiene en la cabeza. Este Pokémon usa la larga cola que tiene para agarrar BAYAS y comérselas.",

@@ -2,7 +2,13 @@
     "name": "Rayquaza",
     "number": "384",
     "url": "https://pkparaiso.com//pokedex/rayquaza.php",
-    "date": "28-09-2011",
+    "types": [
+        "dragon",
+        "volador"
+    ],
+    "class": "Pokémon Cielo",
+    "weight": 206.5,
+    "height": 7.0,
     "descriptions": {
         " Pokémon Rubí": "Rayquaza vivió Durante cientos de millones de años en la capa de ozono sin bajar a la tierra ni una vez. Según parece, este Pokémon se alimentaba del agua y las partículas que había en la atmósfera.",
         " Pokémon Zafiro": "Dicen que Rayquaza ha vivido más allá de las nubes, en la capa de ozono, Durante cientos de millones de años. Por este motivo nunca se había tenido constancia de su existencia.",

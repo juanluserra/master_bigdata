@@ -1,0 +1,35 @@
+{
+    "name": "Bulbasaur",
+    "number": "001",
+    "url": "https://pkparaiso.com//pokedex/bulbasaur.php",
+    "types": [
+        "planta",
+        "veneno"
+    ],
+    "class": "Pokémon Semilla",
+    "weight": 6.9,
+    "height": 0.7,
+    "descriptions": {
+        " Pokémon Rojo y Azul": "Una rara semilla fue plantada en su espalda al nacer. La planta brota y crece con este Pokémon",
+        " Pokémon Amarillo": "Puede sobrevivir largo tiempo sin probar bocado. Guarda energía en el bulbo de su espalda",
+        " Pokémon Oro": "La semilla de su lomo está llena de nutrientes. La semilla brota a medida que el Pokémon crece.",
+        " Pokémon Plata": "Lleva una semilla en su lomo desde que nació. A medida que crece, la semilla se hace más grande.",
+        " Pokémon Cristal": "Cuando es joven, crece con los nutrientes que almacena en las semillas de su espalda.",
+        " Pokémon Rubí": "A Bulbasaur es fácil verle echándose una siesta al sol. La semilla que tiene en el lomo va creciendo cada vez más a medida que absorbe los rayos del sol.",
+        " Pokémon Zafiro": "A Bulbasaur es fácil verle echándose una siesta al sol. La semilla que tiene en el lomo va creciendo cada vez más a medida que absorbe los rayos del sol.",
+        " Pokémon Esmeralda": "A Bulbasaur es fácil verle echándose una siesta al sol. La semilla que tiene en el lomo va creciendo cada vez más a medida que absorbe los rayos del sol.",
+        " Pokémon Rojo Fuego": "Este Pokémon nace con una semilla en el lomo. Con el tiempo, la semilla brota.",
+        " Pokémon Verde Hoja": "Una rara semilla le fue plantada en el lomo al nacer. La planta brota y crece con este Pokémon.",
+        " Pokémon Diamante": "Después de nacer, crece alimentándose de las semillas de su lomo.",
+        " Pokémon Perla": "Después de nacer, crece alimentándose de las semillas de su lomo.",
+        " Pokémon Platino": "Después de nacer, crece alimentándose de las semillas de su lomo.",
+        " Pokémon HeartGold": "La semilla de su lomo está llena de nutrientes. La semilla brota a medida que el Pokémon crece.",
+        " Pokémon SoulSilver": "La semilla de su lomo está llena de nutrientes. La semilla brota a medida que el Pokémon crece.",
+        " Pokémon Negro": "Después de nacer, crece alimentándose de la semilla de su lomo.",
+        " Pokémon Blanco": "Después de nacer, crece alimentándose de la semilla de su lomo.",
+        " Pokémon X": "Una rara semilla le fue plantada en el lomo al nacer. La planta brota y crece con este Pokémon.",
+        " Pokémon Y": "Después de nacer, crece alimentándose de las semillas de su lomo.",
+        " Pokémon Rubí Omega": "A Bulbasaur es fácil verle echándose una siesta al sol. La semilla que tiene en el lomo va creciendo cada vez más a medida que absorbe los rayos del sol.",
+        " Pokémon Zafiro Alfa": "A Bulbasaur es fácil verle echándose una siesta al sol. La semilla que tiene en el lomo va creciendo cada vez más a medida que absorbe los rayos del sol."
+    }
+}

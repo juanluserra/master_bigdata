@@ -2,7 +2,13 @@
     "name": "Skiploom",
     "number": "188",
     "url": "https://pkparaiso.com//pokedex/skiploom.php",
-    "date": "21-05-2005",
+    "types": [
+        "planta",
+        "volador"
+    ],
+    "class": "Pokémon Algadón",
+    "weight": 1.0,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Oro": "La flor de su cabeza se abre y cierra según suba o baje la temperatura.",
         " Pokémon Plata": "Abre sus pétalos para absorber la luz solar. También flota en el aire para estar más cerca del sol.",

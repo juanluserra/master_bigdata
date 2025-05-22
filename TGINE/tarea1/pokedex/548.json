@@ -2,7 +2,12 @@
     "name": "Petilil",
     "number": "548",
     "url": "https://pkparaiso.com//pokedex/petilil.php",
-    "date": "07-11-2011",
+    "types": [
+        "planta"
+    ],
+    "class": "Pokémon Bulbo",
+    "weight": 6.6,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Negro": "Mordisquear las hojas de su cabeza permite recuperar toda la vitalidad, a pesar de que están muy amargas.",
         " Pokémon Blanco": "Habita tierras húmedas ricas en nutrientes donde la cosecha es abundante.",

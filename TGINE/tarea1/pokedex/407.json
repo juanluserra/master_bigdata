@@ -2,7 +2,13 @@
     "name": "Roserade",
     "number": "407",
     "url": "https://pkparaiso.com//pokedex/roserade.php",
-    "date": "15-08-2015",
+    "types": [
+        "planta",
+        "veneno"
+    ],
+    "class": "Pokémon Ramillete",
+    "weight": 14.5,
+    "height": 0.9,
     "descriptions": {
         " Pokémon Diamante": "Se mueve como un bailarín y golpea con látigos repletos de púas venenosas.",
         " Pokémon Perla": "Atrae a las presas con un dulce aroma y las derrota con los látigos espinosos de sus brazos.",

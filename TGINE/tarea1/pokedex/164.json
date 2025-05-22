@@ -2,7 +2,13 @@
     "name": "Noctowl",
     "number": "164",
     "url": "https://pkparaiso.com//pokedex/noctowl.php",
-    "date": "01-01-2012",
+    "types": [
+        "normal",
+        "volador"
+    ],
+    "class": "Pokémon Búho",
+    "weight": 40.8,
+    "height": 1.6,
     "descriptions": {
         " Pokémon Oro": "Sus ojos están especialmente adaptados, concentrando la luz para poder ver en la oscuridad.",
         " Pokémon Plata": "Cuando necesita pensar, gira su cabeza 180 grados para agudizar su capacidad intelectual.",

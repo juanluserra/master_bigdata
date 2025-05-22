@@ -2,7 +2,13 @@
     "name": "Fletchling",
     "number": "661",
     "url": "https://pkparaiso.com//pokedex/fletchling.php",
-    "date": "07-11-2022",
+    "types": [
+        "normal",
+        "volador"
+    ],
+    "class": "Pokémon Petirrojo",
+    "weight": 1.7,
+    "height": 0.3,
     "descriptions": {
         " Pokémon X": "Es muy amigable y se comunica con sus aliados mediante melodiosos gorjeos y el movimiento de su cola y sus gráciles alas.",
         " Pokémon Y": "Su melodioso gorjeo lo dota de una gran belleza, pero adopta una actitud agresiva y despiadada hacia cualquiera que ose invadir su territorio.",

@@ -2,7 +2,12 @@
     "name": "Lurantis",
     "number": "754",
     "url": "https://pkparaiso.com//pokedex/lurantis.php",
-    "date": "18-03-2022",
+    "types": [
+        "planta"
+    ],
+    "class": "Pokémon Filo Flor",
+    "weight": 18.5,
+    "height": 0.9,
     "descriptions": {
         " Pokémon Sol": "Dedica mucho tiempo y esfuerzo a acicalarse y preservar sus vivos colores. A algunos ejemplares incluso les lleva todo el día.",
         " Pokémon Luna": "Sus pétalos en forma de guadaña liberan un rayo con una potencia capaz de partir por la mitad una plancha de hierro bien gruesa."

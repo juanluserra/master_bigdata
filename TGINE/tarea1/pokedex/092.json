@@ -2,7 +2,13 @@
     "name": "Gastly",
     "number": "092",
     "url": "https://pkparaiso.com//pokedex/gastly.php",
-    "date": "02-11-2003",
+    "types": [
+        "fantasma",
+        "veneno"
+    ],
+    "class": "Pokémon Gas",
+    "weight": 0.1,
+    "height": 1.3,
     "descriptions": {
         " Pokémon Rojo y Azul": "Casi invisible, este gaseoso Pokémon cubre al enemigo y lo adormece sin previo aviso",
         " Pokémon Amarillo": "Sólo aparece en edificios en ruinas. No tiene forma real, ya que parece que está hecho de gas",

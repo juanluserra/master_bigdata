@@ -2,7 +2,12 @@
     "name": "Cleffa",
     "number": "173",
     "url": "https://pkparaiso.com//pokedex/cleffa.php",
-    "date": "13-03-2017",
+    "types": [
+        "hada"
+    ],
+    "class": "Pokémon Estrellada",
+    "weight": 3.0,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Oro": "Por su inusual forma estrellada, la gente cree que procede de un meteorito que cayó a la tierra.",
         " Pokémon Plata": "Cuando varios meteoros iluminan el cielo nocturno, la vista de Cleffa mejora de forma extraña.",

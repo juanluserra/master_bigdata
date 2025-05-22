@@ -1,0 +1,37 @@
+{
+    "name": "Exeggcute",
+    "number": "102",
+    "url": "https://pkparaiso.com//pokedex/exeggcute.php",
+    "types": [
+        "planta",
+        "psiquico"
+    ],
+    "class": "Pokémon Huevo",
+    "weight": 2.5,
+    "height": 0.4,
+    "descriptions": {
+        " Pokémon Rojo y Azul": "Son muy parecidos a los huevos. Cuando se les molesta, se agrupan y atacan todos juntos",
+        " Pokémon Amarillo": "Sus cabezas se atraen unas a otras, y giran entre si. Debe tener seis para equilibrarse",
+        " Pokémon Oro": "Su cáscara es muy resistente. Si llega a romperse, podría sobrevivir si evita derramar su contenido.",
+        " Pokémon Plata": "Usan poderes telepáticos entre ellos para reunirse en grupos de seis Exeggcute.",
+        " Pokémon Cristal": "Si alguno se separa de los seis, la energía que les une le absorberá y le devolverá junto a sus compañeros.",
+        " Pokémon Rubí": "Este Pokémon está compuesto de seis huevos que forman una tupida piña que va girando. Cuando se empiezan a resquebrajar las cáscaras, no hay duda de que Exeggcute está a punto de evolucionar.",
+        " Pokémon Zafiro": "Este Pokémon está compuesto de seis huevos que forman una tupida piña que va girando. Cuando se empiezan a resquebrajar las cáscaras, no hay duda de que Exeggcute está a punto de evolucionar.",
+        " Pokémon Esmeralda": "Está compuesto de seis huevos que forman una tupida piña que va girando. Si empiezan a resquebrajarse las cáscaras, no hay duda de que está a punto de evolucionar.",
+        " Pokémon Rojo Fuego": "Aunque los huevos que lo constituyen parecen de verdad, se ha visto que son como semillas.",
+        " Pokémon Verde Hoja": "Son muy parecidos a los huevos. Cuando se les molesta, se agrupan y atacan todos juntos.",
+        " Pokémon Diamante": "Estos seis huevos se comunican por telepatía. Si se separan se pueden reunir rápidamente.",
+        " Pokémon Perla": "Estos seis huevos se comunican por telepatía. Si se separan se pueden reunir rápidamente.",
+        " Pokémon Platino": "Estos seis huevos se comunican por telepatía. Si se separan se pueden reunir rápidamente.",
+        " Pokémon HeartGold": "Su cáscara es muy resistente. Si llega a romperse, podría sobrevivir si evita derramar su contenido.",
+        " Pokémon SoulSilver": "Su cáscara es muy resistente. Si llega a romperse, podría sobrevivir si evita derramar su contenido.",
+        " Pokémon Negro": "Estos seis huevos se comunican por telepatía. Si se separan, se pueden reunir rápidamente.",
+        " Pokémon Blanco": "Estos seis huevos se comunican por telepatía. Si se separan, se pueden reunir rápidamente.",
+        " Pokémon X": "Estos seis huevos se comunican por telepatía. Si se separan, se pueden reunir rápidamente.",
+        " Pokémon Y": "Aunque los huevos que lo constituyen parecen de verdad, se ha visto que son como semillas.",
+        " Pokémon Rubí Omega": "Este Pokémon está compuesto de seis huevos que forman una tupida piña que va girando. Cuando se empiezan a resquebrajar las cáscaras, no hay duda de que Exeggcute está a punto de evolucionar.",
+        " Pokémon Zafiro Alfa": "Este Pokémon está compuesto de seis huevos que forman una tupida piña que va girando. Cuando se empiezan a resquebrajar las cáscaras, no hay duda de que Exeggcute está a punto de evolucionar.",
+        " Pokémon Sol": "Los seis huevos que componen a Exeggcute se comunican por medio de la telepatía. Se dice que contiene genes de plantas y de otras especies.",
+        " Pokémon Luna": "Este Pokémon está formado por seis huevos. Se defiende con sus poderes psíquicos de los frecuentes ataques de Crabrawler."
+    }
+}

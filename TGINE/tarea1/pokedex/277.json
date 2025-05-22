@@ -2,7 +2,13 @@
     "name": "Swellow",
     "number": "277",
     "url": "https://pkparaiso.com//pokedex/swellow.php",
-    "date": "04-01-2008",
+    "types": [
+        "normal",
+        "volador"
+    ],
+    "class": "Pokémon Buche",
+    "weight": 19.8,
+    "height": 0.7,
     "descriptions": {
         " Pokémon Rubí": "Swellow vuela muy alto dibujando elegantes arcos en el cielo. Este Pokémon se sumerge en el agua con rapidez y eficacia en cuanto detecta una presa. Con las garras, atrapa a la desdichada víctima y no la deja huir.",
         " Pokémon Zafiro": "Swellow se preocupa a conciencia del mantenimiento de sus lustrosas alas. Cuando hay dos juntos, el uno se ocupa de limpiarle las alas al otro.",

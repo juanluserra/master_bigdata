@@ -2,7 +2,13 @@
     "name": "Venomoth",
     "number": "049",
     "url": "https://pkparaiso.com//pokedex/venomoth.php",
-    "date": "31-01-2013",
+    "types": [
+        "bicho",
+        "veneno"
+    ],
+    "class": "Pokémon Polilla Ven.",
+    "weight": 12.5,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Rojo y Azul": "El polvillo que cubre sus alas es de distinto color según el tipo de veneno que lleve",
         " Pokémon Amarillo": "Es difícil quitar el polvo de sus alas. También posee un veneno que se desprende al contacto",

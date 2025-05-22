@@ -2,7 +2,13 @@
     "name": "Flygon",
     "number": "330",
     "url": "https://pkparaiso.com//pokedex/flygon.php",
-    "date": "28-07-2004",
+    "types": [
+        "tierra",
+        "dragon"
+    ],
+    "class": "Pokémon Místico",
+    "weight": 82.0,
+    "height": 2.0,
     "descriptions": {
         " Pokémon Rubí": "A Flygon se le conoce como \"el alma del desierto\"2. Al volar, como levanta una nube de arena al batir las alas, está siempre envuelto en una tormenta de arena.",
         " Pokémon Zafiro": "Flygon puede provocar una tormenta de arena batiendo las alas. Éstas, al ser agitadas, crean una melodía. Y como las \"melodías\"2 pueden oírse cuando hay tormenta, dicen que es el espíritu del desierto.",

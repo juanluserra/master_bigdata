@@ -2,7 +2,13 @@
     "name": "Vullaby",
     "number": "629",
     "url": "https://pkparaiso.com//pokedex/vullaby.php",
-    "date": "26-10-2008",
+    "types": [
+        "siniestro",
+        "volador"
+    ],
+    "class": "Pokémon Pañal",
+    "weight": 9.0,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Negro": "No puede volar porque sus alas son muy pequeñas. Cuando va a evolucionar, él mismo se deshace de su calavera.",
         " Pokémon Blanco": "Usa una calavera para proteger sus posaderas. Es proclive a perseguir Pokémon débiles.",

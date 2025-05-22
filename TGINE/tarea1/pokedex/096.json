@@ -2,7 +2,12 @@
     "name": "Drowzee",
     "number": "096",
     "url": "https://pkparaiso.com//pokedex/drowzee.php",
-    "date": "09-02-2009",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Hipnosis",
+    "weight": 32.4,
+    "height": 1.0,
     "descriptions": {
         " Pokémon Rojo y Azul": "Adormece a sus enemigos y se come sus sueños. A veces se pone enfermo si come pesadillas",
         " Pokémon Amarillo": "Si duermes cerca de uno todo el tiempo, en alguna ocasión podrás ver sueños que se haya comido antes",

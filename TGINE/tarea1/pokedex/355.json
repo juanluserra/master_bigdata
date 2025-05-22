@@ -2,7 +2,12 @@
     "name": "Duskull",
     "number": "355",
     "url": "https://pkparaiso.com//pokedex/duskull.php",
-    "date": "30-07-2005",
+    "types": [
+        "fantasma"
+    ],
+    "class": "Pokémon Réquiem",
+    "weight": 15.0,
+    "height": 0.8,
     "descriptions": {
         " Pokémon Rubí": "Duskull puede atravesar los muros, sea cual sea el grosor que tengan. Cuando este Pokémon elige su objetivo, lo persigue hábilmente hasta el amanecer.",
         " Pokémon Zafiro": "Duskull vaga perdido por la oscuridad de la noche. Cuando los niños se portan mal y desobedecen a sus padres, se les dice que este Pokémon aparecerá y se los llevará con él.",

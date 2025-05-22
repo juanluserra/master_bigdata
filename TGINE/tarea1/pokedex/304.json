@@ -1,0 +1,30 @@
+{
+    "name": "Aron",
+    "number": "304",
+    "url": "https://pkparaiso.com//pokedex/aron.php",
+    "types": [
+        "acero",
+        "roca"
+    ],
+    "class": "Pokémon Cor. Férrea",
+    "weight": 60.0,
+    "height": 0.4,
+    "descriptions": {
+        " Pokémon Rubí": "Este Pokémon tiene el cuerpo de acero. Para mantenerlo, se alimenta del hierro que saca de las montañas. A veces, causa verdaderos problemas, pues se come puentes y vías de tren.",
+        " Pokémon Zafiro": "Aron tiene el cuerpo de acero. Con una carga hecha con toda la fuerza es capaz de demoler hasta un camión de basura. Y, a continuación, comérselo.",
+        " Pokémon Esmeralda": "Está cubierto por una coraza de acero que se regenera cuando evoluciona. La coraza vieja, ya estropeada, se recicla para fabricar productos de hierro.",
+        " Pokémon Rojo Fuego": "Se alimenta de hierro para fortalecer su cuerpo de acero. Es un problema, pues devora puentes y vías de tren.",
+        " Pokémon Verde Hoja": "Se alimenta de hierro para fortalecer su cuerpo de acero. Es un problema, pues devora puentes y vías de tren.",
+        " Pokémon Diamante": "Suele vivir en lugares inaccesibles de las montañas, pero el hambre lo empuja a comer raíles y coches.",
+        " Pokémon Perla": "Suele vivir en lugares inaccesibles de las montañas, pero el hambre lo empuja a comer raíles y coches.",
+        " Pokémon Platino": "Suele vivir en lugares inaccesibles de las montañas, pero el hambre lo empuja a comer raíles y coches.",
+        " Pokémon HeartGold": "Al evolucionar, la coraza de acero que recubre todo su cuerpo se cae para crear una nueva.",
+        " Pokémon SoulSilver": "Al evolucionar, la coraza de acero que recubre todo su cuerpo se cae para crear una nueva.",
+        " Pokémon Negro": "Suele vivir en lugares inaccesibles de las montañas, pero el hambre lo empuja a comer raíles y coches.",
+        " Pokémon Blanco": "Suele vivir en lugares inaccesibles de las montañas, pero el hambre lo empuja a comer raíles y coches.",
+        " Pokémon X": "Suele vivir en lugares inaccesibles de las montañas, pero el hambre lo empuja a comer raíles y coches.",
+        " Pokémon Y": "Al evolucionar, la coraza de acero que recubre todo su cuerpo se cae para crear una nueva.",
+        " Pokémon Rubí Omega": "Este Pokémon tiene el cuerpo de acero. Para mantenerlo, se alimenta del hierro que saca de las montañas. A veces, causa verdaderos problemas, pues se come puentes y vías de tren.",
+        " Pokémon Zafiro Alfa": "Aron tiene el cuerpo de acero. Con una carga hecha con toda la fuerza es capaz de demoler hasta un camión de basura y, a continuación, comérselo."
+    }
+}

@@ -2,7 +2,12 @@
     "name": "Comfey",
     "number": "764",
     "url": "https://pkparaiso.com//pokedex/comfey.php",
-    "date": "22-06-2008",
+    "types": [
+        "hada"
+    ],
+    "class": "Pokémon Recogeflores",
+    "weight": 0.3,
+    "height": 0.1,
     "descriptions": {
         " Pokémon Sol": "Prende flores en su tallo, que es muy rico en nutrientes. Las flores se revitalizan y desprenden una agradable fragancia.",
         " Pokémon Luna": "Un baño aderezado con las flores ensartadas en su sarmiento tiene un efecto muy relajante, por lo que este Pokémon se ha vuelto muy popular."

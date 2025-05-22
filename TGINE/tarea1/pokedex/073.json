@@ -2,7 +2,13 @@
     "name": "Tentacruel",
     "number": "073",
     "url": "https://pkparaiso.com//pokedex/tentacruel.php",
-    "date": "20-02-2011",
+    "types": [
+        "agua",
+        "veneno"
+    ],
+    "class": "Pokémon Medusa",
+    "weight": 55.0,
+    "height": 1.6,
     "descriptions": {
         " Pokémon Rojo y Azul": "De tentáculos cortos, cuando caza los extiende para atrapar e inmovilizar a su presa",
         " Pokémon Amarillo": "Puede controlar libremente sus 80 tentáculos. Éstos debilitan a su presa con su poderoso veneno",

@@ -2,7 +2,13 @@
     "name": "Mothim",
     "number": "414",
     "url": "https://pkparaiso.com//pokedex/mothim.php",
-    "date": "10-05-2018",
+    "types": [
+        "bicho",
+        "volador"
+    ],
+    "class": "Pokémon Polilla",
+    "weight": 23.3,
+    "height": 0.9,
     "descriptions": {
         " Pokémon Diamante": "No tiene nido. Vuela sobre los campos y las montañas en busca de miel floral.",
         " Pokémon Perla": "Le encanta la miel de las flores y roba la que recoge Combee.",

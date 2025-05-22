@@ -2,7 +2,13 @@
     "name": "Pikipek",
     "number": "731",
     "url": "https://pkparaiso.com//pokedex/pikipek.php",
-    "date": "01-02-2001",
+    "types": [
+        "normal",
+        "volador"
+    ],
+    "class": "Pokémon Carpintero",
+    "weight": 1.2,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Sol": "Hace agujeros en los árboles a una velocidad de 16 picotazos por segundo y los utiliza como despensa o como su nido.",
         " Pokémon Luna": "Las bayas constituyen su principal alimento. Usa las pepitas de las mismas a modo de proyectiles para atacar expulsándolas por su pico."

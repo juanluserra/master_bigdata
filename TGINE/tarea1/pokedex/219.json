@@ -2,7 +2,13 @@
     "name": "Magcargo",
     "number": "219",
     "url": "https://pkparaiso.com//pokedex/magcargo.php",
-    "date": "17-02-2023",
+    "types": [
+        "fuego",
+        "roca"
+    ],
+    "class": "Pokémon Lava",
+    "weight": 55.0,
+    "height": 0.8,
     "descriptions": {
         " Pokémon Oro": "La concha de su lomo son restos de piel enfriada y endurecida. Se rompe fácilmente con sólo tocarla.",
         " Pokémon Plata": "En ocasiones, su resbaladiza concha lanza intensas llamaradas que recorren todo su cuerpo.",

@@ -2,7 +2,13 @@
     "name": "Phantump",
     "number": "708",
     "url": "https://pkparaiso.com//pokedex/phantump.php",
-    "date": "15-08-2015",
+    "types": [
+        "fantasma",
+        "planta"
+    ],
+    "class": "Pokémon Tocón",
+    "weight": 7.0,
+    "height": 0.4,
     "descriptions": {
         " Pokémon X": "Pokémon que nace cuando un espíritu se adentra en un tocón podrido. Habita en bosques que son poco frecuentados por humanos.",
         " Pokémon Y": "Según una leyenda, son en realidad almas de niños que pasaron a mejor vida tras perderse en el bosque y se convirtieron en Pokémon al habitar un tocón.",

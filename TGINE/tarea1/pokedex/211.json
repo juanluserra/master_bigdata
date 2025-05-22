@@ -2,7 +2,13 @@
     "name": "Qwilfish",
     "number": "211",
     "url": "https://pkparaiso.com//pokedex/qwilfish.php",
-    "date": "01-10-2000",
+    "types": [
+        "agua",
+        "veneno"
+    ],
+    "class": "Pokémon Globo",
+    "weight": 3.9,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Oro": "Para arrojar sus venenosas púas, infla su cuerpo bebiendo hasta 10 litros de agua de una sola vez.",
         " Pokémon Plata": "Las pequeñas púas que cubren su cuerpo eran escamas. Inyectan una toxina que debilita.",

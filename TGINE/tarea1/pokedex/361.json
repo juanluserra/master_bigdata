@@ -2,7 +2,12 @@
     "name": "Snorunt",
     "number": "361",
     "url": "https://pkparaiso.com//pokedex/snorunt.php",
-    "date": "08-03-2019",
+    "types": [
+        "hielo"
+    ],
+    "class": "Pokémon Gorro Nieve",
+    "weight": 16.8,
+    "height": 0.7,
     "descriptions": {
         " Pokémon Rubí": "Snorunt vive en zonas de grandes nevadas. En primavera y verano (cuando no nieva), se retira a las cavernas para vivir tranquilamente entre estalactitas y estalagmitas.",
         " Pokémon Zafiro": "Snorunt sobrevive alimentándose sólo de nieve y hielo. Se dice que la casa por la que pase este Pokémon estará llena de prosperidad Durante generaciones.",

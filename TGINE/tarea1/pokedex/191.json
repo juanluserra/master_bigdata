@@ -2,7 +2,12 @@
     "name": "Sunkern",
     "number": "191",
     "url": "https://pkparaiso.com//pokedex/sunkern.php",
-    "date": "25-01-2001",
+    "types": [
+        "planta"
+    ],
+    "class": "Pokémon Semilla",
+    "weight": 1.8,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Oro": "Puede caer del cielo de repente. Si le ataca un Spearow, moverá violentamente sus hojas.",
         " Pokémon Plata": "Se alimenta del rocío que hay sobre las hojas de las plantas. Dicen que no come nada más.",

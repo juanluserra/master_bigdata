@@ -1,0 +1,35 @@
+{
+    "name": "Ivysaur",
+    "number": "002",
+    "url": "https://pkparaiso.com//pokedex/ivysaur.php",
+    "types": [
+        "planta",
+        "veneno"
+    ],
+    "class": "Pokémon Semilla",
+    "weight": 13.0,
+    "height": 1.0,
+    "descriptions": {
+        " Pokémon Rojo y Azul": "Cuando el bulbo de su espalda crece, parece no poder ponerse de pie sobre sus patas traseras",
+        " Pokémon Amarillo": "Su bulbo crece cuando absorbe energía. Desprende un fuerte aroma cuando florece",
+        " Pokémon Oro": "Puede aumentar su fuerza con energía solar. Ésta también hace que crezca el capullo de su lomo.",
+        " Pokémon Plata": "Si el capullo de su lomo comienza a oler dulce, indica que la gran flor pronto florecerá.",
+        " Pokémon Cristal": "El bulbo de la espalda crece al absorber nutrientes. Cuando florece, emite un aroma delicioso.",
+        " Pokémon Rubí": "Este Pokémon lleva un bulbo en el lomo y, para poder con su peso, tiene unas patas y un tronco gruesos y fuertes. Si empieza a pasar más tiempo al sol, será porque el bulbo está a punto de hacerse una flor grande.",
+        " Pokémon Zafiro": "Este Pokémon lleva un bulbo en el lomo y, para poder con su peso, tiene unas patas y un tronco gruesos y fuertes. Si empieza a pasar más tiempo al sol, será porque el bulbo está a punto de hacerse una flor grande.",
+        " Pokémon Esmeralda": "Soporta el peso del bulbo gracias a sus fuertes patas y a su tronco. Si pasa mucho tiempo al sol, el bulbo se convierte en una enorme flor.",
+        " Pokémon Rojo Fuego": "Este Pokémon tiene un bulbo en el lomo. Dicen que, al absorber nutrientes, el bulbo se transforma en una flor grande.",
+        " Pokémon Verde Hoja": "Cuando el bulbo del lomo crece, le cuesta un poco ponerse de pie sobre las patas traseras.",
+        " Pokémon Diamante": "Cuando el bulbo de su lomo se hincha, desprende un dulce aroma para indicar el florecimiento.",
+        " Pokémon Perla": "Cuando el bulbo de su lomo se hincha, desprende un dulce aroma para indicar el florecimiento.",
+        " Pokémon Platino": "Cuando el bulbo de su lomo se hincha, desprende un dulce aroma para indicar el florecimiento.",
+        " Pokémon HeartGold": "Puede aumentar su fuerza con energía solar. Esta también hace que crezca el capullo de su lomo.",
+        " Pokémon SoulSilver": "Puede aumentar su fuerza con energía solar. Esta también hace que crezca el capullo de su lomo.",
+        " Pokémon Negro": "Cuando el capullo de su lomo se hincha, desprende un dulce aroma para indicar el florecimiento.",
+        " Pokémon Blanco": "Cuando el capullo de su lomo se hincha, desprende un dulce aroma para indicar el florecimiento.",
+        " Pokémon X": "Este Pokémon tiene un bulbo en el lomo. Dicen que, al absorber nutrientes, el bulbo se transforma en una flor grande.",
+        " Pokémon Y": "Cuando el bulbo de su lomo se hincha, desprende un dulce aroma para indicar el florecimiento.",
+        " Pokémon Rubí Omega": "Este Pokémon lleva un bulbo en el lomo y, para poder con su peso, tiene unas patas y un tronco gruesos y fuertes. Si empieza a pasar más tiempo al sol, será porque el bulbo está a punto de hacerse una flor grande.",
+        " Pokémon Zafiro Alfa": "Este Pokémon lleva un bulbo en el lomo y, para poder con su peso, tiene unas patas y un tronco gruesos y fuertes. Si empieza a pasar más tiempo al sol, será porque el bulbo está a punto de hacerse una flor grande."
+    }
+}

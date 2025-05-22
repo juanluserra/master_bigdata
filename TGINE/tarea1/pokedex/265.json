@@ -2,7 +2,12 @@
     "name": "Wurmple",
     "number": "265",
     "url": "https://pkparaiso.com//pokedex/wurmple.php",
-    "date": "01-08-2008",
+    "types": [
+        "bicho"
+    ],
+    "class": "Pokémon Gusano",
+    "weight": 3.6,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Rubí": "Wurmple usa las púas del lomo para raspar los troncos de los árboles, quitarles la corteza y beber la savia que emanan. Este Pokémon tiene unas ventosas rematándole los pies, con las que se adhiere al cristal sin resbalarse.",
         " Pokémon Zafiro": "Wurmple es la presa preferida de Swellow. La forma que tiene de intentar defenderse es apuntar con las púas del lomo al amenazante enemigo y debilitarlo inyectándole veneno.",

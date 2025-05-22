@@ -2,7 +2,12 @@
     "name": "Elgyem",
     "number": "605",
     "url": "https://pkparaiso.com//pokedex/elgyem.php",
-    "date": "12-07-2022",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Cerebro",
+    "weight": 9.0,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Negro": "Posee un gran poder psíquico. Lo usa para comprimir el cerebro del enemigo y ocasionarle dolores de cabeza.",
         " Pokémon Blanco": "Apareció de la nada en un lejano desierto hace 50 años. Hasta entonces, nadie lo había visto.",

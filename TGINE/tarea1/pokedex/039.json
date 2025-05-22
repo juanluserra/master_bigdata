@@ -2,7 +2,13 @@
     "name": "Jigglypuff",
     "number": "039",
     "url": "https://pkparaiso.com//pokedex/jigglypuff.php",
-    "date": "07-01-2019",
+    "types": [
+        "normal",
+        "hada"
+    ],
+    "class": "Pokémon Globo",
+    "weight": 5.5,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Rojo y Azul": "Cuando sus ojos se iluminan, canta una secreta melodía con la que duerme a sus enemigos",
         " Pokémon Amarillo": "Utiliza sus misteriosos ojos para engañar a su enemigo. También cantará para dormirlo",

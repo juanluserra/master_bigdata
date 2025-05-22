@@ -2,7 +2,13 @@
     "name": "Keldeo",
     "number": "647",
     "url": "https://pkparaiso.com//pokedex/keldeo.php",
-    "date": "01-08-2007",
+    "types": [
+        "agua",
+        "lucha"
+    ],
+    "class": "Pokémon Potro",
+    "weight": 48.5,
+    "height": 1.4,
     "descriptions": {
         " Pokémon Negro": "Desprende agua por sus pezuñas para poder deslizarse. Es especialista en atacar usando sus patas.",
         " Pokémon Blanco": "Corre por mares, ríos o cualquier superficie acuática de todo el mundo. Aparece en aguas límpidas.",

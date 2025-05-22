@@ -1,0 +1,35 @@
+{
+    "name": "Oddish",
+    "number": "043",
+    "url": "https://pkparaiso.com//pokedex/oddish.php",
+    "types": [
+        "planta",
+        "veneno"
+    ],
+    "class": "Pokémon Hierbajo",
+    "weight": 5.4,
+    "height": 0.5,
+    "descriptions": {
+        " Pokémon Rojo y Azul": "Durante el día entierra su cara en el suelo. Merodea por la noche plantando sus semillas",
+        " Pokémon Amarillo": "Suele ser confundido con un puñado de semillas. Si lo extraes del suelo, gritará",
+        " Pokémon Oro": "Despertado por la luz de la luna, vaga por la noche. De día se mantiene en silencio bajo la tierra.",
+        " Pokémon Plata": "Se mueve si se expone a la luz de la luna. Merodea por la noche para esparcir sus semillas.",
+        " Pokémon Cristal": "Durante el día, se agazapa en el frío subsuelo huyendo del sol. La luz de la luna le hace crecer mucho.",
+        " Pokémon Rubí": "Durante el día, Oddish se entierra en el suelo para absorber nutrientes valiéndose de todo el cuerpo. Cuanto más fértil sea el suelo, mayor brillo tendrá en las hojas.",
+        " Pokémon Zafiro": "Oddish busca los suelos fértiles y ricos en nutrientes para plantarse en la tierra. Durante el día, se cree que le cambia la forma de los pies y se le empiezan a parecer a las raíces de los árboles.",
+        " Pokémon Esmeralda": "Este Pokémon crece absorbiendo luz de luna. Durante el día, se entierra en el suelo y sólo deja las hojas fuera. Así evita que los enemigos lo detecten.",
+        " Pokémon Rojo Fuego": "Su nombre científico es \"Oddium Wanderus\"2. Dicen que usa las raíces para desplazarse. Llega a hacerse 300 m.",
+        " Pokémon Verde Hoja": "Durante el día, entierra la cara en el suelo, y de noche, va plantando semillas por ahí.",
+        " Pokémon Diamante": "Suele plantarse en el suelo Durante el día. Por la noche se desplaza esparciendo semillas.",
+        " Pokémon Perla": "Suele plantarse en el suelo Durante el día. Por la noche se desplaza esparciendo semillas.",
+        " Pokémon Platino": "Suele plantarse en el suelo Durante el día. Por la noche se desplaza esparciendo semillas.",
+        " Pokémon HeartGold": "Despertado por la luz de la luna, vaga por la noche. De día se mantiene en silencio bajo la tierra.",
+        " Pokémon SoulSilver": "Despertado por la luz de la luna, vaga por la noche. De día se mantiene en silencio bajo la tierra.",
+        " Pokémon Negro": "Suele plantarse en el suelo durante el día. Por la noche se desplaza esparciendo semillas.",
+        " Pokémon Blanco": "Suele plantarse en el suelo durante el día. Por la noche se desplaza esparciendo semillas.",
+        " Pokémon X": "Durante el día, se agazapa en el frío subsuelo huyendo del sol. La luz de la luna le hace crecer mucho.",
+        " Pokémon Y": "Su nombre científico es “Oddium Wanderus”. Se dice que de noche puede llegar a desplazarse hasta 300 m con sus dos raíces.",
+        " Pokémon Rubí Omega": "Durante el día, Oddish se entierra en el suelo para absorber nutrientes valiéndose de todo el cuerpo. Cuanto más fértil sea el suelo, mayor brillo tendrá en las hojas.",
+        " Pokémon Zafiro Alfa": "Oddish busca los suelos fértiles y ricos en nutrientes para plantarse en la tierra. Durante el día, se cree que le cambia la forma de los pies y se le empiezan a parecer a las raíces de los árboles."
+    }
+}

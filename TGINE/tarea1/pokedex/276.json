@@ -2,7 +2,13 @@
     "name": "Taillow",
     "number": "276",
     "url": "https://pkparaiso.com//pokedex/taillow.php",
-    "date": "05-10-2010",
+    "types": [
+        "normal",
+        "volador"
+    ],
+    "class": "Pokémon Pequebuche",
+    "weight": 2.3,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Rubí": "Taillow se mantiene firme ante sus rivales, sean lo fuertes que sean. Este valiente Pokémon seguirá mostrándose desafiante, aunque pierda en combate. Además, si se enfada, se pondrá a gritar con energía.",
         " Pokémon Zafiro": "Taillow es pequeño, está recién salido del nido. Por eso se siente solo con frecuencia y se pone a piar. Este Pokémon se alimenta de los Wurmple que hay por el bosque.",

@@ -2,7 +2,13 @@
     "name": "Sableye",
     "number": "302",
     "url": "https://pkparaiso.com//pokedex/sableye.php",
-    "date": "19-10-2014",
+    "types": [
+        "siniestro",
+        "fantasma"
+    ],
+    "class": "Pokémon Oscuridad",
+    "weight": 11.0,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Rubí": "Los Sableye hacen una vida muy tranquila en cavernas. Pero son muy temidos; se dice que, cuando los ojos les brillan de manera siniestra, están robándole el alma a alguien.",
         " Pokémon Zafiro": "Sableye cava en el suelo para buscar con las afiladas garras que tiene rocas para comer. Las sustancias que hay en las rocas que ingiere se solidifican y se le quedan en la piel.",

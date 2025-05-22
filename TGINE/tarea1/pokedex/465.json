@@ -2,7 +2,12 @@
     "name": "Tangrowth",
     "number": "465",
     "url": "https://pkparaiso.com//pokedex/tangrowth.php",
-    "date": "01-03-2006",
+    "types": [
+        "planta"
+    ],
+    "class": "Pokémon Enredadera",
+    "weight": 128.6,
+    "height": 2.0,
     "descriptions": {
         " Pokémon Diamante": "Atrapa a su presa desplegando las ramas de sus brazos, que no le importa perder ante depredadores.",
         " Pokémon Perla": "Atrapa a su presa desplegando las ramas de sus brazos, que no le importa perder ante depredadores.",

@@ -2,7 +2,12 @@
     "name": "Komala",
     "number": "775",
     "url": "https://pkparaiso.com//pokedex/komala.php",
-    "date": "14-03-2011",
+    "types": [
+        "normal"
+    ],
+    "class": "Pokémon Duermevela",
+    "weight": 19.9,
+    "height": 0.4,
     "descriptions": {
         " Pokémon Sol": "Pasa la vida entera sumido en un profundo sueño. Toda su actividad parece reflejar los sueños que tiene en ese momento.",
         " Pokémon Luna": "El tronco que agarra es un regalo que le dieron sus padres al nacer. También se aferra al brazo de todo aquel Entrenador con el que congenie."

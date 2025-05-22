@@ -2,7 +2,13 @@
     "name": "Ralts",
     "number": "280",
     "url": "https://pkparaiso.com//pokedex/ralts.php",
-    "date": "07-10-2006",
+    "types": [
+        "psiquico",
+        "hada"
+    ],
+    "class": "Pokémon Sensible",
+    "weight": 6.6,
+    "height": 0.4,
     "descriptions": {
         " Pokémon Rubí": "Ralts percibe las sensaciones de la gente por los colmillos que tiene encima y detrás de la cabeza. No es común que este Pokémon aparezca en público, pero cuando lo hace, se acerca si ve buena disposición en la gente.",
         " Pokémon Zafiro": "Ralts tiene la habilidad de percibir las sensaciones que tiene la gente. Si su ENTRENADOR está alegre, este Pokémon se pondrá igualmente contento.",

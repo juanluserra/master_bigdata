@@ -2,7 +2,12 @@
     "name": "Trapinch",
     "number": "328",
     "url": "https://pkparaiso.com//pokedex/trapinch.php",
-    "date": "05-02-2001",
+    "types": [
+        "tierra"
+    ],
+    "class": "Pokémon Hormigaleón",
+    "weight": 15.0,
+    "height": 0.7,
     "descriptions": {
         " Pokémon Rubí": "El nido de Trapinch está situado bajo la arena, en una zona cóncava. Este Pokémon espera con paciencia a que su presa caiga en la misma. Con las fauces que tiene puede destruir hasta piedras.",
         " Pokémon Zafiro": "Trapinch es un cazador paciente. Suele cavar una fosa profunda en el desierto y esperar a que su presa caiga en ella. Este Pokémon puede aguantar toda una semana sin beber nada de agua.",

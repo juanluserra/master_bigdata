@@ -2,7 +2,13 @@
     "name": "Kirlia",
     "number": "281",
     "url": "https://pkparaiso.com//pokedex/kirlia.php",
-    "date": "09-12-2018",
+    "types": [
+        "psiquico",
+        "hada"
+    ],
+    "class": "Pokémon Sensorio",
+    "weight": 20.2,
+    "height": 0.8,
     "descriptions": {
         " Pokémon Rubí": "Dicen que al recibir los sentimientos positivos de su ENTRENADOR, Kirlia crece con gran belleza. Este Pokémon controla poderes psicoquinéticos gracias al desarrollado cerebro que tiene.",
         " Pokémon Zafiro": "Kirlia usa los cuernos para amplificar los poderes de psicoquinesia que tiene. Cuando los usa, altera el ambiente, se transforma y crea espejismos de cosas que no existían con anterioridad.",

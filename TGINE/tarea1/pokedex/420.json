@@ -2,7 +2,12 @@
     "name": "Cherubi",
     "number": "420",
     "url": "https://pkparaiso.com//pokedex/cherubi.php",
-    "date": "08-10-2010",
+    "types": [
+        "planta"
+    ],
+    "class": "Pokémon Cereza",
+    "weight": 3.3,
+    "height": 0.4,
     "descriptions": {
         " Pokémon Diamante": "Bajo la luz solar es rojo. La esfera pequeña pierde sus nutrientes y se seca para anunciar la evolución.",
         " Pokémon Perla": "La pequeña esfera, dulce y sabrosa, contiene los nutrientes necesarios para evolucionar.",

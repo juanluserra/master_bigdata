@@ -2,7 +2,12 @@
     "name": "Tympole",
     "number": "535",
     "url": "https://pkparaiso.com//pokedex/tympole.php",
-    "date": "20-09-2012",
+    "types": [
+        "agua"
+    ],
+    "class": "Pokémon Renacuajo",
+    "weight": 4.5,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Negro": "Emite un agudo chirrido haciendo vibrar sus mejillas para avisar a sus compañeros en momentos de peligro.",
         " Pokémon Blanco": "Emite sonidos imperceptibles para los humanos con la vibración de sus mejillas y se comunica al ritmo de los mismos.",

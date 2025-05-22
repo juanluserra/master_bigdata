@@ -2,7 +2,13 @@
     "name": "Altaria",
     "number": "334",
     "url": "https://pkparaiso.com//pokedex/altaria.php",
-    "date": "05-09-2002",
+    "types": [
+        "dragon",
+        "volador"
+    ],
+    "class": "Pokémon Cantor",
+    "weight": 20.6,
+    "height": 1.1,
     "descriptions": {
         " Pokémon Rubí": "Altaria baila y revolotea por el cielo entre ondeantes nubes que parecen de algodón. Al entonar melodías con su voz cristalina, este Pokémon deja a sus oyentes embobados y admirados.",
         " Pokémon Zafiro": "Altaria canta soprano de maravilla. Tiene unas alas que parecen nubes de algodón. Este Pokémon aprovecha las corrientes ascendentes y remonta el vuelo con sus flamantes alas hacia la inmensidad del cielo azul.",

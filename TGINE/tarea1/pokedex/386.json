@@ -2,7 +2,12 @@
     "name": "Deoxys",
     "number": "386",
     "url": "https://pkparaiso.com//pokedex/deoxys.php",
-    "date": "27-07-2014",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon ADN",
+    "weight": 60.8,
+    "height": 1.7,
     "descriptions": {
         " Pokémon Rubí": "Tras estar expuesto a un rayo láser, el ADN de un virus espacial sufrió una mutación y dio origen a Deoxys. Según parece, el órgano cristalino que este Pokémon tiene en el torso es el cerebro.",
         " Pokémon Zafiro": "Deoxys surgió a partir de un virus espacial. Tiene un alto nivel intelectual y poderes psicoquinéticos. Este Pokémon dispara rayos láser por el órgano cristalino que tiene en el torso.",

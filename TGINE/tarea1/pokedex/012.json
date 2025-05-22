@@ -2,7 +2,13 @@
     "name": "Butterfree",
     "number": "012",
     "url": "https://pkparaiso.com//pokedex/butterfree.php",
-    "date": "13-02-2013",
+    "types": [
+        "bicho",
+        "volador"
+    ],
+    "class": "Pokémon Mariposa",
+    "weight": 32.0,
+    "height": 1.1,
     "descriptions": {
         " Pokémon Rojo y Azul": "En combate, aletea a gran velocidad para lanzar al aire sus tóxicos polvillos",
         " Pokémon Amarillo": "Sus alas están cubiertas de polvos venenosos. Como repelen el agua, puede volar bajo la lluvia",

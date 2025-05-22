@@ -2,7 +2,13 @@
     "name": "Jumpluff",
     "number": "189",
     "url": "https://pkparaiso.com//pokedex/jumpluff.php",
-    "date": "29-07-2007",
+    "types": [
+        "planta",
+        "volador"
+    ],
+    "class": "Pokémon Algadón",
+    "weight": 3.0,
+    "height": 0.8,
     "descriptions": {
         " Pokémon Oro": "Si es llevado por el viento, podría dar la vuelta al mundo controlando el vuelo con sus esporas.",
         " Pokémon Plata": "Se desplaza con los vientos estacionales y suelta sus esporas por todo el mundo para reproducirse.",

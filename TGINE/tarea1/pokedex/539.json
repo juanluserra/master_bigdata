@@ -2,7 +2,12 @@
     "name": "Sawk",
     "number": "539",
     "url": "https://pkparaiso.com//pokedex/sawk.php",
-    "date": "18-12-2020",
+    "types": [
+        "lucha"
+    ],
+    "class": "Pokémon Kárate",
+    "weight": 51.0,
+    "height": 1.4,
     "descriptions": {
         " Pokémon Negro": "En las montañas en las que se adiestra, se pueden oír sus puños golpear rocas y árboles.",
         " Pokémon Blanco": "La potencia de sus puñetazos aumenta si se aprieta el cinturón. Si le molestan cuando se entrena, se enfada.",

@@ -2,7 +2,12 @@
     "name": "Pineco",
     "number": "204",
     "url": "https://pkparaiso.com//pokedex/pineco.php",
-    "date": "24-08-2000",
+    "types": [
+        "bicho"
+    ],
+    "class": "Pokémon Larva",
+    "weight": 7.2,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Oro": "Le gusta engrosar su coraza añadiendo cortezas de árbol. El aumento de peso no le molesta.",
         " Pokémon Plata": "Se cuelga y espera a los insectos que pasan cerca. No suele moverse mucho por su cuenta.",

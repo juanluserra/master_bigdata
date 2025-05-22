@@ -2,7 +2,13 @@
     "name": "Deino",
     "number": "633",
     "url": "https://pkparaiso.com//pokedex/deino.php",
-    "date": "19-02-2008",
+    "types": [
+        "siniestro",
+        "dragon"
+    ],
+    "class": "Pokémon Tosco",
+    "weight": 17.3,
+    "height": 0.8,
     "descriptions": {
         " Pokémon Negro": "Mordisquea todo aquello a su paso y se come todo aquello que sea comestible. Es peligroso acercarse a él sin cuidado.",
         " Pokémon Blanco": "No ve, por eso va haciendo placajes y dando mordiscos a diestro y siniestro. Su cuerpo está plagado de heridas.",

@@ -2,7 +2,12 @@
     "name": "Machop",
     "number": "066",
     "url": "https://pkparaiso.com//pokedex/machop.php",
-    "date": "20-12-2019",
+    "types": [
+        "lucha"
+    ],
+    "class": "Pokémon Superpoder",
+    "weight": 19.5,
+    "height": 0.8,
     "descriptions": {
         " Pokémon Rojo y Azul": "Le encanta ser musculoso. Se entrena en todo tipo de arte marcial para ser aún más fuerte",
         " Pokémon Amarillo": "Muy poderoso a pesar de su pequeño tamaño. Su maestría en artes marciales lo hace muy duro",

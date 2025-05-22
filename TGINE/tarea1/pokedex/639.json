@@ -2,7 +2,13 @@
     "name": "Terrakion",
     "number": "639",
     "url": "https://pkparaiso.com//pokedex/terrakion.php",
-    "date": "03-06-2014",
+    "types": [
+        "roca",
+        "lucha"
+    ],
+    "class": "Pokémon Gruta",
+    "weight": 260.0,
+    "height": 1.9,
     "descriptions": {
         " Pokémon Negro": "Luchó contra los hombres para proteger a los Pokémon que perdieron su hogar por culpa de las guerras de los humanos.",
         " Pokémon Blanco": "Su potencia al embestir es capaz de derribar las murallas de un castillo. Las leyendas hablan de sus proezas.",

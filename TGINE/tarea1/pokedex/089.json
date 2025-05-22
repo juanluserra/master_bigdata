@@ -1,8 +1,13 @@
 {
     "name": "Muk",
     "number": "089",
-    "url": "https://pkparaiso.com//pokedex/muk.php",
-    "date": "05-01-2003",
+    "url": "https://pkparaiso.com/pokedex/muk.php",
+    "types": [
+        "veneno"
+    ],
+    "class": "Pokémon Lodo",
+    "weight": 30.0,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Rojo y Azul": "Está cubierto por un repugnante lodo. Es tan tóxico que hasta sus huellas son venenosas",
         " Pokémon Amarillo": "Huele tan mal que puede provocar desmayos. Ha degenerado tanto, que ya ni él mismo se huele",

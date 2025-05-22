@@ -2,7 +2,12 @@
     "name": "Aromatisse",
     "number": "683",
     "url": "https://pkparaiso.com//pokedex/aromatisse.php",
-    "date": "10-02-2009",
+    "types": [
+        "hada"
+    ],
+    "class": "Pokémon Fragancia",
+    "weight": 15.5,
+    "height": 0.8,
     "descriptions": {
         " Pokémon X": "Puede producir multitud de olores diferentes y, en combate, secreta los que le resultan molestos al enemigo para así contar con cierta ventaja.",
         " Pokémon Y": "La fragancia que despide es tan potente que solo podría caminar a su lado un Entrenador que tenga especial predilección por ese aroma.",

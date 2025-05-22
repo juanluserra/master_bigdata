@@ -2,7 +2,13 @@
     "name": "Togetic",
     "number": "176",
     "url": "https://pkparaiso.com//pokedex/togetic.php",
-    "date": "05-11-2022",
+    "types": [
+        "hada",
+        "volador"
+    ],
+    "class": "Pokémon Felicidad",
+    "weight": 3.2,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Oro": "Dicen que aparece entre gentes cuidadosas y de buen corazón, a quienes inunda de felicidad.",
         " Pokémon Plata": "Si no está con gente amable, se entristece. Puede flotar en el aire sin mover las alas.",

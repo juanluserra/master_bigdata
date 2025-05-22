@@ -2,7 +2,13 @@
     "name": "Xatu",
     "number": "178",
     "url": "https://pkparaiso.com//pokedex/xatu.php",
-    "date": "07-10-2008",
+    "types": [
+        "psiquico",
+        "volador"
+    ],
+    "class": "Pokémon Místico",
+    "weight": 15.0,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Oro": "Dicen que se mantiene quieto y en silencio porque observa el pasado y el futuro al mismo tiempo.",
         " Pokémon Plata": "Dicen en Sudamérica que su ojo derecho ve el futuro y que el izquierdo ve el pasado.",

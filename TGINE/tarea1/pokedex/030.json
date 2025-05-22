@@ -2,7 +2,12 @@
     "name": "Nidorina",
     "number": "030",
     "url": "https://pkparaiso.com//pokedex/nidorina.php",
-    "date": "23-01-2000",
+    "types": [
+        "veneno"
+    ],
+    "class": "Pokémon Pin Veneno",
+    "weight": 20.0,
+    "height": 0.8,
     "descriptions": {
         " Pokémon Rojo y Azul": "El cuerno de la hembra crece lentamente. Prefiere ataques físicos como arañar y morder",
         " Pokémon Amarillo": "Cuando descansa profundamente, sus cuernos se contraen. Esto prueba que está relajado",

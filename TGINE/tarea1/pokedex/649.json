@@ -2,7 +2,13 @@
     "name": "Genesect",
     "number": "649",
     "url": "https://pkparaiso.com//pokedex/genesect.php",
-    "date": "31-08-2021",
+    "types": [
+        "bicho",
+        "acero"
+    ],
+    "class": "Pokémon Paleozoico",
+    "weight": 82.5,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Negro": "Era temido hace 300 millones de años por ser el cazador más fiero y eficaz. Ha sido modificado por el Equipo Plasma.",
         " Pokémon Blanco": "Pokémon de tipo Bicho de la antigüedad, modificado por el Equipo Plasma. El cañón de su lomo ha sido mejorado.",

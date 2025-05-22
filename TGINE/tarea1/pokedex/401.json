@@ -2,7 +2,12 @@
     "name": "Kricketot",
     "number": "401",
     "url": "https://pkparaiso.com//pokedex/kricketot.php",
-    "date": "21-11-2006",
+    "types": [
+        "bicho"
+    ],
+    "class": "Pokémon Grillo",
+    "weight": 2.2,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Diamante": "Hablan entre sí chocando las antenas. Los sonidos producidos son muy característicos.",
         " Pokémon Perla": "Al agitar la cabeza de atrás hacia delante, sus antenas chocan y suenan como un xilófono.",

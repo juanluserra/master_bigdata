@@ -2,7 +2,13 @@
     "name": "Staraptor",
     "number": "398",
     "url": "https://pkparaiso.com//pokedex/staraptor.php",
-    "date": "09-12-2013",
+    "types": [
+        "normal",
+        "volador"
+    ],
+    "class": "Pokémon Depredador",
+    "weight": 24.9,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Diamante": "Sus alas y sus patas son muy fuertes. Puede llevarse volando Pokémon pequeños.",
         " Pokémon Perla": "Tiene un carácter salvaje. No duda en desafiar a rivales mucho mayores.",

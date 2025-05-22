@@ -2,7 +2,13 @@
     "name": "Whirlipede",
     "number": "544",
     "url": "https://pkparaiso.com//pokedex/whirlipede.php",
-    "date": "20-03-2009",
+    "types": [
+        "bicho",
+        "veneno"
+    ],
+    "class": "Pokémon Pupaciempiés",
+    "weight": 58.5,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Negro": "Lo protege un duro caparazón. Gira como una rueda y realiza brutales placajes contra sus enemigos.",
         " Pokémon Blanco": "Normalmente no se mueve, pero se pone a rodar frenéticamente y contraataca con placajes si lo atacan.",

@@ -2,7 +2,13 @@
     "name": "Kyurem",
     "number": "646",
     "url": "https://pkparaiso.com//pokedex/kyurem.php",
-    "date": "01-06-2016",
+    "types": [
+        "dragon",
+        "hielo"
+    ],
+    "class": "Pokémon Frontera",
+    "weight": 325.0,
+    "height": 3.0,
     "descriptions": {
         " Pokémon Negro": "Produce en su interior una intensa energía gélida, y cualquier fuga hace que su cuerpo se congele.",
         " Pokémon Blanco": "Puede crear corrientes de aire tremendamente frías, pero al final acaba congelando su propio cuerpo.",

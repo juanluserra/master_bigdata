@@ -2,7 +2,13 @@
     "name": "Honchkrow",
     "number": "430",
     "url": "https://pkparaiso.com//pokedex/honchkrow.php",
-    "date": "06-10-2010",
+    "types": [
+        "siniestro",
+        "volador"
+    ],
+    "class": "Pokémon Gran Jefe",
+    "weight": 27.3,
+    "height": 0.9,
     "descriptions": {
         " Pokémon Diamante": "Sus amigos Murkrow le traen comida. Se dedica a holgazanear y acicalarse en su nido.",
         " Pokémon Perla": "Está activo por la noche y pulula arrastrando a numerosos Murkrow.",

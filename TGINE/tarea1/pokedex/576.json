@@ -2,7 +2,12 @@
     "name": "Gothitelle",
     "number": "576",
     "url": "https://pkparaiso.com//pokedex/gothitelle.php",
-    "date": "31-08-2000",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Astro",
+    "weight": 44.0,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Negro": "Su inmenso poder psíquico distorsiona el espacio y le permite reflejar incluso estrellas a años luz de distancia.",
         " Pokémon Blanco": "Predice el futuro analizando la posición de los astros y su movimiento. Conoce la esperanza de vida de los Entrenadores.",

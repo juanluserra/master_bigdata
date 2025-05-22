@@ -2,7 +2,13 @@
     "name": "Unfezant",
     "number": "521",
     "url": "https://pkparaiso.com//pokedex/unfezant.php",
-    "date": "10-02-2014",
+    "types": [
+        "normal",
+        "volador"
+    ],
+    "class": "Pokémon Altanero",
+    "weight": 29.0,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Negro": "El macho amenaza al enemigo meciendo el adorno de su cabeza. Al volar, la hembra es mucho más diestra que el macho.",
         " Pokémon Blanco": "El macho hace gala de ornamentación en la cabeza. No es dado a hacerse amigo de alguien que no sea su Entrenador.",

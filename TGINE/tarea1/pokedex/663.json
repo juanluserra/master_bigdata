@@ -2,7 +2,13 @@
     "name": "Talonflame",
     "number": "663",
     "url": "https://pkparaiso.com//pokedex/talonflame.php",
-    "date": "30-08-2005",
+    "types": [
+        "fuego",
+        "volador"
+    ],
+    "class": "Pokémon Flamígero",
+    "weight": 24.5,
+    "height": 1.2,
     "descriptions": {
         " Pokémon X": "Si se exalta durante un combate reñido, arroja chispas y ascuas de los intersticios entre su plumaje mientras vuela.",
         " Pokémon Y": "Llega a alcanzar los 500 km/h al perseguir a su presa, a quien le asesta el golpe de gracia con una patada muy potente.",

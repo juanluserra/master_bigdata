@@ -2,7 +2,13 @@
     "name": "Gyarados",
     "number": "130",
     "url": "https://pkparaiso.com//pokedex/gyarados.php",
-    "date": "24-07-2002",
+    "types": [
+        "agua",
+        "volador"
+    ],
+    "class": "Pokémon Atrocidad",
+    "weight": 235.0,
+    "height": 6.5,
     "descriptions": {
         " Pokémon Rojo y Azul": "Poco visto en la Naturaleza. Enorme y malo, es capaz de destruir ciudades enteras de un ataque",
         " Pokémon Amarillo": "Este Pokémon es enormemente destructivo. En la antigüedad, era conocido por destruir ciudades",

@@ -2,7 +2,12 @@
     "name": "Solosis",
     "number": "577",
     "url": "https://pkparaiso.com//pokedex/solosis.php",
-    "date": "17-09-2012",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Célula",
+    "weight": 1.0,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Negro": "Desata su poder psíquico para ahuyentar al enemigo. Se comunica con sus compañeros por telepatía.",
         " Pokémon Blanco": "Puede vivir en cualquier ambiente gracias al líquido especial que recubre su cuerpo.",

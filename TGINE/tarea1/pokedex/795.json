@@ -2,7 +2,13 @@
     "name": "Pheromosa",
     "number": "795",
     "url": "https://pkparaiso.com//pokedex/pheromosa.php",
-    "date": "12-12-2013",
+    "types": [
+        "bicho",
+        "lucha"
+    ],
+    "class": "Pokémon Elegancia",
+    "weight": 25.0,
+    "height": 1.8,
     "descriptions": {
         " Pokémon Sol": "Uno de los temibles Ultraentes. Se dice que ha sido avistado recorriendo la superficie terrestre a velocidades de vértigo.",
         " Pokémon Luna": "Este Ultraente se muestra reacio al contacto, probablemente porque percibe inmundicia en todo cuanto le rodea."

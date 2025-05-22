@@ -2,7 +2,13 @@
     "name": "Nincada",
     "number": "290",
     "url": "https://pkparaiso.com//pokedex/nincada.php",
-    "date": "24-07-2021",
+    "types": [
+        "bicho",
+        "tierra"
+    ],
+    "class": "Pokémon Aprendiz",
+    "weight": 5.5,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Rubí": "Nincada vive bajo tierra en la más Absoluta oscuridad Durante años. Este Pokémon absorbe nutrientes de las raíces de los árboles y permanece inmóvil a la espera de la evolución.",
         " Pokémon Zafiro": "Nincada vive bajo tierra y usa las garras afiladas que tiene para escarbar y buscar raíces de árboles y absorber humedad y nutrientes. Este Pokémon huye de la luz del sol porque le hace daño.",

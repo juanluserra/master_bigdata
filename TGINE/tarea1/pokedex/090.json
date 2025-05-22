@@ -2,7 +2,12 @@
     "name": "Shellder",
     "number": "090",
     "url": "https://pkparaiso.com//pokedex/shellder.php",
-    "date": "17-10-2016",
+    "types": [
+        "agua"
+    ],
+    "class": "Pokémon Bivalvo",
+    "weight": 4.0,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Rojo y Azul": "Su caparazón repele cualquier tipo de ataque. Sólo cuando abre su caparazón es vulnerable",
         " Pokémon Amarillo": "Su concha puede evitar cualquier ataque. El débil cuerpo sólo está expuesto cuando está abierta",

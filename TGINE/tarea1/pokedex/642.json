@@ -2,7 +2,13 @@
     "name": "Thundurus",
     "number": "642",
     "url": "https://pkparaiso.com//pokedex/thundurus.php",
-    "date": "20-05-2012",
+    "types": [
+        "electrico",
+        "volador"
+    ],
+    "class": "Pokémon Centella",
+    "weight": 61.0,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Negro": "A su paso, Thundurus va dejando profundas marcas de rayos que han achicharrado el terreno.",
         " Pokémon Blanco": "Lanza descargas eléctricas por las púas de su cola. Sobrevuela Teselia dejando caer rayos.",

@@ -2,7 +2,12 @@
     "name": "Magmar",
     "number": "126",
     "url": "https://pkparaiso.com//pokedex/magmar.php",
-    "date": "12-07-2009",
+    "types": [
+        "fuego"
+    ],
+    "class": "Pokémon Escupefuego",
+    "weight": 44.5,
+    "height": 1.3,
     "descriptions": {
         " Pokémon Rojo y Azul": "Su cuerpo siempre arde con un brillo naranja, con el que se oculta entre las llamas",
         " Pokémon Amarillo": "Nacen en volcanes activos. Su cuerpo parece una gran bola de fuego ya que están en llamas",

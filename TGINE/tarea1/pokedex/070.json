@@ -1,0 +1,35 @@
+{
+    "name": "Weepinbell",
+    "number": "070",
+    "url": "https://pkparaiso.com//pokedex/weepinbell.php",
+    "types": [
+        "planta",
+        "veneno"
+    ],
+    "class": "Pokémon Matamoscas",
+    "weight": 6.4,
+    "height": 1.0,
+    "descriptions": {
+        " Pokémon Rojo y Azul": "Escupe POLVO-VENENO para envenenar al enemigo, y luego lo liquida con su ÁCIDO",
+        " Pokémon Amarillo": "Cuando está hambriento, ataca a todo lo que se mueva. Su pobre presa se derrite en fuertes ácidos",
+        " Pokémon Oro": "Aunque está lleno de ÁCIDO, no llega a derretirse porque también rezuma fluidos neutralizantes.",
+        " Pokémon Plata": "Si su presa no le cabe en la boca, la corta con hojas afiladas, facilitando su digestión.",
+        " Pokémon Cristal": "Cuando tiene hambre, agita las hojas afiladas que tiene y rebana lo que tenga a mano para alimentarse.",
+        " Pokémon Rubí": "Weepinbell tiene un gancho a modo de extremidad superior trasera, que usa por la noche para colgarse de una rama y echarse a dormir. Si se mueve mientras duerme, puede acabar en el suelo.",
+        " Pokémon Zafiro": "Weepinbell tiene un gancho a modo de extremidad superior trasera, que usa por la noche para colgarse de una rama y echarse a dormir. Si se mueve mientras duerme, puede acabar en el suelo.",
+        " Pokémon Esmeralda": "Tiene un gancho a modo de extremidad superior trasera que usa por la noche para colgarse de una rama y dormir. Si se mueve mientras duerme, puede acabar en el suelo.",
+        " Pokémon Rojo Fuego": "Las hojas que tiene actúan como cuchillas en combate. Otra de sus armas es el corrosivo fluido que expulsa.",
+        " Pokémon Verde Hoja": "Escupe POLVO VENENO para envenenar al enemigo, y luego lo liquida con ÁCIDO.",
+        " Pokémon Diamante": "Este Pokémon parece una planta. Captura a sus presas usando polvo tóxico cuando están desprevenidas.",
+        " Pokémon Perla": "Este Pokémon parece una planta. Captura a sus presas usando polvo tóxico cuando están desprevenidas.",
+        " Pokémon Platino": "Este Pokémon parece una planta. Captura a sus presas usando polvo tóxico cuando están desprevenidas.",
+        " Pokémon HeartGold": "Aunque está lleno de ácido, no llega a derretirse porque también rezuma fluidos neutralizantes.",
+        " Pokémon SoulSilver": "Aunque está lleno de ácido, no llega a derretirse porque también rezuma fluidos neutralizantes.",
+        " Pokémon Negro": "Este Pokémon parece una planta. Captura a sus presas usando polvo tóxico cuando están desprevenidas.",
+        " Pokémon Blanco": "Este Pokémon parece una planta. Captura a sus presas usando polvo tóxico cuando están desprevenidas.",
+        " Pokémon X": "Las hojas que tiene actúan como cuchillas en combate. Otra de sus armas es el corrosivo fluido que expulsa.",
+        " Pokémon Y": "Escupe Polvo Veneno para envenenar al enemigo y, luego, lo liquida con Ácido.",
+        " Pokémon Rubí Omega": "Weepinbell tiene un gancho a modo de extremidad superior trasera, que usa por la noche para colgarse de una rama y echarse a dormir. Si se mueve mientras duerme, puede acabar en el suelo.",
+        " Pokémon Zafiro Alfa": "Weepinbell tiene un gancho a modo de extremidad superior trasera, que usa por la noche para colgarse de una rama y echarse a dormir. Si se mueve mientras duerme, puede acabar en el suelo."
+    }
+}

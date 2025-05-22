@@ -2,7 +2,12 @@
     "name": "Glalie",
     "number": "362",
     "url": "https://pkparaiso.com//pokedex/glalie.php",
-    "date": "30-09-2005",
+    "types": [
+        "hielo"
+    ],
+    "class": "Pokémon Cara",
+    "weight": 256.5,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Rubí": "Glalie endurece el cuerpo rocoso que tiene con una coraza de hielo. Este Pokémon tiene la habilidad de congelar la humedad del ambiente y formar la figura que se le antoje.",
         " Pokémon Zafiro": "Glalie tiene la habilidad de controlar el hielo con total libertad. Por ejemplo, puede dejar a su rival totalmente congelado en un instante. Y, una vez helado, lo devora lentamente.",

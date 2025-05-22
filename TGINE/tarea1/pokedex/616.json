@@ -2,7 +2,12 @@
     "name": "Shelmet",
     "number": "616",
     "url": "https://pkparaiso.com//pokedex/shelmet.php",
-    "date": "02-06-2016",
+    "types": [
+        "bicho"
+    ],
+    "class": "Pokémon Caracol",
+    "weight": 7.7,
+    "height": 0.4,
     "descriptions": {
         " Pokémon Negro": "Cierra la tapa de su caparazón al ser atacado y luego escupe un líquido venenoso por los resquicios de la misma.",
         " Pokémon Blanco": "Evoluciona si entra en contacto con energía eléctrica junto a Karrablast. Aún no se ha esclarecido el porqué.",

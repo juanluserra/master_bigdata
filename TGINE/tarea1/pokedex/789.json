@@ -2,7 +2,12 @@
     "name": "Cosmog",
     "number": "789",
     "url": "https://pkparaiso.com//pokedex/cosmog.php",
-    "date": "09-07-2019",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Nebulosa",
+    "weight": 0.1,
+    "height": 0.2,
     "descriptions": {
         " Pokémon Sol": "Su cuerpo se compone de una materia gaseosa inestable. Crece poco a poco al acumular las motas de polvo que flotan en el aire.",
         " Pokémon Luna": "En tiempos remotos recibía el nombre de Hijo de las estrellas. Cuentan que proviene de otro mundo, pero poco más se sabe al respecto."

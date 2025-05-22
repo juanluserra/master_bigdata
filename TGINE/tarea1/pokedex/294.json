@@ -1,0 +1,29 @@
+{
+    "name": "Loudred",
+    "number": "294",
+    "url": "https://pkparaiso.com//pokedex/loudred.php",
+    "types": [
+        "normal"
+    ],
+    "class": "Pokémon Chillón",
+    "weight": 40.5,
+    "height": 1.0,
+    "descriptions": {
+        " Pokémon Rubí": "Los bramidos de Loudred pueden echar abajo una casa reforzada con vigas de madera. Este Pokémon usa el vozarrón que tiene para castigar a sus rivales. Las orejas redondas le sirven de altavoces.",
+        " Pokémon Zafiro": "Loudred grita a la vez que da pisotones. Una vez que deja de chillar, se queda ensordecido Durante un buen rato; lo que se considera su punto débil.",
+        " Pokémon Esmeralda": "Orienta los altavoces redondos que tiene en la cabeza para atacar a su rival con ondas ultrasónicas a gran volumen. Genera energía dando pisotones en el suelo.",
+        " Pokémon Rojo Fuego": "Cuando patalea y ruge, genera ondas ultrasónicas con las que puede destruir hasta una casa.",
+        " Pokémon Verde Hoja": "Cuando patalea y ruge, genera ondas ultrasónicas con las que puede destruir hasta una casa.",
+        " Pokémon Diamante": "Las ondas de sus gritos pueden voltear un camión. Patea el suelo para ganar potencia.",
+        " Pokémon Perla": "Las ondas de sus gritos pueden voltear un camión. Patea el suelo para ganar potencia.",
+        " Pokémon Platino": "Las ondas de sus gritos pueden voltear un camión. Patea el suelo para ganar potencia.",
+        " Pokémon HeartGold": "Aspira profundamente y luego, usando sus fuertes abdominales, suelta un potente vozarrón.",
+        " Pokémon SoulSilver": "Aspira profundamente y luego, usando sus fuertes abdominales, suelta un potente vozarrón.",
+        " Pokémon Negro": "Las ondas de sus gritos pueden voltear un camión. Patea el suelo para ganar potencia.",
+        " Pokémon Blanco": "Las ondas de sus gritos pueden voltear un camión. Patea el suelo para ganar potencia.",
+        " Pokémon X": "Aspira profundamente y luego, usando sus fuertes abdominales, suelta un potente vozarrón.",
+        " Pokémon Y": "Las ondas de sus gritos pueden voltear un camión. Patea el suelo para ganar potencia.",
+        " Pokémon Rubí Omega": "Los bramidos de Loudred pueden echar abajo una casa reforzada con vigas de madera. Este Pokémon usa el vozarrón que tiene para castigar a sus rivales. Las orejas redondas le sirven de altavoces.",
+        " Pokémon Zafiro Alfa": "Loudred grita a la vez que da pisotones. Una vez que deja de chillar, se queda ensordecido durante un buen rato; lo que se considera su punto débil."
+    }
+}

@@ -2,7 +2,13 @@
     "name": "Fearow",
     "number": "022",
     "url": "https://pkparaiso.com//pokedex/fearow.php",
-    "date": "07-10-2021",
+    "types": [
+        "normal",
+        "volador"
+    ],
+    "class": "Pokémon Pico",
+    "weight": 38.0,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Rojo y Azul": "Con sus enormes y magníficas alas, puede seguir volando sin tener que aterrizar para descansar",
         " Pokémon Amarillo": "Este Pokémon es conocido desde hace muchos años. Si siente peligro volará lejos inmediatamente",

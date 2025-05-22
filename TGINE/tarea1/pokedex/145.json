@@ -2,7 +2,13 @@
     "name": "Zapdos",
     "number": "145",
     "url": "https://pkparaiso.com//pokedex/zapdos.php",
-    "date": "31-03-2006",
+    "types": [
+        "electrico",
+        "volador"
+    ],
+    "class": "Pokémon Eléctrico",
+    "weight": 52.6,
+    "height": 1.6,
     "descriptions": {
         " Pokémon Rojo y Azul": "Un legendario pájaro Pokémon. Dicen que aparece entre las nubes lanzando enormes rayos brillantes",
         " Pokémon Amarillo": "Este legendario pájaro Pokémon sólo aparece cuando el cielo se torna oscuro y caen rayos",

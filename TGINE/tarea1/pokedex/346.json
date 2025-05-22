@@ -2,7 +2,13 @@
     "name": "Cradily",
     "number": "346",
     "url": "https://pkparaiso.com//pokedex/cradily.php",
-    "date": "20-10-2012",
+    "types": [
+        "roca",
+        "planta"
+    ],
+    "class": "Pokémon Percebe",
+    "weight": 60.4,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Rubí": "Cradily va por el fondo oceánico sin rumbo fijo en busca de comida. El cuello de este Pokémon se parece al tronco de un árbol. Cuando quiere atrapar a su presa desprevenida, lo estira y usa los ocho tentáculos que tiene.",
         " Pokémon Zafiro": "A Cradily le sirve el cuerpo de ancla y sostén en aguas turbulentas. Gracias a él no es arrastrado por las corrientes. Este Pokémon segrega un fuerte jugo digestivo a través de los tentáculos.",

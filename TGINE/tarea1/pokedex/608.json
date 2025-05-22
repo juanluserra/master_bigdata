@@ -2,7 +2,13 @@
     "name": "Lampent",
     "number": "608",
     "url": "https://pkparaiso.com//pokedex/lampent.php",
-    "date": "13-10-2021",
+    "types": [
+        "fantasma",
+        "fuego"
+    ],
+    "class": "Pokémon Farolillo",
+    "weight": 13.0,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Negro": "Lo temen por ser considerado de mal agüero. Vaga en busca de almas de individuos que han pasado a mejor vida.",
         " Pokémon Blanco": "Aparece hacia el final de la vida y absorbe el alma en cuanto esta se separa del cuerpo.",

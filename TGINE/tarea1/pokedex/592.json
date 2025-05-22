@@ -2,7 +2,13 @@
     "name": "Frillish",
     "number": "592",
     "url": "https://pkparaiso.com//pokedex/frillish.php",
-    "date": "03-12-2013",
+    "types": [
+        "agua",
+        "fantasma"
+    ],
+    "class": "Pokémon Ingrávido",
+    "weight": 33.0,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Negro": "Se escabulle al fondo del mar una vez que atrapa fuertemente a su rival con unos tentáculos semejantes a velos.",
         " Pokémon Blanco": "Paraliza a sus presas con veneno y las lleva a su morada, que se encuentra a 8000 m en el fondo del mar.",

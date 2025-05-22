@@ -2,7 +2,12 @@
     "name": "Hitmonchan",
     "number": "107",
     "url": "https://pkparaiso.com//pokedex/hitmonchan.php",
-    "date": "14-03-2005",
+    "types": [
+        "lucha"
+    ],
+    "class": "Pokémon Puñetazo",
+    "weight": 50.2,
+    "height": 1.4,
     "descriptions": {
         " Pokémon Rojo y Azul": "Aunque parezca que no hace nada, sus rápidos puñetazos-voleas son imposibles de ver",
         " Pokémon Amarillo": "Sus golpes se asemejan a una taladradora. Puede atravesar un muro de hormigón como si nada",

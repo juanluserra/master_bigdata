@@ -2,7 +2,13 @@
     "name": "Larvesta",
     "number": "636",
     "url": "https://pkparaiso.com//pokedex/larvesta.php",
-    "date": "02-02-2002",
+    "types": [
+        "bicho",
+        "fuego"
+    ],
+    "class": "Pokémon Antorcha",
+    "weight": 28.8,
+    "height": 1.1,
     "descriptions": {
         " Pokémon Negro": "Se cree que nació del sol. Cuando evoluciona, su cuerpo se ve recubierto por llamas.",
         " Pokémon Blanco": "Vive en las laderas de los volcanes. Emite fuego por sus cinco cuernos para ahuyentar a sus enemigos.",

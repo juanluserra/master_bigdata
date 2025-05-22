@@ -2,7 +2,13 @@
     "name": "Scolipede",
     "number": "545",
     "url": "https://pkparaiso.com//pokedex/scolipede.php",
-    "date": "08-01-2002",
+    "types": [
+        "bicho",
+        "veneno"
+    ],
+    "class": "Pokémon Megaciempiés",
+    "weight": 200.5,
+    "height": 2.5,
     "descriptions": {
         " Pokémon Negro": "Arrincona a sus rivales con rápidos movimientos y los ensarta con sus cuernos. No se detiene hasta vencer.",
         " Pokémon Blanco": "Las garras del cuello contienen un potente veneno capaz de acabar con sus rivales. Es muy agresivo.",

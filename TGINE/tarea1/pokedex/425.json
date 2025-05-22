@@ -2,7 +2,13 @@
     "name": "Drifloon",
     "number": "425",
     "url": "https://pkparaiso.com//pokedex/drifloon.php",
-    "date": "17-02-2019",
+    "types": [
+        "fantasma",
+        "volador"
+    ],
+    "class": "Pokémon Globo",
+    "weight": 1.2,
+    "height": 0.4,
     "descriptions": {
         " Pokémon Diamante": "Agarra las manos de los niños para llevárselos, pero siempre acaba siendo arrastrado.",
         " Pokémon Perla": "Está formado por los espíritus de personas y Pokémon. Le encantan las estaciones húmedas.",

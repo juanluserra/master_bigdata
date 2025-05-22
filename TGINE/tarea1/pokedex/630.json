@@ -2,7 +2,13 @@
     "name": "Mandibuzz",
     "number": "630",
     "url": "https://pkparaiso.com//pokedex/mandibuzz.php",
-    "date": "24-09-2021",
+    "types": [
+        "siniestro",
+        "volador"
+    ],
+    "class": "Pokémon Águila Hueso",
+    "weight": 39.5,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Negro": "Construye su nido con huesos. Atrapa presas débiles con sus garras y las transporta a su nido.",
         " Pokémon Blanco": "Otea la superficie desde el cielo y ataca a Pokémon debilitados. Tiene por costumbre hacerse adornos con huesos.",

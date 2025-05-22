@@ -2,7 +2,12 @@
     "name": "Dusclops",
     "number": "356",
     "url": "https://pkparaiso.com//pokedex/dusclops.php",
-    "date": "10-09-2004",
+    "types": [
+        "fantasma"
+    ],
+    "class": "Pokémon Atrayente",
+    "weight": 30.6,
+    "height": 1.6,
     "descriptions": {
         " Pokémon Rubí": "Dusclops está completamente hueco por dentro. Dicen que su cuerpo es como un agujero negro. Este Pokémon es capaz de absorber cualquier cosa, pero cosa que absorba, cosa que no dejará salir nunca más.",
         " Pokémon Zafiro": "Dusclops absorbe todo lo que pilla, al margen del tamaño que tenga. Este Pokémon hipnotiza a su rival moviendo las manos de forma macAbra y usando el ojo de manera implacable. Una vez hipnotizado, el enemigo obedecerá.",

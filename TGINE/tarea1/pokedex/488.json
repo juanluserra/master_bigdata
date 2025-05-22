@@ -2,7 +2,12 @@
     "name": "Cresselia",
     "number": "488",
     "url": "https://pkparaiso.com//pokedex/cresselia.php",
-    "date": "03-11-2022",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Lunar",
+    "weight": 85.6,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Diamante": "Sus alas emiten un velo de partículas brillantes. Se dice que representa un cuarto lunar.",
         " Pokémon Perla": "Sus alas emiten un velo de partículas brillantes. Se dice que representa un cuarto lunar.",

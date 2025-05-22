@@ -2,7 +2,13 @@
     "name": "Oranguru",
     "number": "765",
     "url": "https://pkparaiso.com//pokedex/oranguru.php",
-    "date": "20-12-2000",
+    "types": [
+        "normal",
+        "psiquico"
+    ],
+    "class": "Pokémon Sabio",
+    "weight": 76.0,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Sol": "Es un Pokémon famoso por su astucia e ingenio. Desprecia a los Entrenadores novatos y prefiere a los más veteranos.",
         " Pokémon Luna": "Vive en lo alto de los árboles en plena espesura de la jungla. Muy de vez en cuando se acerca a la costa para medir su ingenio con Slowking."

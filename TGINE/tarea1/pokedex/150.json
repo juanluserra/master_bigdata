@@ -2,7 +2,12 @@
     "name": "Mewtwo",
     "number": "150",
     "url": "https://pkparaiso.com//pokedex/mewtwo.php",
-    "date": "12-11-2016",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Genético",
+    "weight": 122.0,
+    "height": 2.0,
     "descriptions": {
         " Pokémon Rojo y Azul": "Fue creado por un científico tras años de horribles experimentos de ingeniería genética",
         " Pokémon Amarillo": "Su ADN es casi el mismo que el de Mew. De todos modos, su tamaño y disposición son diferentes",

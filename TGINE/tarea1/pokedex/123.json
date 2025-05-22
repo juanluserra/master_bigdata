@@ -2,7 +2,13 @@
     "name": "Scyther",
     "number": "123",
     "url": "https://pkparaiso.com//pokedex/scyther.php",
-    "date": "04-05-2003",
+    "types": [
+        "bicho",
+        "volador"
+    ],
+    "class": "Pokémon Mantis",
+    "weight": 56.0,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Rojo y Azul": "Con una agilidad y velocidad tipo-ninja, puede crear la ilusión de que hay más de uno",
         " Pokémon Amarillo": "Se agazapa en la hierba alta para saltar sobre su enemigo con sus guadañas. Se mueve como un ninja",

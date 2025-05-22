@@ -2,7 +2,13 @@
     "name": "Spiritomb",
     "number": "442",
     "url": "https://pkparaiso.com//pokedex/spiritomb.php",
-    "date": "02-05-2013",
+    "types": [
+        "fantasma",
+        "siniestro"
+    ],
+    "class": "Pokémon Prohibido",
+    "weight": 108.0,
+    "height": 1.0,
     "descriptions": {
         " Pokémon Diamante": "Como castigo por una fechoría 500 años atrás, está unido a la fisura de una piedra angular mística.",
         " Pokémon Perla": "Se formó a partir de 108 espíritus. Está unido a la fisura de una piedra angular mística.",

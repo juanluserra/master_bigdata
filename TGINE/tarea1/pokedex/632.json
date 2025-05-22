@@ -2,7 +2,13 @@
     "name": "Durant",
     "number": "632",
     "url": "https://pkparaiso.com//pokedex/durant.php",
-    "date": "03-02-2003",
+    "types": [
+        "bicho",
+        "acero"
+    ],
+    "class": "Pokémon Hormigacero",
+    "weight": 33.0,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Negro": "Llevan una armadura de acero. Se defienden en grupo para contrarrestar a sus depredadores, los Heatmor.",
         " Pokémon Blanco": "Abre agujeros en las montañas. Los intrincados túneles son obras laberínticas de los Durant.",

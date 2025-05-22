@@ -2,7 +2,13 @@
     "name": "Aegislash",
     "number": "681",
     "url": "https://pkparaiso.com//pokedex/aegislash.php",
-    "date": "11-12-2004",
+    "types": [
+        "acero",
+        "fantasma"
+    ],
+    "class": "Pokémon Espada Real",
+    "weight": 53.0,
+    "height": 1.7,
     "descriptions": {
         " Pokémon X": "Han permanecido junto a estirpes de reyes durante generaciones. Mediante su poder espectral pueden controlar a humanos y a Pokémon.",
         " Pokémon Y": "Al parecer, puede intuir si un humano tiene madera de rey. Según se dice, las personas que obtuvieron su reconocimiento acabaron siendo reyes.",

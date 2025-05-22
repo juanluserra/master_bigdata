@@ -2,7 +2,13 @@
     "name": "Nihilego",
     "number": "793",
     "url": "https://pkparaiso.com//pokedex/nihilego.php",
-    "date": "05-05-2015",
+    "types": [
+        "roca",
+        "veneno"
+    ],
+    "class": "Pokémon Parásito",
+    "weight": 55.5,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Sol": "Un Ultraente envuelto en misterio. Se dice que las víctimas a las que posee se vuelven agresivas.",
         " Pokémon Luna": "Se desconoce si este Ultraente posee consciencia propia, pero en ocasiones se comporta como una chica joven."

@@ -2,7 +2,12 @@
     "name": "Beheeyem",
     "number": "606",
     "url": "https://pkparaiso.com//pokedex/beheeyem.php",
-    "date": "04-12-2014",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Cerebro",
+    "weight": 34.5,
+    "height": 1.0,
     "descriptions": {
         " Pokémon Negro": "Manipula los recuerdos. Dicen que se comunica con sus compañeros cuando sus dedos tricolores parpadean.",
         " Pokémon Blanco": "Controla el cerebro del rival con su poder psíquico y manipula sus recuerdos.",

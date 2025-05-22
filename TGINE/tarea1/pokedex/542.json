@@ -2,7 +2,13 @@
     "name": "Leavanny",
     "number": "542",
     "url": "https://pkparaiso.com//pokedex/leavanny.php",
-    "date": "05-12-2000",
+    "types": [
+        "bicho",
+        "planta"
+    ],
+    "class": "Pokémon Cuidador",
+    "weight": 20.5,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Negro": "Cuando se encuentra con un pequeño Pokémon, suele usar sus cuchillas y líquido viscoso para hacerle ropa.",
         " Pokémon Blanco": "Calienta sus huevos con el calor desprendido por el humus. Hace mantillas con las hojas para Sewaddle.",

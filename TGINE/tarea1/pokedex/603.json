@@ -2,7 +2,12 @@
     "name": "Eelektrik",
     "number": "603",
     "url": "https://pkparaiso.com//pokedex/eelektrik.php",
-    "date": "21-10-2015",
+    "types": [
+        "electrico"
+    ],
+    "class": "Pokémon Electropez",
+    "weight": 22.0,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Negro": "Las motas redondas componen su aparato electrificador. Enrolla a su rival y deja que la corriente fluya por las motas.",
         " Pokémon Blanco": "Pokémon de apetito voraz. En cuanto encuentra una presa, la paraliza con electricidad y la engulle.",

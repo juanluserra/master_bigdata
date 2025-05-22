@@ -2,7 +2,12 @@
     "name": "Suicune",
     "number": "245",
     "url": "https://pkparaiso.com//pokedex/suicune.php",
-    "date": "12-07-2016",
+    "types": [
+        "agua"
+    ],
+    "class": "Pokémon Aurora",
+    "weight": 187.0,
+    "height": 2.0,
     "descriptions": {
         " Pokémon Oro": "Conocido como la reencarnación de los vientos del norte, puede purificar aguas turbias y sucias.",
         " Pokémon Plata": "Este Pokémon corre por la tierra. Dicen que siempre que aparece, soplan vientos del norte.",

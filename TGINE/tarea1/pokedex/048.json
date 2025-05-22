@@ -2,7 +2,13 @@
     "name": "Venonat",
     "number": "048",
     "url": "https://pkparaiso.com//pokedex/venonat.php",
-    "date": "11-05-2021",
+    "types": [
+        "bicho",
+        "veneno"
+    ],
+    "class": "Pokémon Insecto",
+    "weight": 30.0,
+    "height": 1.0,
     "descriptions": {
         " Pokémon Rojo y Azul": "Vive entre las sombras de altos árboles, donde come insectos. Le atrae la luz por la noche",
         " Pokémon Amarillo": "Sus grandes ojos actúan como radares. En lugares claros, verás montones de pequeños ojos",

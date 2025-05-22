@@ -2,7 +2,12 @@
     "name": "Magby",
     "number": "240",
     "url": "https://pkparaiso.com//pokedex/magby.php",
-    "date": "06-11-2004",
+    "types": [
+        "fuego"
+    ],
+    "class": "Pokémon Ascuas",
+    "weight": 21.4,
+    "height": 0.7,
     "descriptions": {
         " Pokémon Oro": "Cada vez que inspira y expira, lanza ascuas por su boca y por sus fosas nasales.",
         " Pokémon Plata": "Aparece en los cráteres de los volcanes. Puede alcanzar los 600, así que no lo subestimes.",

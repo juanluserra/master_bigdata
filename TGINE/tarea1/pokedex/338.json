@@ -2,7 +2,13 @@
     "name": "Solrock",
     "number": "338",
     "url": "https://pkparaiso.com//pokedex/solrock.php",
-    "date": "24-03-2008",
+    "types": [
+        "roca",
+        "psiquico"
+    ],
+    "class": "Pokémon Meteorito",
+    "weight": 154.0,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Rubí": "Solrock pertenece a una nueva especie de Pokémon a la que se le atribuye una procedencia extraterrestre. Este Pokémon permanece flotando en el aire y se mueve muy despacio. Al luchar, desprende una luz viva e intensa.",
         " Pokémon Zafiro": "La fuente de energía de Solrock es la luz del sol. Dicen que tiene la habilidad de leer la mente de los demás. Al rotar, libera mucho calor.",

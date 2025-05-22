@@ -2,7 +2,13 @@
     "name": "Doduo",
     "number": "084",
     "url": "https://pkparaiso.com//pokedex/doduo.php",
-    "date": "13-08-2021",
+    "types": [
+        "normal",
+        "volador"
+    ],
+    "class": "Pokémon Ave Gemela",
+    "weight": 39.2,
+    "height": 1.4,
     "descriptions": {
         " Pokémon Rojo y Azul": "Un pájaro que compensa su pobre vuelo caminando muy rápidamente. Deja enormes huellas",
         " Pokémon Amarillo": "Sus cortas alas lo hacen volar con dificultad. De todos modos, puede correr a gran velocidad",

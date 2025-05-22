@@ -2,7 +2,13 @@
     "name": "Murkrow",
     "number": "198",
     "url": "https://pkparaiso.com//pokedex/murkrow.php",
-    "date": "15-07-2011",
+    "types": [
+        "siniestro",
+        "volador"
+    ],
+    "class": "Pokémon Oscuridad",
+    "weight": 2.1,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Oro": "Temido y odiado por muchos, dicen que trae la desgracia a todos aquéllos que lo ven por la noche.",
         " Pokémon Plata": "Dicen que al ser perseguido, atrae al atacante hacia los caminos de la oscura montaña, donde se perderá.",

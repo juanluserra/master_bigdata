@@ -2,7 +2,12 @@
     "name": "Weezing",
     "number": "110",
     "url": "https://pkparaiso.com//pokedex/weezing.php",
-    "date": "30-05-2002",
+    "types": [
+        "veneno"
+    ],
+    "class": "Pokémon Gas Venenoso",
+    "weight": 9.5,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Rojo y Azul": "Donde se junten 2 tipos de gases venenosos, 2 Koffings podrán fusionarse en un Weezing",
         " Pokémon Amarillo": "Este Pokémon vive absorbiendo gases venenosos, gérmenes, y el polvo que existe en la basura",

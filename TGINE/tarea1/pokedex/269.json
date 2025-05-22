@@ -2,7 +2,13 @@
     "name": "Dustox",
     "number": "269",
     "url": "https://pkparaiso.com//pokedex/dustox.php",
-    "date": "17-08-2000",
+    "types": [
+        "bicho",
+        "veneno"
+    ],
+    "class": "Pokémon Polilla Ven.",
+    "weight": 31.6,
+    "height": 1.2,
     "descriptions": {
         " Pokémon Rubí": "Los Dustox se acercan a la luz de forma instintiva. De hecho, se agrupan en enjambres alrededor de las luces de las ciudades y causan estragos en las hojas de los árboles que están a pie de calle para alimentarse.",
         " Pokémon Zafiro": "Cuando Dustox bate las alas, libera un polvillo fino que en realidad es un peligroso veneno que puede resultar dañino hasta al más fuerte de los fuertes. Las antenas le sirven de radar para buscar comida.",

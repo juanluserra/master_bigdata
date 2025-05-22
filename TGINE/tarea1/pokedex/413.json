@@ -2,7 +2,13 @@
     "name": "Wormadam",
     "number": "413",
     "url": "https://pkparaiso.com//pokedex/wormadam.php",
-    "date": "06-08-2012",
+    "types": [
+        "bicho",
+        "planta"
+    ],
+    "class": "Pokémon Larva",
+    "weight": 6.5,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Diamante": "Su apariencia varía según dónde evolucione. Los materiales que haya pasan a formar parte de su cuerpo.",
         " Pokémon Perla": "Cuando Burmy evolucionó, su caparazón pasó a formar parte de este Pokémon.",

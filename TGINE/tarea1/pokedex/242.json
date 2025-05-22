@@ -2,7 +2,12 @@
     "name": "Blissey",
     "number": "242",
     "url": "https://pkparaiso.com//pokedex/blissey.php",
-    "date": "15-05-2001",
+    "types": [
+        "normal"
+    ],
+    "class": "Pokémon Felicidad",
+    "weight": 46.8,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Oro": "Cualquiera que pruebe un poco de huevo de Blissey, se volverá más amable y agradable con todos.",
         " Pokémon Plata": "Es de Naturaleza compasiva. Si ve a un Pokémon enfermo, lo cuidará hasta que se recupere.",

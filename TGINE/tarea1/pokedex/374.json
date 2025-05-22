@@ -2,7 +2,13 @@
     "name": "Beldum",
     "number": "374",
     "url": "https://pkparaiso.com//pokedex/beldum.php",
-    "date": "07-09-2007",
+    "types": [
+        "acero",
+        "psiquico"
+    ],
+    "class": "Pokémon Bola Hierro",
+    "weight": 95.2,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Rubí": "En lugar de sangre, Beldum tiene una poderosa fuerza magnética corriéndole por las venas. Este Pokémon se comunica enviando controlados impulsos magnéticos.",
         " Pokémon Zafiro": "Beldum se mantiene flotando en el aire gracias a la fuerza magnética que genera y que repele la gravedad. Para dormir, este Pokémon se ancla a los riscos usando los ganchos que tiene.",

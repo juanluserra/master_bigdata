@@ -2,7 +2,12 @@
     "name": "Luvdisc",
     "number": "370",
     "url": "https://pkparaiso.com//pokedex/luvdisc.php",
-    "date": "29-07-2020",
+    "types": [
+        "agua"
+    ],
+    "class": "Pokémon Cita",
+    "weight": 8.7,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Rubí": "Luvdisc vive en aguas tropicales poco profundas. Este Pokémon con forma de corazón se ha ganado la reputación que tiene por ir nadando detrás de las parejas de enamorados que veía entre las olas del océano.",
         " Pokémon Zafiro": "Luvdisc tiene forma de corazón y simboliza el amor y el romanticismo. Dicen que la pareja que se encuentre con él mantendrá una relación de amor de por vida.",

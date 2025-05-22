@@ -2,7 +2,12 @@
     "name": "Carnivine",
     "number": "455",
     "url": "https://pkparaiso.com//pokedex/carnivine.php",
-    "date": "28-12-2021",
+    "types": [
+        "planta"
+    ],
+    "class": "Pokémon Caza Bichos",
+    "weight": 27.0,
+    "height": 1.4,
     "descriptions": {
         " Pokémon Diamante": "Se cuelga de las ramas con sus tentáculos y espera a sus presas con la boca abierta.",
         " Pokémon Perla": "Atrae a sus presas con saliva de olor dulce y las mastica. Tarda todo un día en comérselas.",

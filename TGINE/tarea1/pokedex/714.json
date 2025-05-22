@@ -2,7 +2,13 @@
     "name": "Noibat",
     "number": "714",
     "url": "https://pkparaiso.com//pokedex/noibat.php",
-    "date": "23-03-2004",
+    "types": [
+        "volador",
+        "dragon"
+    ],
+    "class": "Pokémon Onda Sónica",
+    "weight": 8.0,
+    "height": 0.5,
     "descriptions": {
         " Pokémon X": "Habita en cuevas donde reina la más absoluta oscuridad y emite ondas ultrasónicas de 200 000 Hz a través de sus enormes orejas.",
         " Pokémon Y": "Ni el más recio de los luchadores profesionales sería capaz de aguantar sus ondas ultrasónicas de 200 000 Hz sin marearse e hincar la rodilla.",

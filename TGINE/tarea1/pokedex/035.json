@@ -2,7 +2,12 @@
     "name": "Clefairy",
     "number": "035",
     "url": "https://pkparaiso.com//pokedex/clefairy.php",
-    "date": "17-03-2002",
+    "types": [
+        "hada"
+    ],
+    "class": "Pokémon Hada",
+    "weight": 7.5,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Rojo y Azul": "Su mágico y adorable aspecto atrae a la gente. Es raro y sólo aparece en ciertas áreas",
         " Pokémon Amarillo": "Su aspecto jovial y vivaracho lo hace adorable. Piensan que son raros, ya que no son muy comunes",

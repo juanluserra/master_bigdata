@@ -2,7 +2,12 @@
     "name": "Roggenrola",
     "number": "524",
     "url": "https://pkparaiso.com//pokedex/roggenrola.php",
-    "date": "17-08-2006",
+    "types": [
+        "roca"
+    ],
+    "class": "Pokémon Manto",
+    "weight": 18.0,
+    "height": 0.4,
     "descriptions": {
         " Pokémon Negro": "Su oreja tiene forma hexagonal. Su cuerpo fue comprimido bajo tierra. Por eso, es duro como el acero.",
         " Pokémon Blanco": "Descubierto en unas grietas generadas por un terremoto hace 100 años. Tiene un núcleo energético en su cuerpo.",

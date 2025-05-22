@@ -2,7 +2,12 @@
     "name": "Slugma",
     "number": "218",
     "url": "https://pkparaiso.com//pokedex/slugma.php",
-    "date": "02-10-2010",
+    "types": [
+        "fuego"
+    ],
+    "class": "Pokémon Lava",
+    "weight": 35.0,
+    "height": 0.7,
     "descriptions": {
         " Pokémon Oro": "No duerme nunca. Tiene que seguir moviéndose porque si se detiene, su cuerpo de lava podría enfriarse.",
         " Pokémon Plata": "Asiduo a las zonas volcánicas, se desliza lentamente en busca de lugares calientes.",

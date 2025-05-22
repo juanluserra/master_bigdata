@@ -2,7 +2,13 @@
     "name": "Whimsicott",
     "number": "547",
     "url": "https://pkparaiso.com//pokedex/whimsicott.php",
-    "date": "03-06-2003",
+    "types": [
+        "planta",
+        "hada"
+    ],
+    "class": "Pokémon Vuelalviento",
+    "weight": 6.6,
+    "height": 0.7,
     "descriptions": {
         " Pokémon Negro": "Es capaz de atravesar las más mínimas fisuras. A su paso, deja bolitas blancas de pelo.",
         " Pokémon Blanco": "Aparece con remolinos de viento. Entra en las casas por las rendijas y le encanta hacer travesuras.",

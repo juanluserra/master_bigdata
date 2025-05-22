@@ -2,7 +2,13 @@
     "name": "Bronzor",
     "number": "436",
     "url": "https://pkparaiso.com//pokedex/bronzor.php",
-    "date": "11-04-2008",
+    "types": [
+        "acero",
+        "psiquico"
+    ],
+    "class": "Pokémon Bronce",
+    "weight": 60.5,
+    "height": 0.5,
     "descriptions": {
         " Pokémon Diamante": "Se intentó comprobar su estructura corporal mediante rayos X, pero no apareció nada.",
         " Pokémon Perla": "Se descubrieron herramientas con su forma en tumbas antiguas, pero se desconoce si tiene relación.",

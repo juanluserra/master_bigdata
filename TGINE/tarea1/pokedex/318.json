@@ -2,7 +2,13 @@
     "name": "Carvanha",
     "number": "318",
     "url": "https://pkparaiso.com//pokedex/carvanha.php",
-    "date": "09-05-2001",
+    "types": [
+        "agua",
+        "siniestro"
+    ],
+    "class": "Pokémon Feroz",
+    "weight": 20.8,
+    "height": 0.8,
     "descriptions": {
         " Pokémon Rubí": "CARVANHA, gracias a las descomunales fauces de afilados colmillos que tiene, es capaz de hacer trizas un barco. Son muchas las naves que han sufrido el ataque de este Pokémon y han acabado naufragando.",
         " Pokémon Zafiro": "Si algo o alguien invade el territorio de los Carvanha, se acercarán en masa y harán trizas al intruso con los afilados colmillos. Sin embargo, cuando están en solitario, estos Pokémon se vuelven tímidos de repente.",

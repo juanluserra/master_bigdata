@@ -1,0 +1,37 @@
+{
+    "name": "Paras",
+    "number": "046",
+    "url": "https://pkparaiso.com//pokedex/paras.php",
+    "types": [
+        "bicho",
+        "planta"
+    ],
+    "class": "Pokémon Hongo",
+    "weight": 5.4,
+    "height": 0.3,
+    "descriptions": {
+        " Pokémon Rojo y Azul": "Cava para chupar las raíces de los árboles. Las setas de su espalda crecen a sus expensas",
+        " Pokémon Amarillo": "Escarba bajo el suelo para roer las raíces de los árboles. Sus setas absorben sus energías",
+        " Pokémon Oro": "Está cubierto de esporas de seta al nacer. A medida que crece, las setas brotan de su lomo.",
+        " Pokémon Plata": "Al crecer, unas setas orientales llamadas tochukaso comienzan a florecer en su lomo.",
+        " Pokémon Cristal": "La gran seta que lleva a cuestas le sirve para obtener savia de los troncos de los árboles.",
+        " Pokémon Rubí": "Paras lleva dos setas parásitas a cuestas llamadas tochukaso. Éstas crecen alimentándose de los nutrientes de este Pokémon de tipo BICHO/PLANTA que les sirve de huésped. Las setas se usan como elixir de vida.",
+        " Pokémon Zafiro": "Paras lleva dos setas parásitas a cuestas llamadas tochukaso. Éstas crecen alimentándose de los nutrientes de este Pokémon de tipo BICHO/PLANTA que les sirve de huésped. Las setas se usan como elixir de vida.",
+        " Pokémon Esmeralda": "Lleva dos setas parásitas, llamadas tochukaso, que se alimentan a partir de los nutrientes del propio Paras. Las setas se usan como elixir de vida.",
+        " Pokémon Rojo Fuego": "Lleva en el lomo dos setas parásitas llamadas tochukaso, que crecen con él.",
+        " Pokémon Verde Hoja": "Cava para chupar las raíces de los árboles. Las setas del lomo crecen con él.",
+        " Pokémon Diamante": "En el lomo de Paras crecen unas setas Parasitarias llamadas tochukaso.",
+        " Pokémon Perla": "En el lomo de Paras crecen unas setas Parasitarias llamadas tochukaso.",
+        " Pokémon Platino": "En el lomo de Paras crecen unas setas Parasitarias llamadas tochukaso.",
+        " Pokémon HeartGold": "Está cubierto de esporas de seta al nacer. A medida que crece, las setas brotan de su lomo.",
+        " Pokémon SoulSilver": "Está cubierto de esporas de seta al nacer. A medida que crece, las setas brotan de su lomo.",
+        " Pokémon Negro": "En el lomo de Paras crecen unas setas parasitarias llamadas “tochukaso\".",
+        " Pokémon Blanco": "En el lomo de Paras crecen unas setas parasitarias llamadas “tochukaso\".",
+        " Pokémon X": "Lleva en el lomo dos setas parásitas llamadas tochukaso, que crecen con él.",
+        " Pokémon Y": "Escarba bajo el suelo para roer las raíces de los árboles. Sus setas absorben los nutrientes.",
+        " Pokémon Rubí Omega": "Paras lleva dos setas parásitas a cuestas llamadas tochukaso. Estas crecen alimentándose de los nutrientes de este Pokémon de tipo Bicho y Planta que les sirve de huésped. Las setas se usan como elixir de vida.",
+        " Pokémon Zafiro Alfa": "Paras lleva dos setas parásitas a cuestas llamadas tochukaso. Estas crecen alimentándose de los nutrientes de este Pokémon de tipo Bicho y Planta que les sirve de huésped. Las setas se usan como elixir de vida.",
+        " Pokémon Sol": "Por mucho que coma, las setas parásitas que tiene en el lomo le roban la mayor parte de los nutrientes.",
+        " Pokémon Luna": "Las setas que lleva en su lomo, llamadas tochukaso, se pueden deshidratar y pulverizar para crear un elixir que alarga la vida."
+    }
+}

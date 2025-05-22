@@ -2,7 +2,12 @@
     "name": "Hypno",
     "number": "097",
     "url": "https://pkparaiso.com//pokedex/hypno.php",
-    "date": "12-02-2010",
+    "types": [
+        "psiquico"
+    ],
+    "class": "Pokémon Hipnosis",
+    "weight": 75.6,
+    "height": 1.6,
     "descriptions": {
         " Pokémon Rojo y Azul": "Cuando mira al enemigo, usa una mezcla de movimientos PSI, como la HIPNOSIS y la CONFUSIÓN",
         " Pokémon Amarillo": "Intenta evitar cualquier tipo de contacto visual con este Pokémon. Puede hipnotizar con su péndulo",

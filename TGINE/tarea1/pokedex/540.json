@@ -2,7 +2,13 @@
     "name": "Sewaddle",
     "number": "540",
     "url": "https://pkparaiso.com//pokedex/sewaddle.php",
-    "date": "09-12-2010",
+    "types": [
+        "bicho",
+        "planta"
+    ],
+    "class": "Pokémon Sastre",
+    "weight": 2.5,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Negro": "Cuando eclosiona, Leavanny le hace ropa y se la pone. Se tapa la cabeza con la capucha para dormir.",
         " Pokémon Blanco": "Recorta hojas y las teje con el líquido viscoso que segrega por la boca para hacerse su propia ropa.",

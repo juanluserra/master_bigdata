@@ -1,9 +1,5 @@
 import scrapy
-import sys
 import json
-import locale
-import time
-import random
 from bs4 import BeautifulSoup
 from typing import Generator, Any
 from pathlib import Path
@@ -11,30 +7,9 @@ import re
 import scrapy.http
 import scrapy.http.response
 import random
-from datetime import datetime, timedelta
 
-
-# Función para geenerar una fecha aleatoria
-def random_date(start: str, end: str) -> str:
-    """
-    Genera una fecha aleatoria entre 'inicio' y 'fin' (ambas en 'dd-mm-YYYY').
-
-    :param inicio: Fecha de inicio en formato 'dd-mm-YYYY'
-    :param fin:    Fecha final en formato 'dd-mm-YYYY'
-    :return:       Fecha aleatoria en formato 'dd-mm-YYYY'
-    """
-    fmt = "%d-%m-%Y"
-    d0 = datetime.strptime(start, fmt)
-    d1 = datetime.strptime(end,    fmt)
-    delta = d1 - d0
-    # número de días aleatorio en el rango [0, delta.days]
-    random_day = random.randrange(delta.days + 1)
-    date = d0 + timedelta(days=random_day)
-    return date.strftime(fmt)
 
 # Crawler para la página de la Pokedex
-
-
 class PokedexSpyder(scrapy.Spider):
     name = 'pokedex'
 
@@ -89,20 +64,44 @@ class PokedexSpyder(scrapy.Spider):
         for videogame, description in zip(videogames, descriptions):
             descriptions_dict[videogame] = description
 
-        # Generamos una fecha aleatoria entre 01-01-2000 y 31-12-2023 para asignar a los documentos
-        # y de esta forma poder filtrar por fecha en elasticsearch
-        start_date = "01-01-2000"
-        end_date = "31-12-2023"
-        date = random_date(start_date, end_date)
+        # Seleccionamos los tipos
+        types = response.css(
+            'table.dexg[width="320"] '
+            'td.row2:contains("Tipos") + td.row1 '
+            'img[src^="/imagenes/xy/sprites/tipos/"]::attr(src)'
+        ).getall()
+        for idx, type in enumerate(types):
+            types[idx] = type.split("/")[-1].split(".")[0]
+
+        # Seleccionamos la clase del pokemon
+        pokemon_class = response.css(
+            # la tabla "Datos básicos"
+            'table.dexg[width="320"] '
+            # el td.row1 que sigue al td.row2 con texto "Clase"
+            'td.row2:contains("Clase") + td.row1::text'
+        ).get().strip()
+
+        # Seleccionamos el peso y la altura
+        peso_altura = response.css(
+            'table.dexg[width="320"] '
+            'td.row2:contains("Peso / Altura") + td.row1::text'
+        ).get().strip()
+        weight, height = [x.strip() for x in peso_altura.split('/')]
+        weight = float(weight.split(" ")[0].replace(",", "."))
+        height = float(height.split(" ")[0].replace(",", "."))
 
         # Creamos un diccionario con los datos
         data = {
             "name": name,
             "number": number,
             "url": url,
-            "date": date,
+            "types": types,
+            "class": pokemon_class,
+            "weight": weight,
+            "height": height,
             "descriptions": descriptions_dict
         }
+        print(data)
 
         # Guardamos el diccionaro en un archivo JSON
         json_file = self.json_folder / f"{number.lower()}.json"
@@ -118,5 +117,4 @@ class PokedexSpyder(scrapy.Spider):
             if surl.startswith("/pokedex/"):
                 # new_url = self.allowed_domains[0] + "/" + surl
                 new_url = "https://pkparaiso.com/" + surl
-                print(name, "->", new_url)
                 yield response.follow(new_url, self.parse)

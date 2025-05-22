@@ -2,7 +2,13 @@
     "name": "Budew",
     "number": "406",
     "url": "https://pkparaiso.com//pokedex/budew.php",
-    "date": "15-10-2011",
+    "types": [
+        "planta",
+        "veneno"
+    ],
+    "class": "Pokémon Brote",
+    "weight": 1.2,
+    "height": 0.2,
     "descriptions": {
         " Pokémon Diamante": "Vive junto a los estanques de agua clara. Esparce polen que provoca estornudos.",
         " Pokémon Perla": "En invierno cierra su capullo para protegerse del frío. En primavera, el capullo se abre y esparce polen.",

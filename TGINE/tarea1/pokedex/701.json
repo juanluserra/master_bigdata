@@ -2,7 +2,13 @@
     "name": "Hawlucha",
     "number": "701",
     "url": "https://pkparaiso.com//pokedex/hawlucha.php",
-    "date": "04-04-2003",
+    "types": [
+        "lucha",
+        "volador"
+    ],
+    "class": "Pokémon Lucha Libre",
+    "weight": 21.5,
+    "height": 0.8,
     "descriptions": {
         " Pokémon X": "A pesar de ser un Pokémon de pequeña estatura, su pericia en el combate le permite plantar cara a Pokémon como Machamp o Hariyama.",
         " Pokémon Y": "Controla su posición en el aire con las alas. Lanza ataques desde gran altura que resultan difíciles de evitar.",

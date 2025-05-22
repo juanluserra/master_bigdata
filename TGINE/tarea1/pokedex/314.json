@@ -2,7 +2,12 @@
     "name": "Illumise",
     "number": "314",
     "url": "https://pkparaiso.com//pokedex/illumise.php",
-    "date": "03-05-2009",
+    "types": [
+        "bicho"
+    ],
+    "class": "Pokémon Luciérnaga",
+    "weight": 17.7,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Rubí": "Illumise atrae mediante su dulce aroma a enjambres de Volbeat. Una vez los ha agrupado, les guía en el vuelo para que dibujen formas geométricas en el lienzo del oscuro cielo.",
         " Pokémon Zafiro": "Illumise guía en el vuelo a un grupo de iluminados Volbeat para que hagan dibujos en el oscuro cielo. Según dicen, cuanto más complejos sean los dibujos, más le respetan los miembros de su grupo.",

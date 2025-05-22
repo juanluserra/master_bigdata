@@ -2,7 +2,13 @@
     "name": "Dodrio",
     "number": "085",
     "url": "https://pkparaiso.com//pokedex/dodrio.php",
-    "date": "16-11-2011",
+    "types": [
+        "normal",
+        "volador"
+    ],
+    "class": "Pokémon Ave Triple",
+    "weight": 85.2,
+    "height": 1.8,
     "descriptions": {
         " Pokémon Rojo y Azul": "Para tramar sus planes usa sus tres cerebros. Cuando 2 cabezas duermen, la otra sigue despierta",
         " Pokémon Amarillo": "Una de las dos cabezas de Doduo se divide para formar un nuevo 74. Es capaz de correr a 40 KPH",

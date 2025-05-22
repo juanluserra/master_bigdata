@@ -2,7 +2,12 @@
     "name": "Garbodor",
     "number": "569",
     "url": "https://pkparaiso.com//pokedex/garbodor.php",
-    "date": "15-07-2003",
+    "types": [
+        "veneno"
+    ],
+    "class": "Pokémon Vertedero",
+    "weight": 107.3,
+    "height": 1.9,
     "descriptions": {
         " Pokémon Negro": "Apresa a su rival con el brazo izquierdo y le da el golpe de gracia exhalando por la boca un apestoso gas venenoso.",
         " Pokémon Blanco": "Traga basura y la integra en su cuerpo. Despide veneno líquido por la punta de los dedos de su mano derecha.",

@@ -1,0 +1,37 @@
+{
+    "name": "Parasect",
+    "number": "047",
+    "url": "https://pkparaiso.com//pokedex/parasect.php",
+    "types": [
+        "bicho",
+        "planta"
+    ],
+    "class": "Pokémon Hongo",
+    "weight": 29.5,
+    "height": 1.0,
+    "descriptions": {
+        " Pokémon Rojo y Azul": "Una pareja de parásitos en la que la seta ha ocupado al bicho. Prefieren los sitios húmedos",
+        " Pokémon Amarillo": "El parásito absorbe la energía con las setas de la espalda, que lo controlan",
+        " Pokémon Oro": "Suele vivir en lugares oscuros y húmedos, los preferidos, no del bicho, sino de la seta de su lomo.",
+        " Pokémon Plata": "Cuanto más grande sea la seta de su lomo, más resistentes serán las esporas que ésta suelta.",
+        " Pokémon Cristal": "Cuando ya no queda nada del bicho, la seta del lomo libera esporas sobre el huevo del mismo.",
+        " Pokémon Rubí": "Parasect es conocido por destruir en plaga grandes árboles, absorbiendo los nutrientes que tienen en la parte baja del tronco y las raíces. Cuando un árbol azotado por la plaga muere, los Parasect van a por el siguiente al instante.",
+        " Pokémon Zafiro": "Parasect es conocido por destruir en plaga grandes árboles, absorbiendo los nutrientes que tienen en la parte baja del tronco y las raíces. Cuando un árbol azotado por la plaga muere, los Parasect van a por el siguiente al instante.",
+        " Pokémon Esmeralda": "Destruyen grandes árboles absorbiendo sus nutrientes. Cuando un árbol azotado por la plaga muere, los Parasect van a por el siguiente al instante.",
+        " Pokémon Rojo Fuego": "Libera esporas tóxicas a través de la seta que lo cubre. En China, las esporas se usan como remedios medicinales.",
+        " Pokémon Verde Hoja": "Una pareja de parásitos en la que la seta domina al bicho. Prefieren los sitios húmedos.",
+        " Pokémon Diamante": "Lo domina un hongo Parasitario mayor que su cuerpo. Se dice que le gustan los lugares húmedos.",
+        " Pokémon Perla": "Parasect está dominado por un hongo parásito mayor que él. Dispersa esporas venenosas.",
+        " Pokémon Platino": "Parasect está dominado por un hongo parásito mayor que él. Dispersa esporas venenosas.",
+        " Pokémon HeartGold": "Suele vivir en lugares oscuros y húmedos, los preferidos, no del bicho, sino de la seta de su lomo.",
+        " Pokémon SoulSilver": "Suele vivir en lugares oscuros y húmedos, los preferidos, no del bicho, sino de la seta de su lomo.",
+        " Pokémon Negro": "Parasect está dominado por una seta parásita mayor que él. Dispersa esporas venenosas.",
+        " Pokémon Blanco": "Parasect está dominado por una seta parásita mayor que él. Dispersa esporas venenosas.",
+        " Pokémon X": "Parasect está dominado por una seta parásita mayor que él. Dispersa esporas venenosas.",
+        " Pokémon Y": "Cuanto más grande sea la seta de su lomo, más resistentes serán las esporas que esta suelta.",
+        " Pokémon Rubí Omega": "Parasect es conocido por destruir en plaga grandes árboles, absorbiendo los nutrientes que tienen en la parte baja del tronco y las raíces. Cuando un árbol azotado por la plaga muere, los Parasect van a por el siguiente al instante.",
+        " Pokémon Zafiro Alfa": "Parasect es conocido por destruir en plaga grandes árboles, absorbiendo los nutrientes que tienen en la parte baja del tronco y las raíces. Cuando un árbol azotado por la plaga muere, los Parasect van a por el siguiente al instante.",
+        " Pokémon Sol": "La gran seta en su lomo lo controla. A menudo libra luchas territoriales contra Shiinotic.",
+        " Pokémon Luna": "La gran seta en su lomo dispersa esporas venenosas, que pueden servir para elaborar remedios medicinales."
+    }
+}

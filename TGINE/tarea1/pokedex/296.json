@@ -2,7 +2,12 @@
     "name": "Makuhita",
     "number": "296",
     "url": "https://pkparaiso.com//pokedex/makuhita.php",
-    "date": "20-07-2009",
+    "types": [
+        "lucha"
+    ],
+    "class": "Pokémon Valiente",
+    "weight": 86.4,
+    "height": 1.0,
     "descriptions": {
         " Pokémon Rubí": "Makuhita es tenaz. Da igual las veces que le venzan; volverá a ponerse en pie y a atacar. De hecho, cada vez que se recupera, acumula más energía para poder evolucionar.",
         " Pokémon Zafiro": "Makuhita tiene un ánimo inagotable. Nunca pierde la esperanza. Come mucho, duerme bastante y se entrena de forma metódica. Siguiendo estos hábitos de vida, este Pokémon tiene siempre mucha energía.",

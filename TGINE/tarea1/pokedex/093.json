@@ -2,7 +2,13 @@
     "name": "Haunter",
     "number": "093",
     "url": "https://pkparaiso.com//pokedex/haunter.php",
-    "date": "27-08-2006",
+    "types": [
+        "fantasma",
+        "veneno"
+    ],
+    "class": "Pokémon Gas",
+    "weight": 0.1,
+    "height": 1.6,
     "descriptions": {
         " Pokémon Rojo y Azul": "Por su habilidad para atravesar muros de piedra, se dice que viene de otra dimensión",
         " Pokémon Amarillo": "Toma la vida de su adversario a lengüetazos. Esto produce mareos hasta que la víctima fallece",

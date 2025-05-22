@@ -2,7 +2,12 @@
     "name": "Machoke",
     "number": "067",
     "url": "https://pkparaiso.com//pokedex/machoke.php",
-    "date": "26-06-2016",
+    "types": [
+        "lucha"
+    ],
+    "class": "Pokémon Superpoder",
+    "weight": 70.5,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Rojo y Azul": "Su musculoso cuerpo es tan fuerte que usa un cinto anti-fuerza para controlar sus movimientos",
         " Pokémon Amarillo": "El cinturón que rodea su cuello retiene toda su energía. Sin él, este Pokémon sería imparable",

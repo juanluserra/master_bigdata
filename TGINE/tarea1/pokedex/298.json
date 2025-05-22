@@ -2,7 +2,13 @@
     "name": "Azurill",
     "number": "298",
     "url": "https://pkparaiso.com//pokedex/azurill.php",
-    "date": "26-03-2010",
+    "types": [
+        "normal",
+        "hada"
+    ],
+    "class": "Pokémon A Topos",
+    "weight": 2.0,
+    "height": 0.2,
     "descriptions": {
         " Pokémon Rubí": "Azurill enrolla la cola como si fuera un lazo y la despliega a continuación todo lo que puede. De esta forma, un Azurill llegó a lanzarse a sí mismo hasta 10 metros.",
         " Pokémon Zafiro": "Azurill tiene una especie de pelota en la cola, que contiene los nutrientes necesarios para crecer. Es fácil ver a este Pokémon saltando y jugueteando sentado encima de la misma.",

@@ -2,7 +2,12 @@
     "name": "Basculin",
     "number": "550",
     "url": "https://pkparaiso.com//pokedex/basculin.php",
-    "date": "14-10-2008",
+    "types": [
+        "agua"
+    ],
+    "class": "Pokémon Violento",
+    "weight": 18.0,
+    "height": 1.0,
     "descriptions": {
         " Pokémon Negro": "Los Basculin con la raya roja y aquellos con la raya azul no dejan de pelearse. Son unos Pokémon muy violentos.",
         " Pokémon Blanco": "Los Basculin con la raya roja y aquellos con la raya azul se llevan fatal, pero algunos tienden a agruparse.",

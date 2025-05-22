@@ -2,7 +2,13 @@
     "name": "Gengar",
     "number": "094",
     "url": "https://pkparaiso.com//pokedex/gengar.php",
-    "date": "12-05-2010",
+    "types": [
+        "fantasma",
+        "veneno"
+    ],
+    "class": "Pokémon Sombra",
+    "weight": 40.5,
+    "height": 1.5,
     "descriptions": {
         " Pokémon Rojo y Azul": "En luna llena, a este Pokémon le gusta imitar las sombras de la gente y burlarse de sus miedos",
         " Pokémon Amarillo": "Sabrás que un Gengar está cerca cuando sufras de sudores fríos. Intentará echarte un hechizo",

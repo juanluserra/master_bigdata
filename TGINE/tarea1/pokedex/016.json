@@ -2,7 +2,13 @@
     "name": "Pidgey",
     "number": "016",
     "url": "https://pkparaiso.com//pokedex/pidgey.php",
-    "date": "03-03-2017",
+    "types": [
+        "normal",
+        "volador"
+    ],
+    "class": "Pokémon Pajarito",
+    "weight": 1.8,
+    "height": 0.3,
     "descriptions": {
         " Pokémon Rojo y Azul": "Muy común en bosques y selvas. Aletea al nivel del suelo para levantar la gravilla",
         " Pokémon Amarillo": "Son muy dóciles. Si son atacados, suelen lanzar arena en lugar de repeler el ataque",

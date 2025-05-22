@@ -2,7 +2,12 @@
     "name": "Electabuzz",
     "number": "125",
     "url": "https://pkparaiso.com//pokedex/electabuzz.php",
-    "date": "28-02-2003",
+    "types": [
+        "electrico"
+    ],
+    "class": "Pokémon Eléctrico",
+    "weight": 30.0,
+    "height": 1.1,
     "descriptions": {
         " Pokémon Rojo y Azul": "Suelen andar por las centrales eléctricas, pero también merodean y causan grandes apagones",
         " Pokémon Amarillo": "Cuando hay un apagón, es más que posible que este Pokémon se haya comido la energía",

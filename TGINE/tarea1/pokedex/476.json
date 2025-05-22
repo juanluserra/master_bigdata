@@ -2,7 +2,13 @@
     "name": "Probopass",
     "number": "476",
     "url": "https://pkparaiso.com//pokedex/probopass.php",
-    "date": "03-09-2005",
+    "types": [
+        "roca",
+        "acero"
+    ],
+    "class": "Pokémon Brújula",
+    "weight": 340.0,
+    "height": 1.4,
     "descriptions": {
         " Pokémon Diamante": "Emana un fuerte magnetismo. Controla tres pequeñas unidades llamadas Mini-Narices.",
         " Pokémon Perla": "Emana un fuerte magnetismo. Controla tres pequeñas unidades llamadas Mini-Narices.",

@@ -2,7 +2,12 @@
     "name": "Accelgor",
     "number": "617",
     "url": "https://pkparaiso.com//pokedex/accelgor.php",
-    "date": "24-12-2012",
+    "types": [
+        "bicho"
+    ],
+    "class": "Pokémon Sincaparazón",
+    "weight": 25.3,
+    "height": 0.8,
     "descriptions": {
         " Pokémon Negro": "Los ambientes secos lo debilitan. Evita la sequedad envolviéndose en muchas membranas finas superpuestas.",
         " Pokémon Blanco": "Se siente ligero una vez liberado de su caparazón. Lucha y se mueve como un ninja.",

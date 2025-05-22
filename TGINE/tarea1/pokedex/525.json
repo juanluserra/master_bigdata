@@ -2,7 +2,12 @@
     "name": "Boldore",
     "number": "525",
     "url": "https://pkparaiso.com//pokedex/boldore.php",
-    "date": "21-02-2014",
+    "types": [
+        "roca"
+    ],
+    "class": "Pokémon Mineral",
+    "weight": 102.0,
+    "height": 0.9,
     "descriptions": {
         " Pokémon Negro": "Cuando está rebosante de energía, brillan sus cristales naranjas. Busca aguas subterráneas en las cuevas.",
         " Pokémon Blanco": "La energía que no puede contener en el interior de su cuerpo se escapa formando cristales naranjas.",

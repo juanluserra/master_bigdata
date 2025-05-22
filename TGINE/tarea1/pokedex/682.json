@@ -2,7 +2,12 @@
     "name": "Spritzee",
     "number": "682",
     "url": "https://pkparaiso.com//pokedex/spritzee.php",
-    "date": "22-09-2005",
+    "types": [
+        "hada"
+    ],
+    "class": "Pokémon Aroma",
+    "weight": 0.5,
+    "height": 0.2,
     "descriptions": {
         " Pokémon X": "Su cuerpo emana una fragancia que embelesa a quien la huele. La fragancia es diferente según los alimentos que ingiere.",
         " Pokémon Y": "Antaño, las damas de la nobleza llevaban un Spritzee consigo que desprendía su aroma preferido, en vez de utilizar un perfume convencional.",

@@ -2,7 +2,13 @@
     "name": "Celebi",
     "number": "251",
     "url": "https://pkparaiso.com//pokedex/celebi.php",
-    "date": "22-05-2021",
+    "types": [
+        "psiquico",
+        "planta"
+    ],
+    "class": "Pokémon Viajetiempo",
+    "weight": 5.0,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Oro": "Este Pokémon vaga por el tiempo. La hierba y los árboles crecen por los campos por donde pasa.",
         " Pokémon Plata": "Dicen que cuando Celebi se interna en un bosque, deja tras de sí un huevo traído del futuro.",

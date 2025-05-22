@@ -2,7 +2,12 @@
     "name": "Sunflora",
     "number": "192",
     "url": "https://pkparaiso.com//pokedex/sunflora.php",
-    "date": "24-01-2010",
+    "types": [
+        "planta"
+    ],
+    "class": "Pokémon Sol",
+    "weight": 8.5,
+    "height": 0.8,
     "descriptions": {
         " Pokémon Oro": "Convierte la luz solar en energía. En la oscuridad, tras el atardecer, cierra sus pétalos y queda inmóvil.",
         " Pokémon Plata": "De día, corre histérico de un lado a otro, pero cuando se pone el sol, se detiene por completo.",

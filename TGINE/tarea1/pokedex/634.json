@@ -2,7 +2,13 @@
     "name": "Zweilous",
     "number": "634",
     "url": "https://pkparaiso.com//pokedex/zweilous.php",
-    "date": "25-05-2017",
+    "types": [
+        "siniestro",
+        "dragon"
+    ],
+    "class": "Pokémon Violento",
+    "weight": 50.0,
+    "height": 1.4,
     "descriptions": {
         " Pokémon Negro": "Cambia de morada siempre que termina con la comida de una zona. Sus dos cabezas se llevan fatal.",
         " Pokémon Blanco": "Sus dos cabezas se llevan mal y se disputan la comida con brutalidad. Por eso acaban comiendo más de la cuenta.",

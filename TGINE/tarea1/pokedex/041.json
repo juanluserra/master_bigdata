@@ -2,7 +2,13 @@
     "name": "Zubat",
     "number": "041",
     "url": "https://pkparaiso.com//pokedex/zubat.php",
-    "date": "26-01-2014",
+    "types": [
+        "veneno",
+        "volador"
+    ],
+    "class": "Pokémon Murciélago",
+    "weight": 7.5,
+    "height": 0.8,
     "descriptions": {
         " Pokémon Rojo y Azul": "Forma colonias en lugares oscuros. Usa ultrasonidos para identificar y acercarse a los objetivos",
         " Pokémon Amarillo": "Emite sonidos ultrasónicos mientras vuela. Los utiliza como sónar para evitar obstáculos",

@@ -2,7 +2,12 @@
     "name": "Trubbish",
     "number": "568",
     "url": "https://pkparaiso.com//pokedex/trubbish.php",
-    "date": "22-03-2019",
+    "types": [
+        "veneno"
+    ],
+    "class": "Pokémon Bolsa Basura",
+    "weight": 31.0,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Negro": "Le gustan los lugares con suciedad. Quien inhala los gases que eructa duerme durante una semana.",
         " Pokémon Blanco": "Pokémon nacido de la reacción química entre una bolsa de basura y residuos industriales.",

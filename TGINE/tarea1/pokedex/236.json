@@ -2,7 +2,12 @@
     "name": "Tyrogue",
     "number": "236",
     "url": "https://pkparaiso.com//pokedex/tyrogue.php",
-    "date": "24-01-2008",
+    "types": [
+        "lucha"
+    ],
+    "class": "Pokémon Peleón",
+    "weight": 21.0,
+    "height": 0.7,
     "descriptions": {
         " Pokémon Oro": "Ataca siempre con mucha energía. Para fortalecerse a sí mismo, sigue luchando aunque pierda.",
         " Pokémon Plata": "Aunque es pequeño, es mejor no ignorarlo porque atacará cualquier objetivo sin previo aviso.",

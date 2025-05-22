@@ -2,7 +2,12 @@
     "name": "Klinklang",
     "number": "601",
     "url": "https://pkparaiso.com//pokedex/klinklang.php",
-    "date": "29-08-2021",
+    "types": [
+        "acero"
+    ],
+    "class": "Pokémon Engranaje",
+    "weight": 81.0,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Negro": "El núcleo rojo sirve como depósito de la energía que expulsa por las púas una vez que está cargado.",
         " Pokémon Blanco": "Recarga su energía rápidamente haciendo girar con gran celeridad el engranaje equipado con un núcleo rojo.",

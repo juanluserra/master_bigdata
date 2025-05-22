@@ -2,7 +2,12 @@
     "name": "Floette",
     "number": "670",
     "url": "https://pkparaiso.com//pokedex/floette.php",
-    "date": "22-07-2023",
+    "types": [
+        "hada"
+    ],
+    "class": "Pokémon Monoflor",
+    "weight": 0.9,
+    "height": 0.2,
     "descriptions": {
         " Pokémon X": "Revolotea alrededor de campos de flores y cuida de aquellas que empiezan a marchitarse. Usa en combate el poder oculto de las flores.",
         " Pokémon Y": "Cuando las plantas bien cuidadas de un parterre florecen, hace acto de presencia e interpreta un baile primoroso para celebrarlo.",

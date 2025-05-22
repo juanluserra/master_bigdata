@@ -2,7 +2,13 @@
     "name": "Ferroseed",
     "number": "597",
     "url": "https://pkparaiso.com//pokedex/ferroseed.php",
-    "date": "21-04-2004",
+    "types": [
+        "planta",
+        "acero"
+    ],
+    "class": "Pokémon Fruto Espina",
+    "weight": 18.8,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Negro": "Lanza numerosas púas al detectar peligro. En cuanto tiene ocasión, echa a rodar y se escapa.",
         " Pokémon Blanco": "Tiene por costumbre estampar sus púas en las paredes de cuevas. Absorbe los minerales que contienen las rocas.",

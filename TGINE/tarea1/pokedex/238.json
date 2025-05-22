@@ -2,7 +2,13 @@
     "name": "Smoochum",
     "number": "238",
     "url": "https://pkparaiso.com//pokedex/smoochum.php",
-    "date": "14-06-2020",
+    "types": [
+        "hielo",
+        "psiquico"
+    ],
+    "class": "Pokémon Beso",
+    "weight": 6.0,
+    "height": 0.4,
     "descriptions": {
         " Pokémon Oro": "Sus labios son la parte más sensible de su cuerpo. Siempre los usa para examinar las cosas.",
         " Pokémon Plata": "Siempre mueve la cabeza hacia delante y hacia atrás como si quisiera besar a alguien.",

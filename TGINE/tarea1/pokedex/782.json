@@ -2,7 +2,12 @@
     "name": "Jangmo-o",
     "number": "782",
     "url": "https://pkparaiso.com//pokedex/jangmo-o.php",
-    "date": "18-04-2008",
+    "types": [
+        "dragon"
+    ],
+    "class": "Pokémon Escamas",
+    "weight": 29.7,
+    "height": 0.6,
     "descriptions": {
         " Pokémon Sol": "Comunica sus sentimientos haciendo sonar sus escamas. El ruido metálico producido reverbera en las altas montañas donde habita.",
         " Pokémon Luna": "Habita en montañas despobladas. Luchan entre ellos para fortalecerse poco a poco."

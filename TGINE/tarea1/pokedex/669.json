@@ -2,7 +2,12 @@
     "name": "Flabébé",
     "number": "669",
     "url": "https://pkparaiso.com//pokedex/flabebe.php",
-    "date": "14-09-2014",
+    "types": [
+        "hada"
+    ],
+    "class": "Pokémon Monoflor",
+    "weight": 0.1,
+    "height": 0.1,
     "descriptions": {
         " Pokémon X": "Puede controlar el poder oculto de las flores. La flor que lleva consigo es como si formara parte de su cuerpo.",
         " Pokémon Y": "En cuanto encuentra una flor de su agrado, la convierte en su hogar para toda la vida. Flota en el aire a su antojo cabalgando el viento.",
