@@ -410,7 +410,7 @@ Se usará el paquete `doParallel` para paralelizar el entrenamiento de los model
 Vamos a empezar con los entrenamientos.
 
 Vamos a usar modelos para realizar predicciones.
-```{r, eval = F}
+```{r}
 # Creamos el cluster
 cluster <- makePSOCKcluster(detectCores() - 1)
 registerDoParallel(cluster)
@@ -644,7 +644,7 @@ results <- foreach(
 
         # Calculamos el f1_score
         cm <- confusionMatrix(as.factor(preds), as.factor(y.train[idxs_test]))
-        f1s[j] <- mean(2 * cm$byClass[, "Sensitivity"] * cm$byClass[, "Specificity"] / (cm$byClass[, "Sensitivity"] + cm$byClass[, "Specificity"]))
+        f1s[j] <- mean(2 * cm$byClass[, "Pos Pred Value"] * cm$byClass[, "Sensitivity"] / (cm$byClass[, "Pos Pred Value"] + cm$byClass[, "Sensitivity"]))
     }
 
     # Guardamos los resultados
@@ -655,11 +655,13 @@ results <- foreach(
     )
 }
 
-# Paramos el cluster
-stopCluster(cluster)
-
 # Guardamos los resultados en un .Rdata
 saveRDS(results, file = "nnet.rds", compress = TRUE)
+```
+
+```{r}
+# Paramos el cluster
+stopCluster(cluster)
 ```
 
 Vamos a seleccionar los mejores hiperparámetros de la red neuronal. Cogeremos el conjunto con el mejor valor de F1 Score, teniendo en cuenta la regla del error estándar.
@@ -667,6 +669,9 @@ Vamos a seleccionar los mejores hiperparámetros de la red neuronal. Cogeremos e
 # Cargamos los resultados
 results <- readRDS("nnet.rds")
 results <- as.data.frame(results)
+
+# Eliminamos las filas con NA
+results <- results[!is.na(results$mean_f1), ]
 
 # Añadimos la columna del error estándar de Kappa
 results$sd_f1 <- as.numeric(results$sd_f1)
@@ -678,7 +683,7 @@ results$f1_lower <- results$mean_f1 - results$sd_f1
 results$f1_greater <- results$mean_f1 + results$sd_f1
 
 # Seleccionamos los resultados con un kpp_greater mayor que el valor máximo de kpp_lower
-best <- results[results$f1_greater > max(results$f1_lower), ]
+best <- results[results$f1_greater > max(results$f1_lower, na.rm = TRUE), ]
 
 # Convertimos los valores a numéricos
 for (i in 1:ncol(best)) {
@@ -695,10 +700,10 @@ best <- best[best$n_layers == 1, ]
 best
 ```
 
-De los modelos más simples (de 1 capa) vamos a elegir el de 128 unidades y learning rate 0.01 con 50 epochs, ya que dentro de los modelos simples tener 128 unidades no supone mucho más costo computacional que tener 64 o 32, y el resultado de 50 epochs no está muy por debajo que el de 100 epochs.
+De los modelos más simples (de 1 capa) vamos a elegir el de 128 unidades y learning rate 0.01 con 30 epochs, ya que dentro de los modelos simples tener 128 unidades no supone mucho más costo computacional que tener 64 o 32, y el resultado de 50 epochs no está muy por debajo que el de 100 epochs.
 ```{r}
 # Seleccionamos el mejor modelo
-best <- best[best$units == 128 & best$lr == 0.01 & best$epochs == 50, ]
+best <- best[best$units == 128 & best$lr == 0.01 & best$epochs == 30, ]
 ```
 
 Ahora que tenemos el conjunto de hiperparámetros vamos a entrenar el modelo de red neuronal.
@@ -794,11 +799,11 @@ nnet.conf <- confusionMatrix(nnet.pred, data.test$contamination)
 nnet.conf
 
 # Calculamos el F1Score para cada modelo
-rpart.f1 <- 2 * rpart.conf$byClass[, "Sensitivity"] * rpart.conf$byClass[, "Specificity"] / (rpart.conf$byClass[, "Sensitivity"] + rpart.conf$byClass[, "Specificity"])
-rf.f1 <- 2 * rf.conf$byClass[, "Sensitivity"] * rf.conf$byClass[, "Specificity"] / (rf.conf$byClass[, "Sensitivity"] + rf.conf$byClass[, "Specificity"])
-gbm.f1 <- 2 * gbm.conf$byClass[, "Sensitivity"] * gbm.conf$byClass[, "Specificity"] / (gbm.conf$byClass[, "Sensitivity"] + gbm.conf$byClass[, "Specificity"])
-svm.f1 <- 2 * svm.conf$byClass[, "Sensitivity"] * svm.conf$byClass[, "Specificity"] / (svm.conf$byClass[, "Sensitivity"] + svm.conf$byClass[, "Specificity"])
-nnet.f1 <- 2 * nnet.conf$byClass[, "Sensitivity"] * nnet.conf$byClass[, "Specificity"] / (nnet.conf$byClass[, "Sensitivity"] + nnet.conf$byClass[, "Specificity"])
+rpart.f1 <- 2 * rpart.conf$byClass[, "Sensitivity"] * rpart.conf$byClass[, "Pos Pred Value"] / (rpart.conf$byClass[, "Sensitivity"] + rpart.conf$byClass[, "Pos Pred Value"])
+rf.f1 <- 2 * rf.conf$byClass[, "Sensitivity"] * rf.conf$byClass[, "Pos Pred Value"] / (rf.conf$byClass[, "Sensitivity"] + rf.conf$byClass[, "Pos Pred Value"])
+gbm.f1 <- 2 * gbm.conf$byClass[, "Sensitivity"] * gbm.conf$byClass[, "Pos Pred Value"] / (gbm.conf$byClass[, "Sensitivity"] + gbm.conf$byClass[, "Pos Pred Value"])
+svm.f1 <- 2 * svm.conf$byClass[, "Sensitivity"] * svm.conf$byClass[, "Pos Pred Value"] / (svm.conf$byClass[, "Sensitivity"] + svm.conf$byClass[, "Pos Pred Value"])
+nnet.f1 <- 2 * nnet.conf$byClass[, "Sensitivity"] * nnet.conf$byClass[, "Pos Pred Value"] / (nnet.conf$byClass[, "Sensitivity"] + nnet.conf$byClass[, "Pos Pred Value"])
 rpart.f1 <- mean(rpart.f1)
 rf.f1 <- mean(rf.f1)
 gbm.f1 <- mean(gbm.f1)
