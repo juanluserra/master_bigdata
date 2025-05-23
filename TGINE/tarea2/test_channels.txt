@@ -1,0 +1,9 @@
+./ciencia/CdeCiencia.json
+./ciencia/lemnismath.json
+./ciencia/Lahiperactina.json
+./politica/lapeceradememorias.json
+./politica/milenio.json
+./politica/rtvenoticias.json
+./videojuegos/RubikYT.json
+./videojuegos/jujalag.json
+./videojuegos/MAFIUS.json
