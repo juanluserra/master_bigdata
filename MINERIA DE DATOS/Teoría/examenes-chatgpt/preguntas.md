@@ -306,3 +306,515 @@
     c) Todos los ejemplos positivos se clasifican correctamente
 
 ---
+
+# Examen 3
+
+**1.** ¿Cuál de las siguientes características es propia de una red GRU y no de una LSTM?
+
+a) Las GRU tienen celdas de estado separadas para entrada y olvido.
+b) Las GRU combinan el estado oculto y el de la celda en una sola representación.
+c) Las GRU utilizan una compuerta de control para cada dimensión de entrada.
+
+**2.** ¿Qué función realiza una capa *Flatten* en una CNN?
+
+a) Convierte un mapa de activación 2D en un vector 1D.
+b) Reduce la profundidad de los filtros convolucionales.
+c) Aplica una transformación no lineal sobre los píxeles.
+
+**3.** ¿Qué ventaja tienen las funciones de activación ReLU sobre la sigmoide en redes profundas?
+
+a) Su derivada es constante.
+b) Evitan el problema de *exploding gradients*.
+c) Reducen la probabilidad de *vanishing gradients*.
+
+**4.** ¿Qué representa el *padding* en una capa convolucional?
+
+a) El número de filtros aplicados.
+b) La cantidad de ceros añadidos al borde de la imagen.
+c) El tamaño del *stride*.
+
+**5.** ¿Por qué se usa *Backpropagation Through Time* (BPTT) en redes RNN?
+
+a) Porque los RNN son no diferenciables sin él.
+b) Para propagar errores hacia capas recurrentes en el tiempo.
+c) Para evitar el uso de funciones de activación en las salidas.
+
+**6.** En el entrenamiento de una red convolucional, ¿qué función tiene la capa *MaxPooling*?
+
+a) Aumentar la dimensionalidad de salida.
+b) Retener la media de cada región.
+c) Extraer la característica más relevante en una región.
+
+**7.** En una red LSTM, ¿cuál es la función de la compuerta de salida?
+
+a) Regular cuánto del estado de la celda se transfiere al estado oculto.
+b) Determinar cuánta información nueva entra en la celda.
+c) Borrar el estado oculto anterior.
+
+**8.** ¿Cuál de los siguientes elementos está presente en una arquitectura CNN clásica?
+
+a) Capas recurrentes.
+b) Capas convolucionales y de agrupación.
+c) Compuertas de activación tipo "reset".
+
+**9.** ¿Cuál es el objetivo principal de la compuerta de olvido en una LSTM?
+
+a) Eliminar información irrelevante de la celda de memoria.
+b) Añadir ruido gaussiano a los datos de entrada.
+c) Reducir el número de parámetros.
+
+**10.** En una red neuronal multicapa (MLP), ¿por qué es importante la función de activación?
+
+a) Porque transforma la red en una función lineal.
+b) Porque permite el aprendizaje no lineal.
+c) Porque ajusta el número de parámetros.
+
+**11.** ¿Qué ocurre si no se utiliza *padding* en una CNN?
+
+a) La imagen de salida tiene el mismo tamaño.
+b) La red es más rápida pero menos precisa.
+c) El tamaño de la salida disminuye tras cada convolución.
+
+**12.** ¿Cuál es una desventaja clave del uso de RNN simples?
+
+a) Consumen demasiada memoria.
+b) Son muy eficientes en el modelado de dependencias a largo plazo.
+c) Sufren de desvanecimiento del gradiente.
+
+**13.** ¿Cuál es el propósito principal de las redes convolucionales?
+
+a) Modelar secuencias temporales.
+b) Detectar relaciones espaciales en imágenes.
+c) Generar números pseudoaleatorios.
+
+**14.** ¿Qué tipo de problema se modela mejor con una red recurrente?
+
+a) Clasificación de imágenes.
+b) Predicción de series temporales.
+c) Reducción de dimensionalidad.
+
+**15.** ¿Qué ocurre en una LSTM si todas las compuertas están abiertas?
+
+a) Se conserva todo el contenido de la celda sin modificación.
+b) Se pierde la información temporal previa.
+c) No hay aprendizaje.
+
+**16.** ¿Qué representa el estado oculto en una RNN?
+
+a) El vector de salida final.
+b) La representación del contexto acumulado hasta el paso actual.
+c) La activación de la función sigmoide.
+
+**17.** ¿Cuál de estas redes es más eficiente para textos largos?
+
+a) RNN clásica.
+b) LSTM.
+c) Red Perceptrón.
+
+**18.** ¿Qué mejora introducen las GRU respecto a las RNN tradicionales?
+
+a) El uso de capas convolucionales.
+b) Mecanismos de atención.
+c) Mejor manejo de dependencias largas.
+
+**19.** ¿Cuál es una diferencia fundamental entre una red convolucional y una red MLP?
+
+a) Las CNNs tienen más funciones de activación.
+b) Las CNNs trabajan con entradas secuenciales.
+c) Las CNNs comparten pesos a través del espacio.
+
+**20.** ¿Qué parámetro en una CNN afecta directamente al tamaño de la salida?
+
+a) Número de filtros.
+b) Stride.
+c) Número de capas.
+
+**21.** ¿Qué ventaja tienen las convoluciones 1D sobre las 2D en ciertos problemas?
+
+a) Menor tiempo de entrenamiento y más capacidad para secuencias.
+b) Capturan mejor las relaciones espaciales en imágenes.
+c) Requieren menos regularización.
+
+**22.** ¿En qué caso una red recurrente bidireccional es útil?
+
+a) Cuando los datos tienen mucho ruido.
+b) Cuando la predicción depende tanto del pasado como del futuro.
+c) Cuando se entrena sin etiquetas.
+
+**23.** ¿Qué significa que una red tenga *estado*?
+
+a) Que depende del hardware.
+b) Que mantiene memoria de entradas anteriores.
+c) Que sus pesos son aleatorios.
+
+**24.** ¿Cuál de estas funciones se puede usar como función de pérdida en clasificación multiclase?
+
+a) MSE (Error Cuadrático Medio).
+b) Entropía cruzada.
+c) LogSoftmax.
+
+**25.** ¿Qué ocurre si se utiliza *stride* alto en una capa convolucional?
+
+a) La red es más precisa.
+b) Se aumenta la resolución de la salida.
+c) Se reduce el tamaño de la salida.
+
+**26.** ¿Cuál es una desventaja común de las redes recurrentes?
+
+a) Consumen menos memoria que las convolucionales.
+b) No pueden modelar dependencias temporales.
+c) Su entrenamiento es más complejo por el retropropagado temporal.
+
+**27.** ¿Cuál es el propósito de usar activación softmax en la última capa?
+
+a) Normalizar la salida a una distribución de probabilidad.
+b) Prevenir el sobreajuste.
+c) Convertir valores negativos a positivos.
+
+**28.** ¿Qué característica tiene una red neuronal profunda?
+
+a) Tiene un único nodo de salida.
+b) Tiene múltiples capas ocultas entre entrada y salida.
+c) Tiene solo una capa de activación.
+
+**29.** ¿Cuál es la principal limitación del uso de tanh como función de activación?
+
+a) Su rango no es finito.
+b) Puede causar desvanecimiento del gradiente.
+c) No es diferenciable.
+
+**30.** ¿Qué tipo de arquitectura es más adecuada para clasificación de texto?
+
+a) CNN
+b) RNN
+c) GAN
+
+---
+
+# Examen 4
+
+
+#### **Preguntas**
+
+**1.** ¿Qué técnica evita que las variables con mayor escala dominen una distancia euclídea?
+
+a) Discretización uniforme
+b) Normalización min-max
+c) PCA
+
+---
+
+**2.** ¿Qué condición debe cumplir un método de reducción basado en varianza acumulada?
+
+a) Que todos los componentes tengan autovalores negativos
+b) Que la varianza total explicada sea menor al 50%
+c) Que los primeros componentes expliquen la mayoría de la varianza
+
+---
+
+**3.** ¿Qué métrica es más sensible a errores en clases minoritarias?
+
+a) Accuracy
+b) F1-Score
+c) Specificity
+
+---
+
+**4.** ¿Qué representa un Lift = 1 en una regla de asociación?
+
+a) Independencia entre antecedente y consecuente
+b) Fuerte correlación positiva
+c) Máxima confianza
+
+---
+
+**5.** ¿Cuál es una desventaja clave de las RNN simples?
+
+a) Su estructura no permite el cálculo de derivadas
+b) No pueden aprender funciones lineales
+c) Tienen dificultades con dependencias largas
+
+---
+
+**6.** ¿Qué ocurre si eliminamos atributos con muy baja entropía?
+
+a) Perdemos variables predictoras útiles
+b) Mejoramos la eficiencia sin perder capacidad predictiva
+c) Incrementamos la multicolinealidad
+
+---
+
+**7.** ¿Qué significa que una regla tenga soporte alto pero baja confianza?
+
+a) Que es irrelevante
+b) Que ocurre frecuentemente, pero no es fiable
+c) Que puede tener Lift > 1
+
+---
+
+**8.** ¿Cuál de las siguientes técnicas genera vectores de menor dimensión con reconstrucción aproximada?
+
+a) Normalización
+b) PCA
+c) Discretización por frecuencia
+
+---
+
+**9.** ¿Qué tipo de problema modela mejor una red CNN?
+
+a) Audio en tiempo real
+b) Imágenes con estructura espacial
+c) Series temporales
+
+---
+
+**10.** ¿Qué ocurre si el valor de k en k-means es muy grande?
+
+a) El clustering puede volverse más robusto
+b) Se genera sobreajuste y clusters redundantes
+c) Mejora el silhouette score automáticamente
+
+---
+
+**11.** ¿Qué estrategia de validación reduce el sobreajuste más eficazmente?
+
+a) Hold-out
+b) K-Fold Cross Validation
+c) Validación con test duplicado
+
+---
+
+**12.** ¿Qué propiedad tiene la distancia de Jaccard?
+
+a) Requiere variables numéricas
+b) Es adecuada para atributos categóricos o binarios
+c) Siempre cumple la desigualdad triangular
+
+---
+
+**13.** ¿Qué técnica permite imputar valores faltantes manteniendo la estructura de correlación?
+
+a) Media por atributo
+b) Imputación por KNN
+c) Eliminación por fila
+
+---
+
+**14.** ¿Qué ocurre si se aplica PCA a variables no estandarizadas?
+
+a) Las variables con más varianza dominarán la transformación
+b) El resultado es equivalente a usar t-SNE
+c) Se obtiene una matriz de correlación
+
+---
+
+**15.** ¿Cuál es el uso principal de la compuerta de olvido en LSTM?
+
+a) Eliminar pesos irrelevantes
+b) Resetear completamente el estado oculto
+c) Borrar información no útil de la celda
+
+---
+
+**16.** ¿Qué representa una tasa de Falsos Positivos (FPR) alta?
+
+a) Muchos negativos se clasifican como positivos
+b) Muchos positivos no se detectan
+c) El modelo tiene alta sensibilidad
+
+---
+
+**17.** ¿Qué ventaja tienen las GRU respecto a LSTM?
+
+a) Menor complejidad computacional
+b) Mejores resultados en todos los datasets
+c) Mayor profundidad de representación
+
+---
+
+**18.** ¿Qué se maximiza en el agrupamiento jerárquico con enlace completo?
+
+a) Densidad entre grupos
+b) Distancia máxima entre puntos de distintos clusters
+c) Similitud coseno
+
+---
+
+**19.** ¿Qué representa el estado oculto en una red recurrente?
+
+a) El vector de activación de salida
+b) El historial acumulado hasta el instante actual
+c) El sesgo de la red
+
+---
+
+**20.** ¿Qué significa un valor de confianza del 90% en una regla de asociación?
+
+a) Que se cumple en el 90% de las veces que aparece el antecedente
+b) Que X e Y ocurren juntas el 90% del tiempo
+c) Que el soporte total es 0.9
+
+---
+
+**21.** ¿Qué error se comete si un modelo clasifica todos los ejemplos como clase mayoritaria?
+
+a) Falso positivo
+b) Sobreajuste
+c) Alta exactitud pero bajo recall
+
+---
+
+**22.** ¿Qué hace la técnica SMOTE?
+
+a) Elimina ruido de clases minoritarias
+b) Sobremuestrea artificialmente con instancias sintéticas
+c) Reduce el número de variables redundantes
+
+---
+
+**23.** ¿Qué se interpreta si una variable tiene varianza cero?
+
+a) Es altamente predictiva
+b) No aporta información
+c) Es mejor discretizarla
+
+---
+
+**24.** ¿Qué técnica transforma variables categóricas sin orden?
+
+a) Ordinal encoding
+b) One-hot encoding
+c) PCA
+
+---
+
+**25.** ¿Qué propiedad del PCA lo hace útil para compresión?
+
+a) Reduce número de muestras
+b) Proyecta datos maximizando varianza
+c) Funciona bien con datos categóricos
+
+---
+
+**26.** ¿Qué sucede si se entrena una CNN con imágenes mal alineadas?
+
+a) Se reduce el overfitting
+b) Aumenta la capacidad de generalización
+c) Se pierde precisión en patrones espaciales
+
+---
+
+**27.** ¿Qué tipo de regularización es Dropout?
+
+a) L2
+b) Basada en apagado aleatorio de neuronas
+c) Normalización batch
+
+---
+
+**28.** ¿Qué métrica evalúa la capacidad de ordenamiento de un modelo binario?
+
+a) Accuracy
+b) AUC
+c) F1
+
+---
+
+**29.** ¿Qué implica la antimonotonicidad del soporte?
+
+a) Que si un itemset es frecuente, todos sus subconjuntos también
+b) Que el soporte crece al aumentar la longitud del itemset
+c) Que no se puede podar ningún candidato
+
+---
+
+**30.** ¿Qué técnica permite visualizar agrupamientos en 2D preservando relaciones locales?
+
+a) PCA
+b) t-SNE
+c) SVD
+
+---
+
+**31.** ¿Qué propiedad NO es obligatoria para una función de similaridad?
+
+a) Simetría
+b) Identidad
+c) Desigualdad triangular
+
+---
+
+**32.** ¿Cuál es el resultado de una capa de convolución con stride alto?
+
+a) Menor tamaño de salida
+b) Mayor profundidad
+c) Reducción del número de filtros
+
+---
+
+**33.** ¿Qué método puede reducir el riesgo de overfitting en modelos complejos?
+
+a) Usar más clases
+b) Dropout
+c) No aplicar activación
+
+---
+
+**34.** ¿Qué efecto tiene la normalización Z-score sobre una variable?
+
+a) Escala los valores entre 0 y 1
+b) Centra y ajusta la varianza
+c) Elimina outliers
+
+---
+
+**35.** ¿Qué parámetro NO se puede optimizar con grid search?
+
+a) Tipo de función de activación
+b) Número de atributos en el dataset
+c) Profundidad de una red
+
+---
+
+**36.** ¿Qué ocurre si en una LSTM la compuerta de entrada está cerrada?
+
+a) No se incorpora nueva información a la celda
+b) Se reinicia el estado
+c) Se pierde el gradiente
+
+---
+
+**37.** ¿Qué indica un valor de MCC cercano a 0?
+
+a) Clasificación aleatoria
+b) Precisión perfecta
+c) Sensibilidad alta
+
+---
+
+**38.** ¿Qué componente de una red neuronal tiene la función de aprendizaje?
+
+a) Los pesos
+b) La entrada
+c) La función de pérdida
+
+---
+
+**39.** ¿Qué técnica se puede aplicar antes de clustering para mejorar resultados?
+
+a) Regresión logística
+b) Reducción de dimensionalidad
+c) Reajuste de etiquetas
+
+---
+
+**40.** ¿Qué ocurre si un modelo tiene alta varianza?
+
+a) Tiene baja capacidad de aprendizaje
+b) Tiene sobreajuste
+c) Tiene bajo sesgo
+
+---
+
+Cuando tengas tus respuestas (ej. `a, b, b, c, _, a, ...`), envíamelas y te calcularé la nota con la penalización correspondiente, además de devolverte la tabla explicativa completa.
+
